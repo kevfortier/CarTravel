@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CarTravel</string>
+    <string name="action_settings">Settings</string>
+    
+    <!-- Menu -->
+    <string name="menu_icons_subtext">Icône du menu</string>
+    <string name="drawer_open">Ouverture du menu gauche</string>
+    <string name="drawer_close">Fermeture du menu gauche</string>
+    
+    <!-- Liste du menu -->
+    <string-array name="menu_items">
+        <item>Accueil</item>
+        <item>Covoiturage</item>
+        <item>Mon compte</item>
+        <item>Mon profil</item>
+        <item>Paramètres</item>
+        <item>Déconnexion</item>
+    </string-array>
+    
+    <!-- String utilisateurs -->
+    <string name="lbl_username">Courriel</string>
+    <string name="lbl_confirmer_username">Confirmation du courriel</string>
+    <string name="lbl_pseudo">Pseudo</string>
+    <string name="lbl_password">Mot de passe</string>
+    <string name="lbl_confirmer_password">Confirmation du mot de passe</string>
+    <string name="btn_connexion">Connexion</string>
+    <string name="lbl_creer_compte"><u>Créer un compte</u></string>
+    <string name="lbl_forgot_password"><u>Mot de passe oublié?</u></string>
+    
+    <string name="toast_courriel_vide">Le champ courriel ne peut être vide</string>
+    <string name="toast_confirm_courriel_vide">Le champ confirmation de courriel ne peut être vide</string>
+    <string name="toast_pseudo_vide">Le champ pseudo ne peut être vide</string>
+    <string name="toast_mdp_vide">Le champ mot de passe ne peut être vide</string>
+    <string name="toast_confirm_mdp_vide">Le champ confirmation de mot de passe ne peut être vide</string>
+    <string name="toast_courriel_invalide">Le champ courriel est invalide</string>
+    <string name="toast_courriel_identique">Les champs courriels ne sont pas identiques</string>
+    <string name="toast_mdp_identique">Les champs mots de passes ne sont pas identiques</string>
+    <string name="toast_compte_creer">Votre compte a été créé</string>
+    <string name="toast_erreur_creation_compte">Erreur lors de la création du compte</string>
+    <string name="toast_erreur_connexion">Erreur lors de la connexion au compte</string>
+    
+    <string name="btn_creer_compte"><u>Créer le compte</u></string>
+
+</resources>
