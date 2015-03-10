@@ -18,7 +18,6 @@ public class JsonUtilisateur {
 		
 		jsonObj.put("pseudo", u.getPseudo());
 		jsonObj.put("password", u.getMotDePasse());
-		jsonObj.put("contacts", (ArrayList<String>)u.getContacts());
 		
 		return jsonObj;
 	}
