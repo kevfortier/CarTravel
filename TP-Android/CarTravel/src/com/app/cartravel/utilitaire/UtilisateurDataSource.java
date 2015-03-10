@@ -133,8 +133,6 @@ public class UtilisateurDataSource {
 				p_Utilisateur.getEstConnecte() ? 1 : 0);
 		// row.put(DatabaseHelper.COL_DERNIERCONNECTE,
 		// p_Utilisateur.getDernierConnecte() ? 1:0);
-		row.put(DatabaseHelper.COL_CONTACTS,
-				((ArrayList<String>) p_Utilisateur.getContacts()).toString());
 		return row;
 	}
 
@@ -149,9 +147,6 @@ public class UtilisateurDataSource {
 				c.getDouble(c
 						.getColumnIndex(DatabaseHelper.COL_DERNIERCONNECTE)) == 1 ? true
 						: false, new ArrayList<String>());
-		r.setContacts(Util.ParseStringToList(
-				c.getString(c.getColumnIndex(DatabaseHelper.COL_CONTACTS)),
-				", "));
 		return r;
 	}
 }
