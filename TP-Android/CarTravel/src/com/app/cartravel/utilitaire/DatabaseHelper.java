@@ -37,7 +37,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public final static String COL_HEURE = "heure";
 	public final static String COL_TYPE_PARCOUR = "type";
 	public final static String COL_NBR_PLACE_DISPO = "nbr_place_dispo";
-	public final static String COL_NBR_PLACE_PRISE = "nbr-place_prise";
+	public final static String COL_NBR_PLACE_PRISE = "nbr_place_prise";
 	public final static String COL_DISTANCE_SUP_MAX = "distance_max"; // Null si
 																		// passager.
 	// Addresse départ
@@ -88,7 +88,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				+ COL_ID_PARCOUR + " integer, " + COL_ID_PASSAGER
 				+ " integer, " + COL_NBR_PASSAGER + " integer, "
 				+ " primary key (" + COL_ID_PARCOUR + ", " + COL_ID_PASSAGER
-				+ ")");
+				+ "))");
 	}
 
 	@Override
