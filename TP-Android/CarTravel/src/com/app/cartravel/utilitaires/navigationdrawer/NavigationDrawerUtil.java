@@ -11,14 +11,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.app.cartravel.CompteActivity;
-import com.app.cartravel.ConnexionActivity;
-import com.app.cartravel.CovoiturageActivity;
 import com.app.cartravel.MainActivity;
-import com.app.cartravel.ProfilActivity;
 import com.app.cartravel.R;
-import com.app.cartravel.classes.Utilisateurs;
-import com.app.cartravel.utilitaire.UtilisateurDataSource;
 
 @SuppressWarnings("deprecation")
 public class NavigationDrawerUtil {
@@ -102,29 +96,6 @@ public class NavigationDrawerUtil {
 		case 0:
 			if (mContext.getClass() != MainActivity.class)
 				i = new Intent(mContext, MainActivity.class);
-			break;
-		case 1:
-			if (mContext.getClass() != CompteActivity.class)
-				i =  new Intent(mContext, CompteActivity.class);
-			break;
-		case 2:
-			if (mContext.getClass() != ProfilActivity.class)
-				i = new Intent(mContext, ProfilActivity.class);
-			break;
-		case 3:
-			if (mContext.getClass() != CovoiturageActivity.class)
-				i = new Intent(mContext, CovoiturageActivity.class);
-			break;
-		case 4:
-			UtilisateurDataSource dataSource = new UtilisateurDataSource(mContext);
-			dataSource.open();
-			Utilisateurs usager = dataSource.getConnectedUtilisateur();
-			usager.setEstConnecte(false);
-			dataSource.update(usager);
-			dataSource.close();
-			
-			i = new Intent(mContext, ConnexionActivity.class);
-			mContext.finish();
 			break;
 		}
 		if (i != null)

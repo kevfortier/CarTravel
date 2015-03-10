@@ -146,7 +146,7 @@ public class UtilisateurDataSource {
 						: false,
 				c.getDouble(c
 						.getColumnIndex(DatabaseHelper.COL_DERNIERCONNECTE)) == 1 ? true
-						: false);
+						: false, new ArrayList<String>());
 		return r;
 	}
 }

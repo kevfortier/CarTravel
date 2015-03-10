@@ -17,9 +17,10 @@
     <!-- Liste du menu -->
     <string-array name="menu_items">
         <item>Accueil</item>
+        <item>Covoiturage</item>
         <item>Mon compte</item>
         <item>Mon profil</item>
-        <item>Covoiturage</item>
+        <item>Paramètres</item>
         <item>Déconnexion</item>
     </string-array>
     
@@ -47,32 +48,4 @@
     
     <string name="btn_creer_compte"><u>Créer le compte</u></string>
 
-    <!-- String profiles -->
-    <string name="lbl_num_civ">Num. civique</string>
-    <string name="lbl_rue">Rue</string>
-    <string name="lbl_ville">Ville</string>
-    <string name="lbl_num_tel">Num. téléphone</string>
-	<string name="lbl_cod_post">Code postal</string>
-    <string name="chck_voiture">Possède une voiture</string>
-    <string name="rtingBar_pass">Passager: </string>
-    <string name="rtingBar_cond">Conducteur: </string>
-    
-	<!-- String parcours -->
-	<string name="lbl_choix_cov">Choix de covoiturage:</string>
-	<string name="chck_pass">Passager</string>
-	<string name="chck_cond">Conducteur</string>
-	
-	<string name="lbl_opt">Heure, date et fréquence:</string>
-	
-	<string name="lbl_info_pass">Informations passager:</string>
-	<string name="lbl_nbr_pass">Nombre de passagers</string>
-	
-	<string name="lbl_info_cond">Informations conducteur:</string>
-	<string name="lbl_plac_dispo">Nombre de places disponibles</string>
-	<string name="lbl_dist_max">Nombre de Km max.</string>
-	
-    <string name="lbl_dep">Départ:</string>
-    <string name="chk_info_prof">Même adresse que profil</string>
-    
-    <string name="lbl_dest">Destination:</string>
 </resources>

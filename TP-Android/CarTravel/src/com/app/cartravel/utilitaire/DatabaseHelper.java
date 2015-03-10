@@ -28,10 +28,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public final static String COL_RUE = "rue";
 	public final static String COL_VILLE = "ville";
 	public final static String COL_CODE_POSTAL = "code_postal";
-	public final static String COL_RATING_COND = "rating_cond";
-	public final static String COL_RATING_PASS = "rating_pass";
+	public final static String COL_RATING = "rating";
 
-	// Noms des colonnes d'un parcours
+	// Noms des colonnes d'un parcour
 	public final static String COL_ID_PARCOUR = "id_parcour";
 	public final static String COL_ID_CONDUCTEUR = "id_utilisateur";
 	public final static String COL_JOUR = "jour";
@@ -70,8 +69,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				+ " text, " + COL_ESTCONNECTE + " text, " + COL_DERNIERCONNECTE
 				+ " text, " + COL_NO_CIVIQUE + " text, " + COL_RUE + " Text, "
 				+ COL_VILLE + " text, " + COL_CODE_POSTAL + " text, "
-				+ COL_RATING_COND + " float, "
-				+ COL_RATING_PASS + " float)");
+				+ COL_RATING + " integer)");
 
 		// Crée la table pour les parcours
 		db.execSQL("create table " + TABLE_PARCOUR + " (" + COL_ID_PARCOUR
