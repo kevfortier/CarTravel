@@ -284,6 +284,7 @@ public class ConnexionActivity extends Activity {
 	
 	private class RegisterToBackEndTask extends AsyncTask<Void, Void, Void>{
 		
+		@SuppressWarnings("unused")
 		private Context m_Context;
 		
 		public RegisterToBackEndTask(Context p_Context){
