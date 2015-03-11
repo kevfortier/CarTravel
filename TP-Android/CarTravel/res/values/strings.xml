@@ -53,9 +53,11 @@
     <string name="lbl_ville">Ville</string>
     <string name="lbl_num_tel">Num. téléphone</string>
 	<string name="lbl_cod_post">Code postal</string>
-    <string name="chck_voiture">Possède une voiture</string>
+    <string name="lbl_voiture">Possède une voiture</string>
     <string name="rtingBar_pass">Passager: </string>
     <string name="rtingBar_cond">Conducteur: </string>
+    
+  	<string name="action_modifier_profil">Modifier le profil</string>
     
 	<!-- String parcours -->
 	<string name="lbl_choix_cov">Choix de covoiturage:</string>

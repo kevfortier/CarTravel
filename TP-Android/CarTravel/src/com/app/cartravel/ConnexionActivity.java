@@ -117,7 +117,6 @@ public class ConnexionActivity extends Activity {
 				Log.i("Reponse", body);
 				Utilisateurs utilisateurConnecte = JsonUtilisateur.ToUtilisateur(body);
 				m_Utilisateur.setPseudo(utilisateurConnecte.getPseudo());
-				m_Utilisateur.setContacts(utilisateurConnecte.getContacts());
 			}
 			catch (Exception e){
 				m_Exp = e;
