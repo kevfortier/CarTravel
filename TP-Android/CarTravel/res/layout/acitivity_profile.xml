@@ -1,4 +1,6 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:map="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -8,9 +10,9 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="com.app.cartravel.profil_activity" >
-
-    <!-- Num. civique -->
+    tools:context="com.app.cartravel.ProfilActivity">
+    
+	<!-- Num. civique -->
 	<LinearLayout
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content">
@@ -115,11 +117,11 @@
 	    <TextView 
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="@string/chck_voiture"
+	        android:text="@string/lbl_voiture"
 	        android:textSize="20sp" />
 	    
 	    <CheckBox 
-	    android:id="@+id/chckPublic"
+	    android:id="@+id/chck_voiture"
 	    android:clickable="false"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
@@ -127,7 +129,7 @@
 	    
 	</LinearLayout>
 
-	<!-- Note en tant que conducteur -->
+	  <!-- Note en tant que conducteur -->
 	<LinearLayout 
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
@@ -141,14 +143,15 @@
 	   
 	    <RatingBar
 	        android:id="@+id/rating_cond" 
-	        style="@style/StarRatingBar"
+	        
 	        android:layout_width="wrap_content"
 	    	android:layout_height="wrap_content"
 	    	android:layout_marginLeft="20dp" />
+	    <!--  style="@style/StarRatingBar" -->
 	</LinearLayout>
 	
 	<!-- Note en tant que passager -->
-	<LinearLayout 
+ 	<LinearLayout 
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:layout_marginBottom="8dp">
@@ -161,10 +164,11 @@
 	   
 	    <RatingBar
 	        android:id="@+id/rating_pass" 
-	        style="@style/StarRatingBar"
+	        
 	        android:layout_width="wrap_content"
 	    	android:layout_height="wrap_content"
 	    	android:layout_marginLeft="20dp" />
+	    <!--  style="@style/StarRatingBar" -->
 	</LinearLayout>
-	
+    
 </LinearLayout>

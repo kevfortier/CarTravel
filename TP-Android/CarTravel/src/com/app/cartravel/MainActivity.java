@@ -10,7 +10,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.view.LayoutInflater;
@@ -20,15 +19,16 @@ import com.app.cartravel.utilitaires.navigationdrawer.NavigationDrawerUtil;
 
 @SuppressWarnings("deprecation")
 public class MainActivity extends Activity {
-
+	
 	NavigationDrawerUtil menu_gauche = null;
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
 		menu_gauche = new NavigationDrawerUtil(this);
+		
 	}
 
 	@Override

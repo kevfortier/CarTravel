@@ -10,13 +10,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import com.app.cartravel.R;
 
 import com.app.cartravel.CompteActivity;
 import com.app.cartravel.ConnexionActivity;
 import com.app.cartravel.CovoiturageActivity;
 import com.app.cartravel.MainActivity;
 import com.app.cartravel.ProfilActivity;
-import com.app.cartravel.R;
 import com.app.cartravel.classes.Utilisateurs;
 import com.app.cartravel.utilitaire.UtilisateurDataSource;
 
