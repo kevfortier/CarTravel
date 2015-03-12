@@ -51,7 +51,9 @@
   
     <string name="action_modifier_compte">Modifier le compte</string>
     <string name="action_sauvegarder_compte">Sauvegarder les modifications</string>
-	 <string name="title_modif_compte">Modification du compte</string>
+	<string name="title_modif_compte">Modification du compte</string>
+	
+	
     <!-- String profiles -->
     <string name="lbl_num_civ">Num. civique</string>
     <string name="lbl_rue">Rue</string>
@@ -63,6 +65,7 @@
     <string name="rtingBar_cond">Conducteur: </string>
     
   	<string name="action_modifier_profil">Modifier le profil</string>
+    <string name="title_modif_profil">Modification du profil</string>
     
 	<!-- String parcours -->
 	<string name="lbl_choix_cov">Choix de covoiturage:</string>

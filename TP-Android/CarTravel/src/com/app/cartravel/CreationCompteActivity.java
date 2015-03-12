@@ -122,7 +122,7 @@ public class CreationCompteActivity extends Activity {
 		@Override
 		protected Void doInBackground(String... params) {
 			try{
-				utilisateur = new Utilisateurs(params[0], params[1], Util.sha1(params[2]), false, false, new ArrayList<String>());
+				utilisateur = new Utilisateurs(params[0], params[1], Util.sha1(params[2]),"","","","",false,0,0,false, false);
 				
 				URI uri = new URI("http",Util.WEB_SERVICE, Util.REST_UTILISATEUR + "/" + utilisateur.getCourriel(), null , null);
 				
