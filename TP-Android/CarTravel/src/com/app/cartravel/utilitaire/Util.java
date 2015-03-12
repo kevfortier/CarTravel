@@ -12,7 +12,7 @@ public class Util {
 
 	public final static String REST_UTILISATEUR = "/utilisateurs";
 	public final static String REST_CONNEXION = "/connexion";
-	public final static String WEB_SERVICE = "10.248.254.97:8080";
+	public final static String WEB_SERVICE = "10.248.210.30:8080";
 
 	public final static String GOOGLE_SENDER_ID = "133519372687";
 	
@@ -77,7 +77,7 @@ public class Util {
 	 */
 	public static Boolean ValiderString(String[] chaines) {
 		for (int i = 0; i < chaines.length; i++) {
-			if (chaines[i] == null || chaines[i] == "")
+			if (chaines[i].isEmpty())
 				return false;
 		}
 		return true;

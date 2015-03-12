@@ -33,20 +33,25 @@
     <string name="lbl_creer_compte"><u>Créer un compte</u></string>
     <string name="lbl_forgot_password"><u>Mot de passe oublié?</u></string>
     
-    <string name="toast_courriel_vide">Le champ courriel ne peut être vide</string>
-    <string name="toast_confirm_courriel_vide">Le champ confirmation de courriel ne peut être vide</string>
-    <string name="toast_pseudo_vide">Le champ pseudo ne peut être vide</string>
-    <string name="toast_mdp_vide">Le champ mot de passe ne peut être vide</string>
-    <string name="toast_confirm_mdp_vide">Le champ confirmation de mot de passe ne peut être vide</string>
-    <string name="toast_courriel_invalide">Le champ courriel est invalide</string>
-    <string name="toast_courriel_identique">Les champs courriels ne sont pas identiques</string>
-    <string name="toast_mdp_identique">Les champs mots de passes ne sont pas identiques</string>
-    <string name="toast_compte_creer">Votre compte a été créé</string>
-    <string name="toast_erreur_creation_compte">Erreur lors de la création du compte</string>
-    <string name="toast_erreur_connexion">Erreur lors de la connexion au compte</string>
+    <string name="toast_courriel_vide">Le champ courriel ne peut être vide.</string>
+    <string name="toast_confirm_courriel_vide">Le champ confirmation de courriel ne peut être vide.</string>
+    <string name="toast_pseudo_vide">Le champ pseudo ne peut être vide.</string>
+    <string name="toast_mdp_vide">Le champ mot de passe ne peut être vide.</string>
+    <string name="toast_confirm_mdp_vide">Le champ confirmation de mot de passe ne peut être vide.</string>
+    <string name="toast_courriel_invalide">Le champ courriel est invalide.</string>
+    <string name="toast_courriel_identique">Les courriels ne sont pas identiques.</string>
+    <string name="toast_mdp_identique">Les mots de passes ne sont pas identiques.</string>
+    <string name="toast_compte_creer">Votre compte a été créé.</string>
+    <string name="toast_erreur_creation_compte">Erreur lors de la création du compte.</string>
+    <string name="toast_erreur_connexion">Erreur lors de la connexion au compte.</string>
+    <string name="toast_modif_compte">Le compte a été modifié avec succès.</string>
+    <string name="toast_annul_modif_compte">Aucune modification n\'a été faite.</string>
     
     <string name="btn_creer_compte"><u>Créer le compte</u></string>
-
+  
+    <string name="action_modifier_compte">Modifier le compte</string>
+    <string name="action_sauvegarder_compte">Sauvegarder les modifications</string>
+	 <string name="title_modif_compte">Modification du compte</string>
     <!-- String profiles -->
     <string name="lbl_num_civ">Num. civique</string>
     <string name="lbl_rue">Rue</string>
@@ -63,18 +68,13 @@
 	<string name="lbl_choix_cov">Choix de covoiturage:</string>
 	<string name="chck_pass">Passager</string>
 	<string name="chck_cond">Conducteur</string>
-	
 	<string name="lbl_opt">Heure, date et fréquence:</string>
-	
 	<string name="lbl_info_pass">Informations passager:</string>
 	<string name="lbl_nbr_pass">Nombre de passagers</string>
-	
 	<string name="lbl_info_cond">Informations conducteur:</string>
 	<string name="lbl_plac_dispo">Nombre de places disponibles</string>
 	<string name="lbl_dist_max">Nombre de Km max.</string>
-	
     <string name="lbl_dep">Départ:</string>
     <string name="chk_info_prof">Même adresse que profil</string>
-    
     <string name="lbl_dest">Destination:</string>
 </resources>

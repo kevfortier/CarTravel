@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.CarTravel.CompteModifActivity" >
+
+    <item
+        android:id="@+id/action_confirmer_compte"
+        android:icon="@drawable/ic_action_accept_light"
+        android:title="@string/action_sauvegarder_compte"
+        android:showAsAction="ifRoom"/>
+</menu>
