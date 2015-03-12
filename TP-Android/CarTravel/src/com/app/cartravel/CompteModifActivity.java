@@ -101,6 +101,7 @@ public class CompteModifActivity extends Activity{
 						MVerifModif = true;
 						
 						this.setResult(RESULT_OK, i);
+						this.finish();
 					}
 					else{
 						Toast.makeText(this, R.string.toast_mdp_identique, Toast.LENGTH_SHORT).show();
@@ -139,7 +140,6 @@ public class CompteModifActivity extends Activity{
 		{
 			this.setResult(RESULT_CANCELED);
 		}
-		this.finish();
 	}
 	
 	

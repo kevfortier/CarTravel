@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
 	// Version BD
-	private final static int DB_VERSION = 2;
+	private final static int DB_VERSION = 3;
 
 	// Nom
 	private final static String DATABASE_NAME = "cartravel.sqlite";
@@ -22,14 +22,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public final static String COL_COURRIEL = "courriel";
 	public final static String COL_PSEUDO = "pseudo";
 	public final static String COL_MOTDEPASSE = "motdepasse";
-	public final static String COL_ESTCONNECTE = "estconnecte";
-	public final static String COL_DERNIERCONNECTE = "dernierconnecte";
+	
 	public final static String COL_NO_CIVIQUE = "no_civique";
 	public final static String COL_RUE = "rue";
 	public final static String COL_VILLE = "ville";
 	public final static String COL_CODE_POSTAL = "code_postal";
+	public final static String COL_VOITURE = "voiture";
 	public final static String COL_RATING_COND = "rating_cond";
 	public final static String COL_RATING_PASS = "rating_pass";
+	
+	public final static String COL_ESTCONNECTE = "estconnecte";
+	public final static String COL_DERNIERCONNECTE = "dernierconnecte";
+	
 
 	// Noms des colonnes d'un parcours
 	public final static String COL_ID_PARCOUR = "id_parcour";
@@ -64,31 +68,46 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 
 		// Crée la table pour les utilisateurs
-		db.execSQL("create table " + TABLE_UTILISATEUR + " (" + COL_ID_USER
-				+ " integer primary key autoincrement, " + COL_COURRIEL
-				+ " text, " + COL_PSEUDO + " text, " + COL_MOTDEPASSE
-				+ " text, " + COL_ESTCONNECTE + " text, " + COL_DERNIERCONNECTE
-				+ " text, " + COL_NO_CIVIQUE + " text, " + COL_RUE + " Text, "
-				+ COL_VILLE + " text, " + COL_CODE_POSTAL + " text, "
+		db.execSQL("create table " + TABLE_UTILISATEUR + " (" 
+				+ COL_ID_USER
+				+ " integer primary key autoincrement, " 
+				+ COL_COURRIEL + " text, " 
+				+ COL_PSEUDO + " text, " 
+				+ COL_MOTDEPASSE + " text, "
+				+ COL_NO_CIVIQUE + " text, " 
+				+ COL_RUE + " Text, "
+				+ COL_VILLE + " text, " 
+				+ COL_CODE_POSTAL + " text, "
+				+ COL_VOITURE + " integer, "
 				+ COL_RATING_COND + " float, "
-				+ COL_RATING_PASS + " float)");
+				+ COL_RATING_PASS + " float, "
+				+ COL_ESTCONNECTE + " integer, " 
+				+ COL_DERNIERCONNECTE + "integer) " );
 
 		// Crée la table pour les parcours
-		db.execSQL("create table " + TABLE_PARCOUR + " (" + COL_ID_PARCOUR
-				+ " integer primary key autoincrement, " + COL_ID_CONDUCTEUR
-				+ " integer, " + COL_JOUR + " text, " + COL_HEURE + " text, "
-				+ COL_TYPE_PARCOUR + " text, " + COL_NBR_PLACE_DISPO
-				+ " integer, " + COL_NBR_PLACE_PRISE + " integer, "
-				+ COL_DISTANCE_SUP_MAX + " real, " + COL_NO_CIVIQUE_DEP
-				+ " text, " + COL_RUE_DEP + " text, " + COL_VILLE_DEP
-				+ " text, " + COL_CODE_POSTAL_DEP + " text, "
-				+ COL_NO_CIVIQUE_ARR + " text, " + COL_RUE_ARR + " text, "
-				+ COL_VILLE_ARR + " text, " + COL_CODE_POSTAL_ARR + " text)");
+		db.execSQL("create table " + TABLE_PARCOUR + " (" 
+				+ COL_ID_PARCOUR + " integer primary key autoincrement, " 
+				+ COL_ID_CONDUCTEUR + " integer, " 
+				+ COL_JOUR + " text, " 
+				+ COL_HEURE + " text, "
+				+ COL_TYPE_PARCOUR + " text, " 
+				+ COL_NBR_PLACE_DISPO + " integer, " 
+				+ COL_NBR_PLACE_PRISE + " integer, "
+				+ COL_DISTANCE_SUP_MAX + " real, " 
+				+ COL_NO_CIVIQUE_DEP + " text, " 
+				+ COL_RUE_DEP + " text, " 
+				+ COL_VILLE_DEP + " text, " 
+				+ COL_CODE_POSTAL_DEP + " text, "
+				+ COL_NO_CIVIQUE_ARR + " text, " 
+				+ COL_RUE_ARR + " text, "
+				+ COL_VILLE_ARR + " text, " 
+				+ COL_CODE_POSTAL_ARR + " text)");
 
 		// Crée la table pour les parcours-passagers
 		db.execSQL("create table " + TABLE_PARCOUR_PASSAGER + " ("
-				+ COL_ID_PARCOUR + " integer, " + COL_ID_PASSAGER
-				+ " integer, " + COL_NBR_PASSAGER + " integer, "
+				+ COL_ID_PARCOUR + " integer, " 
+				+ COL_ID_PASSAGER + " integer, " 
+				+ COL_NBR_PASSAGER + " integer, "
 				+ " primary key (" + COL_ID_PARCOUR + ", " + COL_ID_PASSAGER
 				+ "))");
 	}

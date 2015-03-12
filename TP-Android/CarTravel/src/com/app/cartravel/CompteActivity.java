@@ -20,7 +20,6 @@ public class CompteActivity extends Activity{
 	private Utilisateurs mUtilisateur;
 	private TextView mCourriel;
 	private TextView mPseudo;
-	private TextView mMDP;
 	private UtilisateurDataSource mDataSource;
 	private Bundle m_extra;
 	
@@ -35,14 +34,14 @@ public class CompteActivity extends Activity{
 		mDataSource.close();
 		
 		setContentView(R.layout.activity_compte);
+		mCourriel = (EditText) findViewById(R.id.txt_username);
+		mPseudo = (EditText) findViewById(R.id.txt_pseudo);
 		
 		if (mUtilisateur != null) {
 			AfficherInfoCompte(mCourriel, mPseudo);
 		}
 		
-		mCourriel = (EditText) findViewById(R.id.txt_username);
-		mPseudo = (EditText) findViewById(R.id.txt_pseudo);
-		mMDP = (EditText) findViewById(R.id.txt_password);
+		
 	}
 	
 	//Menu de cette page

@@ -7,6 +7,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v4.database.DatabaseUtilsCompat;
 
 import com.app.cartravel.classes.Utilisateurs;
 
@@ -142,10 +143,16 @@ public class UtilisateurDataSource {
 				c.getString(c.getColumnIndex(DatabaseHelper.COL_COURRIEL)),
 				c.getString(c.getColumnIndex(DatabaseHelper.COL_PSEUDO)),
 				c.getString(c.getColumnIndex(DatabaseHelper.COL_MOTDEPASSE)),
-				c.getDouble(c.getColumnIndex(DatabaseHelper.COL_ESTCONNECTE)) == 1 ? true
+				c.getString(c.getColumnIndex(DatabaseHelper.COL_NO_CIVIQUE)),
+				c.getString(c.getColumnIndex(DatabaseHelper.COL_RUE)),
+				c.getString(c.getColumnIndex(DatabaseHelper.COL_VILLE)),
+				c.getString(c.getColumnIndex(DatabaseHelper.COL_CODE_POSTAL)),
+				c.getInt(c.getColumnIndex(DatabaseHelper.COL_VOITURE)) == 1 ? true : false,
+				c.getFloat(c.getColumnIndex(DatabaseHelper.COL_RATING_COND)),
+				c.getFloat(c.getColumnIndex(DatabaseHelper.COL_RATING_PASS)),
+				c.getInt(c.getColumnIndex(DatabaseHelper.COL_ESTCONNECTE)) == 1 ? true
 						: false,
-				c.getDouble(c
-						.getColumnIndex(DatabaseHelper.COL_DERNIERCONNECTE)) == 1 ? true
+				c.getInt(c.getColumnIndex(DatabaseHelper.COL_DERNIERCONNECTE)) == 1 ? true
 						: false);
 		return r;
 	}
