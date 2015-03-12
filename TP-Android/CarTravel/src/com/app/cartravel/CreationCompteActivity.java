@@ -53,38 +53,51 @@ public class CreationCompteActivity extends Activity {
 		String strMotDePasse = motDePasse.getText().toString().trim();
 		String strMotDePasseConfirmation = motDePasseConfirmation.getText().toString().trim();
 		
-		if(Util.ValiderString(new String[]{strCourriel, strCourrielConfirmation, strPseudo, strMotDePasse, strMotDePasseConfirmation})){
-			if(Util.isCourriel(strCourriel)){
-				if (strCourriel.equals(strCourrielConfirmation)){
-					if(strMotDePasse.equals(strMotDePasseConfirmation)){
+		if(Util.ValiderString(new String[]{strCourriel, strCourrielConfirmation, strPseudo, strMotDePasse, strMotDePasseConfirmation}))
+		{
+			if(Util.isCourriel(strCourriel))
+			{
+				if (strCourriel.equals(strCourrielConfirmation))
+				{
+					if(strMotDePasse.equals(strMotDePasseConfirmation))
+					{
 						new CreerCompteTask(this).execute(strCourriel, strPseudo, strMotDePasse);
 					}
-					else{
-						Toast.makeText(this, this.getResources().getText(R.string.toast_courriel_invalide), Toast.LENGTH_SHORT).show();
+					else
+					{
+						Toast.makeText(this, this.getResources().getText(R.string.toast_mdp_identique), Toast.LENGTH_SHORT).show();
 					}
 				}
-				else{
-					Toast.makeText(this, this.getResources().getText(R.string.toast_courriel_invalide), Toast.LENGTH_SHORT).show();
+				else
+				{
+					Toast.makeText(this, this.getResources().getText(R.string.toast_courriel_identique), Toast.LENGTH_SHORT).show();
 				}
 			}
-			else{
+			else
+			{
 				Toast.makeText(this, this.getResources().getText(R.string.toast_courriel_invalide), Toast.LENGTH_SHORT).show();
 			}
 		}
-		else{
-			if (!Util.ValiderString(new String[]{strCourriel})) {
+		else
+		{
+			if (!Util.ValiderString(new String[]{strCourriel})) 
+			{
 				Toast.makeText(this, this.getResources().getText(R.string.toast_courriel_vide), Toast.LENGTH_SHORT).show();
 			}
-			if (!Util.ValiderString(new String[]{strCourriel})) {
+			if (!Util.ValiderString(new String[]{strCourrielConfirmation})) 
+			{
 				Toast.makeText(this, this.getResources().getText(R.string.toast_confirm_courriel_vide), Toast.LENGTH_SHORT).show();
 			}
-			if (!Util.ValiderString(new String[]{strCourriel})) {
+			if (!Util.ValiderString(new String[]{strPseudo})) 
+			{
 				Toast.makeText(this, this.getResources().getText(R.string.toast_pseudo_vide), Toast.LENGTH_SHORT).show();
 			}
-			if (!Util.ValiderString(new String[]{strCourriel})) {
+			if (!Util.ValiderString(new String[]{strMotDePasse})) 
+			{
 				Toast.makeText(this, this.getResources().getText(R.string.toast_mdp_vide), Toast.LENGTH_SHORT).show();
 			}
-			if (!Util.ValiderString(new String[]{strCourriel})) {
+			if (!Util.ValiderString(new String[]{strMotDePasseConfirmation})) 
+			{
 				Toast.makeText(this, this.getResources().getText(R.string.toast_confirm_mdp_vide), Toast.LENGTH_SHORT).show();
 			}
 		}
