@@ -12,10 +12,10 @@ public class Util {
 
 	public final static String REST_UTILISATEUR = "/utilisateurs";
 	public final static String REST_CONNEXION = "/connexion";
-	public final static String WEB_SERVICE = "10.248.210.30:8080";
+	public final static String WEB_SERVICE = "192.168.2.16:8080";
 
 	public final static String GOOGLE_SENDER_ID = "133519372687";
-	
+
 	// public final static String REST_CONTACTS = "/contacts";
 
 	/**
@@ -132,12 +132,12 @@ public class Util {
 		}
 		return lstLng;
 	}
-	
-	public static boolean verifCodePostal(String p_CodePostal) {
-	    boolean verifCodePostal = false;
-	    String regExCodePostal = "^[A-Z][0-9][A-Z]?[0-9][A-Z][0-9]$";
-	    verifCodePostal = p_CodePostal.matches(regExCodePostal);
 
-	    return verifCodePostal;
-	  }
+	public static boolean verifCodePostal(String p_CodePostal) {
+		boolean verifCodePostal = false;
+		String regExCodePostal = "^[A-Z][0-9][A-Z]?[0-9][A-Z][0-9]$";
+		verifCodePostal = p_CodePostal.matches(regExCodePostal);
+
+		return verifCodePostal;
+	}
 }

@@ -30,16 +30,8 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
-
-            <!--
-            Pour mettre le main activity comme page de démarage.
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter> 
-            -->
         </activity>
+        
         <activity
             android:name=".ConnexionActivity"
             android:label="@string/app_name"
@@ -56,18 +48,16 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".ProfilActivity"
-            android:label="@string/app_name">
-        </activity>
-        
-        <activity
             android:name=".CompteActivity"
             android:label="@string/app_name">
         </activity>
         
         <activity
-            android:name=".CovoiturageActivity"
-            android:label="@string/app_name">
+            android:name=".ProfilActivity"
+            android:label="@string/act_profil">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.app.cartravel.MainActivity" />
         </activity>
         
          <meta-data 

@@ -3,6 +3,7 @@
 
     <string name="app_name">CarTravel</string>
     <string name="action_settings">Settings</string>
+    <string name="act_profil">Mon profil</string>
     
     <!-- Menu -->
     <string name="menu_icons_subtext">Icône du menu</string>
@@ -17,9 +18,10 @@
     <!-- Liste du menu -->
     <string-array name="menu_items">
         <item>Accueil</item>
+        <item>Covoiturage</item>
         <item>Mon compte</item>
         <item>Mon profil</item>
-        <item>Covoiturage</item>
+        <item>Paramètres</item>
         <item>Déconnexion</item>
     </string-array>
     
