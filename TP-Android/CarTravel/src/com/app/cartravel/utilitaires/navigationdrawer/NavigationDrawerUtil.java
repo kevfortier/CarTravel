@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.app.cartravel.CompteActivity;
 import com.app.cartravel.ConnexionActivity;
 import com.app.cartravel.MainActivity;
 import com.app.cartravel.ProfilActivity;
@@ -104,6 +105,8 @@ public class NavigationDrawerUtil {
 		case 1: // Covoiturage
 			break;
 		case 2: // Mon compte
+			if (mContext.getClass() != CompteActivity.class)
+				i = new Intent(mContext, CompteActivity.class);
 			break;
 		case 3: // Mon profil
 			if (mContext.getClass() != ProfilActivity.class)

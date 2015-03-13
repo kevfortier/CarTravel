@@ -47,14 +47,18 @@
             android:name=".CreationCompteActivity"
             android:label="@string/app_name" >
         </activity>
-        <activity
-            android:name=".CompteActivity"
-            android:label="@string/app_name">
-        </activity>
         
         <activity
             android:name=".ProfilActivity"
             android:label="@string/act_profil">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.app.cartravel.MainActivity" />
+        </activity>
+        
+        <activity
+            android:name=".CompteActivity"
+            android:label="@string/act_compte">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.app.cartravel.MainActivity" />

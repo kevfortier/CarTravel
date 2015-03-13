@@ -1,9 +1,11 @@
 package com.app.cartravel;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +28,10 @@ public class CompteActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		
+		ActionBar actionBar = getActionBar();
+
+		actionBar.setDisplayHomeAsUpEnabled(true);
 
 		mDataSource = new UtilisateurDataSource(this);
 		mDataSource.open();
@@ -66,6 +72,17 @@ public class CompteActivity extends Activity {
 		if (resultCode == RESULT_CANCELED && requestCode == MODIFIER_COMPTE) {
 			Toast.makeText(this, R.string.toast_annul_modif_compte,
 					Toast.LENGTH_SHORT).show();
+		}
+	}
+	
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			// app icon in action bar clicked; goto parent activity.
+			this.finish();
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
 		}
 	}
 
