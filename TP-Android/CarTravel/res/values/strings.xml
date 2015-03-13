@@ -15,6 +15,14 @@
     <string name="frag_profil">Profil</string>
     <string name="frag_passager">Passager</string>
     <string name="frag_conducteur">Conducteur</string>
+    <string name="passagers_pot">Liste des passagers potentiel</string>
+    <string name="passagers">Liste de mes passagers</string>
+    <string name="conducteur_pot">Liste des conducteurs potentiel</string>
+    <string name="conducteur">Liste de mes conducteurs</string>
+    <string name="lst_passagers_pot_vide">La Liste des passagers potentiel est vide</string>
+    <string name="lst_passagers_vide">La Liste de vos passagers potentiel est vide</string>
+    <string name="lst_conducteur_pot_vide">La Liste des conducteurs potentiel est vide</string>
+    <string name="lst_conducteur_vide">La Liste de vos conducteurs potentiel est vide</string>
     
     <!-- Liste du menu -->
     <string-array name="menu_items">
@@ -92,4 +100,5 @@
     <string name="lbl_dep">Départ:</string>
     <string name="chk_info_prof">Même adresse que profil</string>
     <string name="lbl_dest">Destination:</string>
+    
 </resources>

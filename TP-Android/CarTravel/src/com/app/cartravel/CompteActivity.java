@@ -28,7 +28,7 @@ public class CompteActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		
+
 		ActionBar actionBar = getActionBar();
 
 		actionBar.setDisplayHomeAsUpEnabled(true);
@@ -74,7 +74,7 @@ public class CompteActivity extends Activity {
 					Toast.LENGTH_SHORT).show();
 		}
 	}
-	
+
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:

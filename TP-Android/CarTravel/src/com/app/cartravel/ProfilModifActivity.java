@@ -47,7 +47,7 @@ public class ProfilModifActivity extends Activity {
 		mNotePass = (RatingBar) findViewById(R.id.rating_pass);
 
 		setTitle(R.string.title_modif_profil);
-		
+
 		mDataSource = new UtilisateurDataSource(this);
 		mDataSource.open();
 		mUtilisateur = mDataSource.getConnectedUtilisateur();

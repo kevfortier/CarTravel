@@ -16,12 +16,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ListView;
 
 import com.app.cartravel.classes.Utilisateurs;
 import com.app.cartravel.utilitaire.UtilisateurDataSource;
 
 public class ParcourActivity extends Activity implements ActionBar.TabListener {
-
 
 	private SectionsPagerAdapter mSectionsPagerAdapter;
 	private ViewPager mViewPager;
@@ -29,8 +29,7 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 	private Utilisateurs m_Utilisateur;
 
 	private Bundle extras;
-	
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -87,7 +86,6 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 		}
 	}
 
-
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
@@ -122,7 +120,6 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 	public void onTabReselected(ActionBar.Tab tab,
 			FragmentTransaction fragmentTransaction) {
 	}
-
 
 	// Choix du fragment
 	/**
@@ -220,7 +217,8 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 		/**
 		 * Returns a new instance of this fragment for the given section number.
 		 */
-		public static PlaceholderFragmentConducteur newInstance(int sectionNumber) {
+		public static PlaceholderFragmentConducteur newInstance(
+				int sectionNumber) {
 			PlaceholderFragmentConducteur fragment = new PlaceholderFragmentConducteur();
 			Bundle args = new Bundle();
 			args.putInt(ARG_SECTION_NUMBER, sectionNumber);
