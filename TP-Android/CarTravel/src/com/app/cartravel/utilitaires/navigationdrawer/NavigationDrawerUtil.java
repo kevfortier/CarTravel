@@ -14,6 +14,7 @@ import android.widget.ListView;
 import com.app.cartravel.CompteActivity;
 import com.app.cartravel.ConnexionActivity;
 import com.app.cartravel.MainActivity;
+import com.app.cartravel.ParcourActivity;
 import com.app.cartravel.ProfilActivity;
 import com.app.cartravel.R;
 import com.app.cartravel.classes.Utilisateurs;
@@ -103,6 +104,8 @@ public class NavigationDrawerUtil {
 				i = new Intent(mContext, MainActivity.class);
 			break;
 		case 1: // Covoiturage
+			if (mContext.getClass() != ParcourActivity.class)
+				i = new Intent(mContext, ParcourActivity.class);
 			break;
 		case 2: // Mon compte
 			if (mContext.getClass() != CompteActivity.class)
