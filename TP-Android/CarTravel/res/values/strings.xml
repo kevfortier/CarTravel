@@ -3,6 +3,7 @@
 
     <string name="app_name">CarTravel</string>
     <string name="action_settings">Settings</string>
+    <string name="act_profil">Mon profil</string>
     
     <!-- Menu -->
     <string name="menu_icons_subtext">Icône du menu</string>
