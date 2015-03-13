@@ -36,6 +36,8 @@ public class JsonUtilisateur {
 		return jsonObj;
 	}
 	
+	
+	
 	public static Utilisateurs ToUtilisateur(String strJson) throws JSONException{
 		Utilisateurs u;
 		List<String> contacts = new ArrayList<String>();
@@ -44,10 +46,12 @@ public class JsonUtilisateur {
 		for(int i = 0; i < contactsJSON.length(); i++)
 			contacts.add(contactsJSON.getString(i));
 		u = new Utilisateurs("", jsonUtilisateur.getString("pseudo"),
-				jsonUtilisateur.getString("password"),false,false,contacts);
+				jsonUtilisateur.getString("password"),"","","","",false,0,0,false,false);
 		return u;
 	}
 	
+	//MÈthodes pour gÈrer des contacts et nous n'en avons pas.
+	/*
 	public static List<Utilisateurs> ToListUtilisateurs(String strJson) throws JSONException{
 		List<Utilisateurs> liste = new ArrayList<Utilisateurs>(); 
 		JSONArray array = new JSONArray(strJson);
@@ -65,6 +69,8 @@ public class JsonUtilisateur {
         
 		return liste;
 	}
+	*/
+	
 	/**
 	 * Converti une chaine de caract√®res JSON en liste de ContactItem 
 	 * @param strJson

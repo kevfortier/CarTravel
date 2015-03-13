@@ -77,7 +77,7 @@ public class Util {
 	 */
 	public static Boolean ValiderString(String[] chaines) {
 		for (int i = 0; i < chaines.length; i++) {
-			if (chaines[i] == null || chaines[i] == "")
+			if (chaines[i].isEmpty())
 				return false;
 		}
 		return true;
