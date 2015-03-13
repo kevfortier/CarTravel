@@ -31,14 +31,13 @@ public class CompteModifActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_compte_modif);
+		setTitle(R.string.title_modif_compte);
 
 		mCourriel = (EditText) findViewById(R.id.txt_username);
 		mCourrielVerif = (EditText) findViewById(R.id.txt_confirmer_username);
 		mPseudo = (EditText) findViewById(R.id.txt_pseudo);
 		mMDP = (EditText) findViewById(R.id.txt_password);
 		mMDPVerif = (EditText) findViewById(R.id.txt_confirmer_password);
-
-		setTitle(R.string.title_modif_compte);
 
 		mDataSource = new UtilisateurDataSource(this);
 		mDataSource.open();
