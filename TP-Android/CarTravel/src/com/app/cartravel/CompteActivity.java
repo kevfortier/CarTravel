@@ -40,8 +40,6 @@ public class CompteActivity extends Activity{
 		if (mUtilisateur != null) {
 			AfficherInfoCompte(mCourriel, mPseudo);
 		}
-		
-		
 	}
 	
 	//Menu de cette page

@@ -65,7 +65,15 @@
     <string name="rtingBar_cond">Conducteur: </string>
     
   	<string name="action_modifier_profil">Modifier le profil</string>
+  	<string name="action_sauvegarder_profil">Sauvegarder le profil</string>
     <string name="title_modif_profil">Modification du profil</string>
+    
+    <string name="toast_num_civique_vide">Le champ du numéro civique ne peut être vide.</string>
+    <string name="toast_num_civique_confirm">Le numéro civique doit être composé de chiffre(s).</string>
+    <string name="toast_rue_vide">Le champ rue ne peut être vide.</string>
+    <string name="toast_ville_vide">Le champ ville ne peut être vide.</string>
+    <string name="toast_code_postal_vide">Le champ code postal ne peut être vide.</string>
+    <string name="toast_code_postal_confirm">Le code postal n\'est pas valide.</string>
     
 	<!-- String parcours -->
 	<string name="lbl_choix_cov">Choix de covoiturage:</string>

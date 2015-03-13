@@ -22,7 +22,7 @@ public class CompteModifActivity extends Activity{
 	private TextView mPseudo;
 	private TextView mMDP;
 	private TextView mMDPVerif;
-	private boolean MVerifModif = false;
+	private boolean mVerifModif = false;
 	private UtilisateurDataSource mDataSource;
 	private Bundle m_extra;
 	
@@ -33,14 +33,13 @@ public class CompteModifActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.activity_compte_modif);
+		setTitle(R.string.title_modif_compte);
 		
 		mCourriel = (EditText) findViewById(R.id.txt_username);
 		mCourrielVerif = (EditText) findViewById(R.id.txt_confirmer_username);
 		mPseudo = (EditText)findViewById(R.id.txt_pseudo);
 		mMDP = (EditText) findViewById(R.id.txt_password);
 		mMDPVerif = (EditText) findViewById(R.id.txt_confirmer_password);
-		
-		setTitle(R.string.title_modif_compte);
 		
 		mDataSource = new UtilisateurDataSource(this);
 		mDataSource.open();
@@ -98,7 +97,7 @@ public class CompteModifActivity extends Activity{
 						mDataSource.update(mUtilisateur);
 						mDataSource.close();
 						
-						MVerifModif = true;
+						mVerifModif = true;
 						
 						this.setResult(RESULT_OK, i);
 						this.finish();
@@ -136,7 +135,7 @@ public class CompteModifActivity extends Activity{
 			}
 		}
 		
-		if (MVerifModif = false)
+		if (mVerifModif = false)
 		{
 			this.setResult(RESULT_CANCELED);
 		}

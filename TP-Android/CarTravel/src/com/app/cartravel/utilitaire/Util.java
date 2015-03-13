@@ -132,4 +132,12 @@ public class Util {
 		}
 		return lstLng;
 	}
+	
+	public static boolean verifCodePostal(String p_CodePostal) {
+	    boolean verifCodePostal = false;
+	    String regExCodePostal = "^[A-Z][0-9][A-Z]?[0-9][A-Z][0-9]$";
+	    verifCodePostal = p_CodePostal.matches(regExCodePostal);
+
+	    return verifCodePostal;
+	  }
 }

@@ -17,7 +17,6 @@ public class ProfilActivity extends Activity{
 
 	private Utilisateurs mUtilisateur;
 	private UtilisateurDataSource mDataSource;
-	private Bundle mExtra;
 	
 	private EditText mNumCivique;
 	private EditText mRue;
@@ -41,8 +40,7 @@ public class ProfilActivity extends Activity{
 		mVoiture = (CheckBox) findViewById(R.id.chck_voiture);
 		mNoteCond = (RatingBar) findViewById(R.id.rating_cond);
 		mNotePass = (RatingBar) findViewById(R.id.rating_pass);
-		mExtra = this.getIntent().getExtras();
-		
+
 		setTitle(R.string.title_modif_profil);
 		
 		mDataSource = new UtilisateurDataSource(this);
@@ -52,7 +50,7 @@ public class ProfilActivity extends Activity{
 		
 		if(mUtilisateur != null)
 		{
-			
+			AfficherInfoCompte(mNumCivique, mRue, mVille, mCodePostal, mVoiture, mNoteCond, mNotePass);
 		}
 	}
 
@@ -78,17 +76,24 @@ public class ProfilActivity extends Activity{
 			mDataSource.close();
 			AfficherInfoCompte(mCourriel, mPseudo);
 			Toast.makeText(this, R.string.toast_modif_compte, Toast.LENGTH_SHORT).show();
-		}
+		}*/
 		if (resultCode == RESULT_CANCELED && requestCode == MODIFIER_COMPTE)
 		{
 			Toast.makeText(this, R.string.toast_annul_modif_compte, Toast.LENGTH_SHORT).show();
-		}*/
+		}
 	}
 
 	public void AfficherInfoCompte(TextView mNumCivique, TextView mRue,
 			TextView mVille, TextView mCodePostal, CheckBox mVoiture,
 			RatingBar mNoteCond, RatingBar mNotePass) 
 	{
+		 mNumCivique.setText(mUtilisateur.getNumCivique());
+		 mRue.setText(mUtilisateur.getRue());
+		 mVille.setText(mUtilisateur.getVille());
+		 mCodePostal.setText(mUtilisateur.getCodePostal());
+		 mVoiture.setChecked(mUtilisateur.getVoiture());
+		 mNoteCond.setRating(mUtilisateur.getNoteCond());
+		 mNotePass.setRating(mUtilisateur.getNotePass());
 	}
 
 }
