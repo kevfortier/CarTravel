@@ -10,9 +10,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import com.app.cartravel.R;
 
 import com.app.cartravel.MainActivity;
+import com.app.cartravel.R;
 
 @SuppressWarnings("deprecation")
 public class NavigationDrawerUtil {

@@ -7,7 +7,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v4.database.DatabaseUtilsCompat;
 
 import com.app.cartravel.classes.Utilisateurs;
 
@@ -42,20 +41,20 @@ public class UtilisateurDataSource {
 	}
 
 	public void delete(int p_Id) {
-		m_Db.delete(DatabaseHelper.TABLE_UTILISATEUR, DatabaseHelper.COL_ID_USER
-				+ "=" + p_Id, null);
+		m_Db.delete(DatabaseHelper.TABLE_UTILISATEUR,
+				DatabaseHelper.COL_ID_USER + "=" + p_Id, null);
 	}
 
 	public void removeAll() {
 		m_Db.delete(DatabaseHelper.TABLE_UTILISATEUR, null, null);
 	}
 
-	public Utilisateurs getUtilisateur(int p_Id) {
+	public Utilisateurs getUtilisateur(int p_Id){
 		Utilisateurs u = null;
-		Cursor c = m_Db.query(DatabaseHelper.TABLE_UTILISATEUR, null,
-				DatabaseHelper.COL_ID_USER + "=" + p_Id, null, null, null, null);
+		Cursor c = m_Db.query(DatabaseHelper.TABLE_UTILISATEUR, null, DatabaseHelper.COL_ID_USER + "=" + p_Id,
+				null, null, null, null);
 		c.moveToFirst();
-		if (!c.isAfterLast()) {
+		if(!c.isAfterLast()){
 			u = cursorToUtilisateur(c);
 		}
 		return u;
@@ -83,7 +82,7 @@ public class UtilisateurDataSource {
 		}
 		return u;
 	}
-
+	
 	public Utilisateurs getDernierConnecte() {
 		Utilisateurs u = null;
 		Cursor c = m_Db.query(DatabaseHelper.TABLE_UTILISATEUR, null,
@@ -104,10 +103,10 @@ public class UtilisateurDataSource {
 	public void modifierDernierConnecte(Utilisateurs nouveau) {
 		Utilisateurs dernierConnecte = getDernierConnecte();
 		if (dernierConnecte != null) {
-			// dernierConnecte.setDernierConnecte(false);
+			dernierConnecte.setDernierConnecte(false);
 			update(dernierConnecte);
 		}
-		// nouveau.setDernierConnecte(true);
+		nouveau.setDernierConnecte(true);
 		update(nouveau);
 
 	}
@@ -132,8 +131,8 @@ public class UtilisateurDataSource {
 		row.put(DatabaseHelper.COL_MOTDEPASSE, p_Utilisateur.getMotDePasse());
 		row.put(DatabaseHelper.COL_ESTCONNECTE,
 				p_Utilisateur.getEstConnecte() ? 1 : 0);
-		// row.put(DatabaseHelper.COL_DERNIERCONNECTE,
-		// p_Utilisateur.getDernierConnecte() ? 1:0);
+		row.put(DatabaseHelper.COL_DERNIERCONNECTE,
+				p_Utilisateur.getDernierConnecte() ? 1 : 0);
 		return row;
 	}
 
@@ -147,13 +146,14 @@ public class UtilisateurDataSource {
 				c.getString(c.getColumnIndex(DatabaseHelper.COL_RUE)),
 				c.getString(c.getColumnIndex(DatabaseHelper.COL_VILLE)),
 				c.getString(c.getColumnIndex(DatabaseHelper.COL_CODE_POSTAL)),
-				c.getInt(c.getColumnIndex(DatabaseHelper.COL_VOITURE)) == 1 ? true : false,
+				c.getInt(c.getColumnIndex(DatabaseHelper.COL_VOITURE)) == 1 ? true
+						: false,
 				c.getFloat(c.getColumnIndex(DatabaseHelper.COL_RATING_COND)),
 				c.getFloat(c.getColumnIndex(DatabaseHelper.COL_RATING_PASS)),
 				c.getInt(c.getColumnIndex(DatabaseHelper.COL_ESTCONNECTE)) == 1 ? true
 						: false,
 				c.getInt(c.getColumnIndex(DatabaseHelper.COL_DERNIERCONNECTE)) == 1 ? true
-						: false, new ArrayList<String>());
+						: false);
 		return r;
 	}
 }

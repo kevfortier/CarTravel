@@ -18,7 +18,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/no_civique" />
+            android:text="@string/lbl_num_civ" />
 
         <EditText
             android:id="@+id/no_civique"
@@ -37,7 +37,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/rue" />
+            android:text="@string/lbl_rue" />
 
         <EditText
             android:id="@+id/rue"
@@ -56,7 +56,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/ville" />
+            android:text="@string/lbl_ville" />
 
         <EditText
             android:id="@+id/ville"
@@ -75,7 +75,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/no_tell" />
+            android:text="@string/lbl_num_tel" />
 
         <EditText
             android:id="@+id/no_tell"
@@ -94,7 +94,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/code_postal" />
+            android:text="@string/lbl_cod_post" />
 
         <EditText
             android:id="@+id/code_postal"
@@ -112,7 +112,7 @@
             android:id="@+id/proprietaire"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/proprietaire" />
+            android:text="@string/lbl_voiture" />
     </LinearLayout>
 
 </RelativeLayout>

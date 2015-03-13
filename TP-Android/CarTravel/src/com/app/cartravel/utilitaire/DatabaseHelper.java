@@ -7,9 +7,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
 	// Version BD
-	private final static int DB_VERSION = 3;
+	private final static int DB_VERSION = 6;
 
-	// Nom
+	// Nom de la BD
 	private final static String DATABASE_NAME = "cartravel.sqlite";
 
 	// Nom des tables
@@ -22,7 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public final static String COL_COURRIEL = "courriel";
 	public final static String COL_PSEUDO = "pseudo";
 	public final static String COL_MOTDEPASSE = "motdepasse";
-	
+
 	public final static String COL_NO_CIVIQUE = "no_civique";
 	public final static String COL_RUE = "rue";
 	public final static String COL_VILLE = "ville";
@@ -30,10 +30,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public final static String COL_VOITURE = "voiture";
 	public final static String COL_RATING_COND = "rating_cond";
 	public final static String COL_RATING_PASS = "rating_pass";
-	
+
 	public final static String COL_ESTCONNECTE = "estconnecte";
 	public final static String COL_DERNIERCONNECTE = "dernierconnecte";
-	
 
 	// Noms des colonnes d'un parcour
 	public final static String COL_ID_PARCOUR = "id_parcour";
@@ -43,8 +42,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public final static String COL_TYPE_PARCOUR = "type";
 	public final static String COL_NBR_PLACE_DISPO = "nbr_place_dispo";
 	public final static String COL_NBR_PLACE_PRISE = "nbr_place_prise";
-	public final static String COL_DISTANCE_SUP_MAX = "distance_max"; // Null si
-																		// passager.
+	public final static String COL_DISTANCE_SUP_MAX = "distance_max"; // Null si passager.
 	// Addresse départ
 	public final static String COL_NO_CIVIQUE_DEP = "no_civique_dep";
 	public final static String COL_RUE_DEP = "rue_dep";
@@ -69,25 +67,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 		// Crée la table pour les utilisateurs
 		db.execSQL("create table " + TABLE_UTILISATEUR + " (" 
-				+ COL_ID_USER
-				+ " integer primary key autoincrement, " 
+				+ COL_ID_USER + " integer primary key autoincrement, " 
 				+ COL_COURRIEL + " text, " 
 				+ COL_PSEUDO + " text, " 
-				+ COL_MOTDEPASSE + " text, "
+				+ COL_MOTDEPASSE + " text, " 
 				+ COL_NO_CIVIQUE + " text, " 
 				+ COL_RUE + " Text, "
 				+ COL_VILLE + " text, " 
 				+ COL_CODE_POSTAL + " text, "
-				+ COL_VOITURE + " integer, "
-				+ COL_RATING_COND + " float, "
-				+ COL_RATING_PASS + " float, "
-				+ COL_ESTCONNECTE + " integer, " 
-				+ COL_DERNIERCONNECTE + "integer) " );
+				+ COL_VOITURE + " integer, " 
+				+ COL_RATING_COND + " real, "
+				+ COL_RATING_PASS + " real, " 
+				+ COL_ESTCONNECTE + " integer, "
+				+ COL_DERNIERCONNECTE + " integer)");
 
 		// Crée la table pour les parcours
 		db.execSQL("create table " + TABLE_PARCOUR + " (" 
 				+ COL_ID_PARCOUR + " integer primary key autoincrement, " 
-				+ COL_ID_CONDUCTEUR + " integer, " 
+				+ COL_ID_CONDUCTEUR	+ " integer, " 
 				+ COL_JOUR + " text, " 
 				+ COL_HEURE + " text, "
 				+ COL_TYPE_PARCOUR + " text, " 
@@ -108,8 +105,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				+ COL_ID_PARCOUR + " integer, " 
 				+ COL_ID_PASSAGER + " integer, " 
 				+ COL_NBR_PASSAGER + " integer, "
-				+ " primary key (" + COL_ID_PARCOUR + ", " + COL_ID_PASSAGER
-				+ "))");
+				+ " primary key (" + COL_ID_PARCOUR + ", " + COL_ID_PASSAGER + "))");
 	}
 
 	@Override
