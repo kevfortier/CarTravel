@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.cartravel.R;
-import com.app.cartravel.utilitaires.navigationdrawer.DrawerItem;
 
 public class CustomDrawerAdapter extends ArrayAdapter<DrawerItem> {
 	private Context m_Context;

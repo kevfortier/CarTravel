@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
 	// Version BD
-	private final static int DB_VERSION = 2;
+	private final static int DB_VERSION = 3;
 
 	// Nom
 	private final static String DATABASE_NAME = "cartravel.sqlite";

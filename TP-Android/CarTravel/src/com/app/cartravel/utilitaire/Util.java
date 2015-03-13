@@ -12,7 +12,7 @@ public class Util {
 
 	public final static String REST_UTILISATEUR = "/utilisateurs";
 	public final static String REST_CONNEXION = "/connexion";
-	public final static String WEB_SERVICE = "10.248.254.97:8080";
+	public final static String WEB_SERVICE = "192.168.43.8:8080";
 
 	public final static String GOOGLE_SENDER_ID = "133519372687";
 	
