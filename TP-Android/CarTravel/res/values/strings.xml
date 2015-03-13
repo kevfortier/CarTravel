@@ -51,10 +51,10 @@
     
     <string name="btn_creer_compte"><u>Créer le compte</u></string>
   
+   	<string name="title_compte">Compte</string>
+	<string name="title_modif_compte">Modification du compte</string>
     <string name="action_modifier_compte">Modifier le compte</string>
     <string name="action_sauvegarder_compte">Sauvegarder les modifications</string>
-	<string name="title_modif_compte">Modification du compte</string>
-	
 	
     <!-- String profiles -->
     <string name="lbl_num_civ">Num. civique</string>
@@ -66,9 +66,10 @@
     <string name="rtingBar_pass">Passager: </string>
     <string name="rtingBar_cond">Conducteur: </string>
     
+    <string name="title_profil">Profil</string>
+    <string name="title_modif_profil">Modification du profil</string>
   	<string name="action_modifier_profil">Modifier le profil</string>
   	<string name="action_sauvegarder_profil">Sauvegarder le profil</string>
-    <string name="title_modif_profil">Modification du profil</string>
     
     <string name="toast_num_civique_vide">Le champ du numéro civique ne peut être vide.</string>
     <string name="toast_num_civique_confirm">Le numéro civique doit être composé de chiffre(s).</string>

@@ -37,7 +37,9 @@ public class ProfilActivity extends Activity {
 		actionBar.setDisplayHomeAsUpEnabled(true);
 
 		setContentView(R.layout.acitivity_profile);
-
+		
+		setTitle(R.string.title_profil);
+		
 		mNumCivique = (EditText) findViewById(R.id.txt_num_civ);
 		mRue = (EditText) findViewById(R.id.txt_rue);
 		mVille = (EditText) findViewById(R.id.txt_ville);
