@@ -18,10 +18,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:text="@string/conducteurs_pot" />
+            android:layout_marginTop="15dp"
+            android:text="@string/demande_conducteurs" />
 
         <ListView
-            android:id="@+id/lst_conducteurs_pot"
+            android:id="@+id/lst_demande_conducteurs"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="15dp" />
@@ -31,10 +32,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:text="@string/lst_conducteurs_pot_vide" />
+            android:text="@string/lst_demande_conducteurs_vide" />
     </LinearLayout>
 
-    <LinearLayout
+     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
@@ -44,10 +45,10 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:layout_marginTop="15dp"
-            android:text="@string/conducteurs" />
+            android:text="@string/demande_passagers" />
 
         <ListView
-            android:id="@+id/lst_conducteurs"
+            android:id="@+id/lst_demande_passagers"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="15dp" />
@@ -57,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:text="@string/lst_conducteurs_vide" />
+            android:text="@string/lst_demande_passagers_vide" />
     </LinearLayout>
 
 </LinearLayout>

@@ -12,11 +12,9 @@ public class Util {
 
 	public final static String REST_UTILISATEUR = "/utilisateurs";
 	public final static String REST_CONNEXION = "/connexion";
-	public final static String WEB_SERVICE = "10.248.18.225:8080";
+	public final static String WEB_SERVICE = "192.168.1.25:8080";
 
 	public final static String GOOGLE_SENDER_ID = "133519372687";
-
-	// public final static String REST_CONTACTS = "/contacts";
 
 	/**
 	 * Permet de transformer une chaine de caracteres en une liste selon un

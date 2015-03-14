@@ -12,17 +12,22 @@
     <string name="drawer_close">Fermeture du menu gauche</string>
     
     <!-- Fragment -->
-    <string name="frag_profil">Profil</string>
-    <string name="frag_passager">Passager</string>
-    <string name="frag_conducteur">Conducteur</string>
+    <string name="frag_parcour">Parcours</string>
+    <string name="frag_passager">Passagers</string>
+    <string name="frag_conducteur">Conducteurs</string>
     <string name="passagers_pot">Liste des passagers potentiel</string>
     <string name="passagers">Liste de mes passagers</string>
-    <string name="conducteur_pot">Liste des conducteurs potentiel</string>
-    <string name="conducteur">Liste de mes conducteurs</string>
+    <string name="conducteurs_pot">Liste des conducteurs potentiel</string>
+    <string name="conducteurs">Liste de mes conducteurs</string>
     <string name="lst_passagers_pot_vide">La Liste des passagers potentiel est vide</string>
-    <string name="lst_passagers_vide">La Liste de vos passagers potentiel est vide</string>
-    <string name="lst_conducteur_pot_vide">La Liste des conducteurs potentiel est vide</string>
-    <string name="lst_conducteur_vide">La Liste de vos conducteurs potentiel est vide</string>
+    <string name="lst_passagers_vide">La Liste de vos passagers est vide</string>
+    <string name="lst_conducteurs_pot_vide">La Liste des conducteurs potentiel est vide</string>
+    <string name="lst_conducteurs_vide">La Liste de vos conducteurs est vide</string>
+    
+    <string name="demande_conducteurs">Liste de mes demandes de conducteurs</string>
+    <string name="lst_demande_conducteurs_vide">La Liste de vos demandes de conducteurs est vide</string>
+    <string name="demande_passagers">Liste de mes demandes de passagers</string>
+    <string name="lst_demande_passagers_vide">La Liste de vos demandes de passagers est vide</string>
     
     <!-- Liste du menu -->
     <string-array name="menu_items">
