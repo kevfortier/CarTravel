@@ -34,8 +34,8 @@ public class JsonUtilisateur {
 		Utilisateurs u;
 		JSONObject jsonUtilisateur = new JSONObject(strJson);
 		u = new Utilisateurs("", jsonUtilisateur.getString("pseudo"),
-				jsonUtilisateur.getString("password"), "", "", "", "", false,
-				0, 0, false, false);
+				jsonUtilisateur.getString("password"), "", "", "", "", "", 0,
+				0, 0, 0, 0);
 		return u;
 	}
 }

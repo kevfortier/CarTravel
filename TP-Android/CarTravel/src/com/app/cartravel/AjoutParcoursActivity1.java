@@ -61,7 +61,7 @@ public class AjoutParcoursActivity1 extends Activity{
 		m_userDataSource.close();
 		
 		
-		if (! m_Utilisateur.getVoiture()) {
+		if (m_Utilisateur.getVoiture() == 0) {
 			m_Conducteur.setVisibility(View.INVISIBLE);
 			m_Passager.setChecked(true);
 		}

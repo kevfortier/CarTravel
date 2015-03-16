@@ -26,9 +26,8 @@ public class ProfilModifActivity extends Activity {
 	private EditText mRue;
 	private EditText mVille;
 	private EditText mCodePostal;
+	private EditText mNumTel;
 	private CheckBox mVoiture;
-	private RatingBar mNoteCond;
-	private RatingBar mNotePass;
 	private boolean mVerifModif = false;
 
 	@Override
@@ -47,9 +46,8 @@ public class ProfilModifActivity extends Activity {
 		mRue = (EditText) findViewById(R.id.txt_rue);
 		mVille = (EditText) findViewById(R.id.txt_ville);
 		mCodePostal = (EditText) findViewById(R.id.txt_cod_post);
+		mNumTel = (EditText) findViewById(R.id.txt_num_tel);
 		mVoiture = (CheckBox) findViewById(R.id.chck_voiture);
-		mNoteCond = (RatingBar) findViewById(R.id.rating_cond);
-		mNotePass = (RatingBar) findViewById(R.id.rating_pass);
 
 		setTitle(R.string.title_modif_profil);
 
@@ -60,7 +58,7 @@ public class ProfilModifActivity extends Activity {
 
 		if (mUtilisateur != null) {
 			AfficherInfoCompte(mNumCivique, mRue, mVille, mCodePostal,
-					mVoiture, mNoteCond, mNotePass);
+					mVoiture);
 		}
 	}
 
@@ -94,6 +92,7 @@ public class ProfilModifActivity extends Activity {
 		String strRue = mRue.getText().toString().trim();
 		String strVille = mVille.getText().toString().trim();
 		String strCodePostal = mCodePostal.getText().toString().trim();
+		String strNumTel = mNumTel.getText().toString().trim();
 		Intent i = new Intent();
 
 		if (Util.ValiderString(new String[] { strNumCivique, strRue, strVille,
@@ -103,14 +102,27 @@ public class ProfilModifActivity extends Activity {
 			try {
 				intNumCivique = Integer.parseInt(strNumCivique);
 				if (Util.verifCodePostal(strCodePostal)) {
-					mDataSource = new UtilisateurDataSource(this);
-					mDataSource.open();
+					
+					UtilisateurDataSource dataSource = new UtilisateurDataSource(this);
+					
+					dataSource.open();
 					mUtilisateur.setNumCivique(strNumCivique);
 					mUtilisateur.setRue(strRue);
 					mUtilisateur.setVille(strVille);
 					mUtilisateur.setCodePostal(strCodePostal);
-					mDataSource.update(mUtilisateur);
-					mDataSource.close();
+					mUtilisateur.setNumTel(strNumTel);
+					
+					if (mVoiture.isChecked())
+					{
+						mUtilisateur.setVoiture(1);
+					}
+					else
+					{
+						mUtilisateur.setVoiture(0);
+					}
+					
+					dataSource.update(mUtilisateur);
+					dataSource.close();
 
 					mVerifModif = true;
 
@@ -149,15 +161,15 @@ public class ProfilModifActivity extends Activity {
 	}
 
 	public void AfficherInfoCompte(EditText mNumCivique, EditText mRue,
-			EditText mVille, EditText mCodePostal, CheckBox mVoiture,
-			RatingBar mNoteCond, RatingBar mNotePass) {
+			EditText mVille, EditText mCodePostal, CheckBox mVoiture) {
 		mNumCivique.setText(mUtilisateur.getNumCivique());
 		mRue.setText(mUtilisateur.getRue());
 		mVille.setText(mUtilisateur.getVille());
 		mCodePostal.setText(mUtilisateur.getCodePostal());
-		mVoiture.setChecked(mUtilisateur.getVoiture());
-		mNoteCond.setRating(mUtilisateur.getNoteCond());
-		mNotePass.setRating(mUtilisateur.getNotePass());
+		if (mUtilisateur.getVoiture() == 1)
+		{
+			mVoiture.setChecked(true);
+		}
 	}
 
 }

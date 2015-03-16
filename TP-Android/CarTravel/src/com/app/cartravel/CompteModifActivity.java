@@ -96,13 +96,14 @@ public class CompteModifActivity extends Activity {
 			if (Util.isCourriel(strCourriel)) {
 				if (strCourriel.equals(strCourrielConfirmation)) {
 					if (strMotDePasse.equals(strMotDePasseConfirmation)) {
-						mDataSource = new UtilisateurDataSource(this);
-						mDataSource.open();
+						
+						UtilisateurDataSource dataSource = new UtilisateurDataSource(this);
+						dataSource.open();
 						mUtilisateur.setCourriel(strCourriel);
 						mUtilisateur.setPseudo(strPseudo);
 						mUtilisateur.setMotDePasse(strMotDePasse);
-						mDataSource.update(mUtilisateur);
-						mDataSource.close();
+						dataSource.update(mUtilisateur);
+						dataSource.close();
 
 						mVerifModif = true;
 

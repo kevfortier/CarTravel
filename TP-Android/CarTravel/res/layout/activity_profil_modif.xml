@@ -129,45 +129,5 @@
 	    
 	</LinearLayout>
 
-	  <!-- Note en tant que conducteur -->
-	<LinearLayout 
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_marginBottom="8dp">
-	  	
-	    <TextView 
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/rtingBar_cond"
-	        android:textSize="20sp" />
-	   
-	    <RatingBar
-	        android:id="@+id/rating_cond" 
-	        
-	        android:layout_width="wrap_content"
-	    	android:layout_height="wrap_content"
-	    	android:layout_marginLeft="20dp" />
-	    <!--  style="@style/StarRatingBar" -->
-	</LinearLayout>
-	
-	<!-- Note en tant que passager -->
- 	<LinearLayout 
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_marginBottom="8dp">
-	  	
-	    <TextView 
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/rtingBar_pass"
-	        android:textSize="20sp" />
-	   
-	    <RatingBar
-	        android:id="@+id/rating_pass" 
-	        
-	        android:layout_width="wrap_content"
-	    	android:layout_height="wrap_content"
-	    	android:layout_marginLeft="20dp" />
-	    <!--  style="@style/StarRatingBar" -->
 	</LinearLayout>
 </LinearLayout>

@@ -122,7 +122,7 @@ public class NavigationDrawerUtil {
 					mContext);
 			dataSource.open();
 			Utilisateurs usager = dataSource.getConnectedUtilisateur();
-			usager.setEstConnecte(false);
+			usager.setEstConnecte(0);
 			dataSource.update(usager);
 			dataSource.close();
 

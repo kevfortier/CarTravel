@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
 	// Version BD
-	private final static int DB_VERSION = 6;
+	private final static int DB_VERSION = 7;
 
 	// Nom de la BD
 	private final static String DATABASE_NAME = "cartravel.sqlite";
@@ -27,6 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public final static String COL_RUE = "rue";
 	public final static String COL_VILLE = "ville";
 	public final static String COL_CODE_POSTAL = "code_postal";
+	public final static String COL_NUM_TELEPHONE = "num_telephone";
 	public final static String COL_VOITURE = "voiture";
 	public final static String COL_RATING_COND = "rating_cond";
 	public final static String COL_RATING_PASS = "rating_pass";
@@ -72,6 +73,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				+ " text, " + COL_PSEUDO + " text, " + COL_MOTDEPASSE
 				+ " text, " + COL_NO_CIVIQUE + " text, " + COL_RUE + " Text, "
 				+ COL_VILLE + " text, " + COL_CODE_POSTAL + " text, "
+				+ COL_NUM_TELEPHONE + " text, " 
 				+ COL_VOITURE + " integer, " + COL_RATING_COND + " real, "
 				+ COL_RATING_PASS + " real, " + COL_ESTCONNECTE + " integer, "
 				+ COL_DERNIERCONNECTE + " integer)");

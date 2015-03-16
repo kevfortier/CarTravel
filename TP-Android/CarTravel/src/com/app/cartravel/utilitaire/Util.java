@@ -133,9 +133,17 @@ public class Util {
 
 	public static boolean verifCodePostal(String p_CodePostal) {
 		boolean verifCodePostal = false;
-		String regExCodePostal = "^[A-Z][0-9][A-Z]?[0-9][A-Z][0-9]$";
+		String regExCodePostal = "^[a-zA-Z][0-9][a-zA-Z]?[0-9][a-zA-Z][0-9]$";
 		verifCodePostal = p_CodePostal.matches(regExCodePostal);
 
 		return verifCodePostal;
+	}
+	
+	public static boolean verifNumTel (String p_NumTel) {
+		boolean verifNumTel = false;
+		String regExNumTel = "\\d{10}";
+		verifNumTel = p_NumTel.matches(regExNumTel);
+		
+		return verifNumTel;
 	}
 }

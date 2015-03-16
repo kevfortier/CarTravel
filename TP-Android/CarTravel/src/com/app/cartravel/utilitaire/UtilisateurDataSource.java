@@ -105,10 +105,10 @@ public class UtilisateurDataSource {
 	public void modifierDernierConnecte(Utilisateurs nouveau) {
 		Utilisateurs dernierConnecte = getDernierConnecte();
 		if (dernierConnecte != null) {
-			dernierConnecte.setDernierConnecte(false);
+			dernierConnecte.setDernierConnecte(0);
 			update(dernierConnecte);
 		}
-		nouveau.setDernierConnecte(true);
+		nouveau.setDernierConnecte(1);
 		update(nouveau);
 
 	}
@@ -132,9 +132,9 @@ public class UtilisateurDataSource {
 		row.put(DatabaseHelper.COL_PSEUDO, p_Utilisateur.getPseudo());
 		row.put(DatabaseHelper.COL_MOTDEPASSE, p_Utilisateur.getMotDePasse());
 		row.put(DatabaseHelper.COL_ESTCONNECTE,
-				p_Utilisateur.getEstConnecte() ? 1 : 0);
+				p_Utilisateur.getEstConnecte());
 		row.put(DatabaseHelper.COL_DERNIERCONNECTE,
-				p_Utilisateur.getDernierConnecte() ? 1 : 0);
+				p_Utilisateur.getDernierConnecte());
 		return row;
 	}
 
@@ -148,14 +148,12 @@ public class UtilisateurDataSource {
 				c.getString(c.getColumnIndex(DatabaseHelper.COL_RUE)),
 				c.getString(c.getColumnIndex(DatabaseHelper.COL_VILLE)),
 				c.getString(c.getColumnIndex(DatabaseHelper.COL_CODE_POSTAL)),
-				c.getInt(c.getColumnIndex(DatabaseHelper.COL_VOITURE)) == 1 ? true
-						: false,
+				c.getString(c.getColumnIndex(DatabaseHelper.COL_NUM_TELEPHONE)),
+				c.getInt(c.getColumnIndex(DatabaseHelper.COL_VOITURE)),
 				c.getFloat(c.getColumnIndex(DatabaseHelper.COL_RATING_COND)),
 				c.getFloat(c.getColumnIndex(DatabaseHelper.COL_RATING_PASS)),
-				c.getInt(c.getColumnIndex(DatabaseHelper.COL_ESTCONNECTE)) == 1 ? true
-						: false,
-				c.getInt(c.getColumnIndex(DatabaseHelper.COL_DERNIERCONNECTE)) == 1 ? true
-						: false);
+				c.getInt(c.getColumnIndex(DatabaseHelper.COL_ESTCONNECTE)),
+				c.getInt(c.getColumnIndex(DatabaseHelper.COL_DERNIERCONNECTE)));
 		return r;
 	}
 }

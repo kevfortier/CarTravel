@@ -13,21 +13,22 @@ public class Utilisateurs {
 	private String m_Rue;
 	private String m_Ville;
 	private String m_CodePostal;
-	private Boolean m_Voiture;
+	private String m_NumTel;
+	private int m_Voiture;
 	private float m_NoteCond;
 	private float m_NotePass;
 
-	private Boolean m_EstConnecte;
-	private Boolean m_DernierConnecte;
+	private int m_EstConnecte;
+	private int m_DernierConnecte;
 
 	/**
 	 * Constructeur
 	 */
 	public Utilisateurs(int p_Id, String p_Courriel, String p_Pseudo,
 			String p_MotDePasse, String p_NumCivique, String p_Rue,
-			String p_Ville, String p_CodePostal, Boolean p_Voiture,
-			float p_NoteCond, float p_NotePass, Boolean p_EstConnecte,
-			Boolean p_DernierConnecte) {
+			String p_Ville, String p_CodePostal, String P_NumTel, int p_Voiture,
+			float p_NoteCond, float p_NotePass, int p_EstConnecte,
+			int p_DernierConnecte) {
 		super();
 		this.m_Id = p_Id;
 		this.m_Courriel = p_Courriel;
@@ -38,6 +39,7 @@ public class Utilisateurs {
 		this.m_Rue = p_Rue;
 		this.m_Ville = p_Ville;
 		this.m_CodePostal = p_CodePostal;
+		this.m_NumTel = P_NumTel;
 		this.m_Voiture = p_Voiture;
 		this.m_NoteCond = p_NoteCond;
 		this.m_NotePass = p_NotePass;
@@ -51,9 +53,9 @@ public class Utilisateurs {
 	 */
 	public Utilisateurs(String p_Courriel, String p_Pseudo,
 			String p_MotDePasse, String p_NumCivique, String p_Rue,
-			String p_Ville, String p_CodePostal, Boolean p_Voiture,
-			float p_NoteCond, float p_NotePass, Boolean p_EstConnecte,
-			Boolean p_DernierConnecte) {
+			String p_Ville, String p_CodePostal, String p_NumTel, int p_Voiture,
+			float p_NoteCond, float p_NotePass, int p_EstConnecte,
+			int p_DernierConnecte) {
 		this.m_Courriel = p_Courriel;
 		this.m_Pseudo = p_Pseudo;
 		this.m_MotDePasse = p_MotDePasse;
@@ -62,6 +64,7 @@ public class Utilisateurs {
 		this.m_Rue = p_Rue;
 		this.m_Ville = p_Ville;
 		this.m_CodePostal = p_CodePostal;
+		this.m_NumTel = p_NumTel;
 		this.m_Voiture = p_Voiture;
 		this.m_NoteCond = p_NoteCond;
 		this.m_NotePass = p_NotePass;
@@ -75,8 +78,8 @@ public class Utilisateurs {
 	 */
 	public Utilisateurs() {
 		this.m_Id = ID_NON_DEFINI;
-		this.m_EstConnecte = false;
-		this.m_DernierConnecte = false;
+		this.m_EstConnecte = 0;
+		this.m_DernierConnecte = 0;
 	}
 
 	public int getId() {
@@ -142,12 +145,22 @@ public class Utilisateurs {
 	public void setCodePostal(String m_CodePostal) {
 		this.m_CodePostal = m_CodePostal;
 	}
+	
+	public String getNumTel()
+	{
+		return m_NumTel;
+	}
+	
+	public void setNumTel(String m_NumTel)
+	{
+		this.m_NumTel = m_NumTel;
+	}
 
-	public Boolean getVoiture() {
+	public int getVoiture() {
 		return m_Voiture;
 	}
 
-	public void setVoiture(Boolean m_Voiture) {
+	public void setVoiture(int m_Voiture) {
 		this.m_Voiture = m_Voiture;
 	}
 
@@ -167,19 +180,19 @@ public class Utilisateurs {
 		this.m_NotePass = m_NotePass;
 	}
 
-	public Boolean getEstConnecte() {
+	public int getEstConnecte() {
 		return m_EstConnecte;
 	}
 
-	public void setEstConnecte(Boolean m_EstConnecte) {
+	public void setEstConnecte(int m_EstConnecte) {
 		this.m_EstConnecte = m_EstConnecte;
 	}
 
-	public Boolean getDernierConnecte() {
+	public int getDernierConnecte() {
 		return m_DernierConnecte;
 	}
 
-	public void setDernierConnecte(Boolean m_DernierConnecte) {
+	public void setDernierConnecte(int m_DernierConnecte) {
 		this.m_DernierConnecte = m_DernierConnecte;
 	}
 }

@@ -26,6 +26,7 @@ public class ProfilActivity extends Activity {
 	private TextView mRue;
 	private TextView mVille;
 	private TextView mCodePostal;
+	private TextView mNumTel;
 	private CheckBox mVoiture;
 	private RatingBar mNoteCond;
 	private RatingBar mNotePass;
@@ -47,6 +48,7 @@ public class ProfilActivity extends Activity {
 		mRue = (TextView) findViewById(R.id.txt_rue);
 		mVille = (TextView) findViewById(R.id.txt_ville);
 		mCodePostal = (TextView) findViewById(R.id.txt_cod_post);
+		mNumTel = (TextView)findViewById(R.id.txt_num_tel);
 		mVoiture = (CheckBox) findViewById(R.id.chck_voiture);
 		mNoteCond = (RatingBar) findViewById(R.id.rating_cond);
 		mNotePass = (RatingBar) findViewById(R.id.rating_pass);
@@ -57,7 +59,7 @@ public class ProfilActivity extends Activity {
 		mDataSource.close();
 
 		if (mUtilisateur != null) {
-			AfficherInfoCompte(mNumCivique, mRue, mVille, mCodePostal,
+			AfficherInfoCompte(mNumCivique, mRue, mVille, mCodePostal, mNumTel,
 					mVoiture, mNoteCond, mNotePass);
 		}
 	}
@@ -73,12 +75,13 @@ public class ProfilActivity extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 		 if (resultCode == RESULT_OK && requestCode == MODIFIER_PROFIL) {
-		 mDataSource = new UtilisateurDataSource(this); mDataSource.open();
+		 mDataSource = new UtilisateurDataSource(this); 
+		 mDataSource.open();
 		  
 		 //Afficher ses nouvelles infos. 
 		 mUtilisateur = mDataSource.getConnectedUtilisateur(); 
 		 mDataSource.close();
-		 AfficherInfoCompte(mNumCivique, mRue, mVille, mCodePostal, mVoiture, mNoteCond, mNotePass); 
+		 AfficherInfoCompte(mNumCivique, mRue, mVille, mCodePostal, mNumTel, mVoiture, mNoteCond, mNotePass); 
 		 Toast.makeText(this, R.string.toast_modif_compte, Toast.LENGTH_SHORT).show(); 
 		 }
 		 
@@ -104,13 +107,21 @@ public class ProfilActivity extends Activity {
 	}
 
 	public void AfficherInfoCompte(TextView mNumCivique, TextView mRue,
-			TextView mVille, TextView mCodePostal, CheckBox mVoiture,
+			TextView mVille, TextView mCodePostal, TextView mNumTel, CheckBox mVoiture,
 			RatingBar mNoteCond, RatingBar mNotePass) {
 		mNumCivique.setText(mUtilisateur.getNumCivique());
 		mRue.setText(mUtilisateur.getRue());
 		mVille.setText(mUtilisateur.getVille());
 		mCodePostal.setText(mUtilisateur.getCodePostal());
-		mVoiture.setChecked(mUtilisateur.getVoiture());
+		mNumTel.setText(mUtilisateur.getNumTel());
+		if (mUtilisateur.getVoiture() == 1)
+		{
+			mVoiture.setChecked(true);
+		}
+		else
+		{
+			mVoiture.setChecked(false);
+		}
 		mNoteCond.setRating(mUtilisateur.getNoteCond());
 		mNotePass.setRating(mUtilisateur.getNotePass());
 	}

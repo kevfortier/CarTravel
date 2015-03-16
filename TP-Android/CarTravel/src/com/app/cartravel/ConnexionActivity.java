@@ -68,7 +68,7 @@ public class ConnexionActivity extends Activity {
 		if (dernierConnecte != null) {
 			// Si la dernière personne à s'être connecté est encore
 			// connectée, on ouvre l'application
-			if (dernierConnecte.getEstConnecte()) {
+			if (dernierConnecte.getEstConnecte() == 1) {
 				Intent i = new Intent(this, MainActivity.class);
 				this.startActivity(i);
 				this.finish();
@@ -136,7 +136,7 @@ public class ConnexionActivity extends Activity {
 			if (m_Exp == null && result != null) {
 				UtilisateurDataSource dataSource = new UtilisateurDataSource(
 						m_Context);
-				result.setEstConnecte(true);
+				result.setEstConnecte(1);
 				dataSource.open();
 				Utilisateurs utilisateurExistant = dataSource
 						.getUtilisateur(result.getCourriel());
