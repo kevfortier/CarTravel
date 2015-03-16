@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CheckBox;
@@ -38,9 +39,7 @@ public class ProfilModifActivity extends Activity {
 		setContentView(R.layout.activity_profil_modif);
 		setTitle(R.string.title_modif_profil);
 		
-		ActionBar actionBar = getActionBar();
-
-		actionBar.setDisplayHomeAsUpEnabled(true);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		mNumCivique = (EditText) findViewById(R.id.txt_num_civ);
 		mRue = (EditText) findViewById(R.id.txt_rue);
@@ -75,11 +74,9 @@ public class ProfilModifActivity extends Activity {
 		
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			// app icon in action bar clicked; goto parent activity.
-			this.finish();
+			NavUtils.navigateUpFromSameTask(this);
 			return true;
 		case R.id.action_confirmer_profil:
-			//Faire afficher l'activité de ton bouton de menu
 			ModifierProfil();
         	return true;
 		default:

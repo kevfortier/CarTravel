@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CheckBox;
@@ -36,9 +37,7 @@ public class ProfilActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 
-		ActionBar actionBar = getActionBar();
-
-		actionBar.setDisplayHomeAsUpEnabled(true);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		setContentView(R.layout.acitivity_profile);
 
@@ -94,8 +93,7 @@ public class ProfilActivity extends Activity {
 		Intent i;
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			// app icon in action bar clicked; goto parent activity.
-			this.finish();
+			NavUtils.navigateUpFromSameTask(this);
 			return true;
 		case R.id.action_modifier_profil:
 			i = new Intent(this, ProfilModifActivity.class);

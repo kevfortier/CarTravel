@@ -49,7 +49,6 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 		setContentView(R.layout.activity_parcour);
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
-
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 

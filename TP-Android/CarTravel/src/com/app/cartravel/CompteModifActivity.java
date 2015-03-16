@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -34,9 +35,7 @@ public class CompteModifActivity extends Activity {
 		setContentView(R.layout.activity_compte_modif);
 		setTitle(R.string.title_modif_compte);
 		
-		ActionBar actionBar = getActionBar();
-
-		actionBar.setDisplayHomeAsUpEnabled(true);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		mCourriel = (EditText) findViewById(R.id.txt_username);
 		mCourrielVerif = (EditText) findViewById(R.id.txt_confirmer_username);
@@ -68,8 +67,7 @@ public class CompteModifActivity extends Activity {
 		
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			// app icon in action bar clicked; goto parent activity.
-			this.finish();
+			NavUtils.navigateUpFromSameTask(this);
 			return true;
 		case R.id.action_confirmer_profil:
 			//Faire afficher l'activité de ton bouton de menu
