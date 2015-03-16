@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import com.app.cartravel.classes.Utilisateurs;
 import com.app.cartravel.utilitaire.UtilisateurDataSource;
 
 public class ParcourActivity extends Activity implements ActionBar.TabListener {
+	public static final int AJOUTER_PARCOUR = 1; 
 
 	private SectionsPagerAdapter mSectionsPagerAdapter;
 	private ViewPager mViewPager;
@@ -84,6 +86,14 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 					.setTabListener(this));
 		}
 	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+
+		getMenuInflater().inflate(R.menu.menu_ajout_parcours, menu);
+
+		return true;
+	}
 
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -91,6 +101,10 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 			// app icon in action bar clicked; goto parent activity.
 			this.finish();
 			return true;
+		case R.id.action_ajout_parcours:
+			Intent i = new Intent(this, AjoutParcoursActivity1.class);
+            this.startActivityForResult(i, AJOUTER_PARCOUR);
+        	return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
