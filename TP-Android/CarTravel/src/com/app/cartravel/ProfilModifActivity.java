@@ -1,5 +1,6 @@
 package com.app.cartravel;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -37,6 +38,10 @@ public class ProfilModifActivity extends Activity {
 
 		setContentView(R.layout.activity_profil_modif);
 		setTitle(R.string.title_modif_profil);
+		
+		ActionBar actionBar = getActionBar();
+
+		actionBar.setDisplayHomeAsUpEnabled(true);
 
 		mNumCivique = (EditText) findViewById(R.id.txt_num_civ);
 		mRue = (EditText) findViewById(R.id.txt_rue);
@@ -69,12 +74,19 @@ public class ProfilModifActivity extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-
-		if (item.getItemId() == R.id.action_confirmer_profil) {
-
+		
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			// app icon in action bar clicked; goto parent activity.
+			this.finish();
+			return true;
+		case R.id.action_confirmer_profil:
+			//Faire afficher l'activité de ton bouton de menu
+			ModifierProfil();
+        	return true;
+		default:
+			return super.onOptionsItemSelected(item);
 		}
-
-		return super.onOptionsItemSelected(item);
 	}
 
 	public void ModifierProfil() {
@@ -93,7 +105,17 @@ public class ProfilModifActivity extends Activity {
 				if (Util.verifCodePostal(strCodePostal)) {
 					mDataSource = new UtilisateurDataSource(this);
 					mDataSource.open();
+					mUtilisateur.setNumCivique(strNumCivique);
+					mUtilisateur.setRue(strRue);
+					mUtilisateur.setVille(strVille);
+					mUtilisateur.setCodePostal(strCodePostal);
+					mDataSource.update(mUtilisateur);
+					mDataSource.close();
 
+					mVerifModif = true;
+
+					this.setResult(RESULT_OK, i);
+					this.finish();
 				} else {
 					Toast.makeText(this, R.string.toast_code_postal_confirm,
 							Toast.LENGTH_SHORT).show();
@@ -126,8 +148,8 @@ public class ProfilModifActivity extends Activity {
 		}
 	}
 
-	public void AfficherInfoCompte(TextView mNumCivique, TextView mRue,
-			TextView mVille, TextView mCodePostal, CheckBox mVoiture,
+	public void AfficherInfoCompte(EditText mNumCivique, EditText mRue,
+			EditText mVille, EditText mCodePostal, CheckBox mVoiture,
 			RatingBar mNoteCond, RatingBar mNotePass) {
 		mNumCivique.setText(mUtilisateur.getNumCivique());
 		mRue.setText(mUtilisateur.getRue());

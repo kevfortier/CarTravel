@@ -10,19 +10,22 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.cartravel.classes.Utilisateurs;
 import com.app.cartravel.utilitaire.UtilisateurDataSource;
 
 public class ProfilActivity extends Activity {
 
+	public static final int MODIFIER_PROFIL = 2;
+	
 	private Utilisateurs mUtilisateur;
 	private UtilisateurDataSource mDataSource;
 
-	private EditText mNumCivique;
-	private EditText mRue;
-	private EditText mVille;
-	private EditText mCodePostal;
+	private TextView mNumCivique;
+	private TextView mRue;
+	private TextView mVille;
+	private TextView mCodePostal;
 	private CheckBox mVoiture;
 	private RatingBar mNoteCond;
 	private RatingBar mNotePass;
@@ -40,10 +43,10 @@ public class ProfilActivity extends Activity {
 
 		setTitle(R.string.title_profil);
 
-		mNumCivique = (EditText) findViewById(R.id.txt_num_civ);
-		mRue = (EditText) findViewById(R.id.txt_rue);
-		mVille = (EditText) findViewById(R.id.txt_ville);
-		mCodePostal = (EditText) findViewById(R.id.txt_cod_post);
+		mNumCivique = (TextView) findViewById(R.id.txt_num_civ);
+		mRue = (TextView) findViewById(R.id.txt_rue);
+		mVille = (TextView) findViewById(R.id.txt_ville);
+		mCodePostal = (TextView) findViewById(R.id.txt_cod_post);
 		mVoiture = (CheckBox) findViewById(R.id.chck_voiture);
 		mNoteCond = (RatingBar) findViewById(R.id.rating_cond);
 		mNotePass = (RatingBar) findViewById(R.id.rating_pass);
@@ -68,50 +71,37 @@ public class ProfilActivity extends Activity {
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		/*
-		 * if (resultCode == RESULT_OK && requestCode == MODIFIER_COMPTE) {
-		 * mDataSource = new UtilisateurDataSource(this); mDataSource.open();
-		 * 
-		 * //Afficher ses nouvelles infos. mUtilisateur =
-		 * mDataSource.getConnectedUtilisateur(); mDataSource.close();
-		 * AfficherInfoCompte(mCourriel, mPseudo); Toast.makeText(this,
-		 * R.string.toast_modif_compte, Toast.LENGTH_SHORT).show(); }
-		 */
-		/*
-		 * if (resultCode == RESULT_CANCELED && requestCode == MODIFIER_COMPTE)
-		 * { Toast.makeText(this, R.string.toast_annul_modif_compte,
-		 * Toast.LENGTH_SHORT).show(); }
-		 */
+
+		 if (resultCode == RESULT_OK && requestCode == MODIFIER_PROFIL) {
+		 mDataSource = new UtilisateurDataSource(this); mDataSource.open();
+		  
+		 //Afficher ses nouvelles infos. 
+		 mUtilisateur = mDataSource.getConnectedUtilisateur(); 
+		 mDataSource.close();
+		 AfficherInfoCompte(mNumCivique, mRue, mVille, mCodePostal, mVoiture, mNoteCond, mNotePass); 
+		 Toast.makeText(this, R.string.toast_modif_compte, Toast.LENGTH_SHORT).show(); 
+		 }
+		 
+		 if (resultCode == RESULT_CANCELED && requestCode == MODIFIER_PROFIL) { 
+			 Toast.makeText(this, R.string.toast_annul_modif_compte, Toast.LENGTH_SHORT).show(); 
+		 }
 	}
 
 	public boolean onOptionsItemSelected(MenuItem item) {
+		Intent i;
 		switch (item.getItemId()) {
 		case android.R.id.home:
 			// app icon in action bar clicked; goto parent activity.
 			this.finish();
 			return true;
+		case R.id.action_modifier_profil:
+			i = new Intent(this, ProfilModifActivity.class);
+			this.startActivityForResult(i, MODIFIER_PROFIL);
+        	return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
 	}
-
-	/*
-	 * @Override protected void onActivityResult(int requestCode, int
-	 * resultCode, Intent data) {
-	 * 
-	 * if (resultCode == RESULT_OK && requestCode == MODIFIER_COMPTE) {
-	 * mDataSource = new UtilisateurDataSource(this); mDataSource.open();
-	 * 
-	 * //Afficher ses nouvelles infos. mUtilisateur =
-	 * mDataSource.getConnectedUtilisateur(); mDataSource.close();
-	 * AfficherInfoCompte(mCourriel, mPseudo); Toast.makeText(this,
-	 * R.string.toast_modif_compte, Toast.LENGTH_SHORT).show(); } if (resultCode
-	 * == RESULT_CANCELED && requestCode == MODIFIER_COMPTE) {
-	 * Toast.makeText(this, R.string.toast_annul_modif_compte,
-	 * Toast.LENGTH_SHORT).show(); }
-	 * 
-	 * }
-	 */
 
 	public void AfficherInfoCompte(TextView mNumCivique, TextView mRue,
 			TextView mVille, TextView mCodePostal, CheckBox mVoiture,

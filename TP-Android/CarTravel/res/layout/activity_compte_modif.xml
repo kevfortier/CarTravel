@@ -20,14 +20,14 @@
 	    <TextView
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	    	android:text="@string/lbl_username"
+	    	android:text="@string/lbl_username2"
 	    	android:textSize="20sp" />
 	    
 	    <EditText
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:id="@+id/txt_username"
-	        android:inputType="textCapWords"
+	        android:inputType="textEmailAddress"
 	        android:gravity="center" />
 	</LinearLayout>    
 	        
@@ -39,14 +39,14 @@
 	    <TextView
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	    	android:text="@string/lbl_confirmer_username"
+	    	android:text="@string/lbl_confirmer_username2"
 	    	android:textSize="20sp" />
 	    
 	    <EditText
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:id="@+id/txt_confirmer_username"
-	        android:inputType="textCapWords"
+	        android:inputType="textEmailAddress"
 	        android:gravity="center" />
 	</LinearLayout>   
 	
@@ -58,7 +58,7 @@
 	    <TextView
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	    	android:text="@string/lbl_pseudo"
+	    	android:text="@string/lbl_pseudo2"
 	    	android:textSize="20sp" />
 	    
 	  	<EditText 
@@ -77,7 +77,7 @@
 	    <TextView
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	    	android:text="@string/lbl_password"
+	    	android:text="@string/lbl_password2"
 	    	android:textSize="20sp" />
 	    
 	  	<EditText 
@@ -96,7 +96,7 @@
 	    <TextView
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	    	android:text="@string/lbl_confirmer_password"
+	    	android:text="@string/lbl_confirmer_password2"
 	    	android:textSize="20sp" />
 	    
 	  	<EditText 

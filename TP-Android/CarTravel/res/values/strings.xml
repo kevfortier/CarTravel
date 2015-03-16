@@ -41,10 +41,15 @@
     
     <!-- String utilisateurs -->
     <string name="lbl_username">Courriel</string>
+    <string name="lbl_username2">Courriel :</string>
     <string name="lbl_confirmer_username">Confirmation du courriel</string>
+    <string name="lbl_confirmer_username2">Confirmation du courriel :</string>
     <string name="lbl_pseudo">Pseudo</string>
+    <string name="lbl_pseudo2">Pseudo :</string>
     <string name="lbl_password">Mot de passe</string>
+    <string name="lbl_password2">Mot de passe :</string>
     <string name="lbl_confirmer_password">Confirmation du mot de passe</string>
+    <string name="lbl_confirmer_password2">Confirmation du mot de passe :</string>
     <string name="btn_connexion">Connexion</string>
     <string name="lbl_creer_compte"><u>Créer un compte</u></string>
     <string name="lbl_forgot_password"><u>Mot de passe oublié?</u></string>
@@ -71,12 +76,12 @@
     <string name="action_sauvegarder_compte">Sauvegarder les modifications</string>
 	
     <!-- String profiles -->
-    <string name="lbl_num_civ">Num. civique</string>
-    <string name="lbl_rue">Rue</string>
-    <string name="lbl_ville">Ville</string>
-    <string name="lbl_num_tel">Num. téléphone</string>
-	<string name="lbl_cod_post">Code postal</string>
-    <string name="lbl_voiture">Possède une voiture</string>
+    <string name="lbl_num_civ">Num. civique :</string>
+    <string name="lbl_rue">Rue :</string>
+    <string name="lbl_ville">Ville :</string>
+    <string name="lbl_num_tel">Num. téléphone :</string>
+	<string name="lbl_cod_post">Code postal :</string>
+    <string name="lbl_voiture">Possède une voiture :</string>
     <string name="rtingBar_pass">Passager: </string>
     <string name="rtingBar_cond">Conducteur: </string>
     

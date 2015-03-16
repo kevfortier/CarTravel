@@ -1,5 +1,6 @@
 package com.app.cartravel;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,7 +33,11 @@ public class CompteModifActivity extends Activity {
 
 		setContentView(R.layout.activity_compte_modif);
 		setTitle(R.string.title_modif_compte);
+		
+		ActionBar actionBar = getActionBar();
 
+		actionBar.setDisplayHomeAsUpEnabled(true);
+		
 		mCourriel = (EditText) findViewById(R.id.txt_username);
 		mCourrielVerif = (EditText) findViewById(R.id.txt_confirmer_username);
 		mPseudo = (EditText) findViewById(R.id.txt_pseudo);
@@ -60,12 +65,19 @@ public class CompteModifActivity extends Activity {
 	// Lorsque l'utilisateur confirme les modifications de son compte.
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-
-		if (item.getItemId() == R.id.action_confirmer_compte) {
+		
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			// app icon in action bar clicked; goto parent activity.
+			this.finish();
+			return true;
+		case R.id.action_confirmer_profil:
+			//Faire afficher l'activité de ton bouton de menu
 			ModifierInfoCompte();
+        	return true;
+		default:
+			return super.onOptionsItemSelected(item);
 		}
-
-		return super.onOptionsItemSelected(item);
 	}
 
 	public void ModifierInfoCompte() {
