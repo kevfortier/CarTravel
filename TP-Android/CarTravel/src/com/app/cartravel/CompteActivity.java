@@ -1,13 +1,11 @@
 package com.app.cartravel;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -83,7 +81,7 @@ public class CompteActivity extends Activity {
 		case R.id.action_modifier_compte:
 			i = new Intent(this, CompteModifActivity.class);
 			this.startActivityForResult(i, MODIFIER_COMPTE);
-        	return true;
+			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}

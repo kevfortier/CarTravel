@@ -13,7 +13,7 @@ import com.app.cartravel.classes.Parcours;
 public class ParcourDataSource {
 	private DatabaseHelper m_Helper;
 	private SQLiteDatabase m_Db;
-	
+
 	public ParcourDataSource(Context p_Context) {
 		m_Helper = new DatabaseHelper(p_Context);
 	}
@@ -25,11 +25,10 @@ public class ParcourDataSource {
 	public void close() {
 		m_Db.close();
 	}
-	
+
 	public int insert(Parcours p_Parcour) {
 		ContentValues row = parcourToContentValues(p_Parcour);
-		int newId = (int) m_Db.insert(DatabaseHelper.TABLE_PARCOUR, null,
-				row);
+		int newId = (int) m_Db.insert(DatabaseHelper.TABLE_PARCOUR, null, row);
 		p_Parcour.setId(newId);
 		return newId;
 	}
@@ -41,31 +40,30 @@ public class ParcourDataSource {
 	}
 
 	public void delete(int p_Id) {
-		m_Db.delete(DatabaseHelper.TABLE_PARCOUR,
-				DatabaseHelper.COL_ID_PARCOUR + "=" + p_Id, null);
+		m_Db.delete(DatabaseHelper.TABLE_PARCOUR, DatabaseHelper.COL_ID_PARCOUR
+				+ "=" + p_Id, null);
 	}
 
 	public void removeAll() {
 		m_Db.delete(DatabaseHelper.TABLE_PARCOUR, null, null);
 	}
-	
+
 	public Parcours getParcour(int p_IdParcour) {
 		Parcours p = null;
-		Cursor c = m_Db
-				.query(DatabaseHelper.TABLE_PARCOUR, null,
-						DatabaseHelper.COL_ID_PARCOUR + "=" + p_IdParcour, null, null,
-						null, null);
+		Cursor c = m_Db.query(DatabaseHelper.TABLE_PARCOUR, null,
+				DatabaseHelper.COL_ID_PARCOUR + "=" + p_IdParcour, null, null,
+				null, null);
 		c.moveToFirst();
 		if (!c.isAfterLast()) {
 			p = cursorToParcour(c);
 		}
 		return p;
 	}
-	
+
 	public List<Parcours> getAllUtilisateurs() {
 		List<Parcours> parcours = new ArrayList<Parcours>();
-		Cursor c = m_Db.query(DatabaseHelper.TABLE_PARCOUR, null, null,
-				null, null, null, null);
+		Cursor c = m_Db.query(DatabaseHelper.TABLE_PARCOUR, null, null, null,
+				null, null, null);
 		c.moveToFirst();
 		while (!c.isAfterLast()) {
 			Parcours p = cursorToParcour(c);
@@ -74,47 +72,56 @@ public class ParcourDataSource {
 		}
 		return parcours;
 	}
-	
+
 	private ContentValues parcourToContentValues(Parcours p_Parcour) {
 		ContentValues row = new ContentValues();
 		row.put(DatabaseHelper.COL_ID_PARCOUR, p_Parcour.getId());
 		row.put(DatabaseHelper.COL_ID_CONDUCTEUR, p_Parcour.getIdConducteur());
 		row.put(DatabaseHelper.COL_JOUR, p_Parcour.getJour());
 		row.put(DatabaseHelper.COL_HEURE, p_Parcour.getHeure());
-		row.put(DatabaseHelper.COL_TYPE_PARCOUR, p_Parcour.getRepetitif() ? 0:1);
+		row.put(DatabaseHelper.COL_TYPE_PARCOUR, p_Parcour.getRepetitif() ? 0
+				: 1);
 		row.put(DatabaseHelper.COL_NBR_PLACE_DISPO, p_Parcour.getNbPlaceDispo());
 		row.put(DatabaseHelper.COL_NBR_PLACE_PRISE, p_Parcour.getNbPlacePrise());
-		row.put(DatabaseHelper.COL_DISTANCE_SUP_MAX, p_Parcour.getDistanceSupMax());
+		row.put(DatabaseHelper.COL_DISTANCE_SUP_MAX,
+				p_Parcour.getDistanceSupMax());
 		row.put(DatabaseHelper.COL_NO_CIVIQUE_DEP, p_Parcour.getNumCiviqueDep());
 		row.put(DatabaseHelper.COL_RUE_DEP, p_Parcour.getRueDep());
 		row.put(DatabaseHelper.COL_VILLE_DEP, p_Parcour.getVilleDep());
-		row.put(DatabaseHelper.COL_CODE_POSTAL_DEP, p_Parcour.getCodePostalDep());
+		row.put(DatabaseHelper.COL_CODE_POSTAL_DEP,
+				p_Parcour.getCodePostalDep());
 		row.put(DatabaseHelper.COL_NO_CIVIQUE_ARR, p_Parcour.getNumCiviqueArr());
 		row.put(DatabaseHelper.COL_RUE_ARR, p_Parcour.getRueArr());
 		row.put(DatabaseHelper.COL_VILLE_ARR, p_Parcour.getVilleArr());
-		row.put(DatabaseHelper.COL_CODE_POSTAL_ARR, p_Parcour.getCodePostalArr());
-		
+		row.put(DatabaseHelper.COL_CODE_POSTAL_ARR,
+				p_Parcour.getCodePostalArr());
+
 		return row;
 	}
-	
+
 	private Parcours cursorToParcour(Cursor c) {
 		Parcours p = new Parcours(
 				c.getInt(c.getColumnIndex(DatabaseHelper.COL_ID_PARCOUR)),
 				c.getInt(c.getColumnIndex(DatabaseHelper.COL_ID_CONDUCTEUR)),
 				c.getString(c.getColumnIndex(DatabaseHelper.COL_JOUR)),
 				c.getString(c.getColumnIndex(DatabaseHelper.COL_HEURE)),
-				c.getInt(c.getColumnIndex(DatabaseHelper.COL_TYPE_PARCOUR)) == 1 ? true:false,
+				c.getInt(c.getColumnIndex(DatabaseHelper.COL_TYPE_PARCOUR)) == 1 ? true
+						: false,
 				c.getInt(c.getColumnIndex(DatabaseHelper.COL_NBR_PLACE_DISPO)),
 				c.getInt(c.getColumnIndex(DatabaseHelper.COL_NBR_PLACE_PRISE)),
-				c.getFloat(c.getColumnIndex(DatabaseHelper.COL_DISTANCE_SUP_MAX)),
+				c.getFloat(c
+						.getColumnIndex(DatabaseHelper.COL_DISTANCE_SUP_MAX)),
 				c.getString(c.getColumnIndex(DatabaseHelper.COL_NO_CIVIQUE_DEP)),
 				c.getString(c.getColumnIndex(DatabaseHelper.COL_RUE_DEP)),
 				c.getString(c.getColumnIndex(DatabaseHelper.COL_VILLE_DEP)),
-				c.getString(c.getColumnIndex(DatabaseHelper.COL_CODE_POSTAL_DEP)),
+				c.getString(c
+						.getColumnIndex(DatabaseHelper.COL_CODE_POSTAL_DEP)),
 				c.getString(c.getColumnIndex(DatabaseHelper.COL_NO_CIVIQUE_ARR)),
-				c.getString(c.getColumnIndex(DatabaseHelper.COL_RUE_ARR)),
-				c.getString(c.getColumnIndex(DatabaseHelper.COL_VILLE_ARR)),
-				c.getString(c.getColumnIndex(DatabaseHelper.COL_CODE_POSTAL_ARR)));
+				c.getString(c.getColumnIndex(DatabaseHelper.COL_RUE_ARR)), c
+						.getString(c
+								.getColumnIndex(DatabaseHelper.COL_VILLE_ARR)),
+				c.getString(c
+						.getColumnIndex(DatabaseHelper.COL_CODE_POSTAL_ARR)));
 		return p;
 	}
 }

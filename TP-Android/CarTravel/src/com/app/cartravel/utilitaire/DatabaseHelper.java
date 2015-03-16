@@ -73,10 +73,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				+ " text, " + COL_PSEUDO + " text, " + COL_MOTDEPASSE
 				+ " text, " + COL_NO_CIVIQUE + " text, " + COL_RUE + " Text, "
 				+ COL_VILLE + " text, " + COL_CODE_POSTAL + " text, "
-				+ COL_NUM_TELEPHONE + " text, " 
-				+ COL_VOITURE + " integer, " + COL_RATING_COND + " real, "
-				+ COL_RATING_PASS + " real, " + COL_ESTCONNECTE + " integer, "
-				+ COL_DERNIERCONNECTE + " integer)");
+				+ COL_NUM_TELEPHONE + " text, " + COL_VOITURE + " integer, "
+				+ COL_RATING_COND + " real, " + COL_RATING_PASS + " real, "
+				+ COL_ESTCONNECTE + " integer, " + COL_DERNIERCONNECTE
+				+ " integer)");
 
 		// Crée la table pour les parcours
 		db.execSQL("create table " + TABLE_PARCOUR + " (" + COL_ID_PARCOUR

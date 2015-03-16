@@ -138,12 +138,12 @@ public class Util {
 
 		return verifCodePostal;
 	}
-	
-	public static boolean verifNumTel (String p_NumTel) {
+
+	public static boolean verifNumTel(String p_NumTel) {
 		boolean verifNumTel = false;
 		String regExNumTel = "\\d{10}";
 		verifNumTel = p_NumTel.matches(regExNumTel);
-		
+
 		return verifNumTel;
 	}
 }

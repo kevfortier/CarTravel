@@ -131,29 +131,28 @@ public class UtilisateurDataSource {
 		row.put(DatabaseHelper.COL_COURRIEL, p_Utilisateur.getCourriel());
 		row.put(DatabaseHelper.COL_PSEUDO, p_Utilisateur.getPseudo());
 		row.put(DatabaseHelper.COL_MOTDEPASSE, p_Utilisateur.getMotDePasse());
-		row.put(DatabaseHelper.COL_ESTCONNECTE,
-				p_Utilisateur.getEstConnecte());
+		row.put(DatabaseHelper.COL_ESTCONNECTE, p_Utilisateur.getEstConnecte());
 		row.put(DatabaseHelper.COL_DERNIERCONNECTE,
 				p_Utilisateur.getDernierConnecte());
 		return row;
 	}
 
 	private Utilisateurs cursorToUtilisateur(Cursor c) {
-		Utilisateurs r = new Utilisateurs(
-				c.getInt(c.getColumnIndex(DatabaseHelper.COL_ID_USER)),
-				c.getString(c.getColumnIndex(DatabaseHelper.COL_COURRIEL)),
-				c.getString(c.getColumnIndex(DatabaseHelper.COL_PSEUDO)),
-				c.getString(c.getColumnIndex(DatabaseHelper.COL_MOTDEPASSE)),
-				c.getString(c.getColumnIndex(DatabaseHelper.COL_NO_CIVIQUE)),
-				c.getString(c.getColumnIndex(DatabaseHelper.COL_RUE)),
-				c.getString(c.getColumnIndex(DatabaseHelper.COL_VILLE)),
-				c.getString(c.getColumnIndex(DatabaseHelper.COL_CODE_POSTAL)),
-				c.getString(c.getColumnIndex(DatabaseHelper.COL_NUM_TELEPHONE)),
-				c.getInt(c.getColumnIndex(DatabaseHelper.COL_VOITURE)),
-				c.getFloat(c.getColumnIndex(DatabaseHelper.COL_RATING_COND)),
-				c.getFloat(c.getColumnIndex(DatabaseHelper.COL_RATING_PASS)),
-				c.getInt(c.getColumnIndex(DatabaseHelper.COL_ESTCONNECTE)),
-				c.getInt(c.getColumnIndex(DatabaseHelper.COL_DERNIERCONNECTE)));
+		Utilisateurs r = new Utilisateurs(c.getInt(c
+				.getColumnIndex(DatabaseHelper.COL_ID_USER)), c.getString(c
+				.getColumnIndex(DatabaseHelper.COL_COURRIEL)), c.getString(c
+				.getColumnIndex(DatabaseHelper.COL_PSEUDO)), c.getString(c
+				.getColumnIndex(DatabaseHelper.COL_MOTDEPASSE)), c.getString(c
+				.getColumnIndex(DatabaseHelper.COL_NO_CIVIQUE)), c.getString(c
+				.getColumnIndex(DatabaseHelper.COL_RUE)), c.getString(c
+				.getColumnIndex(DatabaseHelper.COL_VILLE)), c.getString(c
+				.getColumnIndex(DatabaseHelper.COL_CODE_POSTAL)), c.getString(c
+				.getColumnIndex(DatabaseHelper.COL_NUM_TELEPHONE)), c.getInt(c
+				.getColumnIndex(DatabaseHelper.COL_VOITURE)), c.getFloat(c
+				.getColumnIndex(DatabaseHelper.COL_RATING_COND)), c.getFloat(c
+				.getColumnIndex(DatabaseHelper.COL_RATING_PASS)), c.getInt(c
+				.getColumnIndex(DatabaseHelper.COL_ESTCONNECTE)), c.getInt(c
+				.getColumnIndex(DatabaseHelper.COL_DERNIERCONNECTE)));
 		return r;
 	}
 }

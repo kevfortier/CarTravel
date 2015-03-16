@@ -49,18 +49,17 @@ public class Parcours {
 		this.m_NumCiviqueArr = p_NumCiviqueArr;
 		this.m_RueArr = p_RueArr;
 		this.m_VilleArr = p_VilleArr;
-		this.m_CodePostalArr =p_CodePostalArr;
+		this.m_CodePostalArr = p_CodePostalArr;
 	}
 
 	/**
 	 * Constructeur sans ID pour conducteur
 	 */
-	public Parcours(int p_IdConducteur, String p_Jour,
-			String p_Heure, boolean p_Repetitif, int p_NbPlaceDispo,
-			int p_NbPlacePrise, float p_DistanceSupMax, String p_NumCiviqueDep,
-			String p_RueDep, String p_VilleDep, String p_CodePostalDep,
-			String p_NumCiviqueArr, String p_RueArr, String p_VilleArr,
-			String p_CodePostalArr) {
+	public Parcours(int p_IdConducteur, String p_Jour, String p_Heure,
+			boolean p_Repetitif, int p_NbPlaceDispo, int p_NbPlacePrise,
+			float p_DistanceSupMax, String p_NumCiviqueDep, String p_RueDep,
+			String p_VilleDep, String p_CodePostalDep, String p_NumCiviqueArr,
+			String p_RueArr, String p_VilleArr, String p_CodePostalArr) {
 		super();
 		this.m_Id = ID_NON_DEFINI;
 		this.m_IdConducteur = p_IdConducteur;
@@ -79,9 +78,9 @@ public class Parcours {
 		this.m_NumCiviqueArr = p_NumCiviqueArr;
 		this.m_RueArr = p_RueArr;
 		this.m_VilleArr = p_VilleArr;
-		this.m_CodePostalArr =p_CodePostalArr;
+		this.m_CodePostalArr = p_CodePostalArr;
 	}
-	
+
 	/**
 	 * Constructeur pour passagers
 	 */
@@ -105,17 +104,16 @@ public class Parcours {
 		this.m_NumCiviqueArr = p_NumCiviqueArr;
 		this.m_RueArr = p_RueArr;
 		this.m_VilleArr = p_VilleArr;
-		this.m_CodePostalArr =p_CodePostalArr;
+		this.m_CodePostalArr = p_CodePostalArr;
 	}
 
 	/**
 	 * Constructeur sans ID pour passagers
 	 */
-	public Parcours(int p_IdConducteur, String p_Jour,
-			String p_Heure, boolean p_Repetitif, String p_NumCiviqueDep,
-			String p_RueDep, String p_VilleDep, String p_CodePostalDep,
-			String p_NumCiviqueArr, String p_RueArr, String p_VilleArr,
-			String p_CodePostalArr) {
+	public Parcours(int p_IdConducteur, String p_Jour, String p_Heure,
+			boolean p_Repetitif, String p_NumCiviqueDep, String p_RueDep,
+			String p_VilleDep, String p_CodePostalDep, String p_NumCiviqueArr,
+			String p_RueArr, String p_VilleArr, String p_CodePostalArr) {
 		super();
 		this.m_Id = ID_NON_DEFINI;
 		this.m_IdConducteur = p_IdConducteur;
@@ -131,7 +129,7 @@ public class Parcours {
 		this.m_NumCiviqueArr = p_NumCiviqueArr;
 		this.m_RueArr = p_RueArr;
 		this.m_VilleArr = p_VilleArr;
-		this.m_CodePostalArr =p_CodePostalArr;
+		this.m_CodePostalArr = p_CodePostalArr;
 	}
 
 	public int getId() {
