@@ -27,7 +27,7 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:id="@+id/txt_num_civ"
-	        android:inputType="textCapWords"
+	        android:inputType="numberDecimal" 
 	        android:gravity="center" />
 	</LinearLayout>    
 	        
@@ -67,7 +67,7 @@
 	  	    android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:id="@+id/txt_ville"
-	        android:inputType="numberDecimal" 
+	        android:inputType="textCapSentences"
 	        android:gravity="center" />	
 	 </LinearLayout>
 	
@@ -86,7 +86,7 @@
 	  	    android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:id="@+id/txt_cod_post"
-	        android:inputType="numberDecimal" 
+	        android:inputType="textCapSentences"
 	        android:gravity="center" />	
 	 </LinearLayout>
 	 

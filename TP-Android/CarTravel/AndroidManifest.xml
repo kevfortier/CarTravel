@@ -56,9 +56,25 @@
                 android:value="com.app.cartravel.MainActivity" />
         </activity>
         
+        <activity 
+            android:name=".ProfilModifActivity"
+            android:label="@string/title_modif_profil">
+            <meta-data 
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.app.cartravel.MainActivity" />
+        </activity>
+        
         <activity
             android:name=".CompteActivity"
             android:label="@string/act_compte">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.app.cartravel.MainActivity" />
+        </activity>
+        
+        <activity
+            android:name=".CompteModifActivity"
+            android:label="@string/title_modif_compte">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.app.cartravel.MainActivity" />

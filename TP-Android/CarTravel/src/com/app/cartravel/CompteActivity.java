@@ -17,7 +17,7 @@ public class CompteActivity extends Activity {
 
 	public static final int MODIFIER_COMPTE = 2;
 
-	private Utilisateurs mUtilisateur;
+	public Utilisateurs mUtilisateur;
 	private TextView mCourriel;
 	private TextView mPseudo;
 	private UtilisateurDataSource mDataSource;
@@ -39,8 +39,8 @@ public class CompteActivity extends Activity {
 		mDataSource.close();
 
 		setContentView(R.layout.activity_compte);
-		mCourriel = (EditText) findViewById(R.id.txt_username);
-		mPseudo = (EditText) findViewById(R.id.txt_pseudo);
+		mCourriel = (TextView) findViewById(R.id.txt_username);
+		mPseudo = (TextView) findViewById(R.id.txt_pseudo);
 
 		if (mUtilisateur != null) {
 			AfficherInfoCompte(mCourriel, mPseudo);
@@ -76,11 +76,16 @@ public class CompteActivity extends Activity {
 	}
 
 	public boolean onOptionsItemSelected(MenuItem item) {
+		Intent i;
 		switch (item.getItemId()) {
 		case android.R.id.home:
 			// app icon in action bar clicked; goto parent activity.
 			this.finish();
 			return true;
+		case R.id.action_modifier_compte:
+			i = new Intent(this, CompteModifActivity.class);
+			this.startActivityForResult(i, MODIFIER_COMPTE);
+        	return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
