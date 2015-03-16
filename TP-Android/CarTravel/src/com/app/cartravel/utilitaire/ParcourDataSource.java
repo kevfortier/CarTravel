@@ -9,7 +9,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.app.cartravel.classes.Parcours;
-import com.app.cartravel.classes.Utilisateurs;
 
 public class ParcourDataSource {
 	private DatabaseHelper m_Helper;
