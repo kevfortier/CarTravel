@@ -2,7 +2,93 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/lbl_depart"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/txtNumCiviqueDepart"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/txt_num_civique"
+        android:inputType="number"
+        android:layout_marginLeft="10dp" />
+
+    <EditText
+        android:id="@+id/txtRueDepart"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/txt_rue"
+        android:inputType="textCapSentences"
+        android:layout_marginLeft="10dp" />
+
+    <EditText
+        android:id="@+id/txtVilleDepart"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/txt_ville"
+        android:inputType="textCapSentences"
+        android:layout_marginLeft="10dp" />
+
+    <EditText
+        android:id="@+id/txtCodePostalDepart"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/txt_code_postal"
+        android:inputType="textCapSentences"
+        android:layout_marginLeft="10dp" />
+
+    <CheckBox
+        android:id="@+id/chkAddrProfil"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="@string/chk_adr_profil" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/lbl_arrive"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/txtNumCiviqueArr"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/txt_num_civique"
+        android:inputType="number"
+        android:layout_marginLeft="10dp" />
+
+    <EditText
+        android:id="@+id/txtRueArr"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/txt_rue"
+        android:inputType="textCapSentences"
+        android:layout_marginLeft="10dp" />
+
+    <EditText
+        android:id="@+id/txtVilleArr"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/txt_ville"
+        android:inputType="textCapSentences"
+        android:layout_marginLeft="10dp" />
+
+    <EditText
+        android:id="@+id/txtCodePostalArr"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/txt_code_postal"
+        android:inputType="textCapSentences"
+        android:layout_marginLeft="10dp" />
 
 </LinearLayout>

@@ -27,6 +27,7 @@
     <string name="frag_parcour">Parcours</string>
     <string name="frag_passager">Passagers</string>
     <string name="frag_conducteur">Conducteurs</string>
+    <string name="frag_mes_parcour">Mes parcours</string>
     <string name="passagers_pot">Liste des passagers potentiel</string>
     <string name="passagers">Liste de mes passagers</string>
     <string name="conducteurs_pot">Liste des conducteurs potentiel</string>
@@ -39,6 +40,18 @@
     <string name="lst_demande_conducteurs_vide">La Liste de vos demandes de conducteurs est vide</string>
     <string name="demande_passagers">Liste de mes demandes de passagers</string>
     <string name="lst_demande_passagers_vide">La Liste de vos demandes de passagers est vide</string>
+    <string name="mes_offres">Mes offres</string>
+    <string name="lst_offres_vide">Vous n\'avez fait aucune offre</string>
+    <string name="mes_demandes">Mes demandes</string>
+    <string name="lst_demandes_vide">Vous n\'avez fait aucune demande</string>
+    <string name="lbl_depart">Départ</string>
+    <string name="lbl_arrive">Arrivé</string>
+    <string name="chk_adr_profil">Même adresse que profil</string>
+    
+    <string name="txt_num_civique">Num. Civique</string>
+    <string name="txt_rue">Rue</string>
+    <string name="txt_ville">Ville</string>
+    <string name="txt_code_postal">Code Postal</string>
 
     <!-- String utilisateurs -->
     <string name="lbl_username">Courriel</string>
@@ -112,14 +125,13 @@
     <string name="action_confirmer_parcour">Confirmer</string>
     <string name="action_ajout_parcours">Créer un parcours</string>
 	<string name="hint_date">AAAA/MM/JJ</string>
+	<string name="lbl_nbr_passager">Nombre de passagers</string>
+    <string name="lbl_capacite_max">Capacité Max.</string>
+    <string name="lbl_distance_max">Distance Max.</string>
 	
     <!-- Spinner type parcours -->
     <string-array name="type_parcour_array">
         <item>Ponctuel</item>
         <item>Périodique</item>
     </string-array>
-    <string name="lbl_nbr_passager">Nombre de passagers</string>
-    <string name="lbl_capacite_max">Capacité Max.</string>
-    <string name="lbl_distance_max">Distance Max.</string>
-
 </resources>

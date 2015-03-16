@@ -44,7 +44,6 @@ public class AjoutParcoursActivity2 extends Activity{
 		
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			// app icon in action bar clicked; goto parent activity.
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
 		case R.id.action_confirmer_parcour:
