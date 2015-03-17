@@ -12,7 +12,7 @@ public class Util {
 
 	public final static String REST_UTILISATEUR = "/utilisateurs";
 	public final static String REST_CONNEXION = "/connexion";
-	public final static String WEB_SERVICE = "10.248.153.73:8080";
+	public final static String WEB_SERVICE = "10.248.18.225:8080";
 
 	public final static String GOOGLE_SENDER_ID = "133519372687";
 
@@ -138,12 +138,12 @@ public class Util {
 
 		return verifCodePostal;
 	}
-	
-	public static boolean verifNumTel (String p_NumTel) {
+
+	public static boolean verifNumTel(String p_NumTel) {
 		boolean verifNumTel = false;
 		String regExNumTel = "\\d{10}";
 		verifNumTel = p_NumTel.matches(regExNumTel);
-		
+
 		return verifNumTel;
 	}
 }

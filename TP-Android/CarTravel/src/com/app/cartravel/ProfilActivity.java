@@ -1,13 +1,12 @@
 package com.app.cartravel;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,7 +17,7 @@ import com.app.cartravel.utilitaire.UtilisateurDataSource;
 public class ProfilActivity extends Activity {
 
 	public static final int MODIFIER_PROFIL = 2;
-	
+
 	private Utilisateurs mUtilisateur;
 	private UtilisateurDataSource mDataSource;
 
@@ -36,9 +35,7 @@ public class ProfilActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 
-		ActionBar actionBar = getActionBar();
-
-		actionBar.setDisplayHomeAsUpEnabled(true);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		setContentView(R.layout.acitivity_profile);
 
@@ -48,7 +45,7 @@ public class ProfilActivity extends Activity {
 		mRue = (TextView) findViewById(R.id.txt_rue);
 		mVille = (TextView) findViewById(R.id.txt_ville);
 		mCodePostal = (TextView) findViewById(R.id.txt_cod_post);
-		mNumTel = (TextView)findViewById(R.id.txt_num_tel);
+		mNumTel = (TextView) findViewById(R.id.txt_num_tel);
 		mVoiture = (CheckBox) findViewById(R.id.chck_voiture);
 		mNoteCond = (RatingBar) findViewById(R.id.rating_cond);
 		mNotePass = (RatingBar) findViewById(R.id.rating_pass);
@@ -74,52 +71,51 @@ public class ProfilActivity extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-		 if (resultCode == RESULT_OK && requestCode == MODIFIER_PROFIL) {
-		 mDataSource = new UtilisateurDataSource(this); 
-		 mDataSource.open();
-		  
-		 //Afficher ses nouvelles infos. 
-		 mUtilisateur = mDataSource.getConnectedUtilisateur(); 
-		 mDataSource.close();
-		 AfficherInfoCompte(mNumCivique, mRue, mVille, mCodePostal, mNumTel, mVoiture, mNoteCond, mNotePass); 
-		 Toast.makeText(this, R.string.toast_modif_compte, Toast.LENGTH_SHORT).show(); 
-		 }
-		 
-		 if (resultCode == RESULT_CANCELED && requestCode == MODIFIER_PROFIL) { 
-			 Toast.makeText(this, R.string.toast_annul_modif_compte, Toast.LENGTH_SHORT).show(); 
-		 }
+		if (resultCode == RESULT_OK && requestCode == MODIFIER_PROFIL) {
+			mDataSource = new UtilisateurDataSource(this);
+			mDataSource.open();
+
+			// Afficher ses nouvelles infos.
+			mUtilisateur = mDataSource.getConnectedUtilisateur();
+			mDataSource.close();
+			AfficherInfoCompte(mNumCivique, mRue, mVille, mCodePostal, mNumTel,
+					mVoiture, mNoteCond, mNotePass);
+			Toast.makeText(this, R.string.toast_modif_compte,
+					Toast.LENGTH_SHORT).show();
+		}
+
+		if (resultCode == RESULT_CANCELED && requestCode == MODIFIER_PROFIL) {
+			Toast.makeText(this, R.string.toast_annul_modif_compte,
+					Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	public boolean onOptionsItemSelected(MenuItem item) {
 		Intent i;
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			// app icon in action bar clicked; goto parent activity.
-			this.finish();
+			NavUtils.navigateUpFromSameTask(this);
 			return true;
 		case R.id.action_modifier_profil:
 			i = new Intent(this, ProfilModifActivity.class);
 			this.startActivityForResult(i, MODIFIER_PROFIL);
-        	return true;
+			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
 	}
 
 	public void AfficherInfoCompte(TextView mNumCivique, TextView mRue,
-			TextView mVille, TextView mCodePostal, TextView mNumTel, CheckBox mVoiture,
-			RatingBar mNoteCond, RatingBar mNotePass) {
+			TextView mVille, TextView mCodePostal, TextView mNumTel,
+			CheckBox mVoiture, RatingBar mNoteCond, RatingBar mNotePass) {
 		mNumCivique.setText(mUtilisateur.getNumCivique());
 		mRue.setText(mUtilisateur.getRue());
 		mVille.setText(mUtilisateur.getVille());
 		mCodePostal.setText(mUtilisateur.getCodePostal());
 		mNumTel.setText(mUtilisateur.getNumTel());
-		if (mUtilisateur.getVoiture() == 1)
-		{
+		if (mUtilisateur.getVoiture() == 1) {
 			mVoiture.setChecked(true);
-		}
-		else
-		{
+		} else {
 			mVoiture.setChecked(false);
 		}
 		mNoteCond.setRating(mUtilisateur.getNoteCond());

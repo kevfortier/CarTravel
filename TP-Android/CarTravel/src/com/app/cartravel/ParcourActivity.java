@@ -23,7 +23,7 @@ import com.app.cartravel.classes.Utilisateurs;
 import com.app.cartravel.utilitaire.UtilisateurDataSource;
 
 public class ParcourActivity extends Activity implements ActionBar.TabListener {
-	public static final int AJOUTER_PARCOUR = 1; 
+	public static final int AJOUTER_PARCOUR = 1;
 
 	private SectionsPagerAdapter mSectionsPagerAdapter;
 	private ViewPager mViewPager;
@@ -49,7 +49,6 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 		setContentView(R.layout.activity_parcour);
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
-
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
@@ -87,7 +86,7 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 					.setTabListener(this));
 		}
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -103,8 +102,8 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 			return true;
 		case R.id.action_ajout_parcours:
 			Intent i = new Intent(this, AjoutParcoursActivity1.class);
-            this.startActivityForResult(i, AJOUTER_PARCOUR);
-        	return true;
+			this.startActivityForResult(i, AJOUTER_PARCOUR);
+			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
@@ -292,7 +291,7 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 			return rootView;
 		}
 	}
-	
+
 	public static class PlaceholderFragmentMesParcours extends Fragment {
 		/**
 		 * The fragment argument representing the section number for this

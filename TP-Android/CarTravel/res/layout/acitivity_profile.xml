@@ -15,7 +15,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp" >
 
         <TextView
             android:layout_width="wrap_content"
@@ -34,7 +35,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp" >
 
         <TextView
             android:layout_width="wrap_content"
@@ -53,7 +55,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp" >
 
         <TextView
             android:layout_width="wrap_content"
@@ -65,14 +68,15 @@
             android:id="@+id/txt_ville"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"/>
+            android:gravity="center" />
     </LinearLayout>
 
     <!-- Code postal -->
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp" >
 
         <TextView
             android:layout_width="wrap_content"
@@ -91,7 +95,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp" >
 
         <TextView
             android:layout_width="wrap_content"
@@ -103,14 +108,15 @@
             android:id="@+id/txt_num_tel"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"/>
+            android:gravity="center" />
     </LinearLayout>
 
     <!-- Possession automobile -->
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp" >
 
         <TextView
             android:layout_width="wrap_content"
@@ -130,20 +136,27 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/rtingBar_cond"
             android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp" >
 
         <RatingBar
             android:id="@+id/rating_cond"
-            android:isIndicator="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp" />
+            android:layout_marginLeft="20dp"
+            android:isIndicator="false" />
         <!-- style="@style/StarRatingBar" -->
     </LinearLayout>
 
@@ -151,20 +164,27 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/rtingBar_pass"
             android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp" >
 
         <RatingBar
             android:id="@+id/rating_pass"
-            android:isIndicator="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp" />
+            android:layout_marginLeft="20dp"
+            android:isIndicator="false" />
         <!-- style="@style/StarRatingBar" -->
     </LinearLayout>
 

@@ -138,8 +138,7 @@ public class CreationCompteActivity extends Activity {
 		protected Void doInBackground(String... params) {
 			try {
 				utilisateur = new Utilisateurs(params[0], params[1],
-						Util.sha1(params[2]), "", "", "", "", "", 0, 0, 0,
-						0, 0);
+						Util.sha1(params[2]), "", "", "", "", "", 0, 0, 0, 0, 0);
 
 				URI uri = new URI(
 						"http",

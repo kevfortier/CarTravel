@@ -26,9 +26,9 @@ public class Utilisateurs {
 	 */
 	public Utilisateurs(int p_Id, String p_Courriel, String p_Pseudo,
 			String p_MotDePasse, String p_NumCivique, String p_Rue,
-			String p_Ville, String p_CodePostal, String P_NumTel, int p_Voiture,
-			float p_NoteCond, float p_NotePass, int p_EstConnecte,
-			int p_DernierConnecte) {
+			String p_Ville, String p_CodePostal, String P_NumTel,
+			int p_Voiture, float p_NoteCond, float p_NotePass,
+			int p_EstConnecte, int p_DernierConnecte) {
 		super();
 		this.m_Id = p_Id;
 		this.m_Courriel = p_Courriel;
@@ -53,9 +53,9 @@ public class Utilisateurs {
 	 */
 	public Utilisateurs(String p_Courriel, String p_Pseudo,
 			String p_MotDePasse, String p_NumCivique, String p_Rue,
-			String p_Ville, String p_CodePostal, String p_NumTel, int p_Voiture,
-			float p_NoteCond, float p_NotePass, int p_EstConnecte,
-			int p_DernierConnecte) {
+			String p_Ville, String p_CodePostal, String p_NumTel,
+			int p_Voiture, float p_NoteCond, float p_NotePass,
+			int p_EstConnecte, int p_DernierConnecte) {
 		this.m_Courriel = p_Courriel;
 		this.m_Pseudo = p_Pseudo;
 		this.m_MotDePasse = p_MotDePasse;
@@ -145,14 +145,12 @@ public class Utilisateurs {
 	public void setCodePostal(String m_CodePostal) {
 		this.m_CodePostal = m_CodePostal;
 	}
-	
-	public String getNumTel()
-	{
+
+	public String getNumTel() {
 		return m_NumTel;
 	}
-	
-	public void setNumTel(String m_NumTel)
-	{
+
+	public void setNumTel(String m_NumTel) {
 		this.m_NumTel = m_NumTel;
 	}
 

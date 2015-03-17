@@ -1,9 +1,9 @@
 package com.app.cartravel;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -33,11 +33,9 @@ public class CompteModifActivity extends Activity {
 
 		setContentView(R.layout.activity_compte_modif);
 		setTitle(R.string.title_modif_compte);
-		
-		ActionBar actionBar = getActionBar();
 
-		actionBar.setDisplayHomeAsUpEnabled(true);
-		
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+
 		mCourriel = (EditText) findViewById(R.id.txt_username);
 		mCourrielVerif = (EditText) findViewById(R.id.txt_confirmer_username);
 		mPseudo = (EditText) findViewById(R.id.txt_pseudo);
@@ -65,16 +63,15 @@ public class CompteModifActivity extends Activity {
 	// Lorsque l'utilisateur confirme les modifications de son compte.
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		
+
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			// app icon in action bar clicked; goto parent activity.
-			this.finish();
+			NavUtils.navigateUpFromSameTask(this);
 			return true;
 		case R.id.action_confirmer_profil:
-			//Faire afficher l'activité de ton bouton de menu
+			// Faire afficher l'activité de ton bouton de menu
 			ModifierInfoCompte();
-        	return true;
+			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
@@ -96,8 +93,9 @@ public class CompteModifActivity extends Activity {
 			if (Util.isCourriel(strCourriel)) {
 				if (strCourriel.equals(strCourrielConfirmation)) {
 					if (strMotDePasse.equals(strMotDePasseConfirmation)) {
-						
-						UtilisateurDataSource dataSource = new UtilisateurDataSource(this);
+
+						UtilisateurDataSource dataSource = new UtilisateurDataSource(
+								this);
 						dataSource.open();
 						mUtilisateur.setCourriel(strCourriel);
 						mUtilisateur.setPseudo(strPseudo);
