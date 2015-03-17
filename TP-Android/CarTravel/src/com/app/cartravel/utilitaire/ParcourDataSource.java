@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.app.cartravel.classes.Parcours;
+import com.app.cartravel.utilitaire.UtilisateurDataSource;
 
 public class ParcourDataSource {
 	private DatabaseHelper m_Helper;
@@ -48,7 +49,7 @@ public class ParcourDataSource {
 		m_Db.delete(DatabaseHelper.TABLE_PARCOUR, null, null);
 	}
 
-	public Parcours getParcour(int p_IdParcour) {
+	public Parcours getParcours(int p_IdParcour) {
 		Parcours p = null;
 		Cursor c = m_Db.query(DatabaseHelper.TABLE_PARCOUR, null,
 				DatabaseHelper.COL_ID_PARCOUR + "=" + p_IdParcour, null, null,
@@ -60,7 +61,7 @@ public class ParcourDataSource {
 		return p;
 	}
 
-	public List<Parcours> getAllUtilisateurs() {
+	public List<Parcours> getAllParcours() {
 		List<Parcours> parcours = new ArrayList<Parcours>();
 		Cursor c = m_Db.query(DatabaseHelper.TABLE_PARCOUR, null, null, null,
 				null, null, null);
@@ -76,6 +77,7 @@ public class ParcourDataSource {
 	private ContentValues parcourToContentValues(Parcours p_Parcour) {
 		ContentValues row = new ContentValues();
 		row.put(DatabaseHelper.COL_ID_PARCOUR, p_Parcour.getId());
+		row.put(DatabaseHelper.COL_ID_PROPRIETAIRE, p_Parcour.getIdProprietaire());
 		row.put(DatabaseHelper.COL_ID_CONDUCTEUR, p_Parcour.getIdConducteur());
 		row.put(DatabaseHelper.COL_JOUR, p_Parcour.getJour());
 		row.put(DatabaseHelper.COL_HEURE, p_Parcour.getHeure());
@@ -102,6 +104,7 @@ public class ParcourDataSource {
 	private Parcours cursorToParcour(Cursor c) {
 		Parcours p = new Parcours(
 				c.getInt(c.getColumnIndex(DatabaseHelper.COL_ID_PARCOUR)),
+				c.getInt(c.getColumnIndex(DatabaseHelper.COL_ID_PROPRIETAIRE)),
 				c.getInt(c.getColumnIndex(DatabaseHelper.COL_ID_CONDUCTEUR)),
 				c.getString(c.getColumnIndex(DatabaseHelper.COL_JOUR)),
 				c.getString(c.getColumnIndex(DatabaseHelper.COL_HEURE)),
