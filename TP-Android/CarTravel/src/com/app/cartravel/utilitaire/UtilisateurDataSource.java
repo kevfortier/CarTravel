@@ -131,6 +131,14 @@ public class UtilisateurDataSource {
 		row.put(DatabaseHelper.COL_COURRIEL, p_Utilisateur.getCourriel());
 		row.put(DatabaseHelper.COL_PSEUDO, p_Utilisateur.getPseudo());
 		row.put(DatabaseHelper.COL_MOTDEPASSE, p_Utilisateur.getMotDePasse());
+		row.put(DatabaseHelper.COL_NO_CIVIQUE, p_Utilisateur.getNumCivique());
+		row.put(DatabaseHelper.COL_RUE, p_Utilisateur.getRue());
+		row.put(DatabaseHelper.COL_VILLE, p_Utilisateur.getVille());
+		row.put(DatabaseHelper.COL_CODE_POSTAL, p_Utilisateur.getCodePostal());
+		row.put(DatabaseHelper.COL_NUM_TELEPHONE, p_Utilisateur.getNumTel());
+		row.put(DatabaseHelper.COL_VOITURE, p_Utilisateur.getVoiture());
+		row.put(DatabaseHelper.COL_RATING_COND, p_Utilisateur.getNoteCond());
+		row.put(DatabaseHelper.COL_RATING_PASS, p_Utilisateur.getNotePass());
 		row.put(DatabaseHelper.COL_ESTCONNECTE, p_Utilisateur.getEstConnecte());
 		row.put(DatabaseHelper.COL_DERNIERCONNECTE,
 				p_Utilisateur.getDernierConnecte());

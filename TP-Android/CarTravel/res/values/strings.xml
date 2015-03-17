@@ -68,10 +68,8 @@
     <string name="lbl_creer_compte"><u>Créer un compte</u></string>
     <string name="lbl_forgot_password"><u>Mot de passe oublié?</u></string>
     <string name="toast_courriel_vide">Le champ courriel ne peut être vide.</string>
-    <string name="toast_confirm_courriel_vide">Le champ confirmation de courriel ne peut être vide.</string>
     <string name="toast_pseudo_vide">Le champ pseudo ne peut être vide.</string>
     <string name="toast_mdp_vide">Le champ mot de passe ne peut être vide.</string>
-    <string name="toast_confirm_mdp_vide">Le champ confirmation de mot de passe ne peut être vide.</string>
     <string name="toast_courriel_invalide">Le champ courriel est invalide.</string>
     <string name="toast_courriel_identique">Les courriels ne sont pas identiques.</string>
     <string name="toast_mdp_identique">Les mots de passes ne sont pas identiques.</string>
@@ -100,12 +98,12 @@
     <string name="action_modifier_profil">Modifier le profil</string>
     <string name="action_sauvegarder_profil">Sauvegarder le profil</string>
     <string name="toast_num_civique_vide">Le champ du numéro civique ne peut être vide.</string>
-    <string name="toast_num_civique_confirm">Le numéro civique doit être composé de chiffre(s).</string>
     <string name="toast_rue_vide">Le champ rue ne peut être vide.</string>
     <string name="toast_ville_vide">Le champ ville ne peut être vide.</string>
     <string name="toast_code_postal_vide">Le champ code postal ne peut être vide.</string>
     <string name="toast_code_postal_confirm">Le code postal n\'est pas valide.</string>
-
+	<string name="toast_num_tel_confirm">Le numéro de téléphone n\'est pas valide.</string>
+	
     <!-- String parcours -->
     <string name="lbl_choix_cov">Choix de covoiturage:</string>
     <string name="chck_pass">Passager</string>

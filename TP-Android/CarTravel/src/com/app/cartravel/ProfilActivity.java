@@ -74,8 +74,6 @@ public class ProfilActivity extends Activity {
 		if (resultCode == RESULT_OK && requestCode == MODIFIER_PROFIL) {
 			mDataSource = new UtilisateurDataSource(this);
 			mDataSource.open();
-
-			// Afficher ses nouvelles infos.
 			mUtilisateur = mDataSource.getConnectedUtilisateur();
 			mDataSource.close();
 			AfficherInfoCompte(mNumCivique, mRue, mVille, mCodePostal, mNumTel,

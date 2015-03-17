@@ -53,7 +53,8 @@ public class ProfilModifActivity extends Activity {
 		mDataSource.close();
 
 		if (mUtilisateur != null) {
-			AfficherInfoCompte(mNumCivique, mRue, mVille, mCodePostal, mVoiture);
+			AfficherInfoCompte(mNumCivique, mRue, mVille, mCodePostal, mNumTel,
+					mVoiture);
 		}
 	}
 
@@ -89,13 +90,12 @@ public class ProfilModifActivity extends Activity {
 		Intent i = new Intent();
 
 		if (Util.ValiderString(new String[] { strNumCivique, strRue, strVille,
-				strCodePostal })) {
+				strCodePostal, strNumTel })) {
 			int intNumCivique = 0;
 
-			try {
-				intNumCivique = Integer.parseInt(strNumCivique);
-				if (Util.verifCodePostal(strCodePostal)) {
+			if (Util.verifCodePostal(strCodePostal)) {
 
+				if (Util.verifNumTel(strNumTel)) {
 					UtilisateurDataSource dataSource = new UtilisateurDataSource(
 							this);
 
@@ -120,14 +120,14 @@ public class ProfilModifActivity extends Activity {
 					this.setResult(RESULT_OK, i);
 					this.finish();
 				} else {
-					Toast.makeText(this, R.string.toast_code_postal_confirm,
+					Toast.makeText(this, R.string.toast_num_tel_confirm,
 							Toast.LENGTH_SHORT).show();
 				}
-			} catch (NumberFormatException nfe) {
-				Toast.makeText(this, R.string.toast_num_civique_confirm,
+
+			} else {
+				Toast.makeText(this, R.string.toast_code_postal_confirm,
 						Toast.LENGTH_SHORT).show();
 			}
-
 		} else {
 			if (!Util.ValiderString(new String[] { strNumCivique })) {
 				Toast.makeText(this, R.string.toast_num_civique_vide,
@@ -152,11 +152,13 @@ public class ProfilModifActivity extends Activity {
 	}
 
 	public void AfficherInfoCompte(EditText mNumCivique, EditText mRue,
-			EditText mVille, EditText mCodePostal, CheckBox mVoiture) {
+			EditText mVille, EditText mCodePostal, EditText mNumTel,
+			CheckBox mVoiture) {
 		mNumCivique.setText(mUtilisateur.getNumCivique());
 		mRue.setText(mUtilisateur.getRue());
 		mVille.setText(mUtilisateur.getVille());
 		mCodePostal.setText(mUtilisateur.getCodePostal());
+		mNumTel.setText(mUtilisateur.getNumTel());
 		if (mUtilisateur.getVoiture() == 1) {
 			mVoiture.setChecked(true);
 		}

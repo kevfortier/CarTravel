@@ -16,12 +16,16 @@ import com.app.cartravel.utilitaire.UtilisateurDataSource;
 
 public class CompteModifActivity extends Activity {
 
+	private String mCourrielDep;
+	private String mMDPDep;
+	private String mPseudoDep;
+
 	private Utilisateurs mUtilisateur;
-	private TextView mCourriel;
-	private TextView mCourrielVerif;
-	private TextView mPseudo;
-	private TextView mMDP;
-	private TextView mMDPVerif;
+	private EditText mCourriel;
+	private EditText mCourrielVerif;
+	private EditText mPseudo;
+	private EditText mMDP;
+	private EditText mMDPVerif;
 	private boolean mVerifModif = false;
 	private UtilisateurDataSource mDataSource;
 	private Bundle m_extra;
@@ -40,6 +44,7 @@ public class CompteModifActivity extends Activity {
 		mCourrielVerif = (EditText) findViewById(R.id.txt_confirmer_username);
 		mPseudo = (EditText) findViewById(R.id.txt_pseudo);
 		mMDP = (EditText) findViewById(R.id.txt_password);
+		
 		mMDPVerif = (EditText) findViewById(R.id.txt_confirmer_password);
 
 		mDataSource = new UtilisateurDataSource(this);
@@ -49,6 +54,8 @@ public class CompteModifActivity extends Activity {
 
 		if (mUtilisateur != null) {
 			AfficherInfoCompte(mCourriel, mPseudo, mMDP);
+			mCourrielDep = mCourriel.getText().toString().trim();
+			mMDPDep = mMDP.getText().toString().trim();
 		}
 	}
 
@@ -68,7 +75,7 @@ public class CompteModifActivity extends Activity {
 		case android.R.id.home:
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
-		case R.id.action_confirmer_profil:
+		case R.id.action_confirmer_compte:
 			// Faire afficher l'activité de ton bouton de menu
 			ModifierInfoCompte();
 			return true;
@@ -78,6 +85,10 @@ public class CompteModifActivity extends Activity {
 	}
 
 	public void ModifierInfoCompte() {
+		Boolean modifCourriel = false;
+		Boolean modifMDP = false;
+		Boolean erreurRencontree = false;
+		
 		String strCourriel = mCourriel.getText().toString().trim();
 		String strCourrielConfirmation = mCourrielVerif.getText().toString()
 				.trim();
@@ -87,45 +98,63 @@ public class CompteModifActivity extends Activity {
 				.trim();
 		Intent i = new Intent();
 
-		if (Util.ValiderString(new String[] { strCourriel,
-				strCourrielConfirmation, strPseudo, strMotDePasse,
-				strMotDePasseConfirmation })) {
-			if (Util.isCourriel(strCourriel)) {
-				if (strCourriel.equals(strCourrielConfirmation)) {
-					if (strMotDePasse.equals(strMotDePasseConfirmation)) {
+		if (Util.ValiderString(new String[] { strCourriel, strPseudo,
+				strMotDePasse })) {
 
-						UtilisateurDataSource dataSource = new UtilisateurDataSource(
-								this);
-						dataSource.open();
-						mUtilisateur.setCourriel(strCourriel);
-						mUtilisateur.setPseudo(strPseudo);
-						mUtilisateur.setMotDePasse(strMotDePasse);
-						dataSource.update(mUtilisateur);
-						dataSource.close();
+			if (!mCourrielDep.matches(strCourriel)) {
 
-						mVerifModif = true;
+				if (Util.isCourriel(strCourriel)) {
 
-						this.setResult(RESULT_OK, i);
-						this.finish();
+					if (strCourriel.equals(strCourrielConfirmation)) {
+						modifCourriel = true;
 					} else {
-						Toast.makeText(this, R.string.toast_mdp_identique,
+						Toast.makeText(this, R.string.toast_courriel_identique,
 								Toast.LENGTH_SHORT).show();
+						erreurRencontree = true;
 					}
 				} else {
-					Toast.makeText(this, R.string.toast_courriel_identique,
+					Toast.makeText(this, R.string.toast_courriel_invalide,
 							Toast.LENGTH_SHORT).show();
+					erreurRencontree = true;
 				}
-			} else {
-				Toast.makeText(this, R.string.toast_courriel_invalide,
-						Toast.LENGTH_SHORT).show();
 			}
+
+			if (!mMDPDep.matches(strMotDePasse)) {
+				if (strMotDePasse.equals(strMotDePasseConfirmation)) {
+					modifMDP = true;
+				} else {
+					Toast.makeText(this, R.string.toast_mdp_identique,
+							Toast.LENGTH_SHORT).show();
+					erreurRencontree = true;
+				}
+
+			}
+
+			UtilisateurDataSource dataSource = new UtilisateurDataSource(this);
+			dataSource.open();
+
+			if (modifCourriel) {
+				mUtilisateur.setCourriel(strCourriel);
+			}
+
+			if (modifMDP) {
+				mUtilisateur.setMotDePasse(strMotDePasse);
+			}
+			
+			mUtilisateur.setPseudo(strPseudo);
+			dataSource.update(mUtilisateur);
+			dataSource.close();
+			
+			if (!erreurRencontree) {
+				mVerifModif = true;
+
+				this.setResult(RESULT_OK, i);
+				this.finish();
+			}
+
 		} else {
 			if (!Util.ValiderString(new String[] { strCourriel })) {
 				Toast.makeText(this, R.string.toast_courriel_vide,
-						Toast.LENGTH_SHORT).show();
-			}
-			if (!Util.ValiderString(new String[] { strCourrielConfirmation })) {
-				Toast.makeText(this, R.string.toast_confirm_courriel_vide,
 						Toast.LENGTH_SHORT).show();
 			}
 			if (!Util.ValiderString(new String[] { strPseudo })) {
@@ -136,10 +165,6 @@ public class CompteModifActivity extends Activity {
 				Toast.makeText(this, R.string.toast_mdp_vide,
 						Toast.LENGTH_SHORT).show();
 			}
-			if (!Util.ValiderString(new String[] { strMotDePasseConfirmation })) {
-				Toast.makeText(this, R.string.toast_confirm_mdp_vide,
-						Toast.LENGTH_SHORT).show();
-			}
 		}
 
 		if (mVerifModif = false) {
@@ -148,11 +173,10 @@ public class CompteModifActivity extends Activity {
 	}
 
 	// Méthode permettant d'afficher les info. du compte d'un utilisateur
-	public void AfficherInfoCompte(TextView mCourriel, TextView mPseudo,
-			TextView mMDP) {
+	public void AfficherInfoCompte(EditText mCourriel, EditText mPseudo,
+			EditText mMDP) {
 		mCourriel.setText(mUtilisateur.getCourriel());
 		mPseudo.setText(mUtilisateur.getPseudo());
 		mMDP.setText(mUtilisateur.getMotDePasse());
 	}
-
 }

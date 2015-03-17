@@ -155,9 +155,8 @@
             android:id="@+id/rating_cond"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:isIndicator="false" />
-        <!-- style="@style/StarRatingBar" -->
+            android:layout_marginLeft="50dp"
+            android:isIndicator="true" />
     </LinearLayout>
 
     <!-- Note en tant que passager -->
@@ -183,9 +182,8 @@
             android:id="@+id/rating_pass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:isIndicator="false" />
-        <!-- style="@style/StarRatingBar" -->
+            android:layout_marginLeft="50dp"
+            android:isIndicator="true" />
     </LinearLayout>
 
 </LinearLayout>
