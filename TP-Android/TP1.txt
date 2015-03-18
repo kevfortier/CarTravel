@@ -1,0 +1,23 @@
+Bonjour M. Hermet,
+
+Je voudrais commencer par vous remercier du délai suplémentaire que vous nous avez accorder pour la remise du TP 1. Celui-ci nous a permis de pouvoir vous rendre une application plus fonctionnel. 
+
+Requiert:
+	Google app engine
+	Modifier l'adresse IP su serveur dans: CarTravel/src/com.app.cartravel.utilitaire/Util.java
+		à la ligne 15.
+
+Fonctionnel:
+	Utilisation d'un service Web
+	Création d'utilisateur
+	Modification d'utilisateur
+	Modification de profil
+	Création de parcours
+
+Non fonctionnel:
+	L'affichage des parcours 
+	La modifications des parcours
+
+Merci, et au plaisir de vous voir mercredi,
+
+Chhay-Seng Sim & Kevin Fortier
