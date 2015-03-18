@@ -4,6 +4,7 @@ public class Parcours {
 	public static final int ID_NON_DEFINI = -1;
 
 	private int m_Id;
+	private int m_IdProprietaire;
 	private int m_IdConducteur;
 	private String m_Jour;
 	private String m_Heure;
@@ -25,7 +26,7 @@ public class Parcours {
 	/**
 	 * Constructeur pour Conducteur
 	 */
-	public Parcours(int p_Id, int p_IdConducteur, String p_Jour,
+	public Parcours(int p_Id, int p_IdProprietaire, int p_IdConducteur, String p_Jour,
 			String p_Heure, boolean p_Repetitif, int p_NbPlaceDispo,
 			int p_NbPlacePrise, float p_DistanceSupMax, String p_NumCiviqueDep,
 			String p_RueDep, String p_VilleDep, String p_CodePostalDep,
@@ -33,6 +34,7 @@ public class Parcours {
 			String p_CodePostalArr) {
 		super();
 		this.m_Id = p_Id;
+		this.m_IdProprietaire = p_IdProprietaire;
 		this.m_IdConducteur = p_IdConducteur;
 		this.m_Jour = p_Jour;
 		this.m_Heure = p_Heure;
@@ -55,19 +57,19 @@ public class Parcours {
 	/**
 	 * Constructeur sans ID pour conducteur
 	 */
-	public Parcours(int p_IdConducteur, String p_Jour, String p_Heure,
-			boolean p_Repetitif, int p_NbPlaceDispo, int p_NbPlacePrise,
+	public Parcours(int p_IdProprietaire, int p_IdConducteur, String p_Jour, String p_Heure,
+			boolean p_Repetitif, int p_NbPlaceDispo,
 			float p_DistanceSupMax, String p_NumCiviqueDep, String p_RueDep,
 			String p_VilleDep, String p_CodePostalDep, String p_NumCiviqueArr,
 			String p_RueArr, String p_VilleArr, String p_CodePostalArr) {
 		super();
 		this.m_Id = ID_NON_DEFINI;
+		this.m_IdProprietaire = p_IdProprietaire;
 		this.m_IdConducteur = p_IdConducteur;
 		this.m_Jour = p_Jour;
 		this.m_Heure = p_Heure;
 		this.m_Repetitif = p_Repetitif;
 		this.m_NbPlaceDispo = p_NbPlaceDispo;
-		this.m_NbPlacePrise = p_NbPlacePrise;
 		this.m_DistanceSupMax = p_DistanceSupMax;
 
 		this.m_NumCiviqueDep = p_NumCiviqueDep;
@@ -84,13 +86,14 @@ public class Parcours {
 	/**
 	 * Constructeur pour passagers
 	 */
-	public Parcours(int p_Id, int p_IdConducteur, String p_Jour,
+	public Parcours(int p_Id, int p_IdProprietaire, int p_IdConducteur, String p_Jour,
 			String p_Heure, boolean p_Repetitif, String p_NumCiviqueDep,
 			String p_RueDep, String p_VilleDep, String p_CodePostalDep,
 			String p_NumCiviqueArr, String p_RueArr, String p_VilleArr,
 			String p_CodePostalArr) {
 		super();
 		this.m_Id = p_Id;
+		this.m_IdProprietaire = p_IdProprietaire;
 		this.m_IdConducteur = p_IdConducteur;
 		this.m_Jour = p_Jour;
 		this.m_Heure = p_Heure;
@@ -110,13 +113,13 @@ public class Parcours {
 	/**
 	 * Constructeur sans ID pour passagers
 	 */
-	public Parcours(int p_IdConducteur, String p_Jour, String p_Heure,
+	public Parcours(int p_IdProprietaire, String p_Jour, String p_Heure,
 			boolean p_Repetitif, String p_NumCiviqueDep, String p_RueDep,
 			String p_VilleDep, String p_CodePostalDep, String p_NumCiviqueArr,
 			String p_RueArr, String p_VilleArr, String p_CodePostalArr) {
 		super();
 		this.m_Id = ID_NON_DEFINI;
-		this.m_IdConducteur = p_IdConducteur;
+		this.m_IdProprietaire = p_IdProprietaire;
 		this.m_Jour = p_Jour;
 		this.m_Heure = p_Heure;
 		this.m_Repetitif = p_Repetitif;
@@ -138,6 +141,14 @@ public class Parcours {
 
 	public void setId(int Id) {
 		this.m_Id = Id;
+	}
+	
+	public int getIdProprietaire() {
+		return m_IdProprietaire;
+	}
+
+	public void setIdProprietaire(int IdProprietaire) {
+		this.m_IdProprietaire = IdProprietaire;
 	}
 
 	public int getIdConducteur() {

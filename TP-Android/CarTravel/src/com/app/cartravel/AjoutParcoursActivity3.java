@@ -1,5 +1,10 @@
 package com.app.cartravel;
 
+import com.app.cartravel.classes.Parcours;
+import com.app.cartravel.classes.Utilisateurs;
+import com.app.cartravel.utilitaire.ParcourDataSource;
+import com.app.cartravel.utilitaire.UtilisateurDataSource;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -9,9 +14,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class AjoutParcoursActivity3 extends Activity {
-	public static final int CONFIRMER_PARCOUR = 1;
 
 	private EditText m_NumCiviqueDep;
 	private EditText m_RueDep;
@@ -25,9 +30,43 @@ public class AjoutParcoursActivity3 extends Activity {
 
 	private CheckBox m_AdrProfil;
 
+	private boolean m_Cond;
+	private boolean m_Repetitif;
+	private String m_Jour;
+	private String m_Heure;
+
+	private int m_NbrPassagers;
+	private int m_CapaciteMax;
+	private int m_DistanceMax;
+
+	private Bundle extras;
+
+	UtilisateurDataSource utilData;
+	ParcourDataSource parcourData;
+	
+	Utilisateurs util;
+	Parcours leParcours;
+	
+
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		extras = this.getIntent().getExtras();
+		m_Cond = extras.getBoolean(AjoutParcoursActivity2.EXTRA_CONDUCTEUR);
+		m_Repetitif = extras.getBoolean(AjoutParcoursActivity2.EXTRA_REPETITIF);
+		m_Jour = extras.getString(AjoutParcoursActivity2.EXTRA_DATE);
+		m_Heure = extras.getString(AjoutParcoursActivity2.EXTRA_HEURE);
 		setContentView(R.layout.activity_ajout_modif_parcour_3);
+
+		if (m_Cond) {
+			m_CapaciteMax = extras
+					.getInt(AjoutParcoursActivity2.EXTRA_CAPACITEMAX);
+			m_DistanceMax = extras
+					.getInt(AjoutParcoursActivity2.EXTRA_DISTANCEMAX);
+		} else {
+			m_NbrPassagers = extras
+					.getInt(AjoutParcoursActivity2.EXTRA_NBRPASSAGERS);
+		}
 
 		final ActionBar actionBar = getActionBar();
 
@@ -62,11 +101,44 @@ public class AjoutParcoursActivity3 extends Activity {
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
 		case R.id.action_confirmer_parcour:
-			Intent i = new Intent(this, ParcourActivity.class);
-			this.startActivityForResult(i, CONFIRMER_PARCOUR);
+			confirmParcour();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+	}
+
+	public void confirmParcour() {
+		utilData = new UtilisateurDataSource(this);
+		utilData.open();
+		util = utilData.getConnectedUtilisateur();
+		utilData.close();
+
+		if (m_Cond) {
+			leParcours = new Parcours(util.getId(), util.getId(), m_Jour,
+					m_Heure, m_Repetitif, m_CapaciteMax, m_DistanceMax,
+					m_NumCiviqueDep.toString(), m_RueDep.toString(),
+					m_VilleDep.toString(), m_CodePostalDep.toString(),
+					m_NumCiviqueArr.toString(), m_RueArr.toString(),
+					m_VilleArr.toString(), m_CodePostalArr.toString());
+		} else {
+			leParcours = new Parcours(util.getId(), m_Jour, m_Heure,
+					m_Repetitif, m_NumCiviqueDep.toString(),
+					m_RueDep.toString(), m_VilleDep.toString(),
+					m_CodePostalDep.toString(), m_NumCiviqueArr.toString(),
+					m_RueArr.toString(), m_VilleArr.toString(),
+					m_CodePostalArr.toString());
+		}
+		
+		parcourData = new ParcourDataSource(this);
+		parcourData.open();
+		parcourData.insert(leParcours);
+		parcourData.close();
+		
+		Toast.makeText(this, "Le parcour a été ajouter avec succès",
+				Toast.LENGTH_SHORT).show();
+		
+		Intent parcourAct = new Intent(this, ParcourActivity.class);
+		this.startActivity(parcourAct);
 	}
 }

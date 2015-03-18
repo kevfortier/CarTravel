@@ -7,6 +7,7 @@
     android:paddingRight="20dp" >
 
     <TextView
+        android:id="@+id/lblNbrPassagers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -19,6 +20,7 @@
         android:inputType="number" />
 
     <TextView
+        android:id="@+id/lblCapaciteMax"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -31,6 +33,7 @@
         android:inputType="number" />
 
     <TextView
+        android:id="@+id/lblDistanceMax"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"

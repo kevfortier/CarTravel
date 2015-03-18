@@ -11,21 +11,26 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.app.cartravel.classes.Utilisateurs;
 import com.app.cartravel.utilitaire.UtilisateurDataSource;
 
 public class AjoutParcoursActivity1 extends Activity {
-	public static final int CONFIRMER_PARCOUR = 1;
 
-	public RadioButton m_Conducteur;
-	public RadioButton m_Passager;
+	private RadioButton m_Conducteur;
+	private RadioButton m_Passager;
 
-	public EditText m_Heure;
-	public EditText m_Minutes;
-	public EditText m_Jour;
+	private EditText m_Heure;
+	private EditText m_Minutes;
+	private EditText m_Jour;
 
-	public Spinner m_Repetitif;
+	private Spinner m_Repetitif;
+	
+	public static final String EXTRA_CONDUCTEUR = "conducteur";
+	public static final String EXTRA_HEURE = "heure";
+	public static final String EXTRA_DATE = "date";
+	public static final String EXTRA_REPETITIF = "repetitif";
 
 	private Utilisateurs m_Utilisateur;
 	private UtilisateurDataSource m_userDataSource;
@@ -63,8 +68,8 @@ public class AjoutParcoursActivity1 extends Activity {
 
 		if (m_Utilisateur.getVoiture() == 0) {
 			m_Conducteur.setVisibility(View.INVISIBLE);
-			m_Passager.setChecked(true);
 		}
+		m_Passager.setChecked(true);
 	}
 
 	@Override
@@ -80,11 +85,47 @@ public class AjoutParcoursActivity1 extends Activity {
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
 		case R.id.action_confirmer_parcour:
-			Intent i = new Intent(this, AjoutParcoursActivity2.class);
-			this.startActivityForResult(i, CONFIRMER_PARCOUR);
+			confirmParcour();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
+		}
+	}
+
+	public void confirmParcour() {
+		boolean cond;
+		boolean repetitif;
+		
+		if (m_Conducteur.isChecked()) {
+			cond = true;
+		} else {
+			cond = false;
+		}
+		if (m_Repetitif.getSelectedItem().toString() == "Ponctuel") {
+			repetitif = false;
+		}else{
+			repetitif = true;
+		}
+		if (! m_Heure.getText().toString().isEmpty()) {
+			if (! m_Minutes.getText().toString().isEmpty()) {
+				if (! m_Jour.getText().toString().trim().isEmpty()) {
+					Intent i = new Intent(this, AjoutParcoursActivity2.class);
+					i.putExtra(EXTRA_CONDUCTEUR, cond);
+					i.putExtra(EXTRA_HEURE, m_Heure.getText().toString() + ":" + m_Minutes.toString());
+					i.putExtra(EXTRA_DATE, m_Jour.getText().toString());
+					i.putExtra(EXTRA_REPETITIF, repetitif);
+					this.startActivity(i);
+				} else {
+					Toast.makeText(this, "Le champ date doit être remplis",
+							Toast.LENGTH_SHORT).show();
+				}
+			} else {
+				Toast.makeText(this, "Le champ minute doit être remplis",
+						Toast.LENGTH_SHORT).show();
+			}
+		} else {
+			Toast.makeText(this, "Le champ heure doit être remplis",
+					Toast.LENGTH_SHORT).show();
 		}
 	}
 }
