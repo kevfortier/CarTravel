@@ -150,12 +150,10 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 			// Return a PlaceholderFragment (defined as a static inner class
 			// below).
 			Fragment frag = null;
-
+			
 			if (position == 0) {
-				frag = PlaceholderFragmentMesParcours.newInstance(position + 1);
-			} else if (position == 1) {
 				frag = PlaceholderFragmentParcours.newInstance(position + 1);
-			} else if (position == 2) {
+			} else if (position == 1) {
 				frag = PlaceholderFragmentPassager.newInstance(position + 1);
 			} else {
 				frag = PlaceholderFragmentConducteur.newInstance(position + 1);
@@ -167,7 +165,7 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 		@Override
 		public int getCount() {
 			// Show 4 total pages.
-			return 4;
+			return 3;
 		}
 
 		public CharSequence getPageTitle(int position) {
@@ -175,12 +173,10 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 			Locale l = Locale.getDefault();
 			switch (position) {
 			case 0:
-				return getString(R.string.frag_mes_parcour).toUpperCase(l);
-			case 1:
 				return getString(R.string.frag_parcour).toUpperCase(l);
-			case 2:
+			case 1:
 				return getString(R.string.frag_passager).toUpperCase(l);
-			case 3:
+			case 2:
 				return getString(R.string.frag_conducteur).toUpperCase(l);
 			}
 			return null;
@@ -286,39 +282,6 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 				Bundle savedInstanceState) {
 
 			View rootView = inflater.inflate(R.layout.fragment_parcours,
-					container, false);
-
-			return rootView;
-		}
-	}
-
-	public static class PlaceholderFragmentMesParcours extends Fragment {
-		/**
-		 * The fragment argument representing the section number for this
-		 * fragment.
-		 */
-		private static final String ARG_SECTION_NUMBER = "section_number";
-
-		/**
-		 * Returns a new instance of this fragment for the given section number.
-		 */
-		public static PlaceholderFragmentMesParcours newInstance(
-				int sectionNumber) {
-			PlaceholderFragmentMesParcours fragment = new PlaceholderFragmentMesParcours();
-			Bundle args = new Bundle();
-			args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-			fragment.setArguments(args);
-			return fragment;
-		}
-
-		public PlaceholderFragmentMesParcours() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-
-			View rootView = inflater.inflate(R.layout.fragment_mes_parcours,
 					container, false);
 
 			return rootView;
