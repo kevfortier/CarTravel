@@ -12,7 +12,7 @@ public class Util {
 
 	public final static String REST_UTILISATEUR = "/utilisateurs";
 	public final static String REST_CONNEXION = "/connexion";
-	public final static String WEB_SERVICE = "10.248.18.225:8080";
+	public final static String WEB_SERVICE = "10.248.116.178:8080";
 
 	public final static String GOOGLE_SENDER_ID = "133519372687";
 
@@ -145,5 +145,13 @@ public class Util {
 		verifNumTel = p_NumTel.matches(regExNumTel);
 
 		return verifNumTel;
+	}
+	
+	public static boolean verifChaineCharac (String p_Chaine) {
+		boolean verifChaine = false;
+		String regEx = "[a-zA-Z ]+";
+		verifChaine = p_Chaine.matches(regEx);
+		
+		return verifChaine;
 	}
 }
