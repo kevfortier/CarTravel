@@ -77,7 +77,11 @@
     <string name="toast_erreur_creation_compte">Erreur lors de la création du compte.</string>
     <string name="toast_erreur_connexion">Erreur lors de la connexion au compte.</string>
     <string name="toast_modif_compte">Le compte a été modifié avec succès.</string>
-    <string name="toast_annul_modif_compte">Aucune modification n\'a été faite.</string>
+    <string name="toast_annul_modif">Aucune modification n\'a été faite.</string>
+    <string name="toast_courriel_confirm_vide">Veillez resaisir le courriel pour sa modification.</string>
+    <string name="toast_mdp_confirm_vide">Veillez resaisir le mot de passe pour sa modification.</string>
+    <string name="toast_rue_invalide">Le champ rue est invalide.</string>
+    <string name="toast_ville_invalide">Le champ ville est invalide.</string>
     <string name="btn_creer_compte"><u>Créer le compte</u></string>
     <string name="title_compte">Compte</string>
     <string name="title_modif_compte">Modification du compte</string>

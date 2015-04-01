@@ -67,7 +67,7 @@ public class CompteActivity extends Activity {
 					Toast.LENGTH_SHORT).show();
 		}
 		if (resultCode == RESULT_CANCELED && requestCode == MODIFIER_COMPTE) {
-			Toast.makeText(this, R.string.toast_annul_modif_compte,
+			Toast.makeText(this, R.string.toast_annul_modif,
 					Toast.LENGTH_SHORT).show();
 		}
 	}
