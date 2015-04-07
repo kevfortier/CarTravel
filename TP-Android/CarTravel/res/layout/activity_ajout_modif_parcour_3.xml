@@ -45,13 +45,6 @@
         android:hint="@string/txt_code_postal"
         android:inputType="textCapSentences" />
 
-    <CheckBox
-        android:id="@+id/chkAddrProfil"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:text="@string/chk_adr_profil" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

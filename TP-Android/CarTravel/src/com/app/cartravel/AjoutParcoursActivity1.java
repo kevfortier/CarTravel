@@ -14,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.app.cartravel.classes.Utilisateurs;
+import com.app.cartravel.utilitaire.Util;
 import com.app.cartravel.utilitaire.UtilisateurDataSource;
 
 public class AjoutParcoursActivity1 extends Activity {
@@ -26,7 +27,7 @@ public class AjoutParcoursActivity1 extends Activity {
 	private EditText m_Jour;
 
 	private Spinner m_Repetitif;
-	
+
 	public static final String EXTRA_CONDUCTEUR = "conducteur";
 	public static final String EXTRA_HEURE = "heure";
 	public static final String EXTRA_DATE = "date";
@@ -95,7 +96,7 @@ public class AjoutParcoursActivity1 extends Activity {
 	public void confirmParcour() {
 		boolean cond;
 		boolean repetitif;
-		
+
 		if (m_Conducteur.isChecked()) {
 			cond = true;
 		} else {
@@ -103,15 +104,16 @@ public class AjoutParcoursActivity1 extends Activity {
 		}
 		if (m_Repetitif.getSelectedItem().toString() == "Ponctuel") {
 			repetitif = false;
-		}else{
+		} else {
 			repetitif = true;
 		}
-		if (! m_Heure.getText().toString().isEmpty()) {
-			if (! m_Minutes.getText().toString().isEmpty()) {
-				if (! m_Jour.getText().toString().trim().isEmpty()) {
+		if (Util.verifHeure(m_Heure.getText().toString())) {
+			if (Util.verifMinute(m_Minutes.getText().toString())) {
+				if (Util.verifDate(m_Jour.getText().toString().trim())) {
 					Intent i = new Intent(this, AjoutParcoursActivity2.class);
 					i.putExtra(EXTRA_CONDUCTEUR, cond);
-					i.putExtra(EXTRA_HEURE, m_Heure.getText().toString() + ":" + m_Minutes.toString());
+					i.putExtra(EXTRA_HEURE, m_Heure.getText().toString() + ":"
+							+ m_Minutes.toString());
 					i.putExtra(EXTRA_DATE, m_Jour.getText().toString());
 					i.putExtra(EXTRA_REPETITIF, repetitif);
 					this.startActivity(i);

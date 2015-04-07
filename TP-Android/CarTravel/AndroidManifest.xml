@@ -82,8 +82,16 @@
         
         <activity
             android:name=".ParcourActivity"
-            android:label="@string/act_compte">
+            android:label="@string/title_les_parcours">
             <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.app.cartravel.MainActivity" />
+        </activity>
+        
+        <activity 
+            android:name=".UnParcours"
+            android:label="@string/title_un_parcours">
+            <meta-data 
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.app.cartravel.MainActivity" />
         </activity>

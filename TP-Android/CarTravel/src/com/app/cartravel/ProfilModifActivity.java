@@ -19,7 +19,7 @@ public class ProfilModifActivity extends Activity {
 	private Utilisateurs mUtilisateur;
 	private UtilisateurDataSource mDataSource;
 	private Bundle mExtra;
-	
+
 	private String mNumCivDep;
 	private String mRueDep;
 	private String mVilleDep;
@@ -101,13 +101,15 @@ public class ProfilModifActivity extends Activity {
 
 		if (Util.ValiderString(new String[] { strNumCivique, strRue, strVille,
 				strCodePostal, strNumTel })) {
-			if (!mNumCivDep.matches(strNumCivique) || !mRueDep.matches(strRue)|| !mVilleDep.matches(strVille)
-					|| !mCodePostDep.matches(strCodePostal) || !mNumTelDep.matches(strNumTel)) {
-				
+			if (!mNumCivDep.matches(strNumCivique) || !mRueDep.matches(strRue)
+					|| !mVilleDep.matches(strVille)
+					|| !mCodePostDep.matches(strCodePostal)
+					|| !mNumTelDep.matches(strNumTel)) {
+
 				if (Util.verifChaineCharac(strRue)) {
-					
+
 					if (Util.verifChaineCharac(strVille)) {
-						
+
 						if (Util.verifCodePostal(strCodePostal)) {
 
 							if (Util.verifNumTel(strNumTel)) {
@@ -133,15 +135,17 @@ public class ProfilModifActivity extends Activity {
 								this.setResult(RESULT_OK, i);
 								this.finish();
 							} else {
-								Toast.makeText(this, R.string.toast_num_tel_confirm,
+								Toast.makeText(this,
+										R.string.toast_num_tel_confirm,
 										Toast.LENGTH_SHORT).show();
 							}
 
 						} else {
-							Toast.makeText(this, R.string.toast_code_postal_confirm,
+							Toast.makeText(this,
+									R.string.toast_code_postal_confirm,
 									Toast.LENGTH_SHORT).show();
 						}
-						
+
 					} else {
 						Toast.makeText(this, R.string.toast_ville_invalide,
 								Toast.LENGTH_SHORT).show();

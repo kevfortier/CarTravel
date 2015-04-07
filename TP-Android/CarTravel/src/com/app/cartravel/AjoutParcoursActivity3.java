@@ -1,10 +1,5 @@
 package com.app.cartravel;
 
-import com.app.cartravel.classes.Parcours;
-import com.app.cartravel.classes.Utilisateurs;
-import com.app.cartravel.utilitaire.ParcourDataSource;
-import com.app.cartravel.utilitaire.UtilisateurDataSource;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -12,9 +7,13 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.app.cartravel.classes.Parcours;
+import com.app.cartravel.classes.Utilisateurs;
+import com.app.cartravel.utilitaire.ParcourDataSource;
+import com.app.cartravel.utilitaire.UtilisateurDataSource;
 
 public class AjoutParcoursActivity3 extends Activity {
 
@@ -27,8 +26,6 @@ public class AjoutParcoursActivity3 extends Activity {
 	private EditText m_RueArr;
 	private EditText m_VilleArr;
 	private EditText m_CodePostalArr;
-
-	private CheckBox m_AdrProfil;
 
 	private boolean m_Cond;
 	private boolean m_Repetitif;
@@ -43,13 +40,19 @@ public class AjoutParcoursActivity3 extends Activity {
 
 	UtilisateurDataSource utilData;
 	ParcourDataSource parcourData;
-	
+
 	Utilisateurs util;
 	Parcours leParcours;
-	
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		Utilisateurs user = new Utilisateurs();
+		UtilisateurDataSource userData = new UtilisateurDataSource(this);
+
+		userData.open();
+		user = userData.getConnectedUtilisateur();
+		userData.close();
 
 		extras = this.getIntent().getExtras();
 		m_Cond = extras.getBoolean(AjoutParcoursActivity2.EXTRA_CONDUCTEUR);
@@ -77,12 +80,15 @@ public class AjoutParcoursActivity3 extends Activity {
 		m_VilleDep = (EditText) findViewById(R.id.txtVilleDepart);
 		m_CodePostalDep = (EditText) findViewById(R.id.txtCodePostalDepart);
 
+		m_NumCiviqueDep.setText(user.getNumCivique());
+		m_RueDep.setText(user.getRue());
+		m_VilleDep.setText(user.getVille());
+		m_CodePostalDep.setText(user.getCodePostal());
+
 		m_NumCiviqueArr = (EditText) findViewById(R.id.txtNumCiviqueArr);
 		m_RueArr = (EditText) findViewById(R.id.txtRueArr);
 		m_VilleArr = (EditText) findViewById(R.id.txtVilleArr);
 		m_CodePostalArr = (EditText) findViewById(R.id.txtCodePostalArr);
-
-		m_AdrProfil = (CheckBox) findViewById(R.id.chkAddrProfil);
 	}
 
 	@Override
@@ -123,21 +129,21 @@ public class AjoutParcoursActivity3 extends Activity {
 					m_VilleArr.toString(), m_CodePostalArr.toString());
 		} else {
 			leParcours = new Parcours(util.getId(), m_Jour, m_Heure,
-					m_Repetitif, m_NumCiviqueDep.toString(),
+					m_Repetitif, m_NbrPassagers, m_NumCiviqueDep.toString(),
 					m_RueDep.toString(), m_VilleDep.toString(),
 					m_CodePostalDep.toString(), m_NumCiviqueArr.toString(),
 					m_RueArr.toString(), m_VilleArr.toString(),
 					m_CodePostalArr.toString());
 		}
-		
+
 		parcourData = new ParcourDataSource(this);
 		parcourData.open();
 		parcourData.insert(leParcours);
 		parcourData.close();
-		
+
 		Toast.makeText(this, "Le parcour a été ajouter avec succès",
 				Toast.LENGTH_SHORT).show();
-		
+
 		Intent parcourAct = new Intent(this, ParcourActivity.class);
 		this.startActivity(parcourAct);
 	}

@@ -83,8 +83,8 @@ public class ProfilActivity extends Activity {
 		}
 
 		if (resultCode == RESULT_CANCELED && requestCode == MODIFIER_PROFIL) {
-			Toast.makeText(this, R.string.toast_annul_modif,
-					Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, R.string.toast_annul_modif, Toast.LENGTH_SHORT)
+					.show();
 		}
 	}
 

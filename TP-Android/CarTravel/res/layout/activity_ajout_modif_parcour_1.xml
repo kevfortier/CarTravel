@@ -5,17 +5,23 @@
     android:layout_margin="20sp"
     android:orientation="vertical" >
 
-    <RadioButton
-        android:id="@+id/rdbConducteur"
+    <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/chck_cond" />
+        android:orientation="vertical" >
 
-    <RadioButton
-        android:id="@+id/rdbPassager"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/chck_pass" />
+        <RadioButton
+            android:id="@+id/rdbConducteur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/chck_cond" />
+
+        <RadioButton
+            android:id="@+id/rdbPassager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/chck_pass" />
+    </RadioGroup>
 
     <TextView
         android:layout_width="wrap_content"
@@ -51,7 +57,7 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:hint="@string/hint_date"
-            android:inputType="number" />
+            android:inputType="datetime" />
     </LinearLayout>
 
     <TextView

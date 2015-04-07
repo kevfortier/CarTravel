@@ -9,7 +9,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.app.cartravel.classes.Parcours;
-import com.app.cartravel.utilitaire.UtilisateurDataSource;
 
 public class ParcourDataSource {
 	private DatabaseHelper m_Helper;
@@ -77,7 +76,8 @@ public class ParcourDataSource {
 	private ContentValues parcourToContentValues(Parcours p_Parcour) {
 		ContentValues row = new ContentValues();
 		row.put(DatabaseHelper.COL_ID_PARCOUR, p_Parcour.getId());
-		row.put(DatabaseHelper.COL_ID_PROPRIETAIRE, p_Parcour.getIdProprietaire());
+		row.put(DatabaseHelper.COL_ID_PROPRIETAIRE,
+				p_Parcour.getIdProprietaire());
 		row.put(DatabaseHelper.COL_ID_CONDUCTEUR, p_Parcour.getIdConducteur());
 		row.put(DatabaseHelper.COL_JOUR, p_Parcour.getJour());
 		row.put(DatabaseHelper.COL_HEURE, p_Parcour.getHeure());

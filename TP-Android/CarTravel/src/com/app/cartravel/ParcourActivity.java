@@ -1,5 +1,6 @@
 package com.app.cartravel;
 
+import java.util.List;
 import java.util.Locale;
 
 import android.app.ActionBar;
@@ -19,7 +20,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 
+import com.app.cartravel.classes.Parcours;
 import com.app.cartravel.classes.Utilisateurs;
+import com.app.cartravel.utilitaire.ParcourDataSource;
 import com.app.cartravel.utilitaire.UtilisateurDataSource;
 
 public class ParcourActivity extends Activity implements ActionBar.TabListener {
@@ -28,9 +31,11 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 	private SectionsPagerAdapter mSectionsPagerAdapter;
 	private ViewPager mViewPager;
 
-	private Utilisateurs m_Utilisateur;
+	private List<Parcours> lstParcours;
+	private ParcourDataSource dataParcours;
 
-	private Bundle extras;
+	private UtilisateurDataSource dataUser;
+	private Utilisateurs m_Utilisateur;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +44,7 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 		// Doit être faire *avant* de charger le layout
 		this.requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 
-		extras = this.getIntent().getExtras();
-
-		UtilisateurDataSource uds = new UtilisateurDataSource(this);
-		uds.open();
-		m_Utilisateur = uds.getConnectedUtilisateur();
-		uds.close();
+		getInfos();
 
 		setContentView(R.layout.activity_parcour);
 		// Set up the action bar.
@@ -84,6 +84,34 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 			actionBar.addTab(actionBar.newTab()
 					.setText(mSectionsPagerAdapter.getPageTitle(i))
 					.setTabListener(this));
+		}
+	}
+
+	// Fonction permettant d'aller chercher les infos de l'utilisateur connecté
+	// et de tous les parcours.
+	public void getInfos() {
+		dataUser = new UtilisateurDataSource(this);
+		dataUser.open();
+		m_Utilisateur = dataUser.getConnectedUtilisateur();
+		dataUser.close();
+
+		dataParcours = new ParcourDataSource(this);
+		dataParcours.open();
+		lstParcours = dataParcours.getAllParcours();
+		dataParcours.close();
+	}
+
+	public void fillListMesDemande() {
+		List<Parcours> lstMesParcours = null;
+
+		for (Parcours unParcours : lstParcours) {
+			if (unParcours.getIdProprietaire() == m_Utilisateur.getId()) {
+				lstMesParcours.add(unParcours);
+			}
+		}
+
+		if (lstMesParcours != null) {
+			// TODO
 		}
 	}
 
@@ -150,7 +178,7 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 			// Return a PlaceholderFragment (defined as a static inner class
 			// below).
 			Fragment frag = null;
-			
+
 			if (position == 0) {
 				frag = PlaceholderFragmentParcours.newInstance(position + 1);
 			} else if (position == 1) {

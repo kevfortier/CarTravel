@@ -150,6 +150,12 @@ class UtilisateurHandler(webapp2.RequestHandler):
             logging.exception(ex)
             self.error(500)
             
+class ParcoursHandler(webapp2.RequestHandler):
+    def get(self, username = None):
+    def put(self, username):
+    def delete(self, username = None):
+        
+            
 class Connexion(webapp2.RequestHandler):
     def get(self,username):
         try:
@@ -175,37 +181,6 @@ class Connexion(webapp2.RequestHandler):
             logging.exception(ex)
             self.error(500)
             
-class Contacts(webapp2.RequestHandler):
-    def get(self,username):
-        try:
-            resultat = None
-            cle = ndb.Key('Utilisateur', username)
-            utilisateur = cle.get()
-            if(utilisateur is None):
-                self.response.set_status(404)
-                return
-            if(utilisateur.password == self.request.get('password')):
-                resultat = []
-                for contactKey in utilisateur.contacts:
-                    cleContact = ndb.Key('Utilisateur',contactKey)
-                    contact = cleContact.get()
-                    if(contact is not None):
-                        jsonContact = {}
-                        jsonContact['pseudo'] = contact.pseudo
-                        jsonContact['username'] = contactKey
-                        resultat.append(jsonContact)
-                    
-            self.response.headers['Content-Type'] = 'application/json'
-            self.response.out.write(json.dumps(resultat))
-                    
-        
-        except (ValueError, db.BadValueError, KeyError), ex:
-            logging.info(ex)
-            self.error(400)
-        except Exception, ex:
-            logging.exception(ex)
-            self.error(500)
-
 class ObtenirNotifications(webapp2.RequestHandler):
     def get(self, username):
         try:
@@ -249,7 +224,6 @@ application = webapp2.WSGIApplication(
         webapp2.Route(r'/utilisateurs',             handler=UtilisateurHandler, methods=['GET', 'DELETE']),
         webapp2.Route(r'/utilisateurs/<username>',  handler=UtilisateurHandler, methods=['GET', 'PUT',  'DELETE']),
         webapp2.Route(r'/utilisateurs/<username>/connexion', handler=Connexion, methods=['GET']),
-        webapp2.Route(r'/utilisateurs/<username>/contacts', handler=Contacts, methods=['GET']),
         webapp2.Route(r'/utilisateurs/<username>/notifications', handler=ObtenirNotifications, methods=['GET'])
         
     ],

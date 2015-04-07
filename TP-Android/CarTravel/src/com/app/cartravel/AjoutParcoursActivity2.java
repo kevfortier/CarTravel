@@ -89,22 +89,26 @@ public class AjoutParcoursActivity2 extends Activity {
 
 	public void confirmParcour() {
 		if (m_Cond) {
-			if (! m_CapaciteMax.toString().trim().isEmpty()) {
-				if (! m_DistanceMax.toString().trim().isEmpty()) {
+			if (!m_CapaciteMax.toString().trim().isEmpty()) {
+				if (!m_DistanceMax.toString().trim().isEmpty()) {
 					Intent i = new Intent(this, AjoutParcoursActivity3.class);
 					i.putExtra(EXTRA_CONDUCTEUR, m_Cond);
 					i.putExtra(EXTRA_HEURE, m_Heure);
 					i.putExtra(EXTRA_DATE, m_Jour);
 					i.putExtra(EXTRA_REPETITIF, m_Repetitif);
-					i.putExtra(EXTRA_CAPACITEMAX, Integer.parseInt(m_CapaciteMax.getText().toString()));
-					i.putExtra(EXTRA_DISTANCEMAX, Integer.parseInt(m_DistanceMax.getText().toString()));
+					i.putExtra(EXTRA_CAPACITEMAX, Integer
+							.parseInt(m_CapaciteMax.getText().toString()));
+					i.putExtra(EXTRA_DISTANCEMAX, Integer
+							.parseInt(m_DistanceMax.getText().toString()));
 					this.startActivity(i);
-				}else{
-					Toast.makeText(this, "Le champ distance max. doit être remplis",
+				} else {
+					Toast.makeText(this,
+							"Le champ distance max. doit être remplis",
 							Toast.LENGTH_SHORT).show();
 				}
-			}else{
-				Toast.makeText(this, "Le champ capacite max. doit être remplis",
+			} else {
+				Toast.makeText(this,
+						"Le champ capacite max. doit être remplis",
 						Toast.LENGTH_SHORT).show();
 			}
 		} else {
@@ -114,10 +118,12 @@ public class AjoutParcoursActivity2 extends Activity {
 				i.putExtra(EXTRA_HEURE, m_Heure);
 				i.putExtra(EXTRA_DATE, m_Jour);
 				i.putExtra(EXTRA_REPETITIF, m_Repetitif);
-				i.putExtra(EXTRA_NBRPASSAGERS, Integer.parseInt(m_NbrPassagers.getText().toString()));
+				i.putExtra(EXTRA_NBRPASSAGERS,
+						Integer.parseInt(m_NbrPassagers.getText().toString()));
 				this.startActivity(i);
 			} else {
-				Toast.makeText(this, "Le champ Nbr. Passagers doit être remplis",
+				Toast.makeText(this,
+						"Le champ Nbr. Passagers doit être remplis",
 						Toast.LENGTH_SHORT).show();
 			}
 		}

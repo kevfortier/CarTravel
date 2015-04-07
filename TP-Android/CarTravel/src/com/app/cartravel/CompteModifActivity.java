@@ -7,7 +7,6 @@ import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.cartravel.classes.Utilisateurs;
@@ -45,7 +44,7 @@ public class CompteModifActivity extends Activity {
 		mCourrielVerif = (EditText) findViewById(R.id.txt_confirmer_username);
 		mPseudo = (EditText) findViewById(R.id.txt_pseudo);
 		mMDP = (EditText) findViewById(R.id.txt_password);
-		
+
 		mMDPVerif = (EditText) findViewById(R.id.txt_confirmer_password);
 
 		mDataSource = new UtilisateurDataSource(this);
@@ -93,7 +92,7 @@ public class CompteModifActivity extends Activity {
 		Boolean modifMDP = false;
 		Boolean modifPseudo = false;
 		Boolean erreurRencontree = false;
-		
+
 		String strCourriel = mCourriel.getText().toString().trim();
 		String strCourrielConfirmation = mCourrielVerif.getText().toString()
 				.trim();
@@ -113,14 +112,15 @@ public class CompteModifActivity extends Activity {
 						if (strCourriel.equals(strCourrielConfirmation)) {
 							modifCourriel = true;
 						} else {
-							Toast.makeText(this, R.string.toast_courriel_identique,
+							Toast.makeText(this,
+									R.string.toast_courriel_identique,
 									Toast.LENGTH_SHORT).show();
 							erreurRencontree = true;
 						}
-					}
-					else
-					{
-						Toast.makeText(this, R.string.toast_courriel_confirm_vide, Toast.LENGTH_SHORT).show();
+					} else {
+						Toast.makeText(this,
+								R.string.toast_courriel_confirm_vide,
+								Toast.LENGTH_SHORT).show();
 						erreurRencontree = true;
 					}
 				} else {
@@ -128,9 +128,7 @@ public class CompteModifActivity extends Activity {
 							Toast.LENGTH_SHORT).show();
 					erreurRencontree = true;
 				}
-			}
-			else
-			{
+			} else {
 				if (!mCourrielVerifDep.matches(strCourrielConfirmation)) {
 					Toast.makeText(this, R.string.toast_courriel_identique,
 							Toast.LENGTH_SHORT).show();
@@ -147,17 +145,13 @@ public class CompteModifActivity extends Activity {
 								Toast.LENGTH_SHORT).show();
 						erreurRencontree = true;
 					}
-				}
-				else
-				{
+				} else {
 					Toast.makeText(this, R.string.toast_mdp_confirm_vide,
 							Toast.LENGTH_SHORT).show();
 					erreurRencontree = true;
 				}
 
-			}
-			else
-			{
+			} else {
 				if (!mMDPVerifDep.matches(strMotDePasseConfirmation)) {
 					Toast.makeText(this, R.string.toast_mdp_identique,
 							Toast.LENGTH_SHORT).show();
@@ -175,22 +169,20 @@ public class CompteModifActivity extends Activity {
 			if (modifMDP) {
 				mUtilisateur.setMotDePasse(strMotDePasse);
 			}
-			
-			if(!mPseudoDep.matches(strPseudo)) {
+
+			if (!mPseudoDep.matches(strPseudo)) {
 				mUtilisateur.setPseudo(strPseudo);
 				modifPseudo = true;
 			}
 
 			dataSource.update(mUtilisateur);
 			dataSource.close();
-			
+
 			if (!erreurRencontree || modifPseudo) {
 
 				this.setResult(RESULT_OK, i);
 				this.finish();
-			}
-			else
-			{
+			} else {
 				Toast.makeText(this, R.string.toast_annul_modif,
 						Toast.LENGTH_SHORT).show();
 			}

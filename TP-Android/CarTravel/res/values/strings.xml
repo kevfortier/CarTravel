@@ -7,6 +7,8 @@
     <string name="act_profil">Mon profil</string>
     <string name="act_compte">Mon compte</string>
     <string name="act_Parcour">Parcours</string>
+    <string name="title_un_parcours">Un Parcours</string>
+    <string name="title_les_parcours">Les Parcours</string>
 
     <!-- Menu -->
     <string name="menu_icons_subtext">Icône du menu</string>
@@ -52,6 +54,21 @@
     <string name="txt_rue">Rue</string>
     <string name="txt_ville">Ville</string>
     <string name="txt_code_postal">Code Postal</string>
+    
+    <!-- Activity unParcours -->
+    <string name="lbl_proprietaire">Demandeur:</string>
+    <string name="lbl_conducteur">Conducteur:</string>
+    <string name="lbl_date">Date:</string>
+    <string name="lbl_place_passagers">Nbr. de passagers:</string>
+    <string name="lbl_place_dispo">Nbr. de place total:</string>
+    <string name="lbl_place_prise">Nbr. de place prise:</string>
+    <string name="lbl_distance_sup_max">Distance sup. Max:</string>
+    <string name="lbl_adresse_depart">Adresse de départ</string>
+    <string name="lbl_adresse">Adresse:</string>
+    <string name="lbl_code_postal">Code postal:</string>
+    <string name="lbl_adresse_arrive">Adresse d\'arrivé</string>
+    <string name="btnConducteur">Devenir conducteur</string>
+    <string name="btnPassagers">Devenir passager</string>
 
     <!-- String utilisateurs -->
     <string name="lbl_username">Courriel</string>
@@ -126,10 +143,11 @@
     <string name="lbl_type_parcour">Type du parcour</string>
     <string name="action_confirmer_parcour">Confirmer</string>
     <string name="action_ajout_parcours">Créer un parcours</string>
-	<string name="hint_date">AAAA/MM/JJ</string>
+	<string name="hint_date">AAAA-MM-JJ</string>
 	<string name="lbl_nbr_passager">Nombre de passagers</string>
     <string name="lbl_capacite_max">Capacité Max.</string>
     <string name="lbl_distance_max">Distance Max.</string>
+ 
 	
     <!-- Spinner type parcours -->
     <string-array name="type_parcour_array">

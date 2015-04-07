@@ -9,6 +9,7 @@ public class Parcours {
 	private String m_Jour;
 	private String m_Heure;
 	private boolean m_Repetitif;
+	private int m_NbPlacePassagers;
 	private int m_NbPlaceDispo;
 	private int m_NbPlacePrise;
 	private float m_DistanceSupMax;
@@ -26,12 +27,12 @@ public class Parcours {
 	/**
 	 * Constructeur pour Conducteur
 	 */
-	public Parcours(int p_Id, int p_IdProprietaire, int p_IdConducteur, String p_Jour,
-			String p_Heure, boolean p_Repetitif, int p_NbPlaceDispo,
-			int p_NbPlacePrise, float p_DistanceSupMax, String p_NumCiviqueDep,
-			String p_RueDep, String p_VilleDep, String p_CodePostalDep,
-			String p_NumCiviqueArr, String p_RueArr, String p_VilleArr,
-			String p_CodePostalArr) {
+	public Parcours(int p_Id, int p_IdProprietaire, int p_IdConducteur,
+			String p_Jour, String p_Heure, boolean p_Repetitif,
+			int p_NbPlaceDispo, int p_NbPlacePrise, float p_DistanceSupMax,
+			String p_NumCiviqueDep, String p_RueDep, String p_VilleDep,
+			String p_CodePostalDep, String p_NumCiviqueArr, String p_RueArr,
+			String p_VilleArr, String p_CodePostalArr) {
 		super();
 		this.m_Id = p_Id;
 		this.m_IdProprietaire = p_IdProprietaire;
@@ -57,8 +58,8 @@ public class Parcours {
 	/**
 	 * Constructeur sans ID pour conducteur
 	 */
-	public Parcours(int p_IdProprietaire, int p_IdConducteur, String p_Jour, String p_Heure,
-			boolean p_Repetitif, int p_NbPlaceDispo,
+	public Parcours(int p_IdProprietaire, int p_IdConducteur, String p_Jour,
+			String p_Heure, boolean p_Repetitif, int p_NbPlaceDispo,
 			float p_DistanceSupMax, String p_NumCiviqueDep, String p_RueDep,
 			String p_VilleDep, String p_CodePostalDep, String p_NumCiviqueArr,
 			String p_RueArr, String p_VilleArr, String p_CodePostalArr) {
@@ -86,11 +87,11 @@ public class Parcours {
 	/**
 	 * Constructeur pour passagers
 	 */
-	public Parcours(int p_Id, int p_IdProprietaire, int p_IdConducteur, String p_Jour,
-			String p_Heure, boolean p_Repetitif, String p_NumCiviqueDep,
-			String p_RueDep, String p_VilleDep, String p_CodePostalDep,
-			String p_NumCiviqueArr, String p_RueArr, String p_VilleArr,
-			String p_CodePostalArr) {
+	public Parcours(int p_Id, int p_IdProprietaire, int p_IdConducteur,
+			String p_Jour, String p_Heure, boolean p_Repetitif,
+			int p_NbPlacePassagers, String p_NumCiviqueDep, String p_RueDep,
+			String p_VilleDep, String p_CodePostalDep, String p_NumCiviqueArr,
+			String p_RueArr, String p_VilleArr, String p_CodePostalArr) {
 		super();
 		this.m_Id = p_Id;
 		this.m_IdProprietaire = p_IdProprietaire;
@@ -98,6 +99,7 @@ public class Parcours {
 		this.m_Jour = p_Jour;
 		this.m_Heure = p_Heure;
 		this.m_Repetitif = p_Repetitif;
+		this.m_NbPlacePassagers = p_NbPlacePassagers;
 
 		this.m_NumCiviqueDep = p_NumCiviqueDep;
 		this.m_RueDep = p_RueDep;
@@ -114,15 +116,17 @@ public class Parcours {
 	 * Constructeur sans ID pour passagers
 	 */
 	public Parcours(int p_IdProprietaire, String p_Jour, String p_Heure,
-			boolean p_Repetitif, String p_NumCiviqueDep, String p_RueDep,
-			String p_VilleDep, String p_CodePostalDep, String p_NumCiviqueArr,
-			String p_RueArr, String p_VilleArr, String p_CodePostalArr) {
+			boolean p_Repetitif, int p_NbPlacePassagers,
+			String p_NumCiviqueDep, String p_RueDep, String p_VilleDep,
+			String p_CodePostalDep, String p_NumCiviqueArr, String p_RueArr,
+			String p_VilleArr, String p_CodePostalArr) {
 		super();
 		this.m_Id = ID_NON_DEFINI;
 		this.m_IdProprietaire = p_IdProprietaire;
 		this.m_Jour = p_Jour;
 		this.m_Heure = p_Heure;
 		this.m_Repetitif = p_Repetitif;
+		this.m_NbPlacePassagers = p_NbPlacePassagers;
 
 		this.m_NumCiviqueDep = p_NumCiviqueDep;
 		this.m_RueDep = p_RueDep;
@@ -142,7 +146,7 @@ public class Parcours {
 	public void setId(int Id) {
 		this.m_Id = Id;
 	}
-	
+
 	public int getIdProprietaire() {
 		return m_IdProprietaire;
 	}
@@ -229,6 +233,14 @@ public class Parcours {
 
 	public void setVilleArr(String VilleArr) {
 		this.m_VilleArr = VilleArr;
+	}
+
+	public int getNbPlacePassagers() {
+		return m_NbPlacePassagers;
+	}
+
+	public void setNbPlacePassagers(int p_NbPlacePassagers) {
+		this.m_NbPlacePassagers = p_NbPlacePassagers;
 	}
 
 	public String getCodePostalArr() {

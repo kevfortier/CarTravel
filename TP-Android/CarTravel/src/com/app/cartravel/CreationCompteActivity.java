@@ -55,7 +55,8 @@ public class CreationCompteActivity extends Activity {
 		String strMotDePasseConfirmation = motDePasseConfirmation.getText()
 				.toString().trim();
 
-		if (Util.ValiderString(new String[] { strCourriel, strPseudo, strMotDePasse })) {
+		if (Util.ValiderString(new String[] { strCourriel, strPseudo,
+				strMotDePasse })) {
 			if (Util.isCourriel(strCourriel)) {
 				if (strCourriel.equals(strCourrielConfirmation)) {
 					if (strMotDePasse.equals(strMotDePasseConfirmation)) {

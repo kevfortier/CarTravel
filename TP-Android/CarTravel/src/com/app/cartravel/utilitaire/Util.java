@@ -12,7 +12,7 @@ public class Util {
 
 	public final static String REST_UTILISATEUR = "/utilisateurs";
 	public final static String REST_CONNEXION = "/connexion";
-	public final static String WEB_SERVICE = "10.248.116.178:8080";
+	public final static String WEB_SERVICE = "192.168.1.25:8080";
 
 	public final static String GOOGLE_SENDER_ID = "133519372687";
 
@@ -131,6 +131,30 @@ public class Util {
 		return lstLng;
 	}
 
+	public static boolean verifHeure(String p_Heure) {
+		boolean verifHeure = false;
+		int iHeure = Integer.parseInt(p_Heure);
+		if (iHeure >= 0 && iHeure <= 23) {
+			verifHeure = true;
+		}
+		return verifHeure;
+	}
+
+	public static boolean verifMinute(String p_Minute) {
+		boolean verifMinute = false;
+		int iMinutes = Integer.parseInt(p_Minute);
+		if (iMinutes >= 0 && iMinutes <= 59) {
+			verifMinute = true;
+		}
+		return verifMinute;
+	}
+
+	public static boolean verifDate(String p_Date) {
+		boolean verifDate = true;
+
+		return verifDate;
+	}
+
 	public static boolean verifCodePostal(String p_CodePostal) {
 		boolean verifCodePostal = false;
 		String regExCodePostal = "^[a-zA-Z][0-9][a-zA-Z]?[0-9][a-zA-Z][0-9]$";
@@ -146,12 +170,12 @@ public class Util {
 
 		return verifNumTel;
 	}
-	
-	public static boolean verifChaineCharac (String p_Chaine) {
+
+	public static boolean verifChaineCharac(String p_Chaine) {
 		boolean verifChaine = false;
 		String regEx = "[a-zA-Z ]+";
 		verifChaine = p_Chaine.matches(regEx);
-		
+
 		return verifChaine;
 	}
 }

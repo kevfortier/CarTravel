@@ -9,7 +9,13 @@ from google.appengine.ext import ndb
 class Utilisateur(ndb.Model):
     pseudo = ndb.StringProperty()
     password = ndb.StringProperty()
-    contacts = ndb.StringProperty(repeated=True)
+    
+class Parcours(ndb.Model):
+    id = ndb.StringProperty()
+    proprietaire = ndb.StringProperty()
+    conducteur = ndb.StringProperty()
+    
+    
     
 class Notifications(ndb.Model):
     sender = ndb.StringProperty()
