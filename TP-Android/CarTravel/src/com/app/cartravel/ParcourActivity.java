@@ -1,5 +1,6 @@
 package com.app.cartravel;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -19,11 +20,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ListView;
 
 import com.app.cartravel.classes.Parcours;
 import com.app.cartravel.classes.Utilisateurs;
 import com.app.cartravel.utilitaire.ParcourDataSource;
 import com.app.cartravel.utilitaire.UtilisateurDataSource;
+import com.app.cartravel.utilitaires.ArrayAdapters.ParcoursAdapter;
+import com.app.cartravel.utilitaires.ArrayAdapters.ParcoursItem;
 
 public class ParcourActivity extends Activity implements ActionBar.TabListener {
 	public static final int AJOUTER_PARCOUR = 1;
@@ -31,8 +35,16 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 	private SectionsPagerAdapter mSectionsPagerAdapter;
 	private ViewPager mViewPager;
 
-	private List<Parcours> lstParcours;
+	ListView m_MesDemandesConducteur;
+	ListView m_MesDemandesPassagers;
+	ListView m_ConducteurPot;
+	ListView m_MesConducteurs;
+	ListView m_MesPassagersPot;
+	ListView m_MesPassagers;
+	
+	private List<Parcours> m_LstParcours;
 	private ParcourDataSource dataParcours;
+	private ParcoursAdapter m_Adapter;
 
 	private UtilisateurDataSource dataUser;
 	private Utilisateurs m_Utilisateur;
@@ -43,8 +55,6 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 		// Permet d'avoir le Progress Circle dans le ActionBar
 		// Doit être faire *avant* de charger le layout
 		this.requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-
-		getInfos();
 
 		setContentView(R.layout.activity_parcour);
 		// Set up the action bar.
@@ -85,34 +95,119 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 					.setText(mSectionsPagerAdapter.getPageTitle(i))
 					.setTabListener(this));
 		}
+		
+		fillListMesDemandeConducteur();
 	}
 
-	// Fonction permettant d'aller chercher les infos de l'utilisateur connecté
-	// et de tous les parcours.
-	public void getInfos() {
-		dataUser = new UtilisateurDataSource(this);
-		dataUser.open();
-		m_Utilisateur = dataUser.getConnectedUtilisateur();
-		dataUser.close();
-
+	public void fillListMesDemandeConducteur() {
 		dataParcours = new ParcourDataSource(this);
 		dataParcours.open();
-		lstParcours = dataParcours.getAllParcours();
+		List<Parcours> toutsParcours= dataParcours.getAllParcours();
 		dataParcours.close();
-	}
-
-	public void fillListMesDemande() {
-		List<Parcours> lstMesParcours = null;
-
-		for (Parcours unParcours : lstParcours) {
-			if (unParcours.getIdProprietaire() == m_Utilisateur.getId()) {
-				lstMesParcours.add(unParcours);
+		if (toutsParcours != null) {
+			dataUser = new UtilisateurDataSource(this);
+			dataUser.open();
+			m_Utilisateur = dataUser.getConnectedUtilisateur();
+			dataUser.close();
+			m_MesDemandesConducteur = (ListView) this
+					.findViewById(R.id.lst_demande_conducteurs);
+			for (Parcours unParcours : toutsParcours) {
+				if (unParcours.getIdProprietaire() == m_Utilisateur.getId()
+						&& unParcours.getIdConducteur() != m_Utilisateur.getId()) {
+					m_LstParcours.add(unParcours);
+				}
+			}
+			if(m_LstParcours != null){
+				m_Adapter = new ParcoursAdapter(this, R.layout.lst_parcours_item, ConvertParcoursToListItems(m_LstParcours));
+				m_MesDemandesConducteur.setAdapter(m_Adapter);
 			}
 		}
+	}
 
-		if (lstMesParcours != null) {
-			// TODO
+	public void fillListMesDemandePassagers() {
+		if (m_LstParcours != null) {
+			dataUser.open();
+			m_Utilisateur = dataUser.getConnectedUtilisateur();
+			dataUser.close();
+			m_MesDemandesConducteur = (ListView) this
+					.findViewById(R.id.lst_demande_conducteurs);
+			for (Parcours unParcour : m_LstParcours) {
+				if (unParcour.getIdProprietaire() == m_Utilisateur.getId()
+						&& unParcour.getIdConducteur() == m_Utilisateur.getId()) {
+					// TODO
+				}
+			}
 		}
+	}
+
+	public void fillListConducteursPot() {
+		if (m_LstParcours != null) {
+			dataUser.open();
+			m_Utilisateur = dataUser.getConnectedUtilisateur();
+			dataUser.close();
+			m_MesDemandesConducteur = (ListView) this
+					.findViewById(R.id.lst_demande_conducteurs);
+			for (Parcours unParcour : m_LstParcours) {
+				if (unParcour.getIdProprietaire() != m_Utilisateur.getId()
+						&& unParcour.getIdConducteur() == m_Utilisateur.getId()) {
+					// TODO
+				}
+			}
+		}
+	}
+
+	public void fillListMesConducteurs() {
+		if (m_LstParcours != null) {
+			dataUser.open();
+			m_Utilisateur = dataUser.getConnectedUtilisateur();
+			dataUser.close();
+			m_MesDemandesConducteur = (ListView) this
+					.findViewById(R.id.lst_demande_conducteurs);
+			for (Parcours unParcour : m_LstParcours) {
+				if (unParcour.getIdConducteur() == m_Utilisateur.getId()) {
+					// TODO
+				}
+			}
+		}
+	}
+
+	public void fillListPassagersPot() {
+		if (m_LstParcours != null) {
+			dataUser.open();
+			m_Utilisateur = dataUser.getConnectedUtilisateur();
+			dataUser.close();
+			m_MesDemandesConducteur = (ListView) this
+					.findViewById(R.id.lst_demande_conducteurs);
+			for (Parcours unParcour : m_LstParcours) {
+				if (unParcour.getIdConducteur() == m_Utilisateur.getId()) {
+					// TODO
+				}
+			}
+		}
+	}
+
+	public void fillListMesPassagers() {
+		if (m_LstParcours != null) {
+			dataUser.open();
+			m_Utilisateur = dataUser.getConnectedUtilisateur();
+			dataUser.close();
+			m_MesDemandesConducteur = (ListView) this
+					.findViewById(R.id.lst_demande_conducteurs);
+			for (Parcours unParcour : m_LstParcours) {
+				if (unParcour.getIdConducteur() == m_Utilisateur.getId()) {
+					// TODO
+				}
+			}
+		}
+	}
+	
+	private List<ParcoursItem> ConvertParcoursToListItems(List<Parcours> parcours){
+		List<ParcoursItem> items = new ArrayList<ParcoursItem>();
+		for(Parcours unParcours : parcours){
+			String strAdresse = unParcours.getNumCiviqueArr() + unParcours.getRueArr();
+			items.add(new ParcoursItem(unParcours.getJour(), strAdresse));
+		}
+		return items;
 	}
 
 	@Override
