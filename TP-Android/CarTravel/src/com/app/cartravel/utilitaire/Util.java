@@ -4,6 +4,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import android.content.res.TypedArray;
 import android.location.Location;
@@ -11,8 +13,9 @@ import android.location.Location;
 public class Util {
 
 	public final static String REST_UTILISATEUR = "/utilisateurs";
+	public final static String REST_PARCOURS = "/parcours";
 	public final static String REST_CONNEXION = "/connexion";
-	public final static String WEB_SERVICE = "10.248.30.236:8080";
+	public final static String WEB_SERVICE = "10.248.27.189:8080";
 
 	public final static String GOOGLE_SENDER_ID = "133519372687";
 
@@ -150,16 +153,51 @@ public class Util {
 	}
 
 	public static boolean verifDate(String p_Date) {
-		boolean verifDate = true;
+		boolean verifDate = false;
+		String regExDate = "(((19|20)\\d\\d)/(0?[1-9]|1[012])/0?[1-9]|[12][0-9]|3[01])";
+		Pattern pattern = Pattern.compile(regExDate);
+		Matcher matcher = pattern.matcher(p_Date);
 
-		return verifDate;
+		if(matcher.matches()){
+			matcher.reset();
+			if(matcher.find()){
+				String dd = matcher.group(1);
+			    String mm = matcher.group(2);
+			    int yy = Integer.parseInt(matcher.group(3));
+			    if (dd.equals("31") &&  (mm.equals("4") || mm .equals("6") || mm.equals("9") ||
+			                  mm.equals("11") || mm.equals("04") || mm .equals("06") ||
+			                  mm.equals("09"))) {
+			    	return false;
+			    } else if (mm.equals("2") || mm.equals("02")) {
+			    	if(yy % 4==0){
+			    		if(dd.equals("30") || dd.equals("31")){
+			    			return false;
+			            } else{
+			                return true;
+			            }
+			        } else{
+			        	if(dd.equals("29")||dd.equals("30")||dd.equals("31")){
+			        		return false;
+			            } else{
+			            	return true;
+			            }
+			        }
+			    } else{
+			    	return true;
+			    }
+			}else{
+				return false;
+			}
+		}else{
+			return false;
+		}  
 	}
 
 	public static boolean verifCodePostal(String p_CodePostal) {
 		boolean verifCodePostal = false;
 		String regExCodePostal = "^[a-zA-Z][0-9][a-zA-Z]?[0-9][a-zA-Z][0-9]$";
 		verifCodePostal = p_CodePostal.matches(regExCodePostal);
-
+	
 		return verifCodePostal;
 	}
 

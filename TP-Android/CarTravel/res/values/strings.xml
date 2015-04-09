@@ -126,28 +126,34 @@
 	<string name="toast_num_tel_confirm">Le numéro de téléphone n\'est pas valide.</string>
 	
     <!-- String parcours -->
-    <string name="lbl_choix_cov">Choix de covoiturage:</string>
+    <string name="lbl_choix_cov">Choix de covoiturage :</string>
     <string name="chck_pass">Passager</string>
     <string name="chck_cond">Conducteur</string>
-    <string name="lbl_opt">Heure, date et fréquence:</string>
-    <string name="lbl_info_pass">Informations passager:</string>
+    <string name="lbl_opt">Heure, date et fréquence :</string>
+    <string name="lbl_info_pass">Informations passager :</string>
     <string name="lbl_nbr_pass">Nombre de passagers</string>
-    <string name="lbl_info_cond">Informations conducteur:</string>
+    <string name="lbl_info_cond">Informations conducteur :</string>
     <string name="lbl_plac_dispo">Nombre de places disponibles</string>
     <string name="lbl_dist_max">Nombre de Km max.</string>
-    <string name="lbl_dep">Départ:</string>
+    <string name="lbl_dep">Départ :</string>
     <string name="chk_info_prof">Même adresse que profil</string>
-    <string name="lbl_dest">Destination:</string>
+    <string name="lbl_dest">Destination :</string>
     <string name="lbl_date_heure">Date et heure</string>
     <string name="lbl_h">h</string>
-    <string name="lbl_type_parcour">Type du parcour</string>
+    <string name="lbl_type_parcour">Type du parcours</string>
     <string name="action_confirmer_parcour">Confirmer</string>
     <string name="action_ajout_parcours">Créer un parcours</string>
 	<string name="hint_date">AAAA-MM-JJ</string>
 	<string name="lbl_nbr_passager">Nombre de passagers</string>
     <string name="lbl_capacite_max">Capacité Max.</string>
     <string name="lbl_distance_max">Distance Max.</string>
- 
+    <string name="toast_ajout_parcours">Le parcours a été ajouté avec succès.</string>
+    <string name="toast_jour_vide">Veillez saisir une date.</string>
+    <string name="toast_jour_invalide">La date saisie est invalide.</string>
+    <string name="toast_minute_vide">Le champ minute doit être rempli.</string>
+    <string name="toast_minute_invalide">Le champ minute est invalide.</string>
+    <string name="toast_heure_vide">Le champ heure doit être rempli.</string>
+    <string name="toast_heure_invalide">L\'heure saisie n\'est pas valide.</string>
 	
     <!-- Spinner type parcours -->
     <string-array name="type_parcour_array">

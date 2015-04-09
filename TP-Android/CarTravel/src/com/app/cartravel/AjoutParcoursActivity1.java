@@ -66,7 +66,9 @@ public class AjoutParcoursActivity1 extends Activity {
 		m_userDataSource.open();
 		m_Utilisateur = m_userDataSource.getConnectedUtilisateur();
 		m_userDataSource.close();
-
+		
+		//Si l'utilisateur crée une demande de covoiturage, mais qu'il ne possède pas de voiture,
+		//il ne pourra pas être conducteur donc donc l'option conducteur n'est pas visible.
 		if (m_Utilisateur.getVoiture() == 0) {
 			m_Conducteur.setVisibility(View.INVISIBLE);
 		}
@@ -96,38 +98,59 @@ public class AjoutParcoursActivity1 extends Activity {
 	public void confirmParcour() {
 		boolean cond;
 		boolean repetitif;
-
+		String strHeure = m_Heure.getText().toString().trim();
+		String strMin= m_Minutes.getText().toString().trim();
+		String strJour = m_Jour.getText().toString().trim();
+		
 		if (m_Conducteur.isChecked()) {
 			cond = true;
 		} else {
 			cond = false;
 		}
+		
 		if (m_Repetitif.getSelectedItem().toString() == "Ponctuel") {
 			repetitif = false;
 		} else {
 			repetitif = true;
 		}
-		if (Util.verifHeure(m_Heure.getText().toString())) {
-			if (Util.verifMinute(m_Minutes.getText().toString())) {
-				if (Util.verifDate(m_Jour.getText().toString().trim())) {
-					Intent i = new Intent(this, AjoutParcoursActivity2.class);
-					i.putExtra(EXTRA_CONDUCTEUR, cond);
-					i.putExtra(EXTRA_HEURE, m_Heure.getText().toString() + ":"
-							+ m_Minutes.getText().toString());
-					i.putExtra(EXTRA_DATE, m_Jour.getText().toString());
-					i.putExtra(EXTRA_REPETITIF, repetitif);
-					this.startActivity(i);
+		
+		if (Util.ValiderString(new String[] {strHeure, strMin, strJour})){
+			if (Util.verifHeure(strHeure)) {
+				if (Util.verifMinute(strMin)) {
+					if (Util.verifDate(strJour)) {
+						Intent i = new Intent(this, AjoutParcoursActivity2.class);
+						i.putExtra(EXTRA_CONDUCTEUR, cond);
+						i.putExtra(EXTRA_HEURE, m_Heure.getText().toString() + ":"
+								+ m_Minutes.getText().toString());
+						i.putExtra(EXTRA_DATE, m_Jour.getText().toString());
+						i.putExtra(EXTRA_REPETITIF, repetitif);
+						this.startActivity(i);
+					} else {
+						Toast.makeText(this, R.string.toast_heure_invalide,
+								Toast.LENGTH_SHORT).show();
+					}
 				} else {
-					Toast.makeText(this, "Le champ date doit être remplis",
+					Toast.makeText(this, R.string.toast_minute_invalide,
 							Toast.LENGTH_SHORT).show();
 				}
 			} else {
-				Toast.makeText(this, "Le champ minute doit être remplis",
+				Toast.makeText(this, R.string.toast_jour_invalide,
 						Toast.LENGTH_SHORT).show();
 			}
-		} else {
-			Toast.makeText(this, "Le champ heure doit être remplis",
-					Toast.LENGTH_SHORT).show();
+		}
+		else {
+			if (!Util.ValiderString(new String[] { strHeure })) {
+				Toast.makeText(this, R.string.toast_heure_vide,
+						Toast.LENGTH_SHORT).show();
+			}
+			if (!Util.ValiderString(new String[] { strMin })) {
+				Toast.makeText(this, R.string.toast_minute_vide,
+						Toast.LENGTH_SHORT).show();
+			}
+			if (!Util.ValiderString(new String[] { strJour })) {
+				Toast.makeText(this, R.string.toast_jour_vide,
+						Toast.LENGTH_SHORT).show();
+			}
 		}
 	}
 }

@@ -1,10 +1,21 @@
 package com.app.cartravel;
 
+import java.net.URI;
+
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -12,11 +23,16 @@ import android.widget.Toast;
 
 import com.app.cartravel.classes.Parcours;
 import com.app.cartravel.classes.Utilisateurs;
+import com.app.cartravel.jsonparser.JsonParcours;
 import com.app.cartravel.utilitaire.ParcourDataSource;
+import com.app.cartravel.utilitaire.Util;
 import com.app.cartravel.utilitaire.UtilisateurDataSource;
 
 public class AjoutParcoursActivity3 extends Activity {
 
+	private final String TAG = this.getClass().getSimpleName();
+	private HttpClient m_ClientHttp = new DefaultHttpClient();
+	
 	private EditText m_NumCiviqueDep;
 	private EditText m_RueDep;
 	private EditText m_VilleDep;
@@ -141,10 +157,62 @@ public class AjoutParcoursActivity3 extends Activity {
 		parcourData.insert(leParcours);
 		parcourData.close();
 
-		Toast.makeText(this, "Le parcour a été ajouter avec succès",
+		Toast.makeText(this, R.string.toast_ajout_parcours,
 				Toast.LENGTH_SHORT).show();
 
 		Intent parcourAct = new Intent(this, ParcourActivity.class);
 		this.startActivity(parcourAct);
+	}
+	
+	private class PutNewParcoursTask extends AsyncTask<Object, Void, Void> {
+		Exception m_Exp;
+		Parcours unParcours;
+		
+		private Context m_Context;
+		
+		public PutNewParcoursTask(Context p_Context) {
+			this.m_Context = p_Context;
+			
+		}
+
+		@Override
+		protected void onPreExecute() {
+			setProgressBarVisibility(true);
+		}
+
+		@Override
+		protected Void doInBackground(Object... params) {
+			
+			unParcours = (Parcours)params[1];
+			Utilisateurs connectedUser = (Utilisateurs)params[0];
+			String temps = (String)params[2];
+			
+			try {
+				
+				//unParcours.setId(connectedUser.getId() + (int) temps);
+				URI uri = new URI("http" + Util.WEB_SERVICE,
+						Util.REST_UTILISATEUR + "/" + connectedUser.getCodePostal()
+						+ Util.REST_PARCOURS + "/"
+						+ unParcours.getId(), null, null);
+				HttpPut putMethod = new HttpPut (uri);
+				
+				String jsonObj = JsonParcours.ToJSONObject(unParcours).toString();
+				
+				//Log.i(TAG, "JSON : " + jsonObj);
+				
+				putMethod.setEntity(new StringEntity(jsonObj));
+				putMethod.addHeader("Content-Type", "application/json");
+				
+				String body = m_ClientHttp.execute(putMethod,
+						new BasicResponseHandler());
+				
+				Log.i(TAG, "JSON : " + body);
+				
+			} catch (Exception e) {
+				m_Exp = e;
+			}
+			// TODO Auto-generated method stub
+			return null;
+		}
 	}
 }
