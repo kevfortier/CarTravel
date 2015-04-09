@@ -11,11 +11,26 @@ class Utilisateur(ndb.Model):
     password = ndb.StringProperty()
     
 class Parcours(ndb.Model):
-    id = ndb.StringProperty()
+    idParcours = ndb.StringProperty()
     proprietaire = ndb.StringProperty()
     conducteur = ndb.StringProperty()
+    jour = ndb.StringProperty()
+    heure = ndb.StringProperty()
+    repetitif = ndb.BooleanProperty()
+    nbrPassagers = ndb.IntegerProperty()
+    nbrPlacesDispo = ndb.IntegerProperty()
+    nbrPlacesPrise = ndb.IntegerProperty()
+    distSuppMax = ndb.FloatProperty()
     
+    numCivDep = ndb.StringProperty()
+    rueDep = ndb.StringProperty()
+    villeDep = ndb.StringProperty()
+    codePostalDep = ndb.StringProperty()
     
+    numCivArr = ndb.StringProperty()
+    rueArr = ndb.StringProperty()
+    villeArr = ndb.StringProperty()
+    codePostalArr = ndb.StringProperty()
     
 class Notifications(ndb.Model):
     sender = ndb.StringProperty()
