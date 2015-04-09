@@ -1,6 +1,6 @@
 package com.app.cartravel.classes;
 
-public class Parcours {
+public class Parcours implements java.io.Serializable{
 	public static final int ID_NON_DEFINI = -1;
 
 	private int m_Id;
