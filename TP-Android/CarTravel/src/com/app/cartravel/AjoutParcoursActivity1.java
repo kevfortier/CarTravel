@@ -113,7 +113,7 @@ public class AjoutParcoursActivity1 extends Activity {
 					Intent i = new Intent(this, AjoutParcoursActivity2.class);
 					i.putExtra(EXTRA_CONDUCTEUR, cond);
 					i.putExtra(EXTRA_HEURE, m_Heure.getText().toString() + ":"
-							+ m_Minutes.toString());
+							+ m_Minutes.getText().toString());
 					i.putExtra(EXTRA_DATE, m_Jour.getText().toString());
 					i.putExtra(EXTRA_REPETITIF, repetitif);
 					this.startActivity(i);

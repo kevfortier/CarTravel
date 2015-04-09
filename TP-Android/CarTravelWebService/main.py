@@ -25,17 +25,11 @@ def serialiser_pour_json(obj):
     else:
         return obj
     
-def ont_en_contact(utilisateur):
-    contacts = Utilisateur.query(utilisateur == Utilisateur.contacts)
-    noms = []
-    for contact in contacts:
-        noms.append(contact.key.id())
-    return noms
+
 
 def ajouterNotification(sender, message):
     notification = Notifications()
     notification.sender = sender
-    notification.receivers = ont_en_contact(sender)
     notification.message = message
     notification.put()
 
@@ -74,7 +68,6 @@ class UtilisateurHandler(webapp2.RequestHandler):
                 for u in query:
                     dictUtilisateur = {}
                     dictUtilisateur['pseudo'] = u.pseudo
-                    dictUtilisateur['contacts'] = u.contacts
                     dictUtilisateur['username'] = u.key.id()
                     resultat.append(dictUtilisateur)
             else:
@@ -150,6 +143,7 @@ class UtilisateurHandler(webapp2.RequestHandler):
             logging.exception(ex)
             self.error(500)
             
+<<<<<<< HEAD
 class ParcoursHandler (webapp2.request_handler):
     def get(self, username, idParcours = None): 
         try:
@@ -327,6 +321,8 @@ class ParcoursHandler (webapp2.request_handler):
             self.error(500)
            
             
+=======
+>>>>>>> c05674ac521faac81009690a3721a840023dc74d
 class Connexion(webapp2.RequestHandler):
     def get(self,username):
         try:
