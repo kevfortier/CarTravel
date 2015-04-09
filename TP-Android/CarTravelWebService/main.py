@@ -150,11 +150,182 @@ class UtilisateurHandler(webapp2.RequestHandler):
             logging.exception(ex)
             self.error(500)
             
-class ParcoursHandler(webapp2.RequestHandler):
-    def get(self, username = None):
-    def put(self, username):
-    def delete(self, username = None):
+class ParcoursHandler (webapp2.request_handler):
+    def get(self, username, idParcours = None): 
+        try:
+            if(username is not None):
+                cle = ndb.Key('Utilisateurs', username)
+                utilisateur = cle.get()
+                if(utilisateur is None):
+                    self.response.set_status(404)
+                    return
+                
+                if(idParcours is None):
+                    resultat = []
+                    query = Parcours.query(username = Parcours.proprietaire)
+                    logging.info(query)
+                    for p in query:
+                        dicParcours = p.to_dict()
+                        dictParcours['idParcours'] = p.key.id()
+                        resultat.append(distParcours)
+                        
+                else:
+                    cle = ndb.key('Parcours', idParcours)
+                    parcours = cle.get()
+                    if (parcours is None):
+                        self.response.set_status(404)
+                        return
+                    resultat = parcours.to_dict()
+                    
+                self.response.headers['Content-type'] = 'application/json'
+                self.response.out.write(json.dumps(resultat))
         
+        except (ValueError, db.BadValueError), ex:
+            logging.info(ex)
+            self.error(400)
+            
+        except Exception, ex:
+            logging.exception(ex)
+            self.error(500)
+    
+    def put(self, username, idParcours):
+        try:
+            if(username is not None):
+                cle = ndb.key('Utilisateur', username)
+                user = cle.get()
+                if(user is None):
+                    self.response.set_status(404)
+                    return
+            else:
+                self.response.set_status(404)
+                return
+            
+            cle = ndb.key('Parcours', idParcours)
+            parcours = cle.get()
+            
+            jsonObj = json.loads(self.request.body)
+            
+            status = 204
+            if(parcours is None):
+                parcours = Parcours(key=cle)
+                status = 201
+                
+                if(jsonObj['idParcours'] is not None):
+                    parcours.idParcours = jsonObj['idParcours']
+                if(jsonObj['proprietaire'] is not None):
+                    parcours.proprietaire = jsonObj['proprietaire']
+                if(jsonObj['conducteur'] is not None):
+                    parcours.conducteur = jsonObj['conducteur']
+                if(jsonObj['jour'] is not None):
+                    parcours.jour = jsonObj['jour']
+                if(jsonObj['heure'] is not None):
+                    parcours.heure = jsonObj['heure']
+                if(jsonObj['repetitif'] is not None):
+                    parcours.repetitif = jsonObj['repetitif']
+                if(jsonObj['nbrPassagers'] is not None):
+                    parcours.nbrPassagers = jsonObj['nbrPassagers']
+                if(jsonObj['nbrPlacesDispo'] is not None):
+                    parcours.nbrPlacesDispo = jsonObj['nbrPlacesDispo']
+                if(jsonObj['nbrPlacesPrise'] is not None):
+                    parcours.nbrPlacesPrise = jsonObj['nbrPlacesPrise']
+                if(jsonObj['distSuppMax'] is not None):
+                    parcours.distSuppMax = jsonObj['distSuppMax']
+                if(jsonObj['numCivDep'] is not None):
+                    parcours.numCivDep = jsonObj['numCivDep']
+                if(jsonObj['rueDep']is not None):
+                    parcours.rueDep = jsonObj['rueDep']
+                if(jsonObj['villeDep'] is not None):
+                    parcours.villeDep = jsonObj['villeDep']
+                if(jsonObj['codePostalDep'] is not None):
+                    parcours.codePostalDep = jsonObj['codePostalDep']
+                if(jsonObj['numCivArr'] is not None):
+                    parcrous.numCivArr = jsonObj['numCivArr']
+                if(jsonObj['rueArr'] is not None):
+                    parcours.rueArr = jsonObj['rueArr']
+                if(jsonObj['villeArr'] is not None):
+                    parcours.villeArr = jsonObj['villeArr']
+                if(jsonObj['codePostalArr'] is not None):
+                    parcours.codePostalArr = jsonObj['codePostalArr']
+                parcours.put()
+                
+            elif(parcours is not None):
+                if(cle.get() is not None):
+                    cle.delete()
+                    self.response.set_status(204)
+                else:
+                    self.error(404)
+                
+                parcours = Parcours(key=cle)
+                status = 201
+                
+                if(jsonObj['idParcours'] is not None):
+                    parcours.idParcours = jsonObj['idParcours']
+                if(jsonObj['proprietaire'] is not None):
+                    parcours.proprietaire = jsonObj['proprietaire']
+                if(jsonObj['conducteur'] is not None):
+                    parcours.conducteur = jsonObj['conducteur']
+                if(jsonObj['jour'] is not None):
+                    parcours.jour = jsonObj['jour']
+                if(jsonObj['heure'] is not None):
+                    parcours.heure = jsonObj['heure']
+                if(jsonObj['repetitif'] is not None):
+                    parcours.repetitif = jsonObj['repetitif']
+                if(jsonObj['nbrPassagers'] is not None):
+                    parcours.nbrPassagers = jsonObj['nbrPassagers']
+                if(jsonObj['nbrPlacesDispo'] is not None):
+                    parcours.nbrPlacesDispo = jsonObj['nbrPlacesDispo']
+                if(jsonObj['nbrPlacesPrise'] is not None):
+                    parcours.nbrPlacesPrise = jsonObj['nbrPlacesPrise']
+                if(jsonObj['distSuppMax'] is not None):
+                    parcours.distSuppMax = jsonObj['distSuppMax']
+                if(jsonObj['numCivDep'] is not None):
+                    parcours.numCivDep = jsonObj['numCivDep']
+                if(jsonObj['rueDep']is not None):
+                    parcours.rueDep = jsonObj['rueDep']
+                if(jsonObj['villeDep'] is not None):
+                    parcours.villeDep = jsonObj['villeDep']
+                if(jsonObj['codePostalDep'] is not None):
+                    parcours.codePostalDep = jsonObj['codePostalDep']
+                if(jsonObj['numCivArr'] is not None):
+                    parcrous.numCivArr = jsonObj['numCivArr']
+                if(jsonObj['rueArr'] is not None):
+                    parcours.rueArr = jsonObj['rueArr']
+                if(jsonObj['villeArr'] is not None):
+                    parcours.villeArr = jsonObj['villeArr']
+                if(jsonObj['codePostalArr'] is not None):
+                    parcours.codePostalArr = jsonObj['codePostalArr']
+                parcours.put()
+                
+            self.response.set_status(status)
+        
+        except (ValueError, db.BadValueError, KeyError), ex:
+            logging.info(ex)
+            self.error(400)
+        
+        except Exception, ex:
+            logging.exception(ex)
+            self.error(500)
+            
+    def delete(self, username, idParcours=None):
+        try:
+            if(idParcours is None):
+                
+                ndb.delete_multi(Parcours.query().fetch(keys_only=True))
+                self.response.set_status(204)
+                
+            else:
+                cle = ndb.key('Parcours', idParcours)
+                
+                if(cle.get() is not None):
+                    cle.delete()
+                    self.response.set_status(204)
+                else:
+                    self.error(404)
+        
+        except Exception, ex:
+            logging.exception(ex)
+            self.error(500)
+           
             
 class Connexion(webapp2.RequestHandler):
     def get(self,username):
