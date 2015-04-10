@@ -3,8 +3,8 @@ package com.app.cartravel.utilitaires.ArrayAdapters;
 public class ParcoursItem {
 	private String m_Date;
 	private String m_Adresse;
-	
-	public ParcoursItem(String p_Date, String p_Adresse){
+
+	public ParcoursItem(String p_Date, String p_Adresse) {
 		this.m_Date = p_Date;
 		this.m_Adresse = p_Adresse;
 	}

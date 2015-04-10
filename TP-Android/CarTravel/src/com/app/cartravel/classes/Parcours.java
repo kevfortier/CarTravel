@@ -1,6 +1,9 @@
 package com.app.cartravel.classes;
 
-public class Parcours implements java.io.Serializable{
+public class Parcours implements java.io.Serializable {
+
+	private static final long serialVersionUID = 1;
+
 	public static final int ID_NON_DEFINI = -1;
 
 	private int m_Id;
