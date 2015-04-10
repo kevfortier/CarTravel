@@ -8,6 +8,7 @@ import android.view.MenuItem;
 
 import com.app.cartravel.utilitaires.navigationdrawer.NavigationDrawerUtil;
 
+@SuppressWarnings("deprecation")
 public class MainActivity extends Activity {
 
 	NavigationDrawerUtil menu_gauche = null;

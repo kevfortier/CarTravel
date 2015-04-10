@@ -1,13 +1,5 @@
 package com.app.cartravel;
 
-import org.w3c.dom.UserDataHandler;
-
-import com.app.cartravel.classes.Parcours;
-import com.app.cartravel.classes.Utilisateurs;
-import com.app.cartravel.utilitaire.ParcourDataSource;
-import com.app.cartravel.utilitaire.Util;
-import com.app.cartravel.utilitaire.UtilisateurDataSource;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
@@ -15,15 +7,18 @@ import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewDebug.IntToString;
 import android.widget.TextView;
+
+import com.app.cartravel.classes.Parcours;
+import com.app.cartravel.classes.Utilisateurs;
+import com.app.cartravel.utilitaire.UtilisateurDataSource;
 
 public class UnParcoursActivity extends Activity {
 
 	private Bundle extras;
 
 	private Parcours unParcours;
-	private ParcourDataSource parcoursData;
+	//private ParcourDataSource parcoursData;
 
 	private Utilisateurs unUser;
 	private UtilisateurDataSource userData;

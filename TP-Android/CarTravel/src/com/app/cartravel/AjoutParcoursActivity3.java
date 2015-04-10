@@ -123,17 +123,20 @@ public class AjoutParcoursActivity3 extends Activity {
 		if (m_Cond) {
 			leParcours = new Parcours(util.getId(), util.getId(), m_Jour,
 					m_Heure, m_Repetitif, m_CapaciteMax, m_DistanceMax,
-					m_NumCiviqueDep.getText().toString(), m_RueDep.getText().toString(),
-					m_VilleDep.getText().toString(), m_CodePostalDep.getText().toString(),
-					m_NumCiviqueArr.getText().toString(), m_RueArr.getText().toString(),
-					m_VilleArr.getText().toString(), m_CodePostalArr.getText().toString());
+					m_NumCiviqueDep.getText().toString(), m_RueDep.getText()
+							.toString(), m_VilleDep.getText().toString(),
+					m_CodePostalDep.getText().toString(), m_NumCiviqueArr
+							.getText().toString(), m_RueArr.getText()
+							.toString(), m_VilleArr.getText().toString(),
+					m_CodePostalArr.getText().toString());
 		} else {
 			leParcours = new Parcours(util.getId(), m_Jour, m_Heure,
-					m_Repetitif, m_NbrPassagers, m_NumCiviqueDep.getText().toString(),
-					m_RueDep.getText().toString(), m_VilleDep.getText().toString(),
-					m_CodePostalDep.getText().toString(), m_NumCiviqueArr.getText().toString(),
-					m_RueArr.getText().toString(), m_VilleArr.getText().toString(),
-					m_CodePostalArr.getText().toString());
+					m_Repetitif, m_NbrPassagers, m_NumCiviqueDep.getText()
+							.toString(), m_RueDep.getText().toString(),
+					m_VilleDep.getText().toString(), m_CodePostalDep.getText()
+							.toString(), m_NumCiviqueArr.getText().toString(),
+					m_RueArr.getText().toString(), m_VilleArr.getText()
+							.toString(), m_CodePostalArr.getText().toString());
 		}
 
 		parcourData = new ParcourDataSource(this);

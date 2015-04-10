@@ -18,7 +18,7 @@ public class ProfilModifActivity extends Activity {
 
 	private Utilisateurs mUtilisateur;
 	private UtilisateurDataSource mDataSource;
-	private Bundle mExtra;
+	//private Bundle mExtra;
 
 	private String mNumCivDep;
 	private String mRueDep;

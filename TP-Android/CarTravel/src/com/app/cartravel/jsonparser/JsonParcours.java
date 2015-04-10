@@ -15,7 +15,7 @@ public class JsonParcours {
 	public static String PARCOURS_RUE_DEP = "rueDep";
 	public static String PARCOURS_VILLE_DEP = "villeDep";
 	public static String PARCOURS_CODE_POSTAL_DEP = "codePostalDep";
-	public static String PARCOURS_NUM_CIV_ARR ="numCivArr";
+	public static String PARCOURS_NUM_CIV_ARR = "numCivArr";
 	public static String PARCOURS_RUE_ARR = "rueArr";
 	public static String PARCOURS_VILLE_ARR = "villeArr";
 	public static String PARCOURS_CODE_POSTAL_ARR = "codePostalArr";

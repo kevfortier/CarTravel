@@ -47,7 +47,7 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 	private ParcoursAdapter m_Adapter;
 
 	private UtilisateurDataSource dataUser;
-	private Utilisateurs m_Utilisateur;
+	private Utilisateurs m_UtilisateurConnecte;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +106,7 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 		if (toutsParcours != null) {
 			dataUser = new UtilisateurDataSource(this);
 			dataUser.open();
-			m_Utilisateur = dataUser.getConnectedUtilisateur();
+			m_UtilisateurConnecte = dataUser.getConnectedUtilisateur();
 			dataUser.close();
 
 			fillListMesDemandeConducteur(toutsParcours);
@@ -117,9 +117,13 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 		m_MesDemandesConducteur = (ListView) this
 				.findViewById(R.id.lst_demande_conducteurs);
 		for (Parcours unParcours : toutsParcours) {
-			if (unParcours.getIdProprietaire() == m_Utilisateur.getId()
-					&& unParcours.getIdConducteur() != m_Utilisateur.getId()) {
-				m_LstParcours.add(unParcours); 
+			if (unParcours.getIdProprietaire() == m_UtilisateurConnecte.getId()
+					&& unParcours.getIdConducteur() != m_UtilisateurConnecte
+							.getId()) {
+				if (m_LstParcours == null) {
+					m_LstParcours = new ArrayList<Parcours>();
+				}
+				m_LstParcours.add(unParcours);
 			}
 		}
 		if (m_LstParcours != null) {
@@ -132,13 +136,15 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 	public void fillListMesDemandePassagers() {
 		if (m_LstParcours != null) {
 			dataUser.open();
-			m_Utilisateur = dataUser.getConnectedUtilisateur();
+			m_UtilisateurConnecte = dataUser.getConnectedUtilisateur();
 			dataUser.close();
 			m_MesDemandesConducteur = (ListView) this
 					.findViewById(R.id.lst_demande_conducteurs);
 			for (Parcours unParcour : m_LstParcours) {
-				if (unParcour.getIdProprietaire() == m_Utilisateur.getId()
-						&& unParcour.getIdConducteur() == m_Utilisateur.getId()) {
+				if (unParcour.getIdProprietaire() == m_UtilisateurConnecte
+						.getId()
+						&& unParcour.getIdConducteur() == m_UtilisateurConnecte
+								.getId()) {
 					// TODO
 				}
 			}
@@ -148,13 +154,15 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 	public void fillListConducteursPot() {
 		if (m_LstParcours != null) {
 			dataUser.open();
-			m_Utilisateur = dataUser.getConnectedUtilisateur();
+			m_UtilisateurConnecte = dataUser.getConnectedUtilisateur();
 			dataUser.close();
 			m_MesDemandesConducteur = (ListView) this
 					.findViewById(R.id.lst_demande_conducteurs);
 			for (Parcours unParcour : m_LstParcours) {
-				if (unParcour.getIdProprietaire() != m_Utilisateur.getId()
-						&& unParcour.getIdConducteur() == m_Utilisateur.getId()) {
+				if (unParcour.getIdProprietaire() != m_UtilisateurConnecte
+						.getId()
+						&& unParcour.getIdConducteur() == m_UtilisateurConnecte
+								.getId()) {
 					// TODO
 				}
 			}
@@ -164,12 +172,13 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 	public void fillListMesConducteurs() {
 		if (m_LstParcours != null) {
 			dataUser.open();
-			m_Utilisateur = dataUser.getConnectedUtilisateur();
+			m_UtilisateurConnecte = dataUser.getConnectedUtilisateur();
 			dataUser.close();
 			m_MesDemandesConducteur = (ListView) this
 					.findViewById(R.id.lst_demande_conducteurs);
 			for (Parcours unParcour : m_LstParcours) {
-				if (unParcour.getIdConducteur() == m_Utilisateur.getId()) {
+				if (unParcour.getIdConducteur() == m_UtilisateurConnecte
+						.getId()) {
 					// TODO
 				}
 			}
@@ -179,12 +188,13 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 	public void fillListPassagersPot() {
 		if (m_LstParcours != null) {
 			dataUser.open();
-			m_Utilisateur = dataUser.getConnectedUtilisateur();
+			m_UtilisateurConnecte = dataUser.getConnectedUtilisateur();
 			dataUser.close();
 			m_MesDemandesConducteur = (ListView) this
 					.findViewById(R.id.lst_demande_conducteurs);
 			for (Parcours unParcour : m_LstParcours) {
-				if (unParcour.getIdConducteur() == m_Utilisateur.getId()) {
+				if (unParcour.getIdConducteur() == m_UtilisateurConnecte
+						.getId()) {
 					// TODO
 				}
 			}
@@ -194,12 +204,13 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 	public void fillListMesPassagers() {
 		if (m_LstParcours != null) {
 			dataUser.open();
-			m_Utilisateur = dataUser.getConnectedUtilisateur();
+			m_UtilisateurConnecte = dataUser.getConnectedUtilisateur();
 			dataUser.close();
 			m_MesDemandesConducteur = (ListView) this
 					.findViewById(R.id.lst_demande_conducteurs);
 			for (Parcours unParcour : m_LstParcours) {
-				if (unParcour.getIdConducteur() == m_Utilisateur.getId()) {
+				if (unParcour.getIdConducteur() == m_UtilisateurConnecte
+						.getId()) {
 					// TODO
 				}
 			}
