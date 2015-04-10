@@ -120,13 +120,13 @@ public class AjoutParcoursActivity1 extends Activity {
 					if (Util.verifDate(strJour)) {
 						Intent i = new Intent(this, AjoutParcoursActivity2.class);
 						i.putExtra(EXTRA_CONDUCTEUR, cond);
-						i.putExtra(EXTRA_HEURE, m_Heure.getText().toString() + ":"
-								+ m_Minutes.getText().toString());
-						i.putExtra(EXTRA_DATE, m_Jour.getText().toString());
+						i.putExtra(EXTRA_HEURE, strHeure + ":"
+								+ strMin);
+						i.putExtra(EXTRA_DATE, strJour);
 						i.putExtra(EXTRA_REPETITIF, repetitif);
 						this.startActivity(i);
 					} else {
-						Toast.makeText(this, R.string.toast_heure_invalide,
+						Toast.makeText(this, R.string.toast_jour_invalide,
 								Toast.LENGTH_SHORT).show();
 					}
 				} else {
@@ -134,7 +134,7 @@ public class AjoutParcoursActivity1 extends Activity {
 							Toast.LENGTH_SHORT).show();
 				}
 			} else {
-				Toast.makeText(this, R.string.toast_jour_invalide,
+				Toast.makeText(this, R.string.toast_heure_invalide,
 						Toast.LENGTH_SHORT).show();
 			}
 		}

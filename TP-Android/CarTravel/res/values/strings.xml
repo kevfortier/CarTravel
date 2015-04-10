@@ -143,10 +143,10 @@
     <string name="lbl_type_parcour">Type du parcours</string>
     <string name="action_confirmer_parcour">Confirmer</string>
     <string name="action_ajout_parcours">Créer un parcours</string>
-	<string name="hint_date">AAAA-MM-JJ</string>
+	<string name="hint_date">JJ/MM/AAAA</string>
 	<string name="lbl_nbr_passager">Nombre de passagers</string>
-    <string name="lbl_capacite_max">Capacité Max.</string>
-    <string name="lbl_distance_max">Distance Max.</string>
+    <string name="lbl_capacite_max">Nombre de passagers max.</string>
+    <string name="lbl_distance_max">Distance max.</string>
     <string name="toast_ajout_parcours">Le parcours a été ajouté avec succès.</string>
     <string name="toast_jour_vide">Veillez saisir une date.</string>
     <string name="toast_jour_invalide">La date saisie est invalide.</string>
@@ -154,6 +154,12 @@
     <string name="toast_minute_invalide">Le champ minute est invalide.</string>
     <string name="toast_heure_vide">Le champ heure doit être rempli.</string>
     <string name="toast_heure_invalide">L\'heure saisie n\'est pas valide.</string>
+    <string name="toast_nbr_pass_vide">Veillez saisir un nombre de passagers.</string>
+    <string name="toast_nbr_pass_invalide">Le nombre de passagers saisi est invalide.</string>
+    <string name="toast_nbr_pass_max_vide">Veillez saisir un nombre de passagers maximal.</string>
+    <string name="toast_nbr_pass_max_invalide">Le nombre de passagers maximal saisi est invalide.</string>
+    <string name="toast_dist_max_vide">Veillez saisir une distance de parcours maximale.</string>
+    <string name="toast_dist_max_invalide">La distance maximale saisie est invalide.</string>
 	
     <!-- Spinner type parcours -->
     <string-array name="type_parcour_array">

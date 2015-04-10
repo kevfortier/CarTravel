@@ -15,7 +15,7 @@ public class Util {
 	public final static String REST_UTILISATEUR = "/utilisateurs";
 	public final static String REST_PARCOURS = "/parcours";
 	public final static String REST_CONNEXION = "/connexion";
-	public final static String WEB_SERVICE = "10.248.27.189:8080";
+	public final static String WEB_SERVICE = "192.168.0.110:8080";
 
 	public final static String GOOGLE_SENDER_ID = "133519372687";
 
@@ -134,6 +134,7 @@ public class Util {
 		return lstLng;
 	}
 
+	//Permet de vérifier les heures saisies
 	public static boolean verifHeure(String p_Heure) {
 		boolean verifHeure = false;
 		int iHeure = Integer.parseInt(p_Heure);
@@ -142,7 +143,8 @@ public class Util {
 		}
 		return verifHeure;
 	}
-
+	
+	//Permet de vérifier les minutes d'une heure saisie
 	public static boolean verifMinute(String p_Minute) {
 		boolean verifMinute = false;
 		int iMinutes = Integer.parseInt(p_Minute);
@@ -151,13 +153,13 @@ public class Util {
 		}
 		return verifMinute;
 	}
-
+	
+	//Permet de vérifier une date de 1900 à 2099
 	public static boolean verifDate(String p_Date) {
-		boolean verifDate = false;
-		String regExDate = "(((19|20)\\d\\d)/(0?[1-9]|1[012])/0?[1-9]|[12][0-9]|3[01])";
+		String regExDate = "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)";
 		Pattern pattern = Pattern.compile(regExDate);
 		Matcher matcher = pattern.matcher(p_Date);
-
+		
 		if(matcher.matches()){
 			matcher.reset();
 			if(matcher.find()){
@@ -192,7 +194,8 @@ public class Util {
 			return false;
 		}  
 	}
-
+	
+	//Permet de vérifier les codes postals.
 	public static boolean verifCodePostal(String p_CodePostal) {
 		boolean verifCodePostal = false;
 		String regExCodePostal = "^[a-zA-Z][0-9][a-zA-Z]?[0-9][a-zA-Z][0-9]$";
@@ -200,7 +203,8 @@ public class Util {
 	
 		return verifCodePostal;
 	}
-
+	
+	//Permet de vérifier les numéros de téléphone.
 	public static boolean verifNumTel(String p_NumTel) {
 		boolean verifNumTel = false;
 		String regExNumTel = "\\d{10}";

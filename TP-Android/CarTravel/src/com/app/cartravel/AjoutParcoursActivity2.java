@@ -89,6 +89,8 @@ public class AjoutParcoursActivity2 extends Activity {
 
 	public void confirmParcour() {
 		if (m_Cond) {
+			String strCapaciteMax = m_CapaciteMax.getText().toString().trim();
+			String strDistanceMax = m_DistanceMax.getText().toString().trim();
 			if (!m_CapaciteMax.toString().trim().isEmpty()) {
 				if (!m_DistanceMax.toString().trim().isEmpty()) {
 					Intent i = new Intent(this, AjoutParcoursActivity3.class);
