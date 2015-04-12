@@ -141,6 +141,10 @@ public class Parcours implements java.io.Serializable {
 		this.m_VilleArr = p_VilleArr;
 		this.m_CodePostalArr = p_CodePostalArr;
 	}
+	
+	public Parcours(){
+		this.m_Id = ID_NON_DEFINI;
+	}
 
 	public int getId() {
 		return m_Id;

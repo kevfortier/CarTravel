@@ -143,7 +143,7 @@ class UtilisateurHandler(webapp2.RequestHandler):
             logging.exception(ex)
             self.error(500)
             
-<<<<<<< HEAD
+'''<<<<<<< HEAD
 class ParcoursHandler (webapp2.request_handler):
     def get(self, username, idParcours = None): 
         try:
@@ -322,7 +322,7 @@ class ParcoursHandler (webapp2.request_handler):
            
             
 =======
->>>>>>> c05674ac521faac81009690a3721a840023dc74d
+>>>>>>> c05674ac521faac81009690a3721a840023dc74d'''
 class Connexion(webapp2.RequestHandler):
     def get(self,username):
         try:
