@@ -13,7 +13,7 @@ import webapp2
 import logging
 import datetime
 
-from modeles import Utilisateur, Notifications
+from modeles import Utilisateur, Parcours
 from symbol import if_stmt
 
 def serialiser_pour_json(obj):
@@ -79,7 +79,6 @@ class UtilisateurHandler(webapp2.RequestHandler):
                     return
                 resultat = {}
                 resultat['pseudo'] = utilisateur.pseudo
-                resultat['contacts'] = utilisateur.contacts
             
             self.response.headers['Content-Type'] = 'application/json'
             self.response.out.write(json.dumps(resultat))

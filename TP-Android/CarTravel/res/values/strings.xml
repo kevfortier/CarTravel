@@ -162,12 +162,16 @@
     <string name="toast_dist_max_invalide">La distance maximale saisie est invalide.</string>
     <string name="toast_num_civ_dep_vide">Veillez saisir un numéro civique pour l\'adresse de départ.</string>
     <string name="toast_rue_dep_vide">Veillez saisir une rue pour l\'adresse de départ.</string>
+    <string name="toast_rue_dep_invalide">La rue de l\'adresse de départ n\'est pas valide.</string>
     <string name="toast_ville_dep_vide">Veillez saisir une ville pour l\'adresse de départ.</string>
+    <string name="toast_ville_dep_invalide">La ville de l\'adresse de départ n\'est pas valide.</string>
     <string name="toast_code_postal_dep_vide">Veillez saisir un code postal pour l\'adresse de départ.</string>
     <string name="toast_code_postal_dep_invalide">Le code postal de l\'adresse de départ n\'est pas valide.</string>
     <string name="toast_num_civ_arr_vide">Veillez saisir un numéro civique pour l\'adresse d\'arrivée.</string>
     <string name="toast_rue_arr_vide">Veillez saisir une rue pour l\'adresse d\'arrivée.</string>
+    <string name="toast_rue_arr_invalide">La rue de l\'adresse d\'arrivée n\'est pas valide.</string>
     <string name="toast_ville_arr_vide">Veillez saisir une ville pour l\'adresse d\'arrivée.</string>
+    <string name="toast_ville_arr_invalide">La ville de l\'adresse d\'arrivée n\'est pas valide.</string>
     <string name="toast_code_postal_arr_vide">Veillez saisir un code postal pour l\'adresse d\'arrivée.</string>
     <string name="toast_code_postal_arr_invalide">Le code postal de l\'adresse d\'arrivée n\'est pas valide.</string>
 	

@@ -215,7 +215,7 @@ public class Util {
 		return verifNumTel;
 	}
 
-	// Permet de vérifier les saisie de type Integer.
+	// Permet de vérifier les saisies de type Integer.
 	public static boolean verifInteger(String p_Chaine) {
 		boolean verifNbrEntier = false;
 		int nbrEntier = 0;
@@ -229,7 +229,7 @@ public class Util {
 		return verifNbrEntier;
 	}
 
-	// Permet de vérifier les saisie de type Float.
+	// Permet de vérifier les saisies de type Float.
 	public static boolean verifFloat(String p_Chaine) {
 		boolean verifNbrFloat = false;
 		float nbrFloat = 0;
@@ -243,9 +243,11 @@ public class Util {
 		return verifNbrFloat;
 	}
 
+	// Permet de vérifier les saisies de chaînes de caractères incluant les
+	// caractères avec accents.
 	public static boolean verifChaineCharac(String p_Chaine) {
 		boolean verifChaine = false;
-		String regEx = "[a-zA-Z ]+";
+		String regEx = "[a-zA-Zéèàêôëï]+";
 		verifChaine = p_Chaine.matches(regEx);
 
 		return verifChaine;

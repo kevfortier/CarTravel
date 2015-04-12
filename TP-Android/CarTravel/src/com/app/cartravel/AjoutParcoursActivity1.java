@@ -119,11 +119,18 @@ public class AjoutParcoursActivity1 extends Activity {
 		if (Util.ValiderString(new String[] { strHeure, strMin, strJour })) {
 			if (Util.verifHeure(strHeure)) {
 				if (Util.verifMinute(strMin)) {
+					
 					if (Util.verifDate(strJour)) {
 						Intent i = new Intent(this,
 								AjoutParcoursActivity2.class);
 						i.putExtra(EXTRA_CONDUCTEUR, cond);
-						i.putExtra(EXTRA_HEURE, strHeure + ":" + strMin);
+						if (strMin.length() != 1)
+						{
+							i.putExtra(EXTRA_HEURE, strHeure + ":" + strMin);
+						} else {
+							String strMin2 = "0" + strMin;
+							i.putExtra(EXTRA_HEURE, strHeure + ":" + strMin2);
+						}
 						i.putExtra(EXTRA_DATE, strJour);
 						i.putExtra(EXTRA_REPETITIF, repetitif);
 						this.startActivity(i);

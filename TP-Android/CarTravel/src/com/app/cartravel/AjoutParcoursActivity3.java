@@ -149,49 +149,83 @@ public class AjoutParcoursActivity3 extends Activity {
 
 		Date uneDate = new Date();
 		String temps;
-		
+
 		if (Util.ValiderString(new String[] { strNumCivDep, strRueDep,
 				strVilleDep, strCodePostalDep, strNumCivArr, strRueArr,
 				strVilleArr, strCodePostalArr })) {
-			if (Util.verifCodePostal(strCodePostalDep)) {
-				if (Util.verifCodePostal(strCodePostalArr)) {
-					if (m_Cond) {
-						leParcours = new Parcours(util.getId(), util.getId(),
-								m_Jour, m_Heure, m_Repetitif, m_CapaciteMax,
-								m_DistanceMax, strNumCivDep, strRueDep,
-								strVilleDep, strCodePostalDep, strNumCivArr,
-								strRueArr, strVilleArr, strCodePostalArr);
+			if (Util.verifChaineCharac(strRueDep)) {
+				if (Util.verifChaineCharac(strVilleDep)) {
+					if (Util.verifCodePostal(strCodePostalDep)) {
+						if (Util.verifChaineCharac(strRueArr)) {
+							if (Util.verifChaineCharac(strVilleArr)) {
+								if (Util.verifCodePostal(strCodePostalArr)) {
+									if (m_Cond) {
+										leParcours = new Parcours(util.getId(),
+												util.getId(), m_Jour, m_Heure,
+												m_Repetitif, m_CapaciteMax,
+												m_DistanceMax, strNumCivDep,
+												strRueDep, strVilleDep,
+												strCodePostalDep, strNumCivArr,
+												strRueArr, strVilleArr,
+												strCodePostalArr);
+									} else {
+										leParcours = new Parcours(util.getId(),
+												m_Jour, m_Heure, m_Repetitif,
+												m_NbrPassagers, strNumCivDep,
+												strRueDep, strVilleDep,
+												strCodePostalDep, strNumCivArr,
+												strRueArr, strVilleArr,
+												strCodePostalArr);
+									}
+
+									parcourData = new ParcourDataSource(this);
+									parcourData.open();
+									parcourData.insert(leParcours);
+									parcourData.close();
+
+									temps = uneDate.getTime() + "";
+									new PutNewParcoursTask(this).execute(util,
+											leParcours, temps);
+
+									Toast.makeText(this,
+											R.string.toast_ajout_parcours,
+											Toast.LENGTH_SHORT).show();
+
+									Intent parcourAct = new Intent(this,
+											ParcourActivity.class);
+									this.startActivity(parcourAct);
+
+								} else {
+									Toast.makeText(
+											this,
+											R.string.toast_code_postal_arr_invalide,
+											Toast.LENGTH_SHORT).show();
+								}
+							} else {
+								Toast.makeText(this,
+										R.string.toast_ville_arr_invalide,
+										Toast.LENGTH_SHORT).show();
+							}
+						} else {
+							Toast.makeText(this,
+									R.string.toast_rue_arr_invalide,
+									Toast.LENGTH_SHORT).show();
+						}
 					} else {
-						leParcours = new Parcours(util.getId(), m_Jour,
-								m_Heure, m_Repetitif, m_NbrPassagers,
-								strNumCivDep, strRueDep, strVilleDep,
-								strCodePostalDep, strNumCivArr, strRueArr,
-								strVilleArr, strCodePostalArr);
+						Toast.makeText(this,
+								R.string.toast_code_postal_dep_invalide,
+								Toast.LENGTH_SHORT).show();
 					}
-
-					parcourData = new ParcourDataSource(this);
-					parcourData.open();
-					parcourData.insert(leParcours);
-					parcourData.close();
-					
-					temps = uneDate.getTime() + "";
-					new PutNewParcoursTask(this).execute(util, leParcours, temps);
-					
-					Toast.makeText(this, R.string.toast_ajout_parcours,
-							Toast.LENGTH_SHORT).show();
-
-					Intent parcourAct = new Intent(this, ParcourActivity.class);
-					this.startActivity(parcourAct);
-					
 				} else {
-					Toast.makeText(this,
-							R.string.toast_code_postal_dep_invalide,
+					Toast.makeText(this, R.string.toast_ville_dep_invalide,
 							Toast.LENGTH_SHORT).show();
 				}
+
 			} else {
-				Toast.makeText(this, R.string.toast_code_postal_arr_invalide,
+				Toast.makeText(this, R.string.toast_rue_dep_invalide,
 						Toast.LENGTH_SHORT).show();
 			}
+
 		} else {
 			if (!Util.ValiderString(new String[] { strNumCivDep })) {
 				Toast.makeText(this, R.string.toast_num_civ_dep_vide,
@@ -229,9 +263,8 @@ public class AjoutParcoursActivity3 extends Activity {
 	}
 
 	private class PutNewParcoursTask extends AsyncTask<Object, Void, Void> {
-		Exception m_Exp;
-		Parcours unParcours;
-
+		private Exception m_Exp;
+		private Parcours unParcours;
 		private Context m_Context;
 
 		public PutNewParcoursTask(Context p_Context) {
@@ -247,20 +280,20 @@ public class AjoutParcoursActivity3 extends Activity {
 		@Override
 		protected Void doInBackground(Object... params) {
 			
-			unParcours = (Parcours)params[1];
-			Utilisateurs connectedUser = (Utilisateurs)params[0];
-			String temps = (String)params[2];
-			
+			Utilisateurs connectedUser = (Utilisateurs) params[0];
+			unParcours = (Parcours) params[1];
+			String temps = (String) params[2];
+
 			int idUtil = connectedUser.getId();
 			String idParcours = String.valueOf(idUtil) + temps;
-			
+
 			try {
 				unParcours.setId(Integer.parseInt(idParcours));
-				
+
 				URI uri = new URI(
 						"http" + Util.WEB_SERVICE,
 						Util.REST_UTILISATEUR + "/"
-								+ connectedUser.getId()
+								+ connectedUser.getCourriel()
 								+ Util.REST_PARCOURS + "/" + unParcours.getId(),
 						null, null);
 				HttpPut putMethod = new HttpPut(uri);
