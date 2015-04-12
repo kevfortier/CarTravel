@@ -143,11 +143,11 @@ class UtilisateurHandler(webapp2.RequestHandler):
             logging.exception(ex)
             self.error(500)
             
-class ParcoursHandler (webapp2.request_handler):
+class ParcoursHandler (webapp2.RequestHandler):
     def get(self, username, idParcours = None): 
         try:
             if(username is not None):
-                cle = ndb.Key('Utilisateurs', username)
+                cle = ndb.Key('Utilisateur', username)
                 utilisateur = cle.get()
                 if(utilisateur is None):
                     self.response.set_status(404)

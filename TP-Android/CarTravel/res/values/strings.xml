@@ -46,8 +46,8 @@
     <string name="lst_offres_vide">Vous n\'avez fait aucune offre</string>
     <string name="mes_demandes">Mes demandes</string>
     <string name="lst_demandes_vide">Vous n\'avez fait aucune demande</string>
-    <string name="lbl_depart">Départ</string>
-    <string name="lbl_arrive">Arrivé</string>
+    <string name="lbl_depart">Adresse de départ :</string>
+    <string name="lbl_arrive">Adresse d\'arrivée :</string>
     <string name="chk_adr_profil">Même adresse que profil</string>
     
     <string name="txt_num_civique">Num. Civique</string>
@@ -160,6 +160,16 @@
     <string name="toast_nbr_pass_max_invalide">Le nombre de passagers maximal saisi est invalide.</string>
     <string name="toast_dist_max_vide">Veillez saisir une distance de parcours maximale.</string>
     <string name="toast_dist_max_invalide">La distance maximale saisie est invalide.</string>
+    <string name="toast_num_civ_dep_vide">Veillez saisir un numéro civique pour l\'adresse de départ.</string>
+    <string name="toast_rue_dep_vide">Veillez saisir une rue pour l\'adresse de départ.</string>
+    <string name="toast_ville_dep_vide">Veillez saisir une ville pour l\'adresse de départ.</string>
+    <string name="toast_code_postal_dep_vide">Veillez saisir un code postal pour l\'adresse de départ.</string>
+    <string name="toast_code_postal_dep_invalide">Le code postal de l\'adresse de départ n\'est pas valide.</string>
+    <string name="toast_num_civ_arr_vide">Veillez saisir un numéro civique pour l\'adresse d\'arrivée.</string>
+    <string name="toast_rue_arr_vide">Veillez saisir une rue pour l\'adresse d\'arrivée.</string>
+    <string name="toast_ville_arr_vide">Veillez saisir une ville pour l\'adresse d\'arrivée.</string>
+    <string name="toast_code_postal_arr_vide">Veillez saisir un code postal pour l\'adresse d\'arrivée.</string>
+    <string name="toast_code_postal_arr_invalide">Le code postal de l\'adresse d\'arrivée n\'est pas valide.</string>
 	
     <!-- Spinner type parcours -->
     <string-array name="type_parcour_array">

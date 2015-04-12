@@ -15,7 +15,7 @@ public class Util {
 	public final static String REST_UTILISATEUR = "/utilisateurs";
 	public final static String REST_PARCOURS = "/parcours";
 	public final static String REST_CONNEXION = "/connexion";
-	public final static String WEB_SERVICE = "192.168.0.110:8080";
+	public final static String WEB_SERVICE = "10.248.146.176:8080";
 
 	public final static String GOOGLE_SENDER_ID = "133519372687";
 
@@ -134,7 +134,7 @@ public class Util {
 		return lstLng;
 	}
 
-	//Permet de vérifier les heures saisies
+	// Permet de vérifier les heures saisies
 	public static boolean verifHeure(String p_Heure) {
 		boolean verifHeure = false;
 		int iHeure = Integer.parseInt(p_Heure);
@@ -143,8 +143,8 @@ public class Util {
 		}
 		return verifHeure;
 	}
-	
-	//Permet de vérifier les minutes d'une heure saisie
+
+	// Permet de vérifier les minutes d'une heure saisie
 	public static boolean verifMinute(String p_Minute) {
 		boolean verifMinute = false;
 		int iMinutes = Integer.parseInt(p_Minute);
@@ -153,64 +153,94 @@ public class Util {
 		}
 		return verifMinute;
 	}
-	
-	//Permet de vérifier une date de 1900 à 2099
+
+	// Permet de vérifier une date de 1900 à 2099
 	public static boolean verifDate(String p_Date) {
 		String regExDate = "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)";
 		Pattern pattern = Pattern.compile(regExDate);
 		Matcher matcher = pattern.matcher(p_Date);
-		
-		if(matcher.matches()){
+
+		if (matcher.matches()) {
 			matcher.reset();
-			if(matcher.find()){
+			if (matcher.find()) {
 				String dd = matcher.group(1);
-			    String mm = matcher.group(2);
-			    int yy = Integer.parseInt(matcher.group(3));
-			    if (dd.equals("31") &&  (mm.equals("4") || mm .equals("6") || mm.equals("9") ||
-			                  mm.equals("11") || mm.equals("04") || mm .equals("06") ||
-			                  mm.equals("09"))) {
-			    	return false;
-			    } else if (mm.equals("2") || mm.equals("02")) {
-			    	if(yy % 4==0){
-			    		if(dd.equals("30") || dd.equals("31")){
-			    			return false;
-			            } else{
-			                return true;
-			            }
-			        } else{
-			        	if(dd.equals("29")||dd.equals("30")||dd.equals("31")){
-			        		return false;
-			            } else{
-			            	return true;
-			            }
-			        }
-			    } else{
-			    	return true;
-			    }
-			}else{
+				String mm = matcher.group(2);
+				int yy = Integer.parseInt(matcher.group(3));
+				if (dd.equals("31")
+						&& (mm.equals("4") || mm.equals("6") || mm.equals("9")
+								|| mm.equals("11") || mm.equals("04")
+								|| mm.equals("06") || mm.equals("09"))) {
+					return false;
+				} else if (mm.equals("2") || mm.equals("02")) {
+					if (yy % 4 == 0) {
+						if (dd.equals("30") || dd.equals("31")) {
+							return false;
+						} else {
+							return true;
+						}
+					} else {
+						if (dd.equals("29") || dd.equals("30")
+								|| dd.equals("31")) {
+							return false;
+						} else {
+							return true;
+						}
+					}
+				} else {
+					return true;
+				}
+			} else {
 				return false;
 			}
-		}else{
+		} else {
 			return false;
-		}  
+		}
 	}
-	
-	//Permet de vérifier les codes postals.
+
+	// Permet de vérifier les codes postals.
 	public static boolean verifCodePostal(String p_CodePostal) {
 		boolean verifCodePostal = false;
 		String regExCodePostal = "^[a-zA-Z][0-9][a-zA-Z]?[0-9][a-zA-Z][0-9]$";
 		verifCodePostal = p_CodePostal.matches(regExCodePostal);
-	
+
 		return verifCodePostal;
 	}
-	
-	//Permet de vérifier les numéros de téléphone.
+
+	// Permet de vérifier les numéros de téléphone.
 	public static boolean verifNumTel(String p_NumTel) {
 		boolean verifNumTel = false;
 		String regExNumTel = "\\d{10}";
 		verifNumTel = p_NumTel.matches(regExNumTel);
 
 		return verifNumTel;
+	}
+
+	// Permet de vérifier les saisie de type Integer.
+	public static boolean verifInteger(String p_Chaine) {
+		boolean verifNbrEntier = false;
+		int nbrEntier = 0;
+		try {
+			nbrEntier = Integer.parseInt(p_Chaine);
+			if (nbrEntier >= 0) {
+				verifNbrEntier = true;
+			}
+		} catch (NumberFormatException nfe) {
+		}
+		return verifNbrEntier;
+	}
+
+	// Permet de vérifier les saisie de type Float.
+	public static boolean verifFloat(String p_Chaine) {
+		boolean verifNbrFloat = false;
+		float nbrFloat = 0;
+		try {
+			nbrFloat = Float.parseFloat(p_Chaine);
+			if (nbrFloat >= 0) {
+				verifNbrFloat = true;
+			}
+		} catch (NumberFormatException nfe) {
+		}
+		return verifNbrFloat;
 	}
 
 	public static boolean verifChaineCharac(String p_Chaine) {
