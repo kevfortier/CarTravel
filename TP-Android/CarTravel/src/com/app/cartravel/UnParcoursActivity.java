@@ -18,7 +18,7 @@ public class UnParcoursActivity extends Activity {
 	private Bundle extras;
 
 	private Parcours unParcours;
-	//private ParcourDataSource parcoursData;
+	// private ParcourDataSource parcoursData;
 
 	private Utilisateurs unUser;
 	private UtilisateurDataSource userData;

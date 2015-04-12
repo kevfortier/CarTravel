@@ -13,7 +13,7 @@ import webapp2
 import logging
 import datetime
 
-from modeles import Utilisateur, Notifications
+from modeles import Utilisateur, Parcours
 from symbol import if_stmt
 
 def serialiser_pour_json(obj):
@@ -79,7 +79,6 @@ class UtilisateurHandler(webapp2.RequestHandler):
                     return
                 resultat = {}
                 resultat['pseudo'] = utilisateur.pseudo
-                resultat['contacts'] = utilisateur.contacts
             
             self.response.headers['Content-Type'] = 'application/json'
             self.response.out.write(json.dumps(resultat))
@@ -143,12 +142,11 @@ class UtilisateurHandler(webapp2.RequestHandler):
             logging.exception(ex)
             self.error(500)
             
-'''<<<<<<< HEAD
-class ParcoursHandler (webapp2.request_handler):
+class ParcoursHandler (webapp2.RequestHandler):
     def get(self, username, idParcours = None): 
         try:
             if(username is not None):
-                cle = ndb.Key('Utilisateurs', username)
+                cle = ndb.Key('Utilisateur', username)
                 utilisateur = cle.get()
                 if(utilisateur is None):
                     self.response.set_status(404)
@@ -320,9 +318,6 @@ class ParcoursHandler (webapp2.request_handler):
             logging.exception(ex)
             self.error(500)
            
-            
-=======
->>>>>>> c05674ac521faac81009690a3721a840023dc74d'''
 class Connexion(webapp2.RequestHandler):
     def get(self,username):
         try:

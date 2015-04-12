@@ -1,5 +1,7 @@
 package com.app.cartravel;
 
+import com.app.cartravel.utilitaire.Util;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -89,42 +91,62 @@ public class AjoutParcoursActivity2 extends Activity {
 
 	public void confirmParcour() {
 		if (m_Cond) {
-			if (!m_CapaciteMax.toString().trim().isEmpty()) {
-				if (!m_DistanceMax.toString().trim().isEmpty()) {
+			String strCapaciteMax = m_CapaciteMax.getText().toString().trim();
+			String strDistanceMax = m_DistanceMax.getText().toString().trim();
+			if (Util.ValiderString(new String[] { strCapaciteMax,
+					strDistanceMax })) {
+				if (Util.verifInteger(strCapaciteMax)) {
+					if (Util.verifFloat(strDistanceMax)) {
+						Intent i = new Intent(this,
+								AjoutParcoursActivity3.class);
+						i.putExtra(EXTRA_CONDUCTEUR, m_Cond);
+						i.putExtra(EXTRA_HEURE, m_Heure);
+						i.putExtra(EXTRA_DATE, m_Jour);
+						i.putExtra(EXTRA_REPETITIF, m_Repetitif);
+						i.putExtra(EXTRA_CAPACITEMAX,
+								Integer.parseInt(strCapaciteMax));
+						i.putExtra(EXTRA_DISTANCEMAX,
+								Integer.parseInt(strDistanceMax));
+						this.startActivity(i);
+					} else {
+						Toast.makeText(this, R.string.toast_dist_max_invalide,
+								Toast.LENGTH_SHORT).show();
+					}
+				} else {
+					Toast.makeText(this, R.string.toast_nbr_pass_max_invalide,
+							Toast.LENGTH_SHORT).show();
+				}
+			} else {
+				if (!Util.ValiderString(new String[] { strCapaciteMax })) {
+					Toast.makeText(this, R.string.toast_nbr_pass_max_vide,
+							Toast.LENGTH_SHORT).show();
+				}
+				if (!Util.ValiderString(new String[] { strDistanceMax })) {
+					Toast.makeText(this, R.string.toast_dist_max_vide,
+							Toast.LENGTH_SHORT).show();
+				}
+			}
+		} else {
+			String strNbrPassagers = m_NbrPassagers.getText().toString().trim();
+			if (Util.ValiderString(new String[] { strNbrPassagers })) {
+				if (Util.verifInteger(strNbrPassagers)) {
 					Intent i = new Intent(this, AjoutParcoursActivity3.class);
 					i.putExtra(EXTRA_CONDUCTEUR, m_Cond);
 					i.putExtra(EXTRA_HEURE, m_Heure);
 					i.putExtra(EXTRA_DATE, m_Jour);
 					i.putExtra(EXTRA_REPETITIF, m_Repetitif);
-					i.putExtra(EXTRA_CAPACITEMAX, Integer
-							.parseInt(m_CapaciteMax.getText().toString()));
-					i.putExtra(EXTRA_DISTANCEMAX, Integer
-							.parseInt(m_DistanceMax.getText().toString()));
+					i.putExtra(EXTRA_NBRPASSAGERS,
+							Integer.parseInt(strNbrPassagers));
 					this.startActivity(i);
 				} else {
-					Toast.makeText(this,
-							"Le champ distance max. doit être remplis",
+					Toast.makeText(this, R.string.toast_nbr_pass_invalide,
 							Toast.LENGTH_SHORT).show();
 				}
 			} else {
-				Toast.makeText(this,
-						"Le champ capacite max. doit être remplis",
-						Toast.LENGTH_SHORT).show();
-			}
-		} else {
-			if (!m_NbrPassagers.toString().trim().isEmpty()) {
-				Intent i = new Intent(this, AjoutParcoursActivity3.class);
-				i.putExtra(EXTRA_CONDUCTEUR, m_Cond);
-				i.putExtra(EXTRA_HEURE, m_Heure);
-				i.putExtra(EXTRA_DATE, m_Jour);
-				i.putExtra(EXTRA_REPETITIF, m_Repetitif);
-				i.putExtra(EXTRA_NBRPASSAGERS,
-						Integer.parseInt(m_NbrPassagers.getText().toString()));
-				this.startActivity(i);
-			} else {
-				Toast.makeText(this,
-						"Le champ Nbr. Passagers doit être remplis",
-						Toast.LENGTH_SHORT).show();
+				if (!Util.ValiderString(new String[] { strNbrPassagers })) {
+					Toast.makeText(this, R.string.toast_nbr_pass_vide,
+							Toast.LENGTH_SHORT).show();
+				}
 			}
 		}
 	}

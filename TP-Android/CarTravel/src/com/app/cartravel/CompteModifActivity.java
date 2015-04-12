@@ -28,7 +28,8 @@ public class CompteModifActivity extends Activity {
 	private EditText mMDP;
 	private EditText mMDPVerif;
 	private UtilisateurDataSource mDataSource;
-	//private Bundle m_extra;
+
+	// private Bundle m_extra;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

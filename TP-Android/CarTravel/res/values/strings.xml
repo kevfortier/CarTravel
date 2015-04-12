@@ -46,8 +46,8 @@
     <string name="lst_offres_vide">Vous n\'avez fait aucune offre</string>
     <string name="mes_demandes">Mes demandes</string>
     <string name="lst_demandes_vide">Vous n\'avez fait aucune demande</string>
-    <string name="lbl_depart">Départ</string>
-    <string name="lbl_arrive">Arrivé</string>
+    <string name="lbl_depart">Adresse de départ :</string>
+    <string name="lbl_arrive">Adresse d\'arrivée :</string>
     <string name="chk_adr_profil">Même adresse que profil</string>
     
     <string name="txt_num_civique">Num. Civique</string>
@@ -126,28 +126,54 @@
 	<string name="toast_num_tel_confirm">Le numéro de téléphone n\'est pas valide.</string>
 	
     <!-- String parcours -->
-    <string name="lbl_choix_cov">Choix de covoiturage:</string>
+    <string name="lbl_choix_cov">Choix de covoiturage :</string>
     <string name="chck_pass">Passager</string>
     <string name="chck_cond">Conducteur</string>
-    <string name="lbl_opt">Heure, date et fréquence:</string>
-    <string name="lbl_info_pass">Informations passager:</string>
+    <string name="lbl_opt">Heure, date et fréquence :</string>
+    <string name="lbl_info_pass">Informations passager :</string>
     <string name="lbl_nbr_pass">Nombre de passagers</string>
-    <string name="lbl_info_cond">Informations conducteur:</string>
+    <string name="lbl_info_cond">Informations conducteur :</string>
     <string name="lbl_plac_dispo">Nombre de places disponibles</string>
     <string name="lbl_dist_max">Nombre de Km max.</string>
-    <string name="lbl_dep">Départ:</string>
+    <string name="lbl_dep">Départ :</string>
     <string name="chk_info_prof">Même adresse que profil</string>
-    <string name="lbl_dest">Destination:</string>
+    <string name="lbl_dest">Destination :</string>
     <string name="lbl_date_heure">Date et heure</string>
     <string name="lbl_h">h</string>
-    <string name="lbl_type_parcour">Type du parcour</string>
+    <string name="lbl_type_parcour">Type du parcours</string>
     <string name="action_confirmer_parcour">Confirmer</string>
     <string name="action_ajout_parcours">Créer un parcours</string>
-	<string name="hint_date">AAAA-MM-JJ</string>
+	<string name="hint_date">JJ/MM/AAAA</string>
 	<string name="lbl_nbr_passager">Nombre de passagers</string>
-    <string name="lbl_capacite_max">Capacité Max.</string>
-    <string name="lbl_distance_max">Distance Max.</string>
- 
+    <string name="lbl_capacite_max">Nombre de passagers max.</string>
+    <string name="lbl_distance_max">Distance max.</string>
+    <string name="toast_ajout_parcours">Le parcours a été ajouté avec succès.</string>
+    <string name="toast_jour_vide">Veillez saisir une date.</string>
+    <string name="toast_jour_invalide">La date saisie est invalide.</string>
+    <string name="toast_minute_vide">Le champ minute doit être rempli.</string>
+    <string name="toast_minute_invalide">Le champ minute est invalide.</string>
+    <string name="toast_heure_vide">Le champ heure doit être rempli.</string>
+    <string name="toast_heure_invalide">L\'heure saisie n\'est pas valide.</string>
+    <string name="toast_nbr_pass_vide">Veillez saisir un nombre de passagers.</string>
+    <string name="toast_nbr_pass_invalide">Le nombre de passagers saisi est invalide.</string>
+    <string name="toast_nbr_pass_max_vide">Veillez saisir un nombre de passagers maximal.</string>
+    <string name="toast_nbr_pass_max_invalide">Le nombre de passagers maximal saisi est invalide.</string>
+    <string name="toast_dist_max_vide">Veillez saisir une distance de parcours maximale.</string>
+    <string name="toast_dist_max_invalide">La distance maximale saisie est invalide.</string>
+    <string name="toast_num_civ_dep_vide">Veillez saisir un numéro civique pour l\'adresse de départ.</string>
+    <string name="toast_rue_dep_vide">Veillez saisir une rue pour l\'adresse de départ.</string>
+    <string name="toast_rue_dep_invalide">La rue de l\'adresse de départ n\'est pas valide.</string>
+    <string name="toast_ville_dep_vide">Veillez saisir une ville pour l\'adresse de départ.</string>
+    <string name="toast_ville_dep_invalide">La ville de l\'adresse de départ n\'est pas valide.</string>
+    <string name="toast_code_postal_dep_vide">Veillez saisir un code postal pour l\'adresse de départ.</string>
+    <string name="toast_code_postal_dep_invalide">Le code postal de l\'adresse de départ n\'est pas valide.</string>
+    <string name="toast_num_civ_arr_vide">Veillez saisir un numéro civique pour l\'adresse d\'arrivée.</string>
+    <string name="toast_rue_arr_vide">Veillez saisir une rue pour l\'adresse d\'arrivée.</string>
+    <string name="toast_rue_arr_invalide">La rue de l\'adresse d\'arrivée n\'est pas valide.</string>
+    <string name="toast_ville_arr_vide">Veillez saisir une ville pour l\'adresse d\'arrivée.</string>
+    <string name="toast_ville_arr_invalide">La ville de l\'adresse d\'arrivée n\'est pas valide.</string>
+    <string name="toast_code_postal_arr_vide">Veillez saisir un code postal pour l\'adresse d\'arrivée.</string>
+    <string name="toast_code_postal_arr_invalide">Le code postal de l\'adresse d\'arrivée n\'est pas valide.</string>
 	
     <!-- Spinner type parcours -->
     <string-array name="type_parcour_array">
