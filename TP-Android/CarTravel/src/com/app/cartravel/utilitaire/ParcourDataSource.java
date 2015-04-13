@@ -26,9 +26,9 @@ public class ParcourDataSource {
 		m_Db.close();
 	}
 
-	public float insert(Parcours p_Parcour) {
+	public String insert(Parcours p_Parcour) {
 		ContentValues row = parcourToContentValues(p_Parcour);
-		float newId = (float) m_Db.insert(DatabaseHelper.TABLE_PARCOURS, null, row);
+		String newId = String.valueOf((int)m_Db.insert(DatabaseHelper.TABLE_PARCOURS, null, row));
 		p_Parcour.setId(newId);
 		return newId;
 	}
@@ -103,7 +103,7 @@ public class ParcourDataSource {
 
 	private Parcours cursorToParcour(Cursor c) {
 		Parcours p = new Parcours(
-				c.getFloat(c.getColumnIndex(DatabaseHelper.COL_ID_PARCOUR)),
+				c.getString(c.getColumnIndex(DatabaseHelper.COL_ID_PARCOUR)),
 				c.getInt(c.getColumnIndex(DatabaseHelper.COL_ID_PROPRIETAIRE)),
 				c.getInt(c.getColumnIndex(DatabaseHelper.COL_ID_CONDUCTEUR)),
 				c.getString(c.getColumnIndex(DatabaseHelper.COL_JOUR)),

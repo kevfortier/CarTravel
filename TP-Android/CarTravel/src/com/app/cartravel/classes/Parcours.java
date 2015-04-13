@@ -4,9 +4,9 @@ public class Parcours implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1;
 
-	public static final int ID_NON_DEFINI = -1;
+	public static final String ID_NON_DEFINI = "-1";
 
-	private float m_Id;
+	private String m_Id;
 	private int m_IdProprietaire;
 	private int m_IdConducteur;
 	private String m_Jour;
@@ -30,7 +30,7 @@ public class Parcours implements java.io.Serializable {
 	/**
 	 * Constructeur pour Conducteur
 	 */
-	public Parcours(float p_Id, int p_IdProprietaire, int p_IdConducteur,
+	public Parcours(String p_Id, int p_IdProprietaire, int p_IdConducteur,
 			String p_Jour, String p_Heure, boolean p_Repetitif,
 			int p_NbPlaceDispo, int p_NbPlacePrise, float p_DistanceSupMax,
 			String p_NumCiviqueDep, String p_RueDep, String p_VilleDep,
@@ -90,7 +90,7 @@ public class Parcours implements java.io.Serializable {
 	/**
 	 * Constructeur pour passagers
 	 */
-	public Parcours(float p_Id, int p_IdProprietaire, int p_IdConducteur,
+	public Parcours(String p_Id, int p_IdProprietaire, int p_IdConducteur,
 			String p_Jour, String p_Heure, boolean p_Repetitif,
 			int p_NbPlacePassagers, String p_NumCiviqueDep, String p_RueDep,
 			String p_VilleDep, String p_CodePostalDep, String p_NumCiviqueArr,
@@ -146,11 +146,11 @@ public class Parcours implements java.io.Serializable {
 		this.m_Id = ID_NON_DEFINI;
 	}
 
-	public float getId() {
+	public String getId() {
 		return m_Id;
 	}
 
-	public void setId(float Id) {
+	public void setId(String Id) {
 		this.m_Id = Id;
 	}
 

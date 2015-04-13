@@ -288,7 +288,7 @@ public class AjoutParcoursActivity3 extends Activity {
 			String idParcours = String.valueOf(idUtil) + temps;
 
 			try {
-				unParcours.setId(Float.parseFloat(idParcours));
+				unParcours.setId(idParcours);
 
 				URI uri = new URI(
 						"http" + Util.WEB_SERVICE,
