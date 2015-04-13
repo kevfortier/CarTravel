@@ -26,12 +26,12 @@ public class ParcoursAdapter extends ArrayAdapter<ParcoursItem> {
 	}
 
 	public View getView(int p_Position, View p_ConvertView, ViewGroup p_Parent) {
-		ParcoursHolder contenant;
+		
 		View view = p_ConvertView;
+		ParcoursHolder contenant;
 
 		if (view == null) {
-			LayoutInflater inflater = ((Activity) m_Context)
-					.getLayoutInflater();
+			LayoutInflater inflater = ((Activity) m_Context).getLayoutInflater();
 			contenant = new ParcoursHolder();
 
 			view = inflater.inflate(m_LayoutResId, p_Parent, false);

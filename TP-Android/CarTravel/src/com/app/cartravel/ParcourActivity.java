@@ -42,9 +42,11 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 	ListView m_MesPassagersPot;
 	ListView m_MesPassagers;
 
+	View m_ParcoursView;
+
 	private List<Parcours> m_LstParcours;
 	private ParcourDataSource dataParcours;
-	private ParcoursAdapter m_Adapter;
+	//private ParcoursAdapter m_Adapter;
 
 	private UtilisateurDataSource dataUser;
 	private Utilisateurs m_UtilisateurConnecte;
@@ -57,7 +59,7 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 		this.requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 
 		setContentView(R.layout.activity_parcour);
-		fillList();
+
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
@@ -98,38 +100,45 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 		}
 	}
 
-	public void fillList() {
+	public void fillListMesDemandeConducteur(ListView laListe) {
 		dataParcours = new ParcourDataSource(this);
 		dataParcours.open();
 		List<Parcours> toutsParcours = dataParcours.getAllParcours();
 		dataParcours.close();
-		if (toutsParcours != null) {
+		if (!toutsParcours.isEmpty()) {
 			dataUser = new UtilisateurDataSource(this);
 			dataUser.open();
 			m_UtilisateurConnecte = dataUser.getConnectedUtilisateur();
 			dataUser.close();
 
-			fillListMesDemandeConducteur(toutsParcours);
-		}
-	}
-
-	public void fillListMesDemandeConducteur(List<Parcours> toutsParcours) {
-		m_MesDemandesConducteur = (ListView) this
-				.findViewById(R.id.lst_demande_conducteurs);
-		for (Parcours unParcours : toutsParcours) {
-			if (unParcours.getIdProprietaire() == m_UtilisateurConnecte.getId()
-					&& unParcours.getIdConducteur() != m_UtilisateurConnecte
-							.getId()) {
-				if (m_LstParcours == null) {
-					m_LstParcours = new ArrayList<Parcours>();
+			for (Parcours unParcours : toutsParcours) {
+				if (unParcours.getIdProprietaire() == m_UtilisateurConnecte
+						.getId()
+						&& unParcours.getIdConducteur() != m_UtilisateurConnecte
+								.getId()) {
+					if (m_LstParcours == null) {
+						m_LstParcours = new ArrayList<Parcours>();
+					}
+					m_LstParcours.add(unParcours);
 				}
-				m_LstParcours.add(unParcours);
 			}
-		}
-		if (m_LstParcours != null) {
-			m_Adapter = new ParcoursAdapter(this, R.layout.lst_parcours_item,
-					ConvertParcoursToListItems(m_LstParcours));
-			m_MesDemandesConducteur.setAdapter(m_Adapter);
+			if (m_LstParcours != null) {
+
+				laListe.setAdapter(new ParcoursAdapter(this,
+						R.layout.lst_parcours_item, ConvertParcoursToListItems(m_LstParcours)));
+/*
+				View view;
+				LayoutInflater inflater = (LayoutInflater) getBaseContext()
+						.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+				view = inflater.inflate(R.layout.fragment_parcours, null);
+
+				m_MesDemandesConducteur = (ListView) view
+						.findViewById(R.id.lst_demande_conducteurs);
+				m_Adapter = new ParcoursAdapter(this,
+						R.layout.lst_parcours_item,
+						ConvertParcoursToListItems(m_LstParcours));
+				m_MesDemandesConducteur.setAdapter(m_Adapter);*/
+			}
 		}
 	}
 
@@ -422,8 +431,12 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 
+			ParcourActivity activity = ((ParcourActivity) this.getActivity());
+
 			View rootView = inflater.inflate(R.layout.fragment_parcours,
 					container, false);
+
+			activity.fillListMesDemandeConducteur((ListView) rootView.findViewById(R.id.lst_demande_conducteurs));
 
 			return rootView;
 		}
