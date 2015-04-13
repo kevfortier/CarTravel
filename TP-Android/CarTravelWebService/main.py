@@ -384,9 +384,10 @@ application = webapp2.WSGIApplication(
     [
         ('/',   MainPageHandler),
         webapp2.Route(r'/utilisateurs',             handler=UtilisateurHandler, methods=['GET', 'DELETE']),
-        webapp2.Route(r'/utilisateurs/<username>',  handler=UtilisateurHandler, methods=['GET', 'PUT',  'DELETE']),
+        webapp2.Route(r'/utilisateurs/<username>',  handler=UtilisateurHandler, methods=['GET', 'PUT', 'DELETE']),
         webapp2.Route(r'/utilisateurs/<username>/connexion', handler=Connexion, methods=['GET']),
-        webapp2.Route(r'/utilisateurs/<username>/notifications', handler=ObtenirNotifications, methods=['GET'])
+        webapp2.Route(r'/utilisateurs/notifications', handler=ObtenirNotifications, methods=['GET']),
+        webapp2.Route(r'/parcours', handler=ParcoursHandler, methods=['GET', 'PUT', 'DELETE'])
         
     ],
     debug=True)

@@ -38,7 +38,7 @@ public class JsonParcours {
 
 			JSONObject jsonParcours = array.getJSONObject(i);
 
-			Parcours parcours = new Parcours(jsonParcours.getInt(PARCOURS_ID),
+			Parcours parcours = new Parcours((float) jsonParcours.getDouble(PARCOURS_ID),
 					jsonParcours.getInt(PARCOURS_PROPRIETAIRE),
 					jsonParcours.getInt(PARCOURS_CONDUCTEUR),
 					jsonParcours.getString(PARCOURS_JOUR),

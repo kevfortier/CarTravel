@@ -288,13 +288,11 @@ public class AjoutParcoursActivity3 extends Activity {
 			String idParcours = String.valueOf(idUtil) + temps;
 
 			try {
-				unParcours.setId(Integer.parseInt(idParcours));
+				unParcours.setId(Float.parseFloat(idParcours));
 
 				URI uri = new URI(
 						"http" + Util.WEB_SERVICE,
-						Util.REST_UTILISATEUR + "/"
-								+ connectedUser.getCourriel()
-								+ Util.REST_PARCOURS + "/" + unParcours.getId(),
+						Util.REST_PARCOURS + "/" + unParcours.getId(),
 						null, null);
 				HttpPut putMethod = new HttpPut(uri);
 

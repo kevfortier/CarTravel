@@ -7,14 +7,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
 	// Version BD
-	private final static int DB_VERSION = 8;
+	private final static int DB_VERSION = 9;
 
 	// Nom de la BD
 	private final static String DATABASE_NAME = "cartravel.sqlite";
 
 	// Nom des tables
 	public final static String TABLE_UTILISATEUR = "utilisateur";
-	public final static String TABLE_PARCOUR = "parcour";
+	public final static String TABLE_PARCOURS = "parcours";
 	public final static String TABLE_PARCOUR_PASSAGER = "parcour_passager";
 
 	// Noms des colonnes d'un utilisateur
@@ -80,8 +80,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				+ " integer)");
 
 		// Crée la table pour les parcours
-		db.execSQL("create table " + TABLE_PARCOUR + " (" + COL_ID_PARCOUR
-				+ " integer primary key autoincrement, " + COL_ID_PROPRIETAIRE
+		db.execSQL("create table " + TABLE_PARCOURS + " (" + COL_ID_PARCOUR
+				+ " real primary key autoincrement, " + COL_ID_PROPRIETAIRE
 				+ " integer, " + COL_ID_CONDUCTEUR + " integer, " + COL_JOUR
 				+ " text, " + COL_HEURE + " text, " + COL_TYPE_PARCOUR
 				+ " text, " + COL_NBR_PLACE_DISPO + " integer, "
@@ -94,7 +94,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 		// Crée la table pour les parcours-passagers
 		db.execSQL("create table " + TABLE_PARCOUR_PASSAGER + " ("
-				+ COL_ID_PARCOUR + " integer, " + COL_ID_PASSAGER
+				+ COL_ID_PARCOUR + " real, " + COL_ID_PASSAGER
 				+ " integer, " + COL_NBR_PASSAGER + " integer, "
 				+ " primary key (" + COL_ID_PARCOUR + ", " + COL_ID_PASSAGER
 				+ "))");
@@ -103,7 +103,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		db.execSQL("drop table if exists " + TABLE_UTILISATEUR);
-		db.execSQL("drop table if exists " + TABLE_PARCOUR);
+		db.execSQL("drop table if exists " + TABLE_PARCOURS);
 		db.execSQL("drop table if exists " + TABLE_PARCOUR_PASSAGER);
 		this.onCreate(db);
 	}

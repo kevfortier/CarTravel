@@ -26,31 +26,31 @@ public class ParcourDataSource {
 		m_Db.close();
 	}
 
-	public int insert(Parcours p_Parcour) {
+	public float insert(Parcours p_Parcour) {
 		ContentValues row = parcourToContentValues(p_Parcour);
-		int newId = (int) m_Db.insert(DatabaseHelper.TABLE_PARCOUR, null, row);
+		float newId = (float) m_Db.insert(DatabaseHelper.TABLE_PARCOURS, null, row);
 		p_Parcour.setId(newId);
 		return newId;
 	}
 
 	public void update(Parcours p_Parcour) {
 		ContentValues row = parcourToContentValues(p_Parcour);
-		m_Db.update(DatabaseHelper.TABLE_PARCOUR, row,
+		m_Db.update(DatabaseHelper.TABLE_PARCOURS, row,
 				DatabaseHelper.COL_ID_PARCOUR + "=" + p_Parcour.getId(), null);
 	}
 
 	public void delete(int p_Id) {
-		m_Db.delete(DatabaseHelper.TABLE_PARCOUR, DatabaseHelper.COL_ID_PARCOUR
+		m_Db.delete(DatabaseHelper.TABLE_PARCOURS, DatabaseHelper.COL_ID_PARCOUR
 				+ "=" + p_Id, null);
 	}
 
 	public void removeAll() {
-		m_Db.delete(DatabaseHelper.TABLE_PARCOUR, null, null);
+		m_Db.delete(DatabaseHelper.TABLE_PARCOURS, null, null);
 	}
 
 	public Parcours getParcours(int p_IdParcour) {
 		Parcours p = null;
-		Cursor c = m_Db.query(DatabaseHelper.TABLE_PARCOUR, null,
+		Cursor c = m_Db.query(DatabaseHelper.TABLE_PARCOURS, null,
 				DatabaseHelper.COL_ID_PARCOUR + "=" + p_IdParcour, null, null,
 				null, null);
 		c.moveToFirst();
@@ -62,7 +62,7 @@ public class ParcourDataSource {
 
 	public List<Parcours> getAllParcours() {
 		List<Parcours> parcours = new ArrayList<Parcours>();
-		Cursor c = m_Db.query(DatabaseHelper.TABLE_PARCOUR, null, null, null,
+		Cursor c = m_Db.query(DatabaseHelper.TABLE_PARCOURS, null, null, null,
 				null, null, null);
 		c.moveToFirst();
 		while (!c.isAfterLast()) {
@@ -103,7 +103,7 @@ public class ParcourDataSource {
 
 	private Parcours cursorToParcour(Cursor c) {
 		Parcours p = new Parcours(
-				c.getInt(c.getColumnIndex(DatabaseHelper.COL_ID_PARCOUR)),
+				c.getFloat(c.getColumnIndex(DatabaseHelper.COL_ID_PARCOUR)),
 				c.getInt(c.getColumnIndex(DatabaseHelper.COL_ID_PROPRIETAIRE)),
 				c.getInt(c.getColumnIndex(DatabaseHelper.COL_ID_CONDUCTEUR)),
 				c.getString(c.getColumnIndex(DatabaseHelper.COL_JOUR)),
