@@ -46,7 +46,7 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 
 	private List<Parcours> m_LstParcours;
 	private ParcourDataSource dataParcours;
-	//private ParcoursAdapter m_Adapter;
+	// private ParcoursAdapter m_Adapter;
 
 	private UtilisateurDataSource dataUser;
 	private Utilisateurs m_UtilisateurConnecte;
@@ -125,19 +125,20 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 			if (m_LstParcours != null) {
 
 				laListe.setAdapter(new ParcoursAdapter(this,
-						R.layout.lst_parcours_item, ConvertParcoursToListItems(m_LstParcours)));
-/*
-				View view;
-				LayoutInflater inflater = (LayoutInflater) getBaseContext()
-						.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-				view = inflater.inflate(R.layout.fragment_parcours, null);
-
-				m_MesDemandesConducteur = (ListView) view
-						.findViewById(R.id.lst_demande_conducteurs);
-				m_Adapter = new ParcoursAdapter(this,
 						R.layout.lst_parcours_item,
-						ConvertParcoursToListItems(m_LstParcours));
-				m_MesDemandesConducteur.setAdapter(m_Adapter);*/
+						ConvertParcoursToListItems(m_LstParcours)));
+				/*
+				 * View view; LayoutInflater inflater = (LayoutInflater)
+				 * getBaseContext()
+				 * .getSystemService(Context.LAYOUT_INFLATER_SERVICE); view =
+				 * inflater.inflate(R.layout.fragment_parcours, null);
+				 * 
+				 * m_MesDemandesConducteur = (ListView) view
+				 * .findViewById(R.id.lst_demande_conducteurs); m_Adapter = new
+				 * ParcoursAdapter(this, R.layout.lst_parcours_item,
+				 * ConvertParcoursToListItems(m_LstParcours));
+				 * m_MesDemandesConducteur.setAdapter(m_Adapter);
+				 */
 			}
 		}
 	}
@@ -436,7 +437,8 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 			View rootView = inflater.inflate(R.layout.fragment_parcours,
 					container, false);
 
-			activity.fillListMesDemandeConducteur((ListView) rootView.findViewById(R.id.lst_demande_conducteurs));
+			activity.fillListMesDemandeConducteur((ListView) rootView
+					.findViewById(R.id.lst_demande_conducteurs));
 
 			return rootView;
 		}

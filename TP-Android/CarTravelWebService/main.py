@@ -101,16 +101,22 @@ class UtilisateurHandler(webapp2.RequestHandler):
                 #Nouvel utilisateur
                 utilisateur = Utilisateur(key=cle)
                 logging.debug(utilisateur)
-                utilisateur.pseudo = jsonObj['pseudo']
-                utilisateur.password = jsonObj['password']
+                if(jsonObj['pseudo'] is not None):
+                    utilisateur.pseudo = jsonObj['pseudo']
+                if(jsonObj['courriel'] is not None):
+                    utilisateur.courriel = jsonObj['courriel']
+                if(jsonObj['password'] is not None):
+                    utilisateur.password = jsonObj['password']
                 utilisateur.put()
                 status = 201
-            elif(utilisateur.password == jsonObj['password'] and self.request.get('modif') == 'modif'):
+            else:
                 #Modification de l'utilisateur selon ce qui est fourni
                 if(jsonObj['pseudo'] is not None):
                     utilisateur.pseudo = jsonObj['pseudo']
-                if(jsonObj['contacts'] is not None):
-                    utilisateur.contacts = jsonObj['contacts'].replace("[","").replace("]","").split(", ")
+                if(jsonObj['courriel'] is not None):
+                    utilisateur.courriel = jsonObj['courriel']
+                if(jsonObj['password'] is not None):
+                    utilisateur.password = jsonObj['password']
                 utilisateur.put()
                 status = 201
             self.response.set_status(status)

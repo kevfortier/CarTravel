@@ -81,23 +81,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 		// Crée la table pour les parcours
 		db.execSQL("create table " + TABLE_PARCOURS + " (" + COL_ID_PARCOUR
-				+ " text primary key, " + COL_ID_PROPRIETAIRE
-				+ " integer, " + COL_ID_CONDUCTEUR + " integer, " + COL_JOUR
-				+ " text, " + COL_HEURE + " text, " + COL_TYPE_PARCOUR
-				+ " text, " + COL_NBR_PLACE_DISPO + " integer, "
-				+ COL_NBR_PLACE_PRISE + " integer, " + COL_DISTANCE_SUP_MAX
-				+ " real, " + COL_NO_CIVIQUE_DEP + " text, " + COL_RUE_DEP
-				+ " text, " + COL_VILLE_DEP + " text, " + COL_CODE_POSTAL_DEP
-				+ " text, " + COL_NO_CIVIQUE_ARR + " text, " + COL_RUE_ARR
-				+ " text, " + COL_VILLE_ARR + " text, " + COL_CODE_POSTAL_ARR
-				+ " text)");
+				+ " text primary key, " + COL_ID_PROPRIETAIRE + " integer, "
+				+ COL_ID_CONDUCTEUR + " integer, " + COL_JOUR + " text, "
+				+ COL_HEURE + " text, " + COL_TYPE_PARCOUR + " text, "
+				+ COL_NBR_PLACE_DISPO + " integer, " + COL_NBR_PLACE_PRISE
+				+ " integer, " + COL_DISTANCE_SUP_MAX + " real, "
+				+ COL_NO_CIVIQUE_DEP + " text, " + COL_RUE_DEP + " text, "
+				+ COL_VILLE_DEP + " text, " + COL_CODE_POSTAL_DEP + " text, "
+				+ COL_NO_CIVIQUE_ARR + " text, " + COL_RUE_ARR + " text, "
+				+ COL_VILLE_ARR + " text, " + COL_CODE_POSTAL_ARR + " text)");
 
 		// Crée la table pour les parcours-passagers
 		db.execSQL("create table " + TABLE_PARCOUR_PASSAGER + " ("
-				+ COL_ID_PARCOUR + " text, " + COL_ID_PASSAGER
-				+ " integer, " + COL_NBR_PASSAGER + " integer, "
-				+ " primary key (" + COL_ID_PARCOUR + ", " + COL_ID_PASSAGER
-				+ "))");
+				+ COL_ID_PARCOUR + " text, " + COL_ID_PASSAGER + " integer, "
+				+ COL_NBR_PASSAGER + " integer, " + " primary key ("
+				+ COL_ID_PARCOUR + ", " + COL_ID_PASSAGER + "))");
 	}
 
 	@Override

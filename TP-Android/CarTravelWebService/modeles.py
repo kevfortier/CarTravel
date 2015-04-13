@@ -8,6 +8,7 @@ from google.appengine.ext import ndb
     
 class Utilisateur(ndb.Model):
     pseudo = ndb.StringProperty()
+    courriel = ndb.StringProperty()
     password = ndb.StringProperty()
     
 class Parcours(ndb.Model):

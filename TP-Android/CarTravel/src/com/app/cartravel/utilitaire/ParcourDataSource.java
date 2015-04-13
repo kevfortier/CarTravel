@@ -28,7 +28,8 @@ public class ParcourDataSource {
 
 	public String insert(Parcours p_Parcour) {
 		ContentValues row = parcourToContentValues(p_Parcour);
-		String newId = String.valueOf((int)m_Db.insert(DatabaseHelper.TABLE_PARCOURS, null, row));
+		String newId = String.valueOf((int) m_Db.insert(
+				DatabaseHelper.TABLE_PARCOURS, null, row));
 		p_Parcour.setId(newId);
 		return newId;
 	}
@@ -40,8 +41,8 @@ public class ParcourDataSource {
 	}
 
 	public void delete(int p_Id) {
-		m_Db.delete(DatabaseHelper.TABLE_PARCOURS, DatabaseHelper.COL_ID_PARCOUR
-				+ "=" + p_Id, null);
+		m_Db.delete(DatabaseHelper.TABLE_PARCOURS,
+				DatabaseHelper.COL_ID_PARCOUR + "=" + p_Id, null);
 	}
 
 	public void removeAll() {
