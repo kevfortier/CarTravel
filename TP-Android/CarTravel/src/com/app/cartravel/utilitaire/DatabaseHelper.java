@@ -81,7 +81,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 		// Crée la table pour les parcours
 		db.execSQL("create table " + TABLE_PARCOURS + " (" + COL_ID_PARCOUR
-				+ " text primary key, " + COL_ID_PROPRIETAIRE
+				+ " integer primary key autoincrement, " + COL_ID_PROPRIETAIRE
 				+ " integer, " + COL_ID_CONDUCTEUR + " integer, " + COL_JOUR
 				+ " text, " + COL_HEURE + " text, " + COL_TYPE_PARCOUR
 				+ " text, " + COL_NBR_PLACE_DISPO + " integer, "

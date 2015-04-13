@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.app.cartravel.classes.Parcours;
 import com.app.cartravel.classes.Utilisateurs;
@@ -100,7 +101,7 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 		}
 	}
 
-	public void fillListMesDemandeConducteur(ListView laListe) {
+	public void fillListMesDemandeConducteur(ListView laListe, TextView emptyList) {
 		dataParcours = new ParcourDataSource(this);
 		dataParcours.open();
 		List<Parcours> toutsParcours = dataParcours.getAllParcours();
@@ -110,7 +111,11 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 			dataUser.open();
 			m_UtilisateurConnecte = dataUser.getConnectedUtilisateur();
 			dataUser.close();
-
+			
+			if (m_LstParcours != null) {
+				m_LstParcours.clear();
+			}
+			
 			for (Parcours unParcours : toutsParcours) {
 				if (unParcours.getIdProprietaire() == m_UtilisateurConnecte
 						.getId()
@@ -126,18 +131,7 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 
 				laListe.setAdapter(new ParcoursAdapter(this,
 						R.layout.lst_parcours_item, ConvertParcoursToListItems(m_LstParcours)));
-/*
-				View view;
-				LayoutInflater inflater = (LayoutInflater) getBaseContext()
-						.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-				view = inflater.inflate(R.layout.fragment_parcours, null);
-
-				m_MesDemandesConducteur = (ListView) view
-						.findViewById(R.id.lst_demande_conducteurs);
-				m_Adapter = new ParcoursAdapter(this,
-						R.layout.lst_parcours_item,
-						ConvertParcoursToListItems(m_LstParcours));
-				m_MesDemandesConducteur.setAdapter(m_Adapter);*/
+				emptyList.setVisibility(View.GONE);
 			}
 		}
 	}
@@ -230,9 +224,8 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 			List<Parcours> parcours) {
 		List<ParcoursItem> items = new ArrayList<ParcoursItem>();
 		for (Parcours unParcours : parcours) {
-			String strAdresse = unParcours.getNumCiviqueArr()
-					+ unParcours.getRueArr();
-			items.add(new ParcoursItem(unParcours.getJour(), strAdresse));
+			items.add(new ParcoursItem(unParcours.getJour() + " - ", unParcours.getNumCiviqueArr()
+					+ " " + unParcours.getRueArr()));
 		}
 		return items;
 	}
@@ -436,7 +429,7 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 			View rootView = inflater.inflate(R.layout.fragment_parcours,
 					container, false);
 
-			activity.fillListMesDemandeConducteur((ListView) rootView.findViewById(R.id.lst_demande_conducteurs));
+			activity.fillListMesDemandeConducteur((ListView) rootView.findViewById(R.id.lst_demande_conducteurs), (TextView) rootView.findViewById(R.id.lst_demande_conducteurs_vide));
 
 			return rootView;
 		}
