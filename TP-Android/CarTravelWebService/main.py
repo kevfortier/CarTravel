@@ -143,34 +143,28 @@ class UtilisateurHandler(webapp2.RequestHandler):
             self.error(500)
             
 class ParcoursHandler (webapp2.RequestHandler):
-    def get(self, username, idParcours = None): 
+    def get(self, idParcours = None): 
         try:
-            if(username is not None):
-                cle = ndb.Key('Utilisateur', username)
-                utilisateur = cle.get()
-                if(utilisateur is None):
+            
+            if(idParcours is None):
+                resultat = []
+                query = Parcours.query(username = Parcours.proprietaire)
+                logging.info(query)
+                for p in query:
+                    dicParcours = p.to_dict()
+                    dictParcours['idParcours'] = p.key.id()
+                    resultat.append(distParcours)
+                    
+            else:
+                cle = ndb.key('Parcours', idParcours)
+                parcours = cle.get()
+                if (parcours is None):
                     self.response.set_status(404)
                     return
+                resultat = parcours.to_dict()
                 
-                if(idParcours is None):
-                    resultat = []
-                    query = Parcours.query(username = Parcours.proprietaire)
-                    logging.info(query)
-                    for p in query:
-                        dicParcours = p.to_dict()
-                        dictParcours['idParcours'] = p.key.id()
-                        resultat.append(distParcours)
-                        
-                else:
-                    cle = ndb.key('Parcours', idParcours)
-                    parcours = cle.get()
-                    if (parcours is None):
-                        self.response.set_status(404)
-                        return
-                    resultat = parcours.to_dict()
-                    
-                self.response.headers['Content-type'] = 'application/json'
-                self.response.out.write(json.dumps(resultat))
+            self.response.headers['Content-type'] = 'application/json'
+            self.response.out.write(json.dumps(resultat))
         
         except (ValueError, db.BadValueError), ex:
             logging.info(ex)
@@ -180,17 +174,8 @@ class ParcoursHandler (webapp2.RequestHandler):
             logging.exception(ex)
             self.error(500)
     
-    def put(self, username, idParcours):
+    def put(self, idParcours):
         try:
-            if(username is not None):
-                cle = ndb.key('Utilisateur', username)
-                user = cle.get()
-                if(user is None):
-                    self.response.set_status(404)
-                    return
-            else:
-                self.response.set_status(404)
-                return
             
             cle = ndb.key('Parcours', idParcours)
             parcours = cle.get()
@@ -298,7 +283,7 @@ class ParcoursHandler (webapp2.RequestHandler):
             logging.exception(ex)
             self.error(500)
             
-    def delete(self, username, idParcours=None):
+    def delete(self, idParcours=None):
         try:
             if(idParcours is None):
                 
