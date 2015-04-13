@@ -17,6 +17,7 @@ public class JsonParcours {
 	public static String PARCOURS_JOUR = "jour";
 	public static String PARCOURS_HEURE = "heure";
 	public static String PARCOURS_REPETITIF = "repetitif";
+	public static String PARCOURS_NBR_PASSAGERS = "nbrPassagers";
 	public static String PARCOURS_NBR_PLACES_DISPO = "nbrPlacesDispo";
 	public static String PARCOURS_NBR_PLACES_PRISE = "nbrPlacesPrise";
 	public static String PARCOURS_DIST_SUPP_MAX = "distSuppMax";
@@ -44,6 +45,7 @@ public class JsonParcours {
 					jsonParcours.getString(PARCOURS_JOUR),
 					jsonParcours.getString(PARCOURS_HEURE),
 					jsonParcours.getBoolean(PARCOURS_REPETITIF),
+					jsonParcours.getInt(PARCOURS_NBR_PASSAGERS),
 					jsonParcours.getInt(PARCOURS_NBR_PLACES_DISPO),
 					jsonParcours.getInt(PARCOURS_NBR_PLACES_PRISE),
 					(float) jsonParcours.getDouble(PARCOURS_DIST_SUPP_MAX),
@@ -70,6 +72,7 @@ public class JsonParcours {
 		jsonObj.put(PARCOURS_JOUR, parcours.getJour());
 		jsonObj.put(PARCOURS_HEURE, parcours.getHeure());
 		jsonObj.put(PARCOURS_REPETITIF, parcours.getRepetitif());
+		jsonObj.put(PARCOURS_NBR_PASSAGERS, parcours.getNbPlacePassagers());
 		jsonObj.put(PARCOURS_NBR_PLACES_DISPO, parcours.getNbPlaceDispo());
 		jsonObj.put(PARCOURS_NBR_PLACES_PRISE, parcours.getNbPlacePrise());
 		jsonObj.put(PARCOURS_DIST_SUPP_MAX, parcours.getDistanceSupMax());

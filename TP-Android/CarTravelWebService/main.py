@@ -148,12 +148,12 @@ class ParcoursHandler (webapp2.RequestHandler):
             
             if(idParcours is None):
                 resultat = []
-                query = Parcours.query(username = Parcours.proprietaire)
+                query = Parcours.query()
                 logging.info(query)
                 for p in query:
-                    dicParcours = p.to_dict()
+                    dictParcours = p.to_dict()
                     dictParcours['idParcours'] = p.key.id()
-                    resultat.append(distParcours)
+                    resultat.append(dictParcours)
                     
             else:
                 cle = ndb.key('Parcours', idParcours)
@@ -177,7 +177,7 @@ class ParcoursHandler (webapp2.RequestHandler):
     def put(self, idParcours):
         try:
             
-            cle = ndb.key('Parcours', idParcours)
+            cle = ndb.key.Key('Parcours', idParcours)
             parcours = cle.get()
             
             jsonObj = json.loads(self.request.body)
@@ -216,7 +216,7 @@ class ParcoursHandler (webapp2.RequestHandler):
                 if(jsonObj['codePostalDep'] is not None):
                     parcours.codePostalDep = jsonObj['codePostalDep']
                 if(jsonObj['numCivArr'] is not None):
-                    parcrous.numCivArr = jsonObj['numCivArr']
+                    parcours.numCivArr = jsonObj['numCivArr']
                 if(jsonObj['rueArr'] is not None):
                     parcours.rueArr = jsonObj['rueArr']
                 if(jsonObj['villeArr'] is not None):
@@ -264,7 +264,7 @@ class ParcoursHandler (webapp2.RequestHandler):
                 if(jsonObj['codePostalDep'] is not None):
                     parcours.codePostalDep = jsonObj['codePostalDep']
                 if(jsonObj['numCivArr'] is not None):
-                    parcrous.numCivArr = jsonObj['numCivArr']
+                    parcours.numCivArr = jsonObj['numCivArr']
                 if(jsonObj['rueArr'] is not None):
                     parcours.rueArr = jsonObj['rueArr']
                 if(jsonObj['villeArr'] is not None):
@@ -372,7 +372,7 @@ application = webapp2.WSGIApplication(
         webapp2.Route(r'/utilisateurs/<username>',  handler=UtilisateurHandler, methods=['GET', 'PUT', 'DELETE']),
         webapp2.Route(r'/utilisateurs/<username>/connexion', handler=Connexion, methods=['GET']),
         webapp2.Route(r'/utilisateurs/notifications', handler=ObtenirNotifications, methods=['GET']),
-        webapp2.Route(r'/parcours', handler=ParcoursHandler, methods=['GET', 'PUT', 'DELETE'])
-        
+        webapp2.Route(r'/parcours', handler=ParcoursHandler, methods=['GET', 'DELETE']),
+        webapp2.Route(r'/parcours/<idParcours>', handler=ParcoursHandler, methods=['GET', 'PUT', 'DELETE'])
     ],
     debug=True)

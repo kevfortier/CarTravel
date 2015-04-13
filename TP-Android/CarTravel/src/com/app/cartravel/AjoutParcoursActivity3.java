@@ -184,8 +184,7 @@ public class AjoutParcoursActivity3 extends Activity {
 									parcourData.close();
 
 									temps = uneDate.getTime() + "";
-									new PutNewParcoursTask(this).execute(util,
-											leParcours, temps);
+									new PutNewParcoursTask(this).execute(leParcours, temps);
 
 									Toast.makeText(this,
 											R.string.toast_ajout_parcours,
@@ -280,18 +279,16 @@ public class AjoutParcoursActivity3 extends Activity {
 		@Override
 		protected Void doInBackground(Object... params) {
 			
-			Utilisateurs connectedUser = (Utilisateurs) params[0];
-			unParcours = (Parcours) params[1];
-			String temps = (String) params[2];
+			unParcours = (Parcours) params[0];
+			String temps = (String) params[1];
 
-			int idUtil = connectedUser.getId();
-			String idParcours = String.valueOf(idUtil) + temps;
+			String idParcours = temps;
 
 			try {
 				unParcours.setId(idParcours);
 
 				URI uri = new URI(
-						"http" + Util.WEB_SERVICE,
+						"http", Util.WEB_SERVICE,
 						Util.REST_PARCOURS + "/" + unParcours.getId(),
 						null, null);
 				HttpPut putMethod = new HttpPut(uri);
@@ -299,18 +296,18 @@ public class AjoutParcoursActivity3 extends Activity {
 				String jsonObj = JsonParcours.ToJSONObject(unParcours)
 						.toString();
 
-				// Log.i(TAG, "JSON : " + jsonObj);
+				Log.i(TAG, "JSON : " + jsonObj);
 
 				putMethod.setEntity(new StringEntity(jsonObj));
 				putMethod.addHeader("Content-Type", "application/json");
 
 				String body = m_ClientHttp.execute(putMethod,
 						new BasicResponseHandler());
+				Log.i(TAG, "Recu : " + body);
 
 			} catch (Exception e) {
 				m_Exp = e;
 			}
-			// TODO Auto-generated method stub
 			return null;
 		}
 	}

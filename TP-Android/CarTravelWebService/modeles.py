@@ -12,8 +12,8 @@ class Utilisateur(ndb.Model):
     
 class Parcours(ndb.Model):
     idParcours = ndb.StringProperty()
-    proprietaire = ndb.StringProperty()
-    conducteur = ndb.StringProperty()
+    proprietaire = ndb.IntegerProperty()
+    conducteur = ndb.IntegerProperty()
     jour = ndb.StringProperty()
     heure = ndb.StringProperty()
     repetitif = ndb.BooleanProperty()
