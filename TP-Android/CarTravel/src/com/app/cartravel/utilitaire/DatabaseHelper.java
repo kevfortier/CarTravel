@@ -94,10 +94,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 		// Crée la table pour les parcours-passagers
 		db.execSQL("create table " + TABLE_PARCOUR_PASSAGER + " ("
-				+ COL_ID_PARCOUR + " text, " + COL_ID_PASSAGER
-				+ " integer, " + COL_NBR_PASSAGER + " integer, "
-				+ " primary key (" + COL_ID_PARCOUR + ", " + COL_ID_PASSAGER
-				+ "))");
+				+ COL_ID_PARCOUR + " text, " + COL_ID_PASSAGER + " integer, "
+				+ COL_NBR_PASSAGER + " integer, " + " primary key ("
+				+ COL_ID_PARCOUR + ", " + COL_ID_PASSAGER + "))");
 	}
 
 	@Override

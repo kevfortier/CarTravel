@@ -184,7 +184,8 @@ public class AjoutParcoursActivity3 extends Activity {
 									parcourData.close();
 
 									temps = uneDate.getTime() + "";
-									new PutNewParcoursTask(this).execute(leParcours, temps);
+									new PutNewParcoursTask(this).execute(
+											leParcours, temps);
 
 									Toast.makeText(this,
 											R.string.toast_ajout_parcours,
@@ -278,7 +279,7 @@ public class AjoutParcoursActivity3 extends Activity {
 
 		@Override
 		protected Void doInBackground(Object... params) {
-			
+
 			unParcours = (Parcours) params[0];
 			String temps = (String) params[1];
 
@@ -287,10 +288,8 @@ public class AjoutParcoursActivity3 extends Activity {
 			try {
 				unParcours.setId(idParcours);
 
-				URI uri = new URI(
-						"http", Util.WEB_SERVICE,
-						Util.REST_PARCOURS + "/" + unParcours.getId(),
-						null, null);
+				URI uri = new URI("http", Util.WEB_SERVICE, Util.REST_PARCOURS
+						+ "/" + unParcours.getId(), null, null);
 				HttpPut putMethod = new HttpPut(uri);
 
 				String jsonObj = JsonParcours.ToJSONObject(unParcours)

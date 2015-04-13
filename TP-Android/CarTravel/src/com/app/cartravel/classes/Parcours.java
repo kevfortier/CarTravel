@@ -27,16 +27,15 @@ public class Parcours implements java.io.Serializable {
 	private String m_VilleArr;
 	private String m_CodePostalArr;
 
-	
 	/**
 	 * Constructeur globale
 	 */
 	public Parcours(String p_Id, int p_IdProprietaire, int p_IdConducteur,
-			String p_Jour, String p_Heure, boolean p_Repetitif, int p_NbPlacePassagers,
-			int p_NbPlaceDispo, int p_NbPlacePrise, float p_DistanceSupMax,
-			String p_NumCiviqueDep, String p_RueDep, String p_VilleDep,
-			String p_CodePostalDep, String p_NumCiviqueArr, String p_RueArr,
-			String p_VilleArr, String p_CodePostalArr) {
+			String p_Jour, String p_Heure, boolean p_Repetitif,
+			int p_NbPlacePassagers, int p_NbPlaceDispo, int p_NbPlacePrise,
+			float p_DistanceSupMax, String p_NumCiviqueDep, String p_RueDep,
+			String p_VilleDep, String p_CodePostalDep, String p_NumCiviqueArr,
+			String p_RueArr, String p_VilleArr, String p_CodePostalArr) {
 		super();
 		this.m_Id = p_Id;
 		this.m_IdProprietaire = p_IdProprietaire;
@@ -59,7 +58,7 @@ public class Parcours implements java.io.Serializable {
 		this.m_VilleArr = p_VilleArr;
 		this.m_CodePostalArr = p_CodePostalArr;
 	}
-	
+
 	/**
 	 * Constructeur pour Conducteur
 	 */
@@ -174,8 +173,8 @@ public class Parcours implements java.io.Serializable {
 		this.m_VilleArr = p_VilleArr;
 		this.m_CodePostalArr = p_CodePostalArr;
 	}
-	
-	public Parcours(){
+
+	public Parcours() {
 		this.m_Id = ID_NON_DEFINI;
 	}
 

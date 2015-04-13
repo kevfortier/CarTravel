@@ -47,7 +47,7 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 
 	private List<Parcours> m_LstParcours;
 	private ParcourDataSource dataParcours;
-	//private ParcoursAdapter m_Adapter;
+	// private ParcoursAdapter m_Adapter;
 
 	private UtilisateurDataSource dataUser;
 	private Utilisateurs m_UtilisateurConnecte;
