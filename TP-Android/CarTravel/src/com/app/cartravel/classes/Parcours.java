@@ -122,7 +122,7 @@ public class Parcours implements java.io.Serializable {
 	/**
 	 * Constructeur pour passagers
 	 */
-	public Parcours(String p_Id, int p_IdProprietaire, int p_IdConducteur,
+	public Parcours(String p_Id, int p_IdProprietaire,
 			String p_Jour, String p_Heure, boolean p_Repetitif,
 			int p_NbPlacePassagers, String p_NumCiviqueDep, String p_RueDep,
 			String p_VilleDep, String p_CodePostalDep, String p_NumCiviqueArr,
@@ -130,7 +130,6 @@ public class Parcours implements java.io.Serializable {
 		super();
 		this.m_Id = p_Id;
 		this.m_IdProprietaire = p_IdProprietaire;
-		this.m_IdConducteur = p_IdConducteur;
 		this.m_Jour = p_Jour;
 		this.m_Heure = p_Heure;
 		this.m_Repetitif = p_Repetitif;
