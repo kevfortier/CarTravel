@@ -36,8 +36,7 @@ public class ParcoursAdapter extends ArrayAdapter<ParcoursItem> {
 			contenant = new ParcoursHolder();
 
 			view = inflater.inflate(m_LayoutResId, p_Parent, false);
-			contenant.date = (TextView) view.findViewById(R.id.txtDate);
-			contenant.adresse = (TextView) view.findViewById(R.id.txtAdresse);
+			contenant.ligne = (TextView) view.findViewById(R.id.txtLigne);
 			view.setTag(contenant);
 		} else {
 			contenant = (ParcoursHolder) view.getTag();
@@ -45,18 +44,15 @@ public class ParcoursAdapter extends ArrayAdapter<ParcoursItem> {
 
 		ParcoursItem item = (ParcoursItem) this.m_Parcours.get(p_Position);
 
-		if (item.getDate() != null) {
-			contenant.date.setText(item.getDate());
-		}
-		if (item.getAdresse() != null) {
-			contenant.adresse.setText(item.getAdresse());
+		if (item.getDate() != null && item.getAdresse() != null) {
+			String strLigne = item.getDate() + " - " + item.getAdresse();
+			contenant.ligne.setText(strLigne);
 		}
 
 		return view;
 	}
 
 	private static class ParcoursHolder {
-		TextView date;
-		TextView adresse;
+		public TextView ligne;
 	}
 }

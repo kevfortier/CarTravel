@@ -49,7 +49,7 @@ public class ParcourDataSource {
 		m_Db.delete(DatabaseHelper.TABLE_PARCOURS, null, null);
 	}
 
-	public Parcours getParcours(int p_IdParcour) {
+	public Parcours getParcours(String p_IdParcour) {
 		Parcours p = null;
 		Cursor c = m_Db.query(DatabaseHelper.TABLE_PARCOURS, null,
 				DatabaseHelper.COL_ID_PARCOUR + "=" + p_IdParcour, null, null,
