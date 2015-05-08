@@ -21,7 +21,6 @@
         <item>Covoiturage</item>
         <item>Mon compte</item>
         <item>Mon profil</item>
-        <item>Paramètres</item>
         <item>Déconnexion</item>
     </string-array>
 
@@ -30,18 +29,18 @@
     <string name="frag_passager">Passagers</string>
     <string name="frag_conducteur">Conducteurs</string>
     <string name="frag_mes_parcour">Mes parcours</string>
-    <string name="passagers_pot">Liste des passagers potentiel</string>
+    <string name="passagers_pot">Liste des passagers potentiels</string>
     <string name="passagers">Liste de mes passagers</string>
-    <string name="conducteurs_pot">Liste des conducteurs potentiel</string>
+    <string name="conducteurs_pot">Liste des conducteurs potentiels</string>
     <string name="conducteurs">Liste de mes conducteurs</string>
-    <string name="lst_passagers_pot_vide">La Liste des passagers potentiel est vide</string>
-    <string name="lst_passagers_vide">La Liste de vos passagers est vide</string>
-    <string name="lst_conducteurs_pot_vide">La Liste des conducteurs potentiel est vide</string>
-    <string name="lst_conducteurs_vide">La Liste de vos conducteurs est vide</string>
-    <string name="demande_conducteurs">Liste de mes demandes de conducteurs</string>
-    <string name="lst_demande_conducteurs_vide">La Liste de vos demandes de conducteurs est vide</string>
+    <string name="lst_passagers_pot_vide">La liste des passagers potentiels est vide</string>
+    <string name="lst_passagers_vide">La liste de vos passagers est vide</string>
+    <string name="lst_conducteurs_pot_vide">La liste des conducteurs potentiels est vide</string>
+    <string name="lst_conducteurs_vide">La liste de vos conducteurs est vide</string>
+    <string name="demande_conducteurs">Liste de mes demandes de conducteur</string>
+    <string name="lst_demande_conducteurs_vide">La liste de vos demandes de conducteur est vide</string>
     <string name="demande_passagers">Liste de mes demandes de passagers</string>
-    <string name="lst_demande_passagers_vide">La Liste de vos demandes de passagers est vide</string>
+    <string name="lst_demande_passagers_vide">La liste de vos demandes de passagers est vide</string>
     <string name="mes_offres">Mes offres</string>
     <string name="lst_offres_vide">Vous n\'avez fait aucune offre</string>
     <string name="mes_demandes">Mes demandes</string>

@@ -100,11 +100,8 @@ class UtilisateurHandler(webapp2.RequestHandler):
             if(utilisateur is None):
                 #Nouvel utilisateur
                 utilisateur = Utilisateur(key=cle)
-                logging.debug(utilisateur)
                 if(jsonObj['pseudo'] is not None):
                     utilisateur.pseudo = jsonObj['pseudo']
-                if(jsonObj['courriel'] is not None):
-                    utilisateur.courriel = jsonObj['courriel']
                 if(jsonObj['password'] is not None):
                     utilisateur.password = jsonObj['password']
                 utilisateur.put()
@@ -113,8 +110,6 @@ class UtilisateurHandler(webapp2.RequestHandler):
                 #Modification de l'utilisateur selon ce qui est fourni
                 if(jsonObj['pseudo'] is not None):
                     utilisateur.pseudo = jsonObj['pseudo']
-                if(jsonObj['courriel'] is not None):
-                    utilisateur.courriel = jsonObj['courriel']
                 if(jsonObj['password'] is not None):
                     utilisateur.password = jsonObj['password']
                 utilisateur.put()

@@ -115,9 +115,7 @@ public class NavigationDrawerUtil {
 			if (mContext.getClass() != ProfilActivity.class)
 				i = new Intent(mContext, ProfilActivity.class);
 			break;
-		case 4: // Paramètres
-			break;
-		case 5: // Déconnexion
+		case 4: // Déconnexion
 			UtilisateurDataSource dataSource = new UtilisateurDataSource(
 					mContext);
 			dataSource.open();

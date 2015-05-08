@@ -97,6 +97,8 @@ public class ProfilModifActivity extends Activity {
 		String strVille = mVille.getText().toString().trim();
 		String strCodePostal = mCodePostal.getText().toString().trim();
 		String strNumTel = mNumTel.getText().toString().trim();
+		Boolean boolVoiture = mVoiture.isChecked();
+		
 		Intent i = new Intent();
 
 		if (Util.ValiderString(new String[] { strNumCivique, strRue, strVille,
@@ -104,7 +106,8 @@ public class ProfilModifActivity extends Activity {
 			if (!mNumCivDep.matches(strNumCivique) || !mRueDep.matches(strRue)
 					|| !mVilleDep.matches(strVille)
 					|| !mCodePostDep.matches(strCodePostal)
-					|| !mNumTelDep.matches(strNumTel)) {
+					|| !mNumTelDep.matches(strNumTel)
+					|| !mVoiture.isChecked() != boolVoiture) {
 
 				if (Util.verifChaineCharac(strRue)) {
 
