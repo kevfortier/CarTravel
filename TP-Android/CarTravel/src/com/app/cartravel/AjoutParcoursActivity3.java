@@ -1,6 +1,7 @@
 package com.app.cartravel;
 
 import java.net.URI;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.apache.http.client.HttpClient;
@@ -159,17 +160,20 @@ public class AjoutParcoursActivity3 extends Activity {
 						if (Util.verifChaineCharac(strRueArr)) {
 							if (Util.verifChaineCharac(strVilleArr)) {
 								if (Util.verifCodePostal(strCodePostalArr)) {
+									Calendar c = Calendar.getInstance(); 
+									
+									String idParcours = util.getPseudo() + String.valueOf(c.getTimeInMillis());
 									if (m_Cond) {
-										leParcours = new Parcours(util.getId(),
+										leParcours = new Parcours(idParcours, util.getId(),
 												util.getId(), m_Jour, m_Heure,
-												m_Repetitif, m_CapaciteMax,
+												m_Repetitif, m_CapaciteMax, 0,
 												m_DistanceMax, strNumCivDep,
 												strRueDep, strVilleDep,
 												strCodePostalDep, strNumCivArr,
 												strRueArr, strVilleArr,
 												strCodePostalArr);
 									} else {
-										leParcours = new Parcours(util.getId(),
+										leParcours = new Parcours(idParcours, util.getId(),
 												m_Jour, m_Heure, m_Repetitif,
 												m_NbrPassagers, strNumCivDep,
 												strRueDep, strVilleDep,
