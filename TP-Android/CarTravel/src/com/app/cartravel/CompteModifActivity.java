@@ -1,15 +1,27 @@
 package com.app.cartravel;
 
+import java.net.URI;
+
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.app.cartravel.classes.Utilisateurs;
+import com.app.cartravel.jsonparser.JsonUtilisateur;
 import com.app.cartravel.utilitaire.Util;
 import com.app.cartravel.utilitaire.UtilisateurDataSource;
 
@@ -28,6 +40,8 @@ public class CompteModifActivity extends Activity {
 	private EditText mMDP;
 	private EditText mMDPVerif;
 	private UtilisateurDataSource mDataSource;
+	
+	private HttpClient m_ClientHttp = new DefaultHttpClient();
 
 	// private Bundle m_extra;
 
@@ -180,7 +194,7 @@ public class CompteModifActivity extends Activity {
 			dataSource.close();
 
 			if (!erreurRencontree || modifPseudo) {
-
+				new ModifierCompteTask(this).execute(strCourriel, strPseudo, strMotDePasse);
 				this.setResult(RESULT_OK, i);
 				this.finish();
 			} else {
@@ -210,5 +224,41 @@ public class CompteModifActivity extends Activity {
 		mCourriel.setText(mUtilisateur.getCourriel());
 		mPseudo.setText(mUtilisateur.getPseudo());
 		mMDP.setText(mUtilisateur.getMotDePasse());
+	}
+	
+	private class ModifierCompteTask extends AsyncTask<String, Void, Void> {
+		private Exception m_Exp;
+		private Context m_Context;
+		private Utilisateurs utilisateur;
+		
+		public ModifierCompteTask(Context p_Context) {
+			this.m_Context = p_Context;
+		}
+		
+		@Override
+		protected Void doInBackground(String... params) {
+			try {
+				utilisateur = new Utilisateurs(params[0], params[1],
+						Util.sha1(params[2]), "", "", "", "", "", 0, 0, 0, 0, 0);
+				
+				URI uri = new URI(
+						"http",
+						Util.WEB_SERVICE,
+						Util.REST_UTILISATEUR + "/" + utilisateur.getCourriel(),
+						null, null);
+				
+				HttpPut putMethod = new HttpPut(uri);
+
+				putMethod.setEntity(new StringEntity(JsonUtilisateur
+						.ToJSONObject(utilisateur).toString()));
+				putMethod.addHeader("Content-Type", "application/json");
+
+				String body = m_ClientHttp.execute(putMethod,
+						new BasicResponseHandler());
+			} catch (Exception e) {
+				m_Exp = e;
+			}
+			return null;
+		}
 	}
 }
