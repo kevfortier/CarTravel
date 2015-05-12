@@ -13,7 +13,7 @@ import webapp2
 import logging
 import datetime
 
-from modeles import Utilisateur, Parcours
+from modeles import Utilisateur, Parcours, Profil
 from symbol import if_stmt
 
 def serialiser_pour_json(obj):
@@ -146,7 +146,119 @@ class UtilisateurHandler(webapp2.RequestHandler):
         except Exception, ex:
             logging.exception(ex)
             self.error(500)
+
+class ProfilHandler (webapp2.RequestHandler):
+    def get (self, username):
+        try:
+            if(username is not None):
+                cle = ndb.Key('Utilisateur', username)
+                utilisateur = cle.get()
+                if(utilisateur is None):
+                    self.response.set_status(404)
+                    return
+                
+                cle = ndb.Key('Profil', username)
+                profil = cle.get()
+                
+                if (profil is None):
+                    self.response.set_status(404)
+                    return
+                
+                resultat = profil.to_dict()
+                
+            self.response.headers['Content-Type'] = 'application/json'
+            self.response.out.write(json.dumps(resultat))
+        
+        except (ValueError, db.BadValueError), ex:
+            logging.info(ex)
+            self.error(400)
             
+        except Exception, ex:
+            logging.exception(ex)
+            self.error(500)
+    
+    
+    def put(self, username):
+        try:
+            logging.debug(username)
+            if(username is not None):
+                cle = ndb.Key('Utilisateur', username)
+                user = cle.get()
+                if(user is None):
+                    self.response.set_status(404)
+                    return
+            else:
+                self.response.set_status(404)
+                return
+            
+            cle = ndb.key.Key('Utilisateur', username)
+            profil = cle.get()
+            
+            status = 204
+            if(profil is None):
+                profil = Profil(key=cle)
+                status = 201
+                
+                if (jsonObj['courrielUser'] is not None):
+                    profil.courrielUser = jsonObj['courrielUser']
+                if (jsonObj['numCivique'] is not None):
+                    profil.courrielUser = jsonObj['numCivique']
+                if (jsonObj['rue'] is not None):
+                    profil.courrielUser = jsonObj['rue']
+                if (jsonObj['ville'] is not None):
+                    profil.courrielUser = jsonObj['ville']
+                if (jsonObj['codePostal'] is not None):
+                    profil.courrielUser = jsonObj['codePostal']
+                if (jsonObj['numTel'] is not None):
+                    profil.courrielUser = jsonObj['numTel']
+                if (jsonObj['posVoiture'] is not None):
+                    profil.courrielUser = jsonObj['posVoiture']
+                if (jsonObj['noteCond'] is not None):
+                    profil.courrielUser = jsonObj['noteCond']
+                if (jsonObj['notePass'] is not None):
+                    profil.courrielUser = jsonObj['notePass']
+                profil.put()
+                
+            elif(profil is not None):
+                if(cle.get() is not None):
+                    cle.delete()
+                    self.response.set_status(204)
+                else:
+                    self.error(404)
+                
+                profil = Profil(key=cle)
+                status = 201
+                
+                if (jsonObj['courrielUser'] is not None):
+                    profil.courrielUser = jsonObj['courrielUser']
+                if (jsonObj['numCivique'] is not None):
+                    profil.courrielUser = jsonObj['numCivique']
+                if (jsonObj['rue'] is not None):
+                    profil.courrielUser = jsonObj['rue']
+                if (jsonObj['ville'] is not None):
+                    profil.courrielUser = jsonObj['ville']
+                if (jsonObj['codePostal'] is not None):
+                    profil.courrielUser = jsonObj['codePostal']
+                if (jsonObj['numTel'] is not None):
+                    profil.courrielUser = jsonObj['numTel']
+                if (jsonObj['posVoiture'] is not None):
+                    profil.courrielUser = jsonObj['posVoiture']
+                if (jsonObj['noteCond'] is not None):
+                    profil.courrielUser = jsonObj['noteCond']
+                if (jsonObj['notePass'] is not None):
+                    profil.courrielUser = jsonObj['notePass']
+                profil.put()
+                
+            self.response.set_status(status)
+        
+        except (ValueError, db.BadValueError, KeyError), ex:
+            logging.info(ex)
+            self.error(400)
+        
+        except Exception, ex:
+            logging.exception(ex)
+            self.error(500)
+        
 class ParcoursHandler (webapp2.RequestHandler):
     def get(self, idParcours = None): 
         try:
@@ -369,7 +481,6 @@ class ObtenirNotifications(webapp2.RequestHandler):
             logging.exception(ex)
             self.error(500)
 
-
 application = webapp2.WSGIApplication(
     [
         ('/',   MainPageHandler),
@@ -378,6 +489,7 @@ application = webapp2.WSGIApplication(
         webapp2.Route(r'/utilisateurs/<username>/connexion', handler=Connexion, methods=['GET']),
         webapp2.Route(r'/utilisateurs/notifications', handler=ObtenirNotifications, methods=['GET']),
         webapp2.Route(r'/parcours', handler=ParcoursHandler, methods=['GET', 'DELETE']),
-        webapp2.Route(r'/parcours/<idParcours>', handler=ParcoursHandler, methods=['GET', 'PUT', 'DELETE'])
+        webapp2.Route(r'/parcours/<idParcours>', handler=ParcoursHandler, methods=['GET', 'PUT', 'DELETE']),
+        webapp2.Route(r'/utilisateurs/<username>/profil',  handler=ProfilHandler, methods=['GET', 'PUT', 'DELETE'])
     ],
     debug=True)

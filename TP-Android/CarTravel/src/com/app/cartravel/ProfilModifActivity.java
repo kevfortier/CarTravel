@@ -1,24 +1,38 @@
 package com.app.cartravel;
 
+import java.net.URI;
+
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.app.cartravel.classes.Parcours;
 import com.app.cartravel.classes.Utilisateurs;
+import com.app.cartravel.jsonparser.JsonParcours;
+import com.app.cartravel.jsonparser.JsonProfil;
 import com.app.cartravel.utilitaire.Util;
 import com.app.cartravel.utilitaire.UtilisateurDataSource;
 
 public class ProfilModifActivity extends Activity {
 
+	private HttpClient m_ClientHttp = new DefaultHttpClient();
 	private Utilisateurs mUtilisateur;
 	private UtilisateurDataSource mDataSource;
-	// private Bundle mExtra;
 
 	private String mNumCivDep;
 	private String mRueDep;
@@ -135,6 +149,7 @@ public class ProfilModifActivity extends Activity {
 								dataSource.update(mUtilisateur);
 								dataSource.close();
 
+								new PutProfilTask(this).execute(mUtilisateur);
 								this.setResult(RESULT_OK, i);
 								this.finish();
 							} else {
@@ -195,4 +210,60 @@ public class ProfilModifActivity extends Activity {
 		}
 	}
 
+	private class PutProfilTask extends AsyncTask<Object, Void, Void> {
+		private Exception m_Exp;
+		private Utilisateurs m_utilisateur_connect;
+		private Context m_Context;
+
+		public PutProfilTask(Context p_Context) {
+			this.m_Context = p_Context;
+		}
+
+		@Override
+		protected Void doInBackground(Object... params) {
+
+			m_utilisateur_connect = (Utilisateurs) params[0];
+
+			try {
+				URI uri = new URI("http", Util.WEB_SERVICE,
+						Util.REST_UTILISATEUR + "/"
+								+ m_utilisateur_connect.getCourriel()
+								+ Util.REST_PROFIL, null, null);
+				HttpPut putMethod = new HttpPut(uri);
+
+				String jsonObj = JsonProfil.ToJSONObject(m_utilisateur_connect)
+						.toString();
+
+				putMethod.setEntity(new StringEntity(jsonObj));
+				putMethod.addHeader("Content-Type", "application/json");
+
+				String body = m_ClientHttp.execute(putMethod,
+						new BasicResponseHandler());
+			} catch (Exception e) {
+				m_Exp = e;
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+
+			// S'il n'y a pas de message d'erreur
+			if (m_Exp == null) {
+				UtilisateurDataSource dataSource = new UtilisateurDataSource(m_Context);
+				dataSource.open();
+				//TODO Creation du profil.
+				
+				dataSource.close();
+			} else {
+				Toast.makeText(
+						m_Context,
+						m_Context.getResources().getText(
+								R.string.toast_erreur_creation_profil),
+						Toast.LENGTH_SHORT).show();
+			}
+		}
+	}
 }

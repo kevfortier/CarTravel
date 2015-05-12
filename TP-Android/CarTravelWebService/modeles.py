@@ -21,12 +21,10 @@ class Parcours(ndb.Model):
     nbrPlacesDispo = ndb.IntegerProperty()
     nbrPlacesPrise = ndb.IntegerProperty()
     distSuppMax = ndb.FloatProperty()
-    
     numCivDep = ndb.StringProperty()
     rueDep = ndb.StringProperty()
     villeDep = ndb.StringProperty()
     codePostalDep = ndb.StringProperty()
-    
     numCivArr = ndb.StringProperty()
     rueArr = ndb.StringProperty()
     villeArr = ndb.StringProperty()
@@ -36,3 +34,14 @@ class Notifications(ndb.Model):
     sender = ndb.StringProperty()
     receivers = ndb.StringProperty(repeated=True)
     message = ndb.StringProperty()
+    
+class Profil(ndb.Model):
+    courrielUser = ndb.StringProperty()
+    numCivique = ndb.StringProperty()
+    rue = ndb.StringProperty()
+    ville = ndb.StringProperty()
+    codePostal = ndb.StringProperty()
+    numTel = ndb.StringProperty()
+    posVoiture = ndb.StringProperty()
+    noteCond = ndb.FloatProperty()
+    notePass = ndb.FloatProperty()

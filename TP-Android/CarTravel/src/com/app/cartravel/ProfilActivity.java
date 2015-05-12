@@ -56,7 +56,7 @@ public class ProfilActivity extends Activity {
 		mDataSource.close();
 
 		if (mUtilisateur != null) {
-			AfficherInfoCompte(mNumCivique, mRue, mVille, mCodePostal, mNumTel,
+			AfficherInfoProfil(mNumCivique, mRue, mVille, mCodePostal, mNumTel,
 					mVoiture, mNoteCond, mNotePass);
 		}
 	}
@@ -76,7 +76,7 @@ public class ProfilActivity extends Activity {
 			mDataSource.open();
 			mUtilisateur = mDataSource.getConnectedUtilisateur();
 			mDataSource.close();
-			AfficherInfoCompte(mNumCivique, mRue, mVille, mCodePostal, mNumTel,
+			AfficherInfoProfil(mNumCivique, mRue, mVille, mCodePostal, mNumTel,
 					mVoiture, mNoteCond, mNotePass);
 			Toast.makeText(this, R.string.toast_modif_compte,
 					Toast.LENGTH_SHORT).show();
@@ -103,7 +103,7 @@ public class ProfilActivity extends Activity {
 		}
 	}
 
-	public void AfficherInfoCompte(TextView mNumCivique, TextView mRue,
+	public void AfficherInfoProfil(TextView mNumCivique, TextView mRue,
 			TextView mVille, TextView mCodePostal, TextView mNumTel,
 			CheckBox mVoiture, RatingBar mNoteCond, RatingBar mNotePass) {
 		mNumCivique.setText(mUtilisateur.getNumCivique());

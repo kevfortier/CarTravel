@@ -102,7 +102,9 @@
     <string name="title_modif_compte">Modification du compte</string>
     <string name="action_modifier_compte">Modifier le compte</string>
     <string name="action_sauvegarder_compte">Sauvegarder les modifications</string>
-
+    <string name="avertissement_compte_modifier">Compte modifier</string>
+	<string name="erreur_compte_modifier">Erreur lors de la modification</string>
+    
     <!-- String profiles -->
     <string name="lbl_num_civ">Num. civique :</string>
     <string name="lbl_rue">Rue :</string>
@@ -121,8 +123,13 @@
     <string name="toast_ville_vide">Le champ ville ne peut être vide.</string>
     <string name="toast_code_postal_vide">Le champ code postal ne peut être vide.</string>
     <string name="toast_code_postal_confirm">Le code postal n\'est pas valide.</string>
+<<<<<<< .mine
+	<string name="toast_num_tel_confirm">Le numéro de téléphone n\'est pas valide.</string>
+=======
     <string name="toast_num_tel_confirm">Le numéro de téléphone n\'est pas valide.</string>
-
+>>>>>>> .theirs
+	<string name="toast_erreur_creation_profil">Erreur lors de la modif du profil</string>
+	
     <!-- String parcours -->
     <string name="lbl_choix_cov">Choix de covoiturage :</string>
     <string name="chck_pass">Passager</string>
