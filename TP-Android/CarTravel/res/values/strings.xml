@@ -48,12 +48,11 @@
     <string name="lbl_depart">Adresse de départ :</string>
     <string name="lbl_arrive">Adresse d\'arrivée :</string>
     <string name="chk_adr_profil">Même adresse que profil</string>
-    
     <string name="txt_num_civique">Num. Civique</string>
     <string name="txt_rue">Rue</string>
     <string name="txt_ville">Ville</string>
     <string name="txt_code_postal">Code Postal</string>
-    
+
     <!-- Activity unParcours -->
     <string name="lbl_proprietaire">Demandeur:</string>
     <string name="lbl_conducteur">Conducteur:</string>
@@ -111,7 +110,7 @@
     <string name="lbl_rue">Rue :</string>
     <string name="lbl_ville">Ville :</string>
     <string name="lbl_num_tel">Num. téléphone :</string>
-	<string name="lbl_cod_post">Code postal :</string>
+    <string name="lbl_cod_post">Code postal :</string>
     <string name="lbl_voiture">Possède une voiture :</string>
     <string name="rtingBar_pass">Passager: </string>
     <string name="rtingBar_cond">Conducteur: </string>
@@ -124,7 +123,11 @@
     <string name="toast_ville_vide">Le champ ville ne peut être vide.</string>
     <string name="toast_code_postal_vide">Le champ code postal ne peut être vide.</string>
     <string name="toast_code_postal_confirm">Le code postal n\'est pas valide.</string>
+<<<<<<< .mine
 	<string name="toast_num_tel_confirm">Le numéro de téléphone n\'est pas valide.</string>
+=======
+    <string name="toast_num_tel_confirm">Le numéro de téléphone n\'est pas valide.</string>
+>>>>>>> .theirs
 	<string name="toast_erreur_creation_profil">Erreur lors de la modif du profil</string>
 	
     <!-- String parcours -->
@@ -145,8 +148,8 @@
     <string name="lbl_type_parcour">Type du parcours</string>
     <string name="action_confirmer_parcour">Confirmer</string>
     <string name="action_ajout_parcours">Créer un parcours</string>
-	<string name="hint_date">JJ/MM/AAAA</string>
-	<string name="lbl_nbr_passager">Nombre de passagers</string>
+    <string name="hint_date">JJ/MM/AAAA</string>
+    <string name="lbl_nbr_passager">Nombre de passagers</string>
     <string name="lbl_capacite_max">Nombre de passagers max.</string>
     <string name="lbl_distance_max">Distance max.</string>
     <string name="toast_ajout_parcours">Le parcours a été ajouté avec succès.</string>
@@ -176,10 +179,11 @@
     <string name="toast_ville_arr_invalide">La ville de l\'adresse d\'arrivée n\'est pas valide.</string>
     <string name="toast_code_postal_arr_vide">Veillez saisir un code postal pour l\'adresse d\'arrivée.</string>
     <string name="toast_code_postal_arr_invalide">Le code postal de l\'adresse d\'arrivée n\'est pas valide.</string>
-	
+
     <!-- Spinner type parcours -->
     <string-array name="type_parcour_array">
         <item>Ponctuel</item>
         <item>Périodique</item>
     </string-array>
+
 </resources>

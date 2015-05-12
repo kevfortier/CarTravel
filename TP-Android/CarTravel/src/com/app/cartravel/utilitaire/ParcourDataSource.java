@@ -37,7 +37,7 @@ public class ParcourDataSource {
 	public void update(Parcours p_Parcour) {
 		ContentValues row = parcourToContentValues(p_Parcour);
 		m_Db.update(DatabaseHelper.TABLE_PARCOURS, row,
-				DatabaseHelper.COL_ID_PARCOUR + "=" + p_Parcour.getId(), null);
+				DatabaseHelper.COL_ID_PARCOUR + "='" + p_Parcour.getId() + "'", null);
 	}
 
 	public void delete(int p_Id) {
@@ -52,7 +52,7 @@ public class ParcourDataSource {
 	public Parcours getParcours(String p_IdParcour) {
 		Parcours p = null;
 		Cursor c = m_Db.query(DatabaseHelper.TABLE_PARCOURS, null,
-				DatabaseHelper.COL_ID_PARCOUR + "=" + p_IdParcour, null, null,
+				DatabaseHelper.COL_ID_PARCOUR + "='" + p_IdParcour + "'", null, null,
 				null, null);
 		c.moveToFirst();
 		if (!c.isAfterLast()) {

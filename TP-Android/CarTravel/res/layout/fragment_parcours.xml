@@ -30,7 +30,7 @@
             android:layout_weight="2"
             android:divider="@android:color/transparent"
             android:dividerHeight="0dp" />
-        
+
         <TextView
             android:id="@+id/lst_demande_conducteurs_vide"
             android:layout_width="wrap_content"
@@ -51,7 +51,6 @@
             android:layout_weight="1"
             android:text="@string/demande_passagers"
             android:textSize="20sp" />
-        
 
         <ListView
             android:id="@+id/lst_demande_passagers"
@@ -61,7 +60,7 @@
             android:layout_weight="2"
             android:divider="@android:color/transparent"
             android:dividerHeight="0dp" />
-        
+
         <TextView
             android:id="@+id/lst_demande_passagers_vide"
             android:layout_width="wrap_content"

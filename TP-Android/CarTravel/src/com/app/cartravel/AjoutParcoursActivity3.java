@@ -148,8 +148,6 @@ public class AjoutParcoursActivity3 extends Activity {
 		String strVilleArr = m_VilleArr.getText().toString().trim();
 		String strCodePostalArr = m_CodePostalArr.getText().toString().trim();
 
-		Date uneDate = new Date();
-		String temps;
 
 		if (Util.ValiderString(new String[] { strNumCivDep, strRueDep,
 				strVilleDep, strCodePostalDep, strNumCivArr, strRueArr,
@@ -160,36 +158,39 @@ public class AjoutParcoursActivity3 extends Activity {
 						if (Util.verifChaineCharac(strRueArr)) {
 							if (Util.verifChaineCharac(strVilleArr)) {
 								if (Util.verifCodePostal(strCodePostalArr)) {
-									Calendar c = Calendar.getInstance(); 
 									
-									String idParcours = util.getPseudo() + String.valueOf(c.getTimeInMillis());
+									long time = System.currentTimeMillis();
+									
+									String idParcours = util.getPseudo()
+											+ String.valueOf(time);
+									
 									if (m_Cond) {
-										leParcours = new Parcours(idParcours, util.getId(),
-												util.getId(), m_Jour, m_Heure,
-												m_Repetitif, m_CapaciteMax, 0,
+										leParcours = new Parcours(idParcours,
+												util.getId(), util.getId(),
+												m_Jour, m_Heure, m_Repetitif,
+												m_CapaciteMax, 0,
 												m_DistanceMax, strNumCivDep,
 												strRueDep, strVilleDep,
 												strCodePostalDep, strNumCivArr,
 												strRueArr, strVilleArr,
 												strCodePostalArr);
 									} else {
-										leParcours = new Parcours(idParcours, util.getId(),
-												m_Jour, m_Heure, m_Repetitif,
-												m_NbrPassagers, strNumCivDep,
-												strRueDep, strVilleDep,
-												strCodePostalDep, strNumCivArr,
-												strRueArr, strVilleArr,
-												strCodePostalArr);
+										leParcours = new Parcours(idParcours,
+												util.getId(), m_Jour, m_Heure,
+												m_Repetitif, m_NbrPassagers,
+												strNumCivDep, strRueDep,
+												strVilleDep, strCodePostalDep,
+												strNumCivArr, strRueArr,
+												strVilleArr, strCodePostalArr);
 									}
-
+									
 									parcourData = new ParcourDataSource(this);
 									parcourData.open();
 									parcourData.insert(leParcours);
 									parcourData.close();
 
-									temps = uneDate.getTime() + "";
 									new PutNewParcoursTask(this).execute(
-											leParcours, temps);
+											leParcours, idParcours);
 
 									Toast.makeText(this,
 											R.string.toast_ajout_parcours,
@@ -270,6 +271,7 @@ public class AjoutParcoursActivity3 extends Activity {
 		private Exception m_Exp;
 		private Parcours unParcours;
 		private Context m_Context;
+		private String idParcours;
 
 		public PutNewParcoursTask(Context p_Context) {
 			this.m_Context = p_Context;
@@ -285,15 +287,11 @@ public class AjoutParcoursActivity3 extends Activity {
 		protected Void doInBackground(Object... params) {
 
 			unParcours = (Parcours) params[0];
-			String temps = (String) params[1];
-
-			String idParcours = temps;
-
+			idParcours = (String) params[1];
+			
 			try {
-				unParcours.setId(idParcours);
-
 				URI uri = new URI("http", Util.WEB_SERVICE, Util.REST_PARCOURS
-						+ "/" + unParcours.getId(), null, null);
+						+ "/" + idParcours, null, null);
 				HttpPut putMethod = new HttpPut(uri);
 
 				String jsonObj = JsonParcours.ToJSONObject(unParcours)

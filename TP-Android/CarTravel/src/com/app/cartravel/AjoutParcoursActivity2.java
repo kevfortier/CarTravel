@@ -1,7 +1,5 @@
 package com.app.cartravel;
 
-import com.app.cartravel.utilitaire.Util;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -12,6 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.app.cartravel.utilitaire.Util;
 
 public class AjoutParcoursActivity2 extends Activity {
 

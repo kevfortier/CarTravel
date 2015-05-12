@@ -15,7 +15,6 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -30,7 +29,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -44,11 +42,16 @@ import com.app.cartravel.utilitaire.UtilisateurDataSource;
 import com.app.cartravel.utilitaires.ArrayAdapters.ParcoursAdapter;
 import com.app.cartravel.utilitaires.ArrayAdapters.ParcoursItem;
 
-public class ParcourActivity extends Activity implements ActionBar.TabListener  {
+public class ParcourActivity extends Activity implements ActionBar.TabListener {
 	public static final int AJOUTER_PARCOUR = 1;
 
 	private SectionsPagerAdapter mSectionsPagerAdapter;
 	private ViewPager mViewPager;
+
+	static View fragParcours;
+	static View fragPassagers;
+	static View fragConducteurs;
+	static ParcourActivity activity;
 
 	ListView m_MesDemandesConducteur;
 	ListView m_MesDemandesPassagers;
@@ -58,7 +61,7 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener  
 	ListView m_MesPassagers;
 
 	View m_ParcoursView;
-	
+
 	private ArrayList<RowModel> m_RowModels;
 
 	private List<Parcours> m_LstParcours;
@@ -67,7 +70,7 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener  
 
 	private UtilisateurDataSource dataUser;
 	private Utilisateurs m_UtilisateurConnecte;
-	
+
 	private HttpClient m_ClientHttp = new DefaultHttpClient();
 
 	@Override
@@ -78,48 +81,56 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener  
 		this.requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 
 		setContentView(R.layout.activity_parcour);
-
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		
 		// Set up the action bar.
-		final ActionBar actionBar = getActionBar();
-		actionBar.setDisplayHomeAsUpEnabled(true);
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+				final ActionBar actionBar = getActionBar();
+				actionBar.setDisplayHomeAsUpEnabled(true);
+				actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+				
+				new ObtenirParcoursTask(this).execute();
 
-		// Create the adapter that will return a fragment for each of the
-		// three
-		// primary sections of the activity.
-		mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
+				// Create the adapter that will return a fragment for each of the
+				// three
+				// primary sections of the activity.
+				mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
 
-		// Set up the ViewPager with the sections adapter.
-		mViewPager = (ViewPager) findViewById(R.id.pager);
-		mViewPager.setAdapter(mSectionsPagerAdapter);
+				// Set up the ViewPager with the sections adapter.
+				mViewPager = (ViewPager) findViewById(R.id.pager);
+				mViewPager.setAdapter(mSectionsPagerAdapter);
 
-		// When swiping between different sections, select the corresponding
-		// tab. We can also use ActionBar.Tab#select() to do this if we have
-		// a reference to the Tab.
-		mViewPager
-				.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-					@Override
-					public void onPageSelected(int position) {
-						actionBar.setSelectedNavigationItem(position);
-					}
-				});
+				// When swiping between different sections, select the corresponding
+				// tab. We can also use ActionBar.Tab#select() to do this if we have
+				// a reference to the Tab.
+				mViewPager
+						.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+							@Override
+							public void onPageSelected(int position) {
+								actionBar.setSelectedNavigationItem(position);
+							}
+						});
 
-		// For each of the sections in the app, add a tab to the action bar.
-		for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
-			// Create a tab with text corresponding to the page title
-			// defined by
-			// the adapter. Also specify this Activity object, which
-			// implements
-			// the TabListener interface, as the callback (listener) for
-			// when
-			// this tab is selected.
-			actionBar.addTab(actionBar.newTab()
-					.setText(mSectionsPagerAdapter.getPageTitle(i))
-					.setTabListener(this));
-		}
+				// For each of the sections in the app, add a tab to the action bar.
+				for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
+					// Create a tab with text corresponding to the page title
+					// defined by
+					// the adapter. Also specify this Activity object, which
+					// implements
+					// the TabListener interface, as the callback (listener) for
+					// when
+					// this tab is selected.
+					actionBar.addTab(actionBar.newTab()
+							.setText(mSectionsPagerAdapter.getPageTitle(i))
+							.setTabListener(this));
+				}
 	}
 
-	public void fillListMesDemandeConducteur(ListView laListe, TextView emptyList) {
+	public void fillListMesDemandeConducteur(ListView laListe,
+			TextView emptyList) {
 		dataParcours = new ParcourDataSource(this);
 		dataParcours.open();
 		List<Parcours> toutsParcours = dataParcours.getAllParcours();
@@ -129,11 +140,11 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener  
 			dataUser.open();
 			m_UtilisateurConnecte = dataUser.getConnectedUtilisateur();
 			dataUser.close();
-			
+
 			if (m_LstParcours != null) {
 				m_LstParcours.clear();
 			}
-			
+
 			for (Parcours unParcours : toutsParcours) {
 				if (unParcours.getIdProprietaire() == m_UtilisateurConnecte
 						.getId()
@@ -145,29 +156,50 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener  
 					m_LstParcours.add(unParcours);
 				}
 			}
-			if (m_LstParcours != null) {
+			if (! m_LstParcours.isEmpty()) {
 
 				laListe.setAdapter(new ParcoursAdapter(this,
-						R.layout.lst_parcours_item, ConvertParcoursToListItems(m_LstParcours)));
+						R.layout.lst_parcours_item,
+						ConvertParcoursToListItems(m_LstParcours)));
 				emptyList.setVisibility(View.GONE);
 			}
 		}
 	}
 
-	public void fillListMesDemandePassagers() {
-		if (m_LstParcours != null) {
+	public void fillListMesDemandePassagers(ListView laListe, TextView emptyList) {
+		dataParcours = new ParcourDataSource(this);
+		dataParcours.open();
+		List<Parcours> toutsParcours = dataParcours.getAllParcours();
+		dataParcours.close();
+		if (toutsParcours != null) {
+			dataUser = new UtilisateurDataSource(this);
 			dataUser.open();
 			m_UtilisateurConnecte = dataUser.getConnectedUtilisateur();
 			dataUser.close();
-			m_MesDemandesConducteur = (ListView) this
-					.findViewById(R.id.lst_demande_conducteurs);
-			for (Parcours unParcour : m_LstParcours) {
-				if (unParcour.getIdProprietaire() == m_UtilisateurConnecte
+			m_MesDemandesPassagers = (ListView) this
+					.findViewById(R.id.lst_demande_passagers);
+			
+			if (m_LstParcours != null) {
+				m_LstParcours.clear();
+			}
+			
+			for (Parcours unParcours : toutsParcours) {
+				if (unParcours.getIdProprietaire() == m_UtilisateurConnecte
 						.getId()
-						&& unParcour.getIdConducteur() == m_UtilisateurConnecte
+						&& unParcours.getIdConducteur() == m_UtilisateurConnecte
 								.getId()) {
-					// TODO
+					if (m_LstParcours == null) {
+						m_LstParcours = new ArrayList<Parcours>();
+					}
+					m_LstParcours.add(unParcours);
 				}
+			}
+			if (! m_LstParcours.isEmpty()) {
+
+				laListe.setAdapter(new ParcoursAdapter(this,
+						R.layout.lst_parcours_item,
+						ConvertParcoursToListItems(m_LstParcours)));
+				emptyList.setVisibility(View.GONE);
 			}
 		}
 	}
@@ -237,13 +269,13 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener  
 			}
 		}
 	}
-	
+
 	private List<ParcoursItem> ConvertParcoursToListItems(
 			List<Parcours> parcours) {
 		List<ParcoursItem> items = new ArrayList<ParcoursItem>();
 		for (Parcours unParcours : parcours) {
-			items.add(new ParcoursItem(unParcours.getJour() + " - ", unParcours.getNumCiviqueArr()
-					+ " " + unParcours.getRueArr()));
+			items.add(new ParcoursItem(unParcours.getJour() + " - ", unParcours
+					.getNumCiviqueArr() + " " + unParcours.getRueArr()));
 		}
 		return items;
 	}
@@ -269,71 +301,76 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener  
 			return super.onOptionsItemSelected(item);
 		}
 	}
-	
-	protected void onListItemClick(ListView l, View v, int position, long id)
-	{
-		Log.e("onListItemClick","called with " + position + " : "+l.getId() + " and " + android.R.id.list);
-		
+
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		Log.e("onListItemClick", "called with " + position + " : " + l.getId()
+				+ " and " + android.R.id.list);
+
 		if (l.getId() == R.id.lst_demande_conducteurs) {
-			//TODO
+			// TODO
 		}
 		if (l.getId() == R.id.lst_demande_passagers) {
-			//TODO
+			// TODO
 		}
 		if (l.getId() == R.id.lst_conducteurs) {
-			//TODO
+			// TODO
 		}
 		if (l.getId() == R.id.lst_conducteurs_pot) {
-			//TODO
+			// TODO
 		}
 		if (l.getId() == R.id.lst_passagers) {
-			//TODO
+			// TODO
 		}
 		if (l.getId() == R.id.lst_passagers_pot) {
-			//TODO
+			// TODO
 		}
 		RowModel model = m_RowModels.get(position);
 		model.setIsToDelete(!model.isToDelete());
-		
-	}
-	private static class RowModel {
-	    private String  m_Content;
-	    private boolean m_IsToDelete;
 
-	    public RowModel(String content) {
-	        this.m_Content  = content;
-	        this.m_IsToDelete = false;
-	    }
-	    public String getContent() {
-	        return m_Content;
-	    }
-	    public void setContent(String content) {
-	        this.m_Content = content;
-	    }
-	    public boolean isToDelete() {
-	        return m_IsToDelete;
-	    }
-	    public void setIsToDelete(boolean isToDelete) {
-	        this.m_IsToDelete = isToDelete;
-	    }
-	    
-	    @Override
-	    public String toString() {
-	    	return this.m_Content;
-	    }
 	}
-	
-	private class LigneAdapteur extends ArrayAdapter<RowModel> {
-		public LigneAdapteur()
-		{
-			super(ParcourActivity.this, R.layout.lst_parcours_item, R.id.txtLigne, m_RowModels);
+
+	private static class RowModel {
+		private String m_Content;
+		private boolean m_IsToDelete;
+
+		public RowModel(String content) {
+			this.m_Content = content;
+			this.m_IsToDelete = false;
 		}
-		
+
+		public String getContent() {
+			return m_Content;
+		}
+
+		public void setContent(String content) {
+			this.m_Content = content;
+		}
+
+		public boolean isToDelete() {
+			return m_IsToDelete;
+		}
+
+		public void setIsToDelete(boolean isToDelete) {
+			this.m_IsToDelete = isToDelete;
+		}
+
+		@Override
+		public String toString() {
+			return this.m_Content;
+		}
+	}
+
+	private class LigneAdapteur extends ArrayAdapter<RowModel> {
+		public LigneAdapteur() {
+			super(ParcourActivity.this, R.layout.lst_parcours_item,
+					R.id.txtLigne, m_RowModels);
+		}
+
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			// TODO Auto-generated method stub
 			View ligne = super.getView(position, convertView, parent);
-			
+
 			return ligne;
 		}
 	}
@@ -393,7 +430,7 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener  
 
 		@Override
 		public int getCount() {
-			// Show 4 total pages.
+			// Show 3 total pages.
 			return 3;
 		}
 
@@ -510,79 +547,75 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener  
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 
-			ParcourActivity activity = ((ParcourActivity) this.getActivity());
+			activity = ((ParcourActivity) this.getActivity());
 
-			View rootView = inflater.inflate(R.layout.fragment_parcours,
+			fragParcours = inflater.inflate(R.layout.fragment_parcours,
 					container, false);
 
-			activity.fillListMesDemandeConducteur((ListView) rootView.findViewById(R.id.lst_demande_conducteurs), (TextView) rootView.findViewById(R.id.lst_demande_conducteurs_vide));
+			//activity.fillListMesDemandeConducteur((ListView) fragParcours.findViewById(R.id.lst_demande_conducteurs), (TextView) fragParcours.findViewById(R.id.lst_demande_conducteurs_vide));
+			//activity.fillListMesDemandePassagers((ListView) fragParcours.findViewById(R.id.lst_demande_passagers), (TextView) fragParcours.findViewById(R.id.lst_demande_passagers_vide));
 
-			return rootView;
+			return fragParcours;
 		}
 	}
-	
-	//TODO Vérifier le code.
-	private class ObtenirParcoursTask extends AsyncTask<Void,Void,List<Parcours>>
-	{
+
+	// TODO Vérifier le code.
+	private class ObtenirParcoursTask extends
+			AsyncTask<Void, Void, List<Parcours>> {
 		private Exception m_Exp;
 		private Context m_Context;
-		
-		public ObtenirParcoursTask(Context p_Context)
-		{
+
+		public ObtenirParcoursTask(Context p_Context) {
 			this.m_Context = p_Context;
 		}
-		
-		protected List<Parcours> doInBackground(Void... params)
-		{
+
+		protected List<Parcours> doInBackground(Void... params) {
 			ArrayList<Parcours> listeParcours = null;
-			try
-			{
-				URI uri = new URI("http", Util.WEB_SERVICE, Util.REST_PARCOURS, null, null);
+			try {
+				URI uri = new URI("http", Util.WEB_SERVICE, Util.REST_PARCOURS,
+						null, null);
 				HttpGet getMethod = new HttpGet(uri);
-				String body = m_ClientHttp.execute(getMethod, new BasicResponseHandler());
-				listeParcours = (ArrayList<Parcours>)JsonParcours.parseListeParcours(body);
-			}
-			catch (Exception e)
-			{
+				String body = m_ClientHttp.execute(getMethod,
+						new BasicResponseHandler());
+				listeParcours = (ArrayList<Parcours>) JsonParcours
+						.parseListeParcours(body);
+			} catch (Exception e) {
 				m_Exp = e;
 			}
 			return listeParcours;
 		}
-		
-		protected void onPostExecute(List<Parcours> result)
-		{
-			if (m_Exp == null && result != null)
-			{
+
+		protected void onPostExecute(List<Parcours> result) {
+			if (m_Exp == null && result != null) {
 				m_LstParcours = result;
-				m_Adapter = new ParcoursAdapter(m_Context, R.layout.activity_parcour, ConvertParcourssToListItems(m_LstParcours));
-				((ListActivity)m_Context).setListAdapter(m_Adapter);
-				
+				m_Adapter = new ParcoursAdapter(m_Context,
+						R.layout.activity_parcour,
+						ConvertParcourssToListItems(m_LstParcours));
+
 				ParcourDataSource pds = new ParcourDataSource(m_Context);
 				pds.open();
-				for (int i = 0; i < result.size(); i++)
-				{
-					if(pds.getParcours(result.get(i).getId()) == null)
-					{
+				List<Parcours> m_LstParcours2;
+				m_LstParcours2 = pds.getAllParcours();
+				for (int i = 0; i < result.size(); i++) {
+					if (pds.getParcours(result.get(i).getId()) == null) {
 						pds.insert(result.get(i));
-					}
-					else
-					{
+					} else {
 						pds.update(result.get(i));
 					}
 				}
 				pds.close();
-			}
-			else
-			{
-				//AfficherParcours();
+				activity.fillListMesDemandeConducteur((ListView) fragParcours.findViewById(R.id.lst_demande_conducteurs), (TextView) fragParcours.findViewById(R.id.lst_demande_conducteurs_vide));
+				activity.fillListMesDemandePassagers((ListView) fragParcours.findViewById(R.id.lst_demande_passagers), (TextView) fragParcours.findViewById(R.id.lst_demande_passagers_vide));
 			}
 		}
 	}
-	
-	private List<ParcoursItem> ConvertParcourssToListItems(List<Parcours> parcours){
+
+	private List<ParcoursItem> ConvertParcourssToListItems(
+			List<Parcours> parcours) {
 		List<ParcoursItem> items = new ArrayList<ParcoursItem>();
-		for(Parcours unParcour : parcours){
-			String strParcoursAdresse = unParcour.getNumCiviqueDep() + unParcour.getRueDep();
+		for (Parcours unParcour : parcours) {
+			String strParcoursAdresse = unParcour.getNumCiviqueDep()
+					+ unParcour.getRueDep();
 			items.add(new ParcoursItem(unParcour.getJour(), strParcoursAdresse));
 		}
 		return items;
