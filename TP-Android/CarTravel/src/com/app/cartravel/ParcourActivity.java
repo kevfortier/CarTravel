@@ -62,7 +62,6 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 
 	View m_ParcoursView;
 
-	private ArrayList<RowModel> m_RowModels;
 
 	private List<Parcours> m_LstParcours;
 	private ParcourDataSource dataParcours;
@@ -324,56 +323,8 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 		if (l.getId() == R.id.lst_passagers_pot) {
 			// TODO
 		}
-		RowModel model = m_RowModels.get(position);
-		model.setIsToDelete(!model.isToDelete());
-
 	}
 
-	private static class RowModel {
-		private String m_Content;
-		private boolean m_IsToDelete;
-
-		public RowModel(String content) {
-			this.m_Content = content;
-			this.m_IsToDelete = false;
-		}
-
-		public String getContent() {
-			return m_Content;
-		}
-
-		public void setContent(String content) {
-			this.m_Content = content;
-		}
-
-		public boolean isToDelete() {
-			return m_IsToDelete;
-		}
-
-		public void setIsToDelete(boolean isToDelete) {
-			this.m_IsToDelete = isToDelete;
-		}
-
-		@Override
-		public String toString() {
-			return this.m_Content;
-		}
-	}
-
-	private class LigneAdapteur extends ArrayAdapter<RowModel> {
-		public LigneAdapteur() {
-			super(ParcourActivity.this, R.layout.lst_parcours_item,
-					R.id.txtLigne, m_RowModels);
-		}
-
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			// TODO Auto-generated method stub
-			View ligne = super.getView(position, convertView, parent);
-
-			return ligne;
-		}
-	}
 
 	@Override
 	protected void onActivityResult(int p_RequestCode, int p_resultCode,
@@ -552,14 +503,13 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 			fragParcours = inflater.inflate(R.layout.fragment_parcours,
 					container, false);
 
-			//activity.fillListMesDemandeConducteur((ListView) fragParcours.findViewById(R.id.lst_demande_conducteurs), (TextView) fragParcours.findViewById(R.id.lst_demande_conducteurs_vide));
-			//activity.fillListMesDemandePassagers((ListView) fragParcours.findViewById(R.id.lst_demande_passagers), (TextView) fragParcours.findViewById(R.id.lst_demande_passagers_vide));
+			activity.fillListMesDemandeConducteur((ListView) fragParcours.findViewById(R.id.lst_demande_conducteurs), (TextView) fragParcours.findViewById(R.id.lst_demande_conducteurs_vide));
+			activity.fillListMesDemandePassagers((ListView) fragParcours.findViewById(R.id.lst_demande_passagers), (TextView) fragParcours.findViewById(R.id.lst_demande_passagers_vide));
 
 			return fragParcours;
 		}
 	}
 
-	// TODO Vérifier le code.
 	private class ObtenirParcoursTask extends
 			AsyncTask<Void, Void, List<Parcours>> {
 		private Exception m_Exp;
@@ -594,8 +544,6 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 
 				ParcourDataSource pds = new ParcourDataSource(m_Context);
 				pds.open();
-				List<Parcours> m_LstParcours2;
-				m_LstParcours2 = pds.getAllParcours();
 				for (int i = 0; i < result.size(); i++) {
 					if (pds.getParcours(result.get(i).getId()) == null) {
 						pds.insert(result.get(i));
