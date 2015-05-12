@@ -16,11 +16,7 @@ public class Util {
 	public final static String REST_PROFIL = "/profil";
 	public final static String REST_PARCOURS = "/parcours";
 	public final static String REST_CONNEXION = "/connexion";
-<<<<<<< .mine
 	public final static String WEB_SERVICE = "192.168.1.124:8080";
-=======
-	public final static String WEB_SERVICE = "192.168.1.128:8080";
->>>>>>> .theirs
 
 	public final static String GOOGLE_SENDER_ID = "133519372687";
 

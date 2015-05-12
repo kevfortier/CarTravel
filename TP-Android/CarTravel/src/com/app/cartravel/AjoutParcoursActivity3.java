@@ -1,8 +1,6 @@
 package com.app.cartravel;
 
 import java.net.URI;
-import java.util.Calendar;
-import java.util.Date;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPut;

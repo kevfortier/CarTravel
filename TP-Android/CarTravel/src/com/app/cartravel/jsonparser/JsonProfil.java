@@ -1,11 +1,8 @@
 package com.app.cartravel.jsonparser;
 
-import java.util.ArrayList;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.app.cartravel.classes.Parcours;
 import com.app.cartravel.classes.Utilisateurs;
 
 public class JsonProfil {

@@ -15,7 +15,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/chck_cond" />
-        <RadioButton
+
+        <RadioButton
             android:id="@+id/rdbPassager"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
