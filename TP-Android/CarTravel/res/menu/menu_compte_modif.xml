@@ -6,6 +6,7 @@
     <item
         android:id="@+id/action_confirmer_compte"
         android:icon="@drawable/ic_action_accept_light"
-        android:title="@string/action_sauvegarder_compte"
-        android:showAsAction="ifRoom"/>
+        android:showAsAction="ifRoom"
+        android:title="@string/action_sauvegarder_compte"/>
+
 </menu>

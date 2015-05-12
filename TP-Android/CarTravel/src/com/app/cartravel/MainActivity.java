@@ -19,8 +19,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 		menu_gauche = new NavigationDrawerUtil(this);
-		
-		
+
 	}
 
 	@Override
@@ -29,8 +28,6 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	
-	
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {

@@ -5,6 +5,6 @@
         android:id="@+id/action_confirmer_parcour"
         android:icon="@drawable/ic_action_accept_light"
         android:showAsAction="ifRoom"
-        android:title="@string/action_confirmer_parcour" />
+        android:title="@string/action_confirmer_parcour"/>
 
 </menu>

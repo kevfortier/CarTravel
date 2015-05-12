@@ -98,7 +98,7 @@ public class ProfilModifActivity extends Activity {
 		String strCodePostal = mCodePostal.getText().toString().trim();
 		String strNumTel = mNumTel.getText().toString().trim();
 		Boolean boolVoiture = mVoiture.isChecked();
-		
+
 		Intent i = new Intent();
 
 		if (Util.ValiderString(new String[] { strNumCivique, strRue, strVille,
