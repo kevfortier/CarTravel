@@ -19,43 +19,13 @@
         android:layout_marginTop="20dp" >
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/txt_courriel"
+        	android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/lbl_username2"
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/txt_username"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center"
-            android:inputType="textEmailAddress" />
-    </LinearLayout>
-
-    <!-- Confirmation courriel -->
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lbl_confirmer_username2"
-            android:textSize="20sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <EditText
-            android:id="@+id/txt_confirmer_username"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:inputType="textEmailAddress" />
+            android:textSize="40sp" />
+        
     </LinearLayout>
 
     <!-- Pseudo -->

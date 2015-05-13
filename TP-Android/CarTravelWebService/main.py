@@ -96,6 +96,7 @@ class UtilisateurHandler(webapp2.RequestHandler):
             cle = ndb.Key('Utilisateur', username)
             utilisateur = cle.get()
             jsonObj = json.loads(self.request.body)
+            logging.info(jsonObj)
             status = 204
             if(utilisateur is None):
                 #Nouvel utilisateur
@@ -180,7 +181,6 @@ class ProfilHandler (webapp2.RequestHandler):
     
     def put(self, username):
         try:
-            logging.debug(username)
             if(username is not None):
                 cle = ndb.Key('Utilisateur', username)
                 user = cle.get()
@@ -190,33 +190,38 @@ class ProfilHandler (webapp2.RequestHandler):
             else:
                 self.response.set_status(404)
                 return
-            
-            cle = ndb.key.Key('Utilisateur', username)
+            logging.info(username)
+            cle = ndb.Key('Profil', username)
             profil = cle.get()
             
+            logging.info(profil)
+            jsonObj = json.loads(self.request.body)
+            logging.info(jsonObj)
             status = 204
             if(profil is None):
+                
                 profil = Profil(key=cle)
+                logging.info(profil)
                 status = 201
                 
                 if (jsonObj['courrielUser'] is not None):
                     profil.courrielUser = jsonObj['courrielUser']
                 if (jsonObj['numCivique'] is not None):
-                    profil.courrielUser = jsonObj['numCivique']
+                    profil.numCivique = jsonObj['numCivique']
                 if (jsonObj['rue'] is not None):
-                    profil.courrielUser = jsonObj['rue']
+                    profil.rue = jsonObj['rue']
                 if (jsonObj['ville'] is not None):
-                    profil.courrielUser = jsonObj['ville']
+                    profil.ville = jsonObj['ville']
                 if (jsonObj['codePostal'] is not None):
-                    profil.courrielUser = jsonObj['codePostal']
+                    profil.codePostal = jsonObj['codePostal']
                 if (jsonObj['numTel'] is not None):
-                    profil.courrielUser = jsonObj['numTel']
+                    profil.numTel = jsonObj['numTel']
                 if (jsonObj['posVoiture'] is not None):
-                    profil.courrielUser = jsonObj['posVoiture']
+                    profil.posVoiture = jsonObj['posVoiture']
                 if (jsonObj['noteCond'] is not None):
-                    profil.courrielUser = jsonObj['noteCond']
+                    profil.noteCond = jsonObj['noteCond']
                 if (jsonObj['notePass'] is not None):
-                    profil.courrielUser = jsonObj['notePass']
+                    profil.notePass = jsonObj['notePass']
                 profil.put()
                 
             elif(profil is not None):
@@ -259,6 +264,21 @@ class ProfilHandler (webapp2.RequestHandler):
             logging.exception(ex)
             self.error(500)
         
+    def delete(self, username):
+        try:
+            cle = ndb.Key('Profil', username)
+            
+            if(cle.get() is not None):
+                cle.delete()
+                self.response.set_status(204)
+            else:
+                self.error(404)
+                
+        except Exception, ex:
+            logging.exception(ex)
+            self.error(500)
+            
+            
 class ParcoursHandler (webapp2.RequestHandler):
     def get(self, idParcours = None): 
         try:

@@ -17,6 +17,7 @@ import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.cartravel.classes.Utilisateurs;
@@ -26,15 +27,12 @@ import com.app.cartravel.utilitaire.UtilisateurDataSource;
 
 public class CompteModifActivity extends Activity {
 
-	private String mCourrielDep;
-	private String mCourrielVerifDep;
 	private String mPseudoDep;
 	private String mMDPDep;
 	private String mMDPVerifDep;
 
 	private Utilisateurs mUtilisateur;
-	private EditText mCourriel;
-	private EditText mCourrielVerif;
+	private TextView mCourriel;
 	private EditText mPseudo;
 	private EditText mMDP;
 	private EditText mMDPVerif;
@@ -53,9 +51,9 @@ public class CompteModifActivity extends Activity {
 		setTitle(R.string.title_modif_compte);
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-
-		mCourriel = (EditText) findViewById(R.id.txt_username);
-		mCourrielVerif = (EditText) findViewById(R.id.txt_confirmer_username);
+		
+		mCourriel = (TextView) findViewById(R.id.txt_courriel);
+		
 		mPseudo = (EditText) findViewById(R.id.txt_pseudo);
 		mMDP = (EditText) findViewById(R.id.txt_password);
 
@@ -67,9 +65,8 @@ public class CompteModifActivity extends Activity {
 		mDataSource.close();
 
 		if (mUtilisateur != null) {
-			AfficherInfoCompte(mCourriel, mPseudo, mMDP);
-			mCourrielDep = mCourriel.getText().toString().trim();
-			mCourrielVerifDep = mCourrielVerif.getText().toString().trim();
+			AfficherInfoCompte(mPseudo, mMDP);
+			mCourriel.setText(mUtilisateur.getCourriel());
 			mPseudoDep = mPseudo.getText().toString().trim();
 			mMDPDep = mMDP.getText().toString().trim();
 			mMDPVerifDep = mMDPVerif.getText().toString().trim();
@@ -102,53 +99,18 @@ public class CompteModifActivity extends Activity {
 	}
 
 	public void ModifierInfoCompte() {
-		Boolean modifCourriel = false;
 		Boolean modifMDP = false;
 		Boolean modifPseudo = false;
 		Boolean erreurRencontree = false;
 
-		String strCourriel = mCourriel.getText().toString().trim();
-		String strCourrielConfirmation = mCourrielVerif.getText().toString()
-				.trim();
 		String strPseudo = mPseudo.getText().toString().trim();
 		String strMotDePasse = mMDP.getText().toString().trim();
 		String strMotDePasseConfirmation = mMDPVerif.getText().toString()
 				.trim();
 		Intent i = new Intent();
 
-		if (Util.ValiderString(new String[] { strCourriel, strPseudo,
+		if (Util.ValiderString(new String[] {strPseudo,
 				strMotDePasse })) {
-
-			if (!mCourrielDep.matches(strCourriel)) {
-
-				if (Util.isCourriel(strCourriel)) {
-					if (!strCourrielConfirmation.isEmpty()) {
-						if (strCourriel.equals(strCourrielConfirmation)) {
-							modifCourriel = true;
-						} else {
-							Toast.makeText(this,
-									R.string.toast_courriel_identique,
-									Toast.LENGTH_SHORT).show();
-							erreurRencontree = true;
-						}
-					} else {
-						Toast.makeText(this,
-								R.string.toast_courriel_confirm_vide,
-								Toast.LENGTH_SHORT).show();
-						erreurRencontree = true;
-					}
-				} else {
-					Toast.makeText(this, R.string.toast_courriel_invalide,
-							Toast.LENGTH_SHORT).show();
-					erreurRencontree = true;
-				}
-			} else {
-				if (!mCourrielVerifDep.matches(strCourrielConfirmation)) {
-					Toast.makeText(this, R.string.toast_courriel_identique,
-							Toast.LENGTH_SHORT).show();
-					erreurRencontree = true;
-				}
-			}
 
 			if (!mMDPDep.matches(strMotDePasse)) {
 				if (!strMotDePasseConfirmation.isEmpty()) {
@@ -176,10 +138,6 @@ public class CompteModifActivity extends Activity {
 			UtilisateurDataSource dataSource = new UtilisateurDataSource(this);
 			dataSource.open();
 
-			if (modifCourriel) {
-				mUtilisateur.setCourriel(strCourriel);
-			}
-
 			if (modifMDP) {
 				mUtilisateur.setMotDePasse(strMotDePasse);
 			}
@@ -193,7 +151,7 @@ public class CompteModifActivity extends Activity {
 			dataSource.close();
 
 			if (!erreurRencontree || modifPseudo) {
-				new ModifierCompteTask(this).execute(strCourriel, strPseudo, strMotDePasse);
+				new ModifierCompteTask(this).execute(mUtilisateur.getCourriel(),strPseudo, strMotDePasse);
 				this.setResult(RESULT_OK, i);
 				this.finish();
 			} else {
@@ -202,10 +160,6 @@ public class CompteModifActivity extends Activity {
 			}
 
 		} else {
-			if (!Util.ValiderString(new String[] { strCourriel })) {
-				Toast.makeText(this, R.string.toast_courriel_vide,
-						Toast.LENGTH_SHORT).show();
-			}
 			if (!Util.ValiderString(new String[] { strPseudo })) {
 				Toast.makeText(this, R.string.toast_pseudo_vide,
 						Toast.LENGTH_SHORT).show();
@@ -218,9 +172,8 @@ public class CompteModifActivity extends Activity {
 	}
 
 	// Méthode permettant d'afficher les info. du compte d'un utilisateur
-	public void AfficherInfoCompte(EditText mCourriel, EditText mPseudo,
+	public void AfficherInfoCompte(EditText mPseudo,
 			EditText mMDP) {
-		mCourriel.setText(mUtilisateur.getCourriel());
 		mPseudo.setText(mUtilisateur.getPseudo());
 		mMDP.setText(mUtilisateur.getMotDePasse());
 	}
