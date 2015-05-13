@@ -81,7 +81,7 @@
                 android:value="com.app.cartravel.MainActivity" />
         </activity>
         <activity
-            android:name=".UnParcours"
+            android:name=".UnParcoursActivity"
             android:label="@string/title_un_parcours" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

@@ -13,12 +13,13 @@ import com.app.cartravel.classes.Parcours;
 import com.app.cartravel.classes.Utilisateurs;
 import com.app.cartravel.utilitaire.UtilisateurDataSource;
 
+import com.app.cartravel.ParcourActivity;
+
 public class UnParcoursActivity extends Activity {
 
 	private Bundle extras;
 
 	private Parcours unParcours;
-	// private ParcourDataSource parcoursData;
 
 	private Utilisateurs unUser;
 	private UtilisateurDataSource userData;
@@ -49,8 +50,24 @@ public class UnParcoursActivity extends Activity {
 		extras = this.getIntent().getExtras();
 
 		if (extras != null) {
-			// TODO Récupérer le parcours
+			if(extras.getSerializable(ParcourActivity.EXTRA_PARCOURS) != null)
+				unParcours = (Parcours)extras.getSerializable(ParcourActivity.EXTRA_PARCOURS);
 		}
+		
+		m_Demandeur = (TextView) findViewById(R.id.txtProprpietaire);
+		m_Conducteur = (TextView) findViewById(R.id.txtConducteur);
+		m_Date = (TextView) findViewById(R.id.txtDate);
+		m_Reptitif = (TextView) findViewById(R.id.txtRepetitif);
+		m_NbrPassagers = (TextView) findViewById(R.id.txtPlacePassagers);
+		m_nbrPlaceTot = (TextView) findViewById(R.id.txtPlaceDispo);
+		m_NbrPlacePrise = (TextView) findViewById(R.id.txtPlacePrise);
+		m_DistanceSupMax = (TextView) findViewById(R.id.txtDistanceSupMax);
+		m_AdresseDep = (TextView) findViewById(R.id.txtAdresseDepart);
+		m_VilleDep = (TextView) findViewById(R.id.txtVilleDepart);
+		m_CodePostalDep = (TextView) findViewById(R.id.txtCodePostalDepart);
+		m_AdresseArr = (TextView) findViewById(R.id.txtAdresseArrive);
+		m_VilleArr = (TextView) findViewById(R.id.txtVilleArrive);
+		m_CodePostalArr = (TextView) findViewById(R.id.txtCodePostalArrive);
 
 		afficherParcours(m_Demandeur, m_Conducteur, m_Date, m_Reptitif,
 				m_NbrPassagers, m_nbrPlaceTot, m_NbrPlacePrise,
@@ -84,7 +101,8 @@ public class UnParcoursActivity extends Activity {
 			TextView p_DistanceSupMax, TextView p_AdresseDep,
 			TextView p_VilleDep, TextView p_CodePostalDep,
 			TextView p_AdresseArr, TextView p_VilleArr, TextView p_CodePostalArr) {
-
+		
+		userData = new UtilisateurDataSource(this);
 		userData.open();
 		unUser = userData.getUtilisateur(unParcours.getIdProprietaire());
 		userData.close();
@@ -98,19 +116,20 @@ public class UnParcoursActivity extends Activity {
 		}
 
 		p_Demandeur.setText(unUser.getPseudo());
-
-		if (p_Conducteur != null) {
+		
+		if (unParcours.getIdConducteur() != 0) {
 			userData.open();
 			unUser = userData.getUtilisateur(unParcours.getIdConducteur());
 			userData.close();
 			p_Conducteur.setText(unUser.getPseudo());
 		}
+		
 
 		p_Date.setText(unParcours.getJour());
 		p_Repetitif.setText(strRepet);
-		p_NbrPassagers.setText(unParcours.getNbPlacePassagers());
-		p_nbrPlaceTot.setText(unParcours.getNbPlaceDispo());
-		p_NbrPlacePrise.setText(unParcours.getNbPlacePrise());
+		p_NbrPassagers.setText(String.valueOf(unParcours.getNbPlacePassagers()));
+		p_nbrPlaceTot.setText(String.valueOf(unParcours.getNbPlaceDispo()));
+		p_NbrPlacePrise.setText(String.valueOf(unParcours.getNbPlacePrise()));
 		p_DistanceSupMax
 				.setText(Float.toString(unParcours.getDistanceSupMax()));
 		p_AdresseDep.setText(unParcours.getNumCiviqueDep()
