@@ -1,0 +1,5 @@
+Créer une classe PassagersParcour	OK
+Faire le DataSource pour cette classe	OK
+Faire le JSON Parser pour cette classe
+Faire l'ajout dans la BD locale et sur le service web lors de l'ajout d'un parcours
+Aller rechercher le nombre total de passager pour les parcours lors de l'affichage de celui-ci
