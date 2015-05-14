@@ -1,7 +1,17 @@
 package com.app.cartravel;
 
+import java.net.URI;
+import java.util.List;
+
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.Configuration;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,7 +19,9 @@ import android.widget.CheckBox;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.app.cartravel.classes.Parcours;
 import com.app.cartravel.classes.Utilisateurs;
+import com.app.cartravel.utilitaire.Util;
 import com.app.cartravel.utilitaire.UtilisateurDataSource;
 import com.app.cartravel.utilitaires.navigationdrawer.NavigationDrawerUtil;
 
@@ -27,6 +39,8 @@ public class MainActivity extends Activity {
 	private CheckBox mVoiture;
 	private RatingBar mNoteCond;
 	private RatingBar mNotePass;
+	
+	private HttpClient m_ClientHttp = new DefaultHttpClient();
 
 	NavigationDrawerUtil menu_gauche = null;
 
@@ -111,5 +125,33 @@ public class MainActivity extends Activity {
 		}
 		mNoteCond.setRating(mUtilisateur.getNoteCond());
 		mNotePass.setRating(mUtilisateur.getNotePass());
+	}
+
+	private class ObtenirProfilTask extends
+			AsyncTask<Void, Void, Utilisateurs> {
+		private Exception m_Exp;
+		private Context m_Context;
+
+		public ObtenirProfilTask(Context p_Context) {
+			this.m_Context = p_Context;
+		}
+
+		protected Utilisateurs doInBackground(Void... params) {
+			Utilisateurs m_Utilisateur = null;
+			try{
+				URI uri = new URI("http", Util.WEB_SERVICE, Util.REST_PARCOURS,
+						null, null);
+				HttpGet getMethod = new HttpGet(uri);
+				String body = m_ClientHttp.execute(getMethod,
+						new BasicResponseHandler());
+			} catch(Exception e) {
+				m_Exp = e;
+			}
+			return m_Utilisateur;
+		}
+
+		protected void onPostExecute(List<Parcours> result) {
+			//TODO
+		}
 	}
 }

@@ -17,8 +17,7 @@ public class JsonProfil {
 	public static String POS_VOITURE = "posVoiture";
 	public static String NOTE_COND = "noteCond";
 	public static String NOTE_PASS = "notePass";
-	public static String USER_DATE_AJOUT = "date_user";
-	public static String PROFIL_DATE_AJOUT = "date_profil";
+	public static String PROFIL_DATE_AJOUT = "dateProfil";
 
 	public static JSONObject ToJSONObject(Utilisateurs utilisateur)
 			throws JSONException {
@@ -32,7 +31,6 @@ public class JsonProfil {
 		jsonObj.put(POS_VOITURE, utilisateur.getVoiture());
 		jsonObj.put(NOTE_COND, utilisateur.getNoteCond());
 		jsonObj.put(NOTE_PASS, utilisateur.getNotePass());
-		jsonObj.put(USER_DATE_AJOUT, utilisateur.getDateAjoutUser());
 		jsonObj.put(PROFIL_DATE_AJOUT, utilisateur.getDateAjoutProfil());
 		return jsonObj;
 	}
@@ -46,7 +44,7 @@ public class JsonProfil {
 				jsonUtilisateur.getString("ville"), jsonUtilisateur.getString("codePostal"),
 				jsonUtilisateur.getString("numTel"), jsonUtilisateur.getInt("posVoiture"),
 				(float) jsonUtilisateur.getDouble("noteCond"), (float) jsonUtilisateur.getDouble("notePass"), 
-				0, 0, jsonUtilisateur.getString("date_user"), jsonUtilisateur.getString("date_profil"));
+				0, 0, "", jsonUtilisateur.getString("date_profil"));
 		return u;
 	}
 }

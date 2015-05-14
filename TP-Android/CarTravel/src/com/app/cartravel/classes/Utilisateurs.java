@@ -214,7 +214,7 @@ public class Utilisateurs {
 	}
 
 	public String getDateAjoutProfil() {
-		return m_DateAjoutUser;
+		return m_DateAjoutProfil;
 	}
 
 	public void setDateAjoutProfil(String dateAjoutProfil) {
