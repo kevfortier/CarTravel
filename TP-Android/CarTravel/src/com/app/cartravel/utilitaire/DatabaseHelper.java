@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
 	// Version BD
-	private final static int DB_VERSION = 1;
+	private final static int DB_VERSION = 21;
 
 	// Nom de la BD
 	private final static String DATABASE_NAME = "cartravel.sqlite";
@@ -99,7 +99,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				+ COL_VILLE_DEP + " text, " + COL_CODE_POSTAL_DEP + " text, "
 				+ COL_NO_CIVIQUE_ARR + " text, " + COL_RUE_ARR + " text, "
 				+ COL_VILLE_ARR + " text, " + COL_CODE_POSTAL_ARR + " text, "
-				+ COL_PARCOURS_DATE + "text)");
+				+ COL_PARCOURS_DATE + " text)");
 
 		// Crée la table pour les parcours-passagers
 		db.execSQL("create table " + TABLE_PARCOURS_PASSAGER + " ("

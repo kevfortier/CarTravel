@@ -27,6 +27,7 @@ import com.app.cartravel.classes.Parcours;
 import com.app.cartravel.classes.ParcoursPassager;
 import com.app.cartravel.classes.Utilisateurs;
 import com.app.cartravel.jsonparser.JsonParcours;
+import com.app.cartravel.jsonparser.JsonParcoursPassager;
 import com.app.cartravel.utilitaire.ParcourDataSource;
 import com.app.cartravel.utilitaire.ParcoursPassagerDataSource;
 import com.app.cartravel.utilitaire.Util;
@@ -190,9 +191,9 @@ public class AjoutParcoursActivity3 extends Activity {
 												strNumCivArr, strRueArr,
 												strVilleArr, strCodePostalArr,
 												strDate);
-										leParcoursPassager = new ParcoursPassager(idParcours, m_NbrPassagers);
-;									}
-
+										leParcoursPassager = new ParcoursPassager(idParcours, util.getCourriel(), m_NbrPassagers);
+									}
+									
 									parcourData = new ParcourDataSource(this);
 									parcourData.open();
 									parcourData.insert(leParcours);
@@ -200,6 +201,15 @@ public class AjoutParcoursActivity3 extends Activity {
 
 									new PutNewParcoursTask(this).execute(
 											leParcours, idParcours);
+									
+									if (leParcoursPassager != null) {
+										parcPassData = new ParcoursPassagerDataSource(this);
+										parcPassData.open();
+										parcPassData.insert(leParcoursPassager);
+										parcPassData.close();
+										
+										new PutNewParcoursPassagersTask(this).execute(leParcoursPassager, idParcours);
+									}
 
 									Toast.makeText(this,
 											R.string.toast_ajout_parcours,
@@ -304,6 +314,52 @@ public class AjoutParcoursActivity3 extends Activity {
 				HttpPut putMethod = new HttpPut(uri);
 
 				String jsonObj = JsonParcours.ToJSONObject(unParcours)
+						.toString();
+
+				Log.i(TAG, "JSON : " + jsonObj);
+
+				putMethod.setEntity(new StringEntity(jsonObj));
+				putMethod.addHeader("Content-Type", "application/json");
+
+				String body = m_ClientHttp.execute(putMethod,
+						new BasicResponseHandler());
+				Log.i(TAG, "Recu : " + body);
+
+			} catch (Exception e) {
+				m_Exp = e;
+			}
+			return null;
+		}
+	}
+	
+	private class PutNewParcoursPassagersTask extends AsyncTask<Object, Void, Void> {
+		private Exception m_Exp;
+		private ParcoursPassager unParcoursPassager;
+		private Context m_Context;
+		private String idParcours;
+
+		public PutNewParcoursPassagersTask(Context p_Context) {
+			this.m_Context = p_Context;
+
+		}
+
+		@Override
+		protected void onPreExecute() {
+			setProgressBarIndeterminateVisibility(true);
+		}
+
+		@Override
+		protected Void doInBackground(Object... params) {
+
+			unParcoursPassager = (ParcoursPassager) params[0];
+			idParcours = (String) params[1];
+
+			try {
+				URI uri = new URI("http", Util.WEB_SERVICE, Util.REST_PARCOURS_PASSAGER
+						+ "/" + idParcours, null, null);
+				HttpPut putMethod = new HttpPut(uri);
+
+				String jsonObj = JsonParcoursPassager.ToJSONObject(unParcoursPassager)
 						.toString();
 
 				Log.i(TAG, "JSON : " + jsonObj);

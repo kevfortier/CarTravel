@@ -13,23 +13,6 @@ public class ParcoursPassager implements java.io.Serializable {
 	private int m_Nbr_Passagers;
 	
 	/**
-	 * Constructeur sans Id
-	 */
-	public ParcoursPassager(String p_Id_Passager, 
-			int p_Nbr_Passagers) {
-		super();
-		this.m_Id = ID_NON_DEFINI;
-		this.m_List_Id_Passager = new ArrayList<String>();
-		this.m_List_Id_Passager.add(p_Id_Passager);
-		this.m_Nbr_Passagers = p_Nbr_Passagers;
-		if (p_Nbr_Passagers > 1) {
-			for (int i = 1; i < p_Nbr_Passagers; i++){
-				this.m_List_Id_Passager.add("0");
-			}
-		}
-	}
-	
-	/**
 	 * Constructeur pour passager
 	 * Si jamais l'utilisateur est un passager et qu'il entre un nombre de passagers
 	 * plus élevé que 1, on remplit le reste de la liste par des zéros et on s'organise

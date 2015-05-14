@@ -31,6 +31,11 @@ class Parcours(ndb.Model):
     codePostalArr = ndb.StringProperty()
     dateParcours = ndb.StringProperty()
     
+class ParcoursPassagers(ndb.Model):
+    idParcours = ndb.StringProperty()
+    idPassagers = ndb.StringProperty(repeated=True)
+    nbrPassagers = ndb.IntegerProperty();
+    
 class Notifications(ndb.Model):
     sender = ndb.StringProperty()
     receivers = ndb.StringProperty(repeated=True)

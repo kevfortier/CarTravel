@@ -13,7 +13,7 @@ import webapp2
 import logging
 import datetime
 
-from modeles import Utilisateur, Parcours, Profil
+from modeles import Utilisateur, Parcours, Profil, ParcoursPassagers
 from symbol import if_stmt
 
 def serialiser_pour_json(obj):
@@ -304,7 +304,6 @@ class ParcoursHandler (webapp2.RequestHandler):
             if(idParcours is None):
                 resultat = []
                 query = Parcours.query()
-                logging.info(query)
                 for p in query:
                     dictParcours = p.to_dict()
                     dictParcours['idParcours'] = p.key.id()
@@ -339,12 +338,16 @@ class ParcoursHandler (webapp2.RequestHandler):
             
             status = 204
             if(parcours is None):
+                
                 parcours = Parcours(key=cle)
                 status = 201
+                
+                logging.info(jsonObj)
                 
                 if(jsonObj['idParcours'] is not None):
                     parcours.idParcours = jsonObj['idParcours']
                 if(jsonObj['proprietaire'] is not None):
+                    logging.info(jsonObj['proprietaire'])
                     parcours.proprietaire = jsonObj['proprietaire']
                 if(jsonObj['conducteur'] is not None):
                     parcours.conducteur = jsonObj['conducteur']
@@ -453,6 +456,106 @@ class ParcoursHandler (webapp2.RequestHandler):
         except Exception, ex:
             logging.exception(ex)
             self.error(500)
+            
+class ParcoursPassagersHandler(webapp2.RequestHandler):
+    def get(self, idParcours = None):
+        try:
+            if(idParcours is None):
+                resultat = []
+                query = ParcoursPassagers.query()
+                logging.info(query)
+                for p in query:
+                    dictParcoursPassagers = p.to_dict()
+                    dictParcoursPassagers['idParcours'] = p.key.id()
+                    resultat.append(dictParcoursPassagers)
+                    
+            else:
+                cle = ndb.key('ParcoursPassagers', idParcours)
+                parcoursPassagers = cle.get()
+                if (parcoursPassagers is None):
+                    self.response.set_status(404)
+                    return
+                resultat = parcoursPassagers.to_dict()
+                
+            self.response.headers['Content-type'] = 'application/json'
+            self.response.out.write(json.dumps(resultat))
+        
+        except (ValueError, db.BadValueError), ex:
+            logging.info(ex)
+            self.error(400)
+            
+        except Exception, ex:
+            logging.exception(ex)
+            self.error(500)
+        
+    def put(self, idParcours):
+        try:
+            
+            cle = ndb.key.Key('ParcoursPassagers', idParcours)
+            parcoursPassagers = cle.get()
+            
+            jsonObj = json.loads(self.request.body)
+            
+            status = 204
+            if(parcoursPassagers is None):
+                parcoursPassagers = ParcoursPassagers(key=cle)
+                status = 201
+                
+                if(jsonObj['idParcours'] is not None):
+                    parcoursPassagers.idParcours = jsonObj['idParcours']
+                if(jsonObj['idPassagers'] is not None):
+                    parcoursPassagers.idPassagers = jsonObj['idPassagers'].replace("[","").replace("]","").split(", ")
+                if(jsonObj['nbrPassagers'] is not None):
+                    parcoursPassagers.nbrPassagers = jsonObj['nbrPassagers']
+                parcoursPassagers.put()
+                
+            elif(parcoursPassagers is not None):
+                if(cle.get() is not None):
+                    cle.delete()
+                    self.response.set_status(204)
+                else:
+                    self.error(404)
+                
+                parcoursPassagers = ParcoursPassagers(key=cle)
+                status = 201
+                
+                if(jsonObj['idParcours'] is not None):
+                    parcoursPassagers.idParcours = jsonObj['idParcours']
+                if(jsonObj['idPassagers'] is not None):
+                    parcoursPassagers.idPassagers = jsonObj['idPassagers'].replace("[","").replace("]","").split(", ")
+                if(jsonObj['nbrPassagers'] is not None):
+                    parcoursPassagers.nbrPassagers = jsonObj['nbrPassagers']
+                parcoursPassagers.put()
+                
+            self.response.set_status(status)
+        
+        except (ValueError, db.BadValueError, KeyError), ex:
+            logging.info(ex)
+            self.error(400)
+        
+        except Exception, ex:
+            logging.exception(ex)
+            self.error(500)
+        
+    def delete(self, idParcours=None):
+        try:
+            if(idParcours is None):
+                
+                ndb.delete_multi(ParcoursPassagers.query().fetch(keys_only=True))
+                self.response.set_status(204)
+                
+            else:
+                cle = ndb.key('ParcoursPassagers', idParcours)
+                
+                if(cle.get() is not None):
+                    cle.delete()
+                    self.response.set_status(204)
+                else:
+                    self.error(404)
+        
+        except Exception, ex:
+            logging.exception(ex)
+            self.error(500)
            
 class Connexion(webapp2.RequestHandler):
     def get(self,username):
@@ -525,6 +628,8 @@ application = webapp2.WSGIApplication(
         webapp2.Route(r'/utilisateurs/notifications', handler=ObtenirNotifications, methods=['GET']),
         webapp2.Route(r'/parcours', handler=ParcoursHandler, methods=['GET', 'DELETE']),
         webapp2.Route(r'/parcours/<idParcours>', handler=ParcoursHandler, methods=['GET', 'PUT', 'DELETE']),
+        webapp2.Route(r'/parcoursPassagers', handler=ParcoursHandler, methods=['GET', 'DELETE']),
+        webapp2.Route(r'/parcoursPassagers/<idParcours>', handler=ParcoursHandler, methods=['GET', 'PUT', 'DELETE']),
         webapp2.Route(r'/utilisateurs/<username>/profil',  handler=ProfilHandler, methods=['GET', 'PUT', 'DELETE'])
     ],
     debug=True)
