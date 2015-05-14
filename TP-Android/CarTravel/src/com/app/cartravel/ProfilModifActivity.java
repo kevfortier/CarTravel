@@ -1,6 +1,8 @@
 package com.app.cartravel;
 
 import java.net.URI;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPut;
@@ -129,6 +131,11 @@ public class ProfilModifActivity extends Activity {
 							if (Util.verifNumTel(strNumTel)) {
 								UtilisateurDataSource dataSource = new UtilisateurDataSource(
 										this);
+								
+								Calendar c = Calendar.getInstance();
+								SimpleDateFormat sdf = new SimpleDateFormat(
+										"dd:MMMM:yyyy HH:mm:ss a");
+								String strDate = sdf.format(c.getTime());
 
 								dataSource.open();
 								mUtilisateur.setNumCivique(strNumCivique);
@@ -136,6 +143,7 @@ public class ProfilModifActivity extends Activity {
 								mUtilisateur.setVille(strVille);
 								mUtilisateur.setCodePostal(strCodePostal);
 								mUtilisateur.setNumTel(strNumTel);
+								mUtilisateur.setDateAjoutProfil(strDate);
 
 								if (mVoiture.isChecked()) {
 									mUtilisateur.setVoiture(1);

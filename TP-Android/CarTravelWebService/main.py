@@ -107,6 +107,8 @@ class UtilisateurHandler(webapp2.RequestHandler):
                 #    utilisateur.courriel = jsonObj['courriel']
                 if(jsonObj['password'] is not None):
                     utilisateur.password = jsonObj['password']
+                if(jsonObj['dateUser'] is not None):
+                    utilisateur.dateUser = jsonObj['dateUser']
                 utilisateur.put()
                 status = 201
             else:
@@ -117,6 +119,8 @@ class UtilisateurHandler(webapp2.RequestHandler):
                 #    utilisateur.courriel = jsonObj['courriel']
                 if(jsonObj['password'] is not None):
                     utilisateur.password = jsonObj['password']
+                if(jsonObj['dateUser'] is not None):
+                    utilisateur.dateUser = jsonObj['dateUser']
                 utilisateur.put()
                 status = 201
             self.response.set_status(status)
@@ -201,7 +205,6 @@ class ProfilHandler (webapp2.RequestHandler):
             jsonObj = json.loads(self.request.body)
               
             logging.info(profil)
-            jsonObj = json.loads(self.request.body)
             logging.info(jsonObj)
             status = 204
             if(profil is None):
@@ -230,6 +233,8 @@ class ProfilHandler (webapp2.RequestHandler):
                     profil.noteCond = jsonObj['noteCond']
                 if (jsonObj['notePass'] is not None):
                     profil.notePass = jsonObj['notePass']
+                if (jsonObj['dateProfil'] is not None):
+                    profil.dateProfil = jsonObj['dateProfil']
                         
                 logging.info(jsonObj)
                     
@@ -263,6 +268,8 @@ class ProfilHandler (webapp2.RequestHandler):
                     profil.noteCond = jsonObj['noteCond']
                 if (jsonObj['notePass'] is not None):
                     profil.notePass = jsonObj['notePass']
+                if (jsonObj['date_profil'] is not None):
+                    profil.dateProfil = jsonObj['date_profil']
                 profil.put()
                 
             self.response.set_status(status)
@@ -461,6 +468,7 @@ class Connexion(webapp2.RequestHandler):
                 utilisateur.isConnected = True
                 utilisateur.put();
                 resultat = utilisateur.to_dict()
+                logging.info(resultat)
             
             self.response.headers['Content-Type'] = 'application/json'
             self.response.out.write(json.dumps(resultat))

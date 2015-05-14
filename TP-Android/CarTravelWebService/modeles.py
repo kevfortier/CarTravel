@@ -9,6 +9,7 @@ from google.appengine.ext import ndb
 class Utilisateur(ndb.Model):
     pseudo = ndb.StringProperty()
     password = ndb.StringProperty()
+    dateUser = ndb.StringProperty()
     
 class Parcours(ndb.Model):
     idParcours = ndb.StringProperty()
@@ -28,6 +29,7 @@ class Parcours(ndb.Model):
     rueArr = ndb.StringProperty()
     villeArr = ndb.StringProperty()
     codePostalArr = ndb.StringProperty()
+    dateParcours = ndb.StringProperty()
     
 class Notifications(ndb.Model):
     sender = ndb.StringProperty()
@@ -44,3 +46,4 @@ class Profil(ndb.Model):
     posVoiture = ndb.IntegerProperty()
     noteCond = ndb.FloatProperty()
     notePass = ndb.FloatProperty()
+    dateProfil = ndb.StringProperty()
