@@ -28,6 +28,7 @@ public class JsonParcours {
 	public static String PARCOURS_RUE_ARR = "rueArr";
 	public static String PARCOURS_VILLE_ARR = "villeArr";
 	public static String PARCOURS_CODE_POSTAL_ARR = "codePostalArr";
+	public static String PARCOURS_DATE_AJOUT = "date_parcours";
 
 	public static ArrayList<Parcours> parseListeParcours(String p_body)
 			throws JSONException {
@@ -56,7 +57,8 @@ public class JsonParcours {
 					jsonParcours.getString(PARCOURS_NUM_CIV_ARR),
 					jsonParcours.getString(PARCOURS_RUE_ARR),
 					jsonParcours.getString(PARCOURS_VILLE_ARR),
-					jsonParcours.getString(PARCOURS_CODE_POSTAL_ARR));
+					jsonParcours.getString(PARCOURS_CODE_POSTAL_ARR),
+					jsonParcours.getString(PARCOURS_DATE_AJOUT));
 			listeParcours.add(parcours);
 		}
 		return listeParcours;
@@ -84,6 +86,7 @@ public class JsonParcours {
 		jsonObj.put(PARCOURS_RUE_ARR, parcours.getRueArr());
 		jsonObj.put(PARCOURS_VILLE_ARR, parcours.getVilleArr());
 		jsonObj.put(PARCOURS_CODE_POSTAL_ARR, parcours.getCodePostalArr());
+		jsonObj.put(PARCOURS_DATE_AJOUT, parcours.getDateAjout());
 
 		return jsonObj;
 	}

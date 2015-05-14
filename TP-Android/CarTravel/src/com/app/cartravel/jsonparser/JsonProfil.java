@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import com.app.cartravel.classes.Utilisateurs;
 
 public class JsonProfil {
-	
+
 	public static String COURRIEL_USER = "courrielUser";
 	public static String NUM_CIVIQUE = "numCivique";
 	public static String RUE = "rue";
@@ -16,7 +16,7 @@ public class JsonProfil {
 	public static String POS_VOITURE = "posVoiture";
 	public static String NOTE_COND = "noteCond";
 	public static String NOTE_PASS = "notePass";
-	
+
 	public static JSONObject ToJSONObject(Utilisateurs utilisateur)
 			throws JSONException {
 		JSONObject jsonObj = new JSONObject();

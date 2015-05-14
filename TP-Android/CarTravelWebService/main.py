@@ -180,43 +180,52 @@ class ProfilHandler (webapp2.RequestHandler):
     
     def put(self, username):
         try:
-            logging.debug(username)
+            logging.info(username)
             if(username is not None):
-                cle = ndb.Key('Utilisateur', username)
-                user = cle.get()
+                cleUser = ndb.Key('Utilisateur', username)
+                user = cleUser.get()
+                status = 200
+                
                 if(user is None):
                     self.response.set_status(404)
                     return
+            
             else:
                 self.response.set_status(404)
                 return
             
-            cle = ndb.key.Key('Utilisateur', username)
+            cle = ndb.key.Key('Profil', username)
             profil = cle.get()
-            
+            jsonObj = json.loads(self.request.body)
+              
             status = 204
             if(profil is None):
                 profil = Profil(key=cle)
                 status = 201
-                
+                  
+                logging.info(jsonObj)
+                      
                 if (jsonObj['courrielUser'] is not None):
                     profil.courrielUser = jsonObj['courrielUser']
                 if (jsonObj['numCivique'] is not None):
-                    profil.courrielUser = jsonObj['numCivique']
+                    profil.numCivique = jsonObj['numCivique']
                 if (jsonObj['rue'] is not None):
-                    profil.courrielUser = jsonObj['rue']
+                    profil.rue = jsonObj['rue']
                 if (jsonObj['ville'] is not None):
-                    profil.courrielUser = jsonObj['ville']
+                    profil.ville = jsonObj['ville']
                 if (jsonObj['codePostal'] is not None):
-                    profil.courrielUser = jsonObj['codePostal']
+                    profil.codePostal = jsonObj['codePostal']
                 if (jsonObj['numTel'] is not None):
-                    profil.courrielUser = jsonObj['numTel']
+                    profil.numTel = jsonObj['numTel']
                 if (jsonObj['posVoiture'] is not None):
-                    profil.courrielUser = jsonObj['posVoiture']
+                    profil.posVoiture = jsonObj['posVoiture']
                 if (jsonObj['noteCond'] is not None):
-                    profil.courrielUser = jsonObj['noteCond']
+                    profil.noteCond = jsonObj['noteCond']
                 if (jsonObj['notePass'] is not None):
-                    profil.courrielUser = jsonObj['notePass']
+                    profil.notePass = jsonObj['notePass']
+                        
+                logging.info(jsonObj)
+                    
                 profil.put()
                 
             elif(profil is not None):
@@ -232,21 +241,21 @@ class ProfilHandler (webapp2.RequestHandler):
                 if (jsonObj['courrielUser'] is not None):
                     profil.courrielUser = jsonObj['courrielUser']
                 if (jsonObj['numCivique'] is not None):
-                    profil.courrielUser = jsonObj['numCivique']
+                    profil.numCivique = jsonObj['numCivique']
                 if (jsonObj['rue'] is not None):
-                    profil.courrielUser = jsonObj['rue']
+                    profil.rue = jsonObj['rue']
                 if (jsonObj['ville'] is not None):
-                    profil.courrielUser = jsonObj['ville']
+                    profil.ville = jsonObj['ville']
                 if (jsonObj['codePostal'] is not None):
-                    profil.courrielUser = jsonObj['codePostal']
+                    profil.codePostal = jsonObj['codePostal']
                 if (jsonObj['numTel'] is not None):
-                    profil.courrielUser = jsonObj['numTel']
+                    profil.numTel = jsonObj['numTel']
                 if (jsonObj['posVoiture'] is not None):
-                    profil.courrielUser = jsonObj['posVoiture']
+                    profil.posVoiture = jsonObj['posVoiture']
                 if (jsonObj['noteCond'] is not None):
-                    profil.courrielUser = jsonObj['noteCond']
+                    profil.noteCond = jsonObj['noteCond']
                 if (jsonObj['notePass'] is not None):
-                    profil.courrielUser = jsonObj['notePass']
+                    profil.notePass = jsonObj['notePass']
                 profil.put()
                 
             self.response.set_status(status)

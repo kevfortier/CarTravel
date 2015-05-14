@@ -1,6 +1,8 @@
 package com.app.cartravel;
 
 import java.net.URI;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPut;
@@ -146,7 +148,6 @@ public class AjoutParcoursActivity3 extends Activity {
 		String strVilleArr = m_VilleArr.getText().toString().trim();
 		String strCodePostalArr = m_CodePostalArr.getText().toString().trim();
 
-
 		if (Util.ValiderString(new String[] { strNumCivDep, strRueDep,
 				strVilleDep, strCodePostalDep, strNumCivArr, strRueArr,
 				strVilleArr, strCodePostalArr })) {
@@ -156,12 +157,16 @@ public class AjoutParcoursActivity3 extends Activity {
 						if (Util.verifChaineCharac(strRueArr)) {
 							if (Util.verifChaineCharac(strVilleArr)) {
 								if (Util.verifCodePostal(strCodePostalArr)) {
-									
+
 									long time = System.currentTimeMillis();
-									
+									Calendar c = Calendar.getInstance();
+									SimpleDateFormat sdf = new SimpleDateFormat(
+											"dd:MMMM:yyyy HH:mm:ss a");
+									String strDate = sdf.format(c.getTime());
+
 									String idParcours = util.getPseudo()
 											+ String.valueOf(time);
-									
+
 									if (m_Cond) {
 										leParcours = new Parcours(idParcours,
 												util.getId(), util.getId(),
@@ -171,7 +176,7 @@ public class AjoutParcoursActivity3 extends Activity {
 												strRueDep, strVilleDep,
 												strCodePostalDep, strNumCivArr,
 												strRueArr, strVilleArr,
-												strCodePostalArr);
+												strCodePostalArr, strDate);
 									} else {
 										leParcours = new Parcours(idParcours,
 												util.getId(), m_Jour, m_Heure,
@@ -179,9 +184,10 @@ public class AjoutParcoursActivity3 extends Activity {
 												strNumCivDep, strRueDep,
 												strVilleDep, strCodePostalDep,
 												strNumCivArr, strRueArr,
-												strVilleArr, strCodePostalArr);
+												strVilleArr, strCodePostalArr,
+												strDate);
 									}
-									
+
 									parcourData = new ParcourDataSource(this);
 									parcourData.open();
 									parcourData.insert(leParcours);
@@ -286,7 +292,7 @@ public class AjoutParcoursActivity3 extends Activity {
 
 			unParcours = (Parcours) params[0];
 			idParcours = (String) params[1];
-			
+
 			try {
 				URI uri = new URI("http", Util.WEB_SERVICE, Util.REST_PARCOURS
 						+ "/" + idParcours, null, null);

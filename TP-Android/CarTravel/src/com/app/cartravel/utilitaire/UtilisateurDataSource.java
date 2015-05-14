@@ -142,6 +142,9 @@ public class UtilisateurDataSource {
 		row.put(DatabaseHelper.COL_ESTCONNECTE, p_Utilisateur.getEstConnecte());
 		row.put(DatabaseHelper.COL_DERNIERCONNECTE,
 				p_Utilisateur.getDernierConnecte());
+		row.put(DatabaseHelper.COL_USER_DATE, p_Utilisateur.getDateAjoutUser());
+		row.put(DatabaseHelper.COL_PROFIL_DATE,
+				p_Utilisateur.getDateAjoutProfil());
 		return row;
 	}
 
@@ -160,7 +163,9 @@ public class UtilisateurDataSource {
 				.getColumnIndex(DatabaseHelper.COL_RATING_COND)), c.getFloat(c
 				.getColumnIndex(DatabaseHelper.COL_RATING_PASS)), c.getInt(c
 				.getColumnIndex(DatabaseHelper.COL_ESTCONNECTE)), c.getInt(c
-				.getColumnIndex(DatabaseHelper.COL_DERNIERCONNECTE)));
+				.getColumnIndex(DatabaseHelper.COL_DERNIERCONNECTE)),
+				c.getString(c.getColumnIndex(DatabaseHelper.COL_USER_DATE)),
+				c.getString(c.getColumnIndex(DatabaseHelper.COL_PROFIL_DATE)));
 		return r;
 	}
 }

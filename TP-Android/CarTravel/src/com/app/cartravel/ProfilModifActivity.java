@@ -249,10 +249,11 @@ public class ProfilModifActivity extends Activity {
 
 			// S'il n'y a pas de message d'erreur
 			if (m_Exp == null) {
-				UtilisateurDataSource dataSource = new UtilisateurDataSource(m_Context);
+				UtilisateurDataSource dataSource = new UtilisateurDataSource(
+						m_Context);
 				dataSource.open();
-				//TODO Creation du profil.
-				
+				// TODO Creation du profil.
+
 				dataSource.close();
 			} else {
 				Toast.makeText(

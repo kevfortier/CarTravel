@@ -11,6 +11,8 @@ public class JsonUtilisateur {
 
 		jsonObj.put("pseudo", u.getPseudo());
 		jsonObj.put("password", u.getMotDePasse());
+		jsonObj.put("dateUser", u.getDateAjoutUser());
+		jsonObj.put("dateProfil", u.getDateAjoutProfil());
 
 		return jsonObj;
 	}
@@ -35,7 +37,8 @@ public class JsonUtilisateur {
 		JSONObject jsonUtilisateur = new JSONObject(strJson);
 		u = new Utilisateurs("", jsonUtilisateur.getString("pseudo"),
 				jsonUtilisateur.getString("password"), "", "", "", "", "", 0,
-				0, 0, 0, 0);
+				0, 0, 0, 0, jsonUtilisateur.getString("dateUser"),
+				jsonUtilisateur.getString("dateProfil"));
 		return u;
 	}
 }

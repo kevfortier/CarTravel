@@ -4,7 +4,6 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.jar.Pack200.Unpacker;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -36,7 +35,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.cartravel.classes.Parcours;
-import com.app.cartravel.UnParcoursActivity;
 import com.app.cartravel.classes.Utilisateurs;
 import com.app.cartravel.jsonparser.JsonParcours;
 import com.app.cartravel.utilitaire.ParcourDataSource;
@@ -50,14 +48,13 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 
 	private SectionsPagerAdapter mSectionsPagerAdapter;
 	private ViewPager mViewPager;
-	
+
 	public static final String EXTRA_PARCOURS = "parcours";
-	
+
 	public Context m_Context;
 	public static Context m_ContextFrag1;
 	public static Context m_ContextFrag2;
 	public static Context m_ContextFrag3;
-	
 
 	static View fragParcours;
 	static View fragPassagers;
@@ -72,7 +69,6 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 	ListView m_MesPassagers;
 
 	View m_ParcoursView;
-
 
 	private List<Parcours> m_LstParcours;
 	private List<Parcours> m_LstParcoursDemandeConducteur;
@@ -98,55 +94,54 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 
 		setContentView(R.layout.activity_parcour);
 	}
-	
+
 	@Override
 	protected void onResume() {
 		super.onResume();
-		
+
 		// Set up the action bar.
-				final ActionBar actionBar = getActionBar();
-				actionBar.setDisplayHomeAsUpEnabled(true);
-				actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-				
-				new ObtenirParcoursTask(this).execute();
-				
-				m_Context = this;
+		final ActionBar actionBar = getActionBar();
+		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-				// Create the adapter that will return a fragment for each of the
-				// three
-				// primary sections of the activity.
-				mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
+		new ObtenirParcoursTask(this).execute();
 
-				// Set up the ViewPager with the sections adapter.
-				mViewPager = (ViewPager) findViewById(R.id.pager);
-				mViewPager.setAdapter(mSectionsPagerAdapter);
-				
+		m_Context = this;
 
-				// When swiping between different sections, select the corresponding
-				// tab. We can also use ActionBar.Tab#select() to do this if we have
-				// a reference to the Tab.
-				mViewPager
-						.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-							@Override
-							public void onPageSelected(int position) {
-								actionBar.setSelectedNavigationItem(position);
-							}
-						});
+		// Create the adapter that will return a fragment for each of the
+		// three
+		// primary sections of the activity.
+		mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
 
-				// For each of the sections in the app, add a tab to the action bar.
-				for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
-					// Create a tab with text corresponding to the page title
-					// defined by
-					// the adapter. Also specify this Activity object, which
-					// implements
-					// the TabListener interface, as the callback (listener) for
-					// when
-					// this tab is selected.
-					actionBar.addTab(actionBar.newTab()
-							.setText(mSectionsPagerAdapter.getPageTitle(i))
-							.setTabListener(this));
-				
-				}
+		// Set up the ViewPager with the sections adapter.
+		mViewPager = (ViewPager) findViewById(R.id.pager);
+		mViewPager.setAdapter(mSectionsPagerAdapter);
+
+		// When swiping between different sections, select the corresponding
+		// tab. We can also use ActionBar.Tab#select() to do this if we have
+		// a reference to the Tab.
+		mViewPager
+				.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+					@Override
+					public void onPageSelected(int position) {
+						actionBar.setSelectedNavigationItem(position);
+					}
+				});
+
+		// For each of the sections in the app, add a tab to the action bar.
+		for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
+			// Create a tab with text corresponding to the page title
+			// defined by
+			// the adapter. Also specify this Activity object, which
+			// implements
+			// the TabListener interface, as the callback (listener) for
+			// when
+			// this tab is selected.
+			actionBar.addTab(actionBar.newTab()
+					.setText(mSectionsPagerAdapter.getPageTitle(i))
+					.setTabListener(this));
+
+		}
 	}
 
 	public void fillListMesDemandeConducteur(ListView laListe,
@@ -163,7 +158,7 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 			dataUser.close();
 
 			m_LstParcoursDemandeConducteur.clear();
-			
+
 			for (Parcours unParcours : toutsParcours) {
 				if (unParcours.getIdProprietaire() == m_UtilisateurConnecte
 						.getId()
@@ -172,25 +167,29 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 					m_LstParcoursDemandeConducteur.add(unParcours);
 				}
 			}
-			if (! m_LstParcoursDemandeConducteur.isEmpty()) {
+			if (!m_LstParcoursDemandeConducteur.isEmpty()) {
 
-				laListe.setAdapter(new ParcoursAdapter(this,
+				laListe.setAdapter(new ParcoursAdapter(
+						this,
 						R.layout.lst_parcours_item,
 						ConvertParcoursToListItems(m_LstParcoursDemandeConducteur)));
-				
+
 				laListe.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-				      @Override
-				      public void onItemClick(AdapterView<?> parent, final View view,
-				          int position, long id) {
-				    	  Toast.makeText(m_Context, "Click sur la liste.",Toast.LENGTH_SHORT).show();
-				    	  Intent i = new Intent(m_Context, UnParcoursActivity.class);
-				  			i.putExtra(EXTRA_PARCOURS, m_LstParcoursDemandeConducteur.get(position));
-				  		m_Context.startActivity(i);
-				      }
+					@Override
+					public void onItemClick(AdapterView<?> parent,
+							final View view, int position, long id) {
+						Toast.makeText(m_Context, "Click sur la liste.",
+								Toast.LENGTH_SHORT).show();
+						Intent i = new Intent(m_Context,
+								UnParcoursActivity.class);
+						i.putExtra(EXTRA_PARCOURS,
+								m_LstParcoursDemandeConducteur.get(position));
+						m_Context.startActivity(i);
+					}
 
-				    });
-				
+				});
+
 				emptyList.setVisibility(View.GONE);
 			}
 		}
@@ -209,9 +208,9 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 			dataUser.close();
 			m_MesDemandesPassagers = (ListView) this
 					.findViewById(R.id.lst_demande_passagers);
-			
+
 			m_LstParcoursDemandePassagers.clear();
-			
+
 			for (Parcours unParcours : toutsParcours) {
 				if (unParcours.getIdProprietaire() == m_UtilisateurConnecte
 						.getId()
@@ -220,9 +219,10 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 					m_LstParcoursDemandePassagers.add(unParcours);
 				}
 			}
-			if (! m_LstParcoursDemandePassagers.isEmpty()) {
+			if (!m_LstParcoursDemandePassagers.isEmpty()) {
 
-				laListe.setAdapter(new ParcoursAdapter(this,
+				laListe.setAdapter(new ParcoursAdapter(
+						this,
 						R.layout.lst_parcours_item,
 						ConvertParcoursToListItems(m_LstParcoursDemandePassagers)));
 				emptyList.setVisibility(View.GONE);
@@ -351,7 +351,6 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 			// TODO
 		}
 	}
-
 
 	@Override
 	protected void onActivityResult(int p_RequestCode, int p_resultCode,
@@ -530,8 +529,14 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 			fragParcours = inflater.inflate(R.layout.fragment_parcours,
 					container, false);
 
-			activity.fillListMesDemandeConducteur((ListView) fragParcours.findViewById(R.id.lst_demande_conducteurs), (TextView) fragParcours.findViewById(R.id.lst_demande_conducteurs_vide));
-			activity.fillListMesDemandePassagers((ListView) fragParcours.findViewById(R.id.lst_demande_passagers), (TextView) fragParcours.findViewById(R.id.lst_demande_passagers_vide));
+			activity.fillListMesDemandeConducteur((ListView) fragParcours
+					.findViewById(R.id.lst_demande_conducteurs),
+					(TextView) fragParcours
+							.findViewById(R.id.lst_demande_conducteurs_vide));
+			activity.fillListMesDemandePassagers((ListView) fragParcours
+					.findViewById(R.id.lst_demande_passagers),
+					(TextView) fragParcours
+							.findViewById(R.id.lst_demande_passagers_vide));
 
 			return fragParcours;
 		}
@@ -579,8 +584,15 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 					}
 				}
 				pds.close();
-				activity.fillListMesDemandeConducteur((ListView) fragParcours.findViewById(R.id.lst_demande_conducteurs), (TextView) fragParcours.findViewById(R.id.lst_demande_conducteurs_vide));
-				activity.fillListMesDemandePassagers((ListView) fragParcours.findViewById(R.id.lst_demande_passagers), (TextView) fragParcours.findViewById(R.id.lst_demande_passagers_vide));
+				activity.fillListMesDemandeConducteur(
+						(ListView) fragParcours
+								.findViewById(R.id.lst_demande_conducteurs),
+						(TextView) fragParcours
+								.findViewById(R.id.lst_demande_conducteurs_vide));
+				activity.fillListMesDemandePassagers((ListView) fragParcours
+						.findViewById(R.id.lst_demande_passagers),
+						(TextView) fragParcours
+								.findViewById(R.id.lst_demande_passagers_vide));
 			}
 		}
 	}

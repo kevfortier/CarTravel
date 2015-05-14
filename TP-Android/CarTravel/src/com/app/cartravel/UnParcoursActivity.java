@@ -13,8 +13,6 @@ import com.app.cartravel.classes.Parcours;
 import com.app.cartravel.classes.Utilisateurs;
 import com.app.cartravel.utilitaire.UtilisateurDataSource;
 
-import com.app.cartravel.ParcourActivity;
-
 public class UnParcoursActivity extends Activity {
 
 	private Bundle extras;
@@ -50,10 +48,11 @@ public class UnParcoursActivity extends Activity {
 		extras = this.getIntent().getExtras();
 
 		if (extras != null) {
-			if(extras.getSerializable(ParcourActivity.EXTRA_PARCOURS) != null)
-				unParcours = (Parcours)extras.getSerializable(ParcourActivity.EXTRA_PARCOURS);
+			if (extras.getSerializable(ParcourActivity.EXTRA_PARCOURS) != null)
+				unParcours = (Parcours) extras
+						.getSerializable(ParcourActivity.EXTRA_PARCOURS);
 		}
-		
+
 		m_Demandeur = (TextView) findViewById(R.id.txtProprpietaire);
 		m_Conducteur = (TextView) findViewById(R.id.txtConducteur);
 		m_Date = (TextView) findViewById(R.id.txtDate);
@@ -101,7 +100,7 @@ public class UnParcoursActivity extends Activity {
 			TextView p_DistanceSupMax, TextView p_AdresseDep,
 			TextView p_VilleDep, TextView p_CodePostalDep,
 			TextView p_AdresseArr, TextView p_VilleArr, TextView p_CodePostalArr) {
-		
+
 		userData = new UtilisateurDataSource(this);
 		userData.open();
 		unUser = userData.getUtilisateur(unParcours.getIdProprietaire());
@@ -116,18 +115,18 @@ public class UnParcoursActivity extends Activity {
 		}
 
 		p_Demandeur.setText(unUser.getPseudo());
-		
+
 		if (unParcours.getIdConducteur() != 0) {
 			userData.open();
 			unUser = userData.getUtilisateur(unParcours.getIdConducteur());
 			userData.close();
 			p_Conducteur.setText(unUser.getPseudo());
 		}
-		
 
 		p_Date.setText(unParcours.getJour());
 		p_Repetitif.setText(strRepet);
-		p_NbrPassagers.setText(String.valueOf(unParcours.getNbPlacePassagers()));
+		p_NbrPassagers
+				.setText(String.valueOf(unParcours.getNbPlacePassagers()));
 		p_nbrPlaceTot.setText(String.valueOf(unParcours.getNbPlaceDispo()));
 		p_NbrPlacePrise.setText(String.valueOf(unParcours.getNbPlacePrise()));
 		p_DistanceSupMax

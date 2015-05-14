@@ -4,11 +4,11 @@ public class Passagers {
 	private String m_IdParcours;
 	private int m_IdPassager;
 	private int m_NbrPassagers;
-	
+
 	/**
 	 * Constructeur
 	 */
-	public Passagers(String p_IdParcours, int p_IdPassager, int p_NbrPassagers){
+	public Passagers(String p_IdParcours, int p_IdPassager, int p_NbrPassagers) {
 		super();
 		this.m_IdParcours = p_IdParcours;
 		this.m_IdPassager = p_IdPassager;

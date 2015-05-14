@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
 	// Version BD
-	private final static int DB_VERSION = 15;
+	private final static int DB_VERSION = 16;
 
 	// Nom de la BD
 	private final static String DATABASE_NAME = "cartravel.sqlite";
@@ -35,6 +35,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public final static String COL_ESTCONNECTE = "estconnecte";
 	public final static String COL_DERNIERCONNECTE = "dernierconnecte";
 
+	public final static String COL_PROFIL_DATE = "date_profil";
+	public final static String COL_USER_DATE = "date_user";
+
 	// Noms des colonnes d'un parcour
 	public final static String COL_ID_PARCOUR = "id_parcour";
 	public final static String COL_ID_PROPRIETAIRE = "id_proprietaire";
@@ -46,6 +49,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public final static String COL_NBR_PLACE_PRISE = "nbr_place_prise";
 	public final static String COL_DISTANCE_SUP_MAX = "distance_max"; // Null si
 																		// passager.
+
+	public final static String COL_PARCOURS_DATE = "date_parcours";
+
 	// Addresse départ
 	public final static String COL_NO_CIVIQUE_DEP = "no_civique_dep";
 	public final static String COL_RUE_DEP = "rue_dep";
@@ -60,6 +66,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	// Noms des colonnes d'un parcour-passager
 	public final static String COL_ID_PASSAGER = "id_utilisateur";
 	public final static String COL_NBR_PASSAGER = "nbr_passager";
+	public final static String COL_PARCOURS_PASSAGERS_DATE = "date_parcours_passagers";
 
 	public DatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DB_VERSION);
@@ -77,7 +84,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				+ COL_NUM_TELEPHONE + " text, " + COL_VOITURE + " integer, "
 				+ COL_RATING_COND + " real, " + COL_RATING_PASS + " real, "
 				+ COL_ESTCONNECTE + " integer, " + COL_DERNIERCONNECTE
-				+ " integer)");
+				+ " integer, " + COL_USER_DATE + " text, " + COL_PROFIL_DATE
+				+ " text)");
 
 		// Crée la table pour les parcours
 		db.execSQL("create table " + TABLE_PARCOURS + " (" + COL_ID_PARCOUR
@@ -89,7 +97,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				+ COL_NO_CIVIQUE_DEP + " text, " + COL_RUE_DEP + " text, "
 				+ COL_VILLE_DEP + " text, " + COL_CODE_POSTAL_DEP + " text, "
 				+ COL_NO_CIVIQUE_ARR + " text, " + COL_RUE_ARR + " text, "
-				+ COL_VILLE_ARR + " text, " + COL_CODE_POSTAL_ARR + " text)");
+				+ COL_VILLE_ARR + " text, " + COL_CODE_POSTAL_ARR + " text, "
+				+ COL_PARCOURS_DATE + "text)");
 
 		// Crée la table pour les parcours-passagers
 		db.execSQL("create table " + TABLE_PARCOUR_PASSAGER + " ("

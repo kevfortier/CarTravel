@@ -37,7 +37,8 @@ public class ParcourDataSource {
 	public void update(Parcours p_Parcour) {
 		ContentValues row = parcourToContentValues(p_Parcour);
 		m_Db.update(DatabaseHelper.TABLE_PARCOURS, row,
-				DatabaseHelper.COL_ID_PARCOUR + "='" + p_Parcour.getId() + "'", null);
+				DatabaseHelper.COL_ID_PARCOUR + "='" + p_Parcour.getId() + "'",
+				null);
 	}
 
 	public void delete(int p_Id) {
@@ -52,8 +53,8 @@ public class ParcourDataSource {
 	public Parcours getParcours(String p_IdParcour) {
 		Parcours p = null;
 		Cursor c = m_Db.query(DatabaseHelper.TABLE_PARCOURS, null,
-				DatabaseHelper.COL_ID_PARCOUR + "='" + p_IdParcour + "'", null, null,
-				null, null);
+				DatabaseHelper.COL_ID_PARCOUR + "='" + p_IdParcour + "'", null,
+				null, null, null);
 		c.moveToFirst();
 		if (!c.isAfterLast()) {
 			p = cursorToParcour(c);
@@ -98,6 +99,7 @@ public class ParcourDataSource {
 		row.put(DatabaseHelper.COL_VILLE_ARR, p_Parcour.getVilleArr());
 		row.put(DatabaseHelper.COL_CODE_POSTAL_ARR,
 				p_Parcour.getCodePostalArr());
+		row.put(DatabaseHelper.COL_PARCOURS_DATE, p_Parcour.getDateAjout());
 
 		return row;
 	}
@@ -125,7 +127,8 @@ public class ParcourDataSource {
 						.getString(c
 								.getColumnIndex(DatabaseHelper.COL_VILLE_ARR)),
 				c.getString(c
-						.getColumnIndex(DatabaseHelper.COL_CODE_POSTAL_ARR)));
+						.getColumnIndex(DatabaseHelper.COL_CODE_POSTAL_ARR)),
+				c.getString(c.getColumnIndex(DatabaseHelper.COL_PARCOURS_DATE)));
 		return p;
 	}
 }
