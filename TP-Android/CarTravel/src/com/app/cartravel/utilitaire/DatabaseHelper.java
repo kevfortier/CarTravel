@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
 	// Version BD
-	private final static int DB_VERSION = 15;
+	private final static int DB_VERSION = 18;
 
 	// Nom de la BD
 	private final static String DATABASE_NAME = "cartravel.sqlite";
@@ -15,7 +15,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	// Nom des tables
 	public final static String TABLE_UTILISATEUR = "utilisateur";
 	public final static String TABLE_PARCOURS = "parcours";
-	public final static String TABLE_PARCOUR_PASSAGER = "parcour_passager";
+	public final static String TABLE_PARCOURS_PASSAGER = "parcourS_passager";
 
 	// Noms des colonnes d'un utilisateur
 	public final static String COL_ID_USER = "id_utilisateur";
@@ -58,8 +58,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public final static String COL_CODE_POSTAL_ARR = "code_postal_arr";
 
 	// Noms des colonnes d'un parcour-passager
-	public final static String COL_ID_PASSAGER = "id_utilisateur";
-	public final static String COL_NBR_PASSAGER = "nbr_passager";
+	public final static String COL_ID_PARCOURS_PASSAGER = "id_parcours_passager";
+	public final static String COL_ID_PASSAGERS = "id_utilisateur";
+	public final static String COL_NBR_PASSAGERS = "nbr_passagers";
 
 	public DatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DB_VERSION);
@@ -92,17 +93,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				+ COL_VILLE_ARR + " text, " + COL_CODE_POSTAL_ARR + " text)");
 
 		// Crée la table pour les parcours-passagers
-		db.execSQL("create table " + TABLE_PARCOUR_PASSAGER + " ("
-				+ COL_ID_PARCOUR + " text, " + COL_ID_PASSAGER + " integer, "
-				+ COL_NBR_PASSAGER + " integer, " + " primary key ("
-				+ COL_ID_PARCOUR + ", " + COL_ID_PASSAGER + "))");
+		db.execSQL("create table " + TABLE_PARCOURS_PASSAGER + " ("
+				+ COL_ID_PARCOURS_PASSAGER + " text primary key, "
+				+ COL_ID_PASSAGERS + " text, "
+				+ COL_NBR_PASSAGERS + " integer)");
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		db.execSQL("drop table if exists " + TABLE_UTILISATEUR);
 		db.execSQL("drop table if exists " + TABLE_PARCOURS);
-		db.execSQL("drop table if exists " + TABLE_PARCOUR_PASSAGER);
+		db.execSQL("drop table if exists " + TABLE_PARCOURS_PASSAGER);
 		this.onCreate(db);
 	}
 }

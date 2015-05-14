@@ -190,6 +190,7 @@ class ProfilHandler (webapp2.RequestHandler):
             else:
                 self.response.set_status(404)
                 return
+            
             logging.info(username)
             cle = ndb.Key('Profil', username)
             profil = cle.get()
@@ -336,8 +337,6 @@ class ParcoursHandler (webapp2.RequestHandler):
                     parcours.heure = jsonObj['heure']
                 if(jsonObj['repetitif'] is not None):
                     parcours.repetitif = jsonObj['repetitif']
-                if(jsonObj['nbrPassagers'] is not None):
-                    parcours.nbrPassagers = jsonObj['nbrPassagers']
                 if(jsonObj['nbrPlacesDispo'] is not None):
                     parcours.nbrPlacesDispo = jsonObj['nbrPlacesDispo']
                 if(jsonObj['nbrPlacesPrise'] is not None):
@@ -384,8 +383,6 @@ class ParcoursHandler (webapp2.RequestHandler):
                     parcours.heure = jsonObj['heure']
                 if(jsonObj['repetitif'] is not None):
                     parcours.repetitif = jsonObj['repetitif']
-                if(jsonObj['nbrPassagers'] is not None):
-                    parcours.nbrPassagers = jsonObj['nbrPassagers']
                 if(jsonObj['nbrPlacesDispo'] is not None):
                     parcours.nbrPlacesDispo = jsonObj['nbrPlacesDispo']
                 if(jsonObj['nbrPlacesPrise'] is not None):

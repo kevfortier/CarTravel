@@ -40,9 +40,9 @@ public class ParcourDataSource {
 				DatabaseHelper.COL_ID_PARCOUR + "='" + p_Parcour.getId() + "'", null);
 	}
 
-	public void delete(int p_Id) {
+	public void delete(String p_Id) {
 		m_Db.delete(DatabaseHelper.TABLE_PARCOURS,
-				DatabaseHelper.COL_ID_PARCOUR + "=" + p_Id, null);
+				DatabaseHelper.COL_ID_PARCOUR + "='" + p_Id + "'", null);
 	}
 
 	public void removeAll() {

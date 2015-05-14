@@ -17,7 +17,6 @@ class Parcours(ndb.Model):
     jour = ndb.StringProperty()
     heure = ndb.StringProperty()
     repetitif = ndb.BooleanProperty()
-    nbrPassagers = ndb.IntegerProperty()
     nbrPlacesDispo = ndb.IntegerProperty()
     nbrPlacesPrise = ndb.IntegerProperty()
     distSuppMax = ndb.FloatProperty()
