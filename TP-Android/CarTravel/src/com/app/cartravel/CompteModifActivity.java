@@ -157,7 +157,7 @@ public class CompteModifActivity extends Activity {
 				SimpleDateFormat sdf = new SimpleDateFormat(
 						"dd:MMMM:yyyy HH:mm:ss a");
 				String strDate = sdf.format(c.getTime());
-				new ModifierCompteTask(this).execute(strCourriel, strPseudo,
+				new ModifierCompteTask(this).execute(mUtilisateur.getCourriel(), strPseudo,
 						strMotDePasse, strDate);
 				this.setResult(RESULT_OK, i);
 				this.finish();
@@ -199,7 +199,7 @@ public class CompteModifActivity extends Activity {
 			try {
 				utilisateur = new Utilisateurs(params[0], params[1],
 						Util.sha1(params[2]), "", "", "", "", "", 0, 0, 0, 0,
-						0, params[3], "");
+						0, params[3], params[3]);
 
 				URI uri = new URI(
 						"http",
