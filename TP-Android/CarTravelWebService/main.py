@@ -96,6 +96,7 @@ class UtilisateurHandler(webapp2.RequestHandler):
             cle = ndb.Key('Utilisateur', username)
             utilisateur = cle.get()
             jsonObj = json.loads(self.request.body)
+            logging.info(jsonObj)
             status = 204
             if(utilisateur is None):
                 #Nouvel utilisateur
@@ -193,14 +194,19 @@ class ProfilHandler (webapp2.RequestHandler):
             else:
                 self.response.set_status(404)
                 return
-            
-            cle = ndb.key.Key('Profil', username)
+            logging.info(username)
+            cle = ndb.Key('Profil', username)
             profil = cle.get()
             jsonObj = json.loads(self.request.body)
               
+            logging.info(profil)
+            jsonObj = json.loads(self.request.body)
+            logging.info(jsonObj)
             status = 204
             if(profil is None):
+                
                 profil = Profil(key=cle)
+                logging.info(profil)
                 status = 201
                   
                 logging.info(jsonObj)
@@ -268,6 +274,21 @@ class ProfilHandler (webapp2.RequestHandler):
             logging.exception(ex)
             self.error(500)
         
+    def delete(self, username):
+        try:
+            cle = ndb.Key('Profil', username)
+            
+            if(cle.get() is not None):
+                cle.delete()
+                self.response.set_status(204)
+            else:
+                self.error(404)
+                
+        except Exception, ex:
+            logging.exception(ex)
+            self.error(500)
+            
+            
 class ParcoursHandler (webapp2.RequestHandler):
     def get(self, idParcours = None): 
         try:
