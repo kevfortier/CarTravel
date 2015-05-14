@@ -12,7 +12,6 @@ public class Parcours implements java.io.Serializable {
 	private String m_Jour;
 	private String m_Heure;
 	private boolean m_Repetitif;
-	private int m_NbPlacePassagers;
 	private int m_NbPlaceDispo;
 	private int m_NbPlacePrise;
 	private float m_DistanceSupMax;
@@ -28,9 +27,10 @@ public class Parcours implements java.io.Serializable {
 	private String m_CodePostalArr;
 	private String m_DateAjout;
 
+	
 	/**
 	 * Constructeur globale
-	 */
+	 
 	public Parcours(String p_Id, int p_IdProprietaire, int p_IdConducteur,
 			String p_Jour, String p_Heure, boolean p_Repetitif,
 			int p_NbPlacePassagers, int p_NbPlaceDispo, int p_NbPlacePrise,
@@ -44,7 +44,6 @@ public class Parcours implements java.io.Serializable {
 		this.m_IdConducteur = p_IdConducteur;
 		this.m_Jour = p_Jour;
 		this.m_Heure = p_Heure;
-		this.m_NbPlacePassagers = p_NbPlacePassagers;
 		this.m_Repetitif = p_Repetitif;
 		this.m_NbPlaceDispo = p_NbPlaceDispo;
 		this.m_NbPlacePrise = p_NbPlacePrise;
@@ -61,8 +60,8 @@ public class Parcours implements java.io.Serializable {
 		this.m_CodePostalArr = p_CodePostalArr;
 
 		this.m_DateAjout = p_DateAjout;
-	}
-
+	}*/
+	
 	/**
 	 * Constructeur pour Conducteur
 	 */
@@ -132,7 +131,7 @@ public class Parcours implements java.io.Serializable {
 	 * Constructeur pour passagers
 	 */
 	public Parcours(String p_Id, int p_IdProprietaire, String p_Jour,
-			String p_Heure, boolean p_Repetitif, int p_NbPlacePassagers,
+			String p_Heure, boolean p_Repetitif,
 			String p_NumCiviqueDep, String p_RueDep, String p_VilleDep,
 			String p_CodePostalDep, String p_NumCiviqueArr, String p_RueArr,
 			String p_VilleArr, String p_CodePostalArr, String p_DateAjout) {
@@ -142,7 +141,6 @@ public class Parcours implements java.io.Serializable {
 		this.m_Jour = p_Jour;
 		this.m_Heure = p_Heure;
 		this.m_Repetitif = p_Repetitif;
-		this.m_NbPlacePassagers = p_NbPlacePassagers;
 
 		this.m_NumCiviqueDep = p_NumCiviqueDep;
 		this.m_RueDep = p_RueDep;
@@ -161,7 +159,7 @@ public class Parcours implements java.io.Serializable {
 	 * Constructeur sans ID pour passagers
 	 */
 	public Parcours(int p_IdProprietaire, String p_Jour, String p_Heure,
-			boolean p_Repetitif, int p_NbPlacePassagers,
+			boolean p_Repetitif,
 			String p_NumCiviqueDep, String p_RueDep, String p_VilleDep,
 			String p_CodePostalDep, String p_NumCiviqueArr, String p_RueArr,
 			String p_VilleArr, String p_CodePostalArr, String p_DateAjout) {
@@ -171,7 +169,6 @@ public class Parcours implements java.io.Serializable {
 		this.m_Jour = p_Jour;
 		this.m_Heure = p_Heure;
 		this.m_Repetitif = p_Repetitif;
-		this.m_NbPlacePassagers = p_NbPlacePassagers;
 
 		this.m_NumCiviqueDep = p_NumCiviqueDep;
 		this.m_RueDep = p_RueDep;
@@ -284,14 +281,6 @@ public class Parcours implements java.io.Serializable {
 
 	public void setVilleArr(String VilleArr) {
 		this.m_VilleArr = VilleArr;
-	}
-
-	public int getNbPlacePassagers() {
-		return m_NbPlacePassagers;
-	}
-
-	public void setNbPlacePassagers(int p_NbPlacePassagers) {
-		this.m_NbPlacePassagers = p_NbPlacePassagers;
 	}
 
 	public String getCodePostalArr() {

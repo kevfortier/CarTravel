@@ -10,7 +10,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.app.cartravel.classes.Parcours;
+import com.app.cartravel.classes.ParcoursPassager;
 import com.app.cartravel.classes.Utilisateurs;
+import com.app.cartravel.utilitaire.ParcoursPassagerDataSource;
 import com.app.cartravel.utilitaire.UtilisateurDataSource;
 
 public class UnParcoursActivity extends Activity {
@@ -18,9 +20,11 @@ public class UnParcoursActivity extends Activity {
 	private Bundle extras;
 
 	private Parcours unParcours;
+	private ParcoursPassager unParcoursPassagers;
 
 	private Utilisateurs unUser;
 	private UtilisateurDataSource userData;
+	private ParcoursPassagerDataSource ParcPassData;
 
 	private TextView m_Demandeur;
 	private TextView m_Conducteur;
@@ -48,9 +52,14 @@ public class UnParcoursActivity extends Activity {
 		extras = this.getIntent().getExtras();
 
 		if (extras != null) {
-			if (extras.getSerializable(ParcourActivity.EXTRA_PARCOURS) != null)
+			if (extras.getSerializable(ParcourActivity.EXTRA_PARCOURS) != null) {
 				unParcours = (Parcours) extras
 						.getSerializable(ParcourActivity.EXTRA_PARCOURS);
+				
+			ParcPassData = new ParcoursPassagerDataSource(this);
+			unParcoursPassagers = ParcPassData.getParcoursPassager(unParcours.getId());
+			
+			}
 		}
 
 		m_Demandeur = (TextView) findViewById(R.id.txtProprpietaire);
@@ -126,7 +135,7 @@ public class UnParcoursActivity extends Activity {
 		p_Date.setText(unParcours.getJour());
 		p_Repetitif.setText(strRepet);
 		p_NbrPassagers
-				.setText(String.valueOf(unParcours.getNbPlacePassagers()));
+				.setText(String.valueOf(unParcoursPassagers.getNbrPassagers()));
 		p_nbrPlaceTot.setText(String.valueOf(unParcours.getNbPlaceDispo()));
 		p_NbrPlacePrise.setText(String.valueOf(unParcours.getNbPlacePrise()));
 		p_DistanceSupMax

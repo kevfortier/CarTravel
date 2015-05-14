@@ -24,9 +24,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.app.cartravel.classes.Parcours;
+import com.app.cartravel.classes.ParcoursPassager;
 import com.app.cartravel.classes.Utilisateurs;
 import com.app.cartravel.jsonparser.JsonParcours;
 import com.app.cartravel.utilitaire.ParcourDataSource;
+import com.app.cartravel.utilitaire.ParcoursPassagerDataSource;
 import com.app.cartravel.utilitaire.Util;
 import com.app.cartravel.utilitaire.UtilisateurDataSource;
 
@@ -58,9 +60,11 @@ public class AjoutParcoursActivity3 extends Activity {
 
 	UtilisateurDataSource utilData;
 	ParcourDataSource parcourData;
+	ParcoursPassagerDataSource parcPassData;
 
 	Utilisateurs util;
 	Parcours leParcours;
+	ParcoursPassager leParcoursPassager;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -180,13 +184,14 @@ public class AjoutParcoursActivity3 extends Activity {
 									} else {
 										leParcours = new Parcours(idParcours,
 												util.getId(), m_Jour, m_Heure,
-												m_Repetitif, m_NbrPassagers,
+												m_Repetitif,
 												strNumCivDep, strRueDep,
 												strVilleDep, strCodePostalDep,
 												strNumCivArr, strRueArr,
 												strVilleArr, strCodePostalArr,
 												strDate);
-									}
+										leParcoursPassager = new ParcoursPassager(idParcours, m_NbrPassagers);
+;									}
 
 									parcourData = new ParcourDataSource(this);
 									parcourData.open();
