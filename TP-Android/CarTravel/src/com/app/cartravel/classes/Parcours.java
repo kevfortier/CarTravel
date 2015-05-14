@@ -26,6 +26,7 @@ public class Parcours implements java.io.Serializable {
 	private String m_RueArr;
 	private String m_VilleArr;
 	private String m_CodePostalArr;
+	private String m_DateAjout;
 
 	/**
 	 * Constructeur globale
@@ -35,7 +36,8 @@ public class Parcours implements java.io.Serializable {
 			int p_NbPlacePassagers, int p_NbPlaceDispo, int p_NbPlacePrise,
 			float p_DistanceSupMax, String p_NumCiviqueDep, String p_RueDep,
 			String p_VilleDep, String p_CodePostalDep, String p_NumCiviqueArr,
-			String p_RueArr, String p_VilleArr, String p_CodePostalArr) {
+			String p_RueArr, String p_VilleArr, String p_CodePostalArr,
+			String p_DateAjout) {
 		super();
 		this.m_Id = p_Id;
 		this.m_IdProprietaire = p_IdProprietaire;
@@ -57,6 +59,8 @@ public class Parcours implements java.io.Serializable {
 		this.m_RueArr = p_RueArr;
 		this.m_VilleArr = p_VilleArr;
 		this.m_CodePostalArr = p_CodePostalArr;
+
+		this.m_DateAjout = p_DateAjout;
 	}
 
 	/**
@@ -67,7 +71,7 @@ public class Parcours implements java.io.Serializable {
 			int p_NbPlaceDispo, int p_NbPlacePrise, float p_DistanceSupMax,
 			String p_NumCiviqueDep, String p_RueDep, String p_VilleDep,
 			String p_CodePostalDep, String p_NumCiviqueArr, String p_RueArr,
-			String p_VilleArr, String p_CodePostalArr) {
+			String p_VilleArr, String p_CodePostalArr, String p_DateAjout) {
 		super();
 		this.m_Id = p_Id;
 		this.m_IdProprietaire = p_IdProprietaire;
@@ -88,6 +92,8 @@ public class Parcours implements java.io.Serializable {
 		this.m_RueArr = p_RueArr;
 		this.m_VilleArr = p_VilleArr;
 		this.m_CodePostalArr = p_CodePostalArr;
+
+		this.m_DateAjout = p_DateAjout;
 	}
 
 	/**
@@ -97,7 +103,8 @@ public class Parcours implements java.io.Serializable {
 			String p_Heure, boolean p_Repetitif, int p_NbPlaceDispo,
 			float p_DistanceSupMax, String p_NumCiviqueDep, String p_RueDep,
 			String p_VilleDep, String p_CodePostalDep, String p_NumCiviqueArr,
-			String p_RueArr, String p_VilleArr, String p_CodePostalArr) {
+			String p_RueArr, String p_VilleArr, String p_CodePostalArr,
+			String p_DateAjout) {
 		super();
 		this.m_Id = ID_NON_DEFINI;
 		this.m_IdProprietaire = p_IdProprietaire;
@@ -117,6 +124,8 @@ public class Parcours implements java.io.Serializable {
 		this.m_RueArr = p_RueArr;
 		this.m_VilleArr = p_VilleArr;
 		this.m_CodePostalArr = p_CodePostalArr;
+
+		this.m_DateAjout = p_DateAjout;
 	}
 
 	/**
@@ -126,7 +135,7 @@ public class Parcours implements java.io.Serializable {
 			String p_Heure, boolean p_Repetitif, int p_NbPlacePassagers,
 			String p_NumCiviqueDep, String p_RueDep, String p_VilleDep,
 			String p_CodePostalDep, String p_NumCiviqueArr, String p_RueArr,
-			String p_VilleArr, String p_CodePostalArr) {
+			String p_VilleArr, String p_CodePostalArr, String p_DateAjout) {
 		super();
 		this.m_Id = p_Id;
 		this.m_IdProprietaire = p_IdProprietaire;
@@ -144,6 +153,8 @@ public class Parcours implements java.io.Serializable {
 		this.m_RueArr = p_RueArr;
 		this.m_VilleArr = p_VilleArr;
 		this.m_CodePostalArr = p_CodePostalArr;
+
+		this.m_DateAjout = p_DateAjout;
 	}
 
 	/**
@@ -153,7 +164,7 @@ public class Parcours implements java.io.Serializable {
 			boolean p_Repetitif, int p_NbPlacePassagers,
 			String p_NumCiviqueDep, String p_RueDep, String p_VilleDep,
 			String p_CodePostalDep, String p_NumCiviqueArr, String p_RueArr,
-			String p_VilleArr, String p_CodePostalArr) {
+			String p_VilleArr, String p_CodePostalArr, String p_DateAjout) {
 		super();
 		this.m_Id = ID_NON_DEFINI;
 		this.m_IdProprietaire = p_IdProprietaire;
@@ -171,6 +182,8 @@ public class Parcours implements java.io.Serializable {
 		this.m_RueArr = p_RueArr;
 		this.m_VilleArr = p_VilleArr;
 		this.m_CodePostalArr = p_CodePostalArr;
+
+		this.m_DateAjout = p_DateAjout;
 	}
 
 	public Parcours() {
@@ -319,5 +332,13 @@ public class Parcours implements java.io.Serializable {
 
 	public void setDistanceSupMax(float DistanceSupMax) {
 		this.m_DistanceSupMax = DistanceSupMax;
+	}
+
+	public String getDateAjout() {
+		return m_DateAjout;
+	}
+
+	public void setDateAjout(String DateAjout) {
+		this.m_DateAjout = DateAjout;
 	}
 }

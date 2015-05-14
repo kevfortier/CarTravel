@@ -41,6 +41,6 @@ class Profil(ndb.Model):
     ville = ndb.StringProperty()
     codePostal = ndb.StringProperty()
     numTel = ndb.StringProperty()
-    posVoiture = ndb.StringProperty()
+    posVoiture = ndb.IntegerProperty()
     noteCond = ndb.FloatProperty()
     notePass = ndb.FloatProperty()

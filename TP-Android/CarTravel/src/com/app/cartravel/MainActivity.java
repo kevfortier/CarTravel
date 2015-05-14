@@ -27,7 +27,7 @@ public class MainActivity extends Activity {
 	private CheckBox mVoiture;
 	private RatingBar mNoteCond;
 	private RatingBar mNotePass;
-	
+
 	NavigationDrawerUtil menu_gauche = null;
 
 	@Override
@@ -36,7 +36,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 		menu_gauche = new NavigationDrawerUtil(this);
-		
+
 		mNumCivique = (TextView) findViewById(R.id.txt_num_civ_main);
 		mRue = (TextView) findViewById(R.id.txt_rue_main);
 		mVille = (TextView) findViewById(R.id.txt_ville_main);
@@ -50,7 +50,7 @@ public class MainActivity extends Activity {
 		mDataSource.open();
 		mUtilisateur = mDataSource.getConnectedUtilisateur();
 		mDataSource.close();
-		
+
 		if (mUtilisateur != null) {
 			AfficherInfoProfil(mNumCivique, mRue, mVille, mCodePostal, mNumTel,
 					mVoiture, mNoteCond, mNotePass);
@@ -63,7 +63,7 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle action bar item clicks here. The action bar will
@@ -95,7 +95,7 @@ public class MainActivity extends Activity {
 		// Pass any configuration change to the drawer toggls
 		menu_gauche.getDrawerToggle().onConfigurationChanged(newConfig);
 	}
-	
+
 	public void AfficherInfoProfil(TextView mNumCivique, TextView mRue,
 			TextView mVille, TextView mCodePostal, TextView mNumTel,
 			CheckBox mVoiture, RatingBar mNoteCond, RatingBar mNotePass) {

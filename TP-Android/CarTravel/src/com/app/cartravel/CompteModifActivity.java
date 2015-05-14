@@ -1,6 +1,8 @@
 package com.app.cartravel;
 
 import java.net.URI;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPut;
@@ -37,7 +39,7 @@ public class CompteModifActivity extends Activity {
 	private EditText mMDP;
 	private EditText mMDPVerif;
 	private UtilisateurDataSource mDataSource;
-	
+
 	private HttpClient m_ClientHttp = new DefaultHttpClient();
 
 	// private Bundle m_extra;
@@ -151,7 +153,12 @@ public class CompteModifActivity extends Activity {
 			dataSource.close();
 
 			if (!erreurRencontree || modifPseudo) {
-				new ModifierCompteTask(this).execute(mUtilisateur.getCourriel(),strPseudo, strMotDePasse);
+				Calendar c = Calendar.getInstance();
+				SimpleDateFormat sdf = new SimpleDateFormat(
+						"dd:MMMM:yyyy HH:mm:ss a");
+				String strDate = sdf.format(c.getTime());
+				new ModifierCompteTask(this).execute(mUtilisateur.getCourriel(), strPseudo,
+						strMotDePasse, strDate);
 				this.setResult(RESULT_OK, i);
 				this.finish();
 			} else {
@@ -177,28 +184,29 @@ public class CompteModifActivity extends Activity {
 		mPseudo.setText(mUtilisateur.getPseudo());
 		mMDP.setText(mUtilisateur.getMotDePasse());
 	}
-	
+
 	private class ModifierCompteTask extends AsyncTask<String, Void, Void> {
 		private Exception m_Exp;
 		private Context m_Context;
 		private Utilisateurs utilisateur;
-		
+
 		public ModifierCompteTask(Context p_Context) {
 			this.m_Context = p_Context;
 		}
-		
+
 		@Override
 		protected Void doInBackground(String... params) {
 			try {
 				utilisateur = new Utilisateurs(params[0], params[1],
-						Util.sha1(params[2]), "", "", "", "", "", 0, 0, 0, 0, 0);
-				
+						Util.sha1(params[2]), "", "", "", "", "", 0, 0, 0, 0,
+						0, params[3], params[3]);
+
 				URI uri = new URI(
 						"http",
 						Util.WEB_SERVICE,
 						Util.REST_UTILISATEUR + "/" + utilisateur.getCourriel(),
 						null, null);
-				
+
 				HttpPut putMethod = new HttpPut(uri);
 
 				putMethod.setEntity(new StringEntity(JsonUtilisateur

@@ -21,6 +21,9 @@ public class Utilisateurs {
 	private int m_EstConnecte;
 	private int m_DernierConnecte;
 
+	private String m_DateAjoutUser;
+	private String m_DateAjoutProfil;
+
 	/**
 	 * Constructeur
 	 */
@@ -28,7 +31,8 @@ public class Utilisateurs {
 			String p_MotDePasse, String p_NumCivique, String p_Rue,
 			String p_Ville, String p_CodePostal, String P_NumTel,
 			int p_Voiture, float p_NoteCond, float p_NotePass,
-			int p_EstConnecte, int p_DernierConnecte) {
+			int p_EstConnecte, int p_DernierConnecte, String p_DateAjoutUser,
+			String p_DateAjoutProfil) {
 		super();
 		this.m_Id = p_Id;
 		this.m_Courriel = p_Courriel;
@@ -46,6 +50,9 @@ public class Utilisateurs {
 
 		this.m_EstConnecte = p_EstConnecte;
 		this.m_DernierConnecte = p_DernierConnecte;
+
+		this.m_DateAjoutUser = p_DateAjoutUser;
+		this.m_DateAjoutProfil = p_DateAjoutProfil;
 	}
 
 	/**
@@ -55,7 +62,8 @@ public class Utilisateurs {
 			String p_MotDePasse, String p_NumCivique, String p_Rue,
 			String p_Ville, String p_CodePostal, String p_NumTel,
 			int p_Voiture, float p_NoteCond, float p_NotePass,
-			int p_EstConnecte, int p_DernierConnecte) {
+			int p_EstConnecte, int p_DernierConnecte, String p_DateAjout,
+			String p_DateAjoutProfil) {
 		this.m_Courriel = p_Courriel;
 		this.m_Pseudo = p_Pseudo;
 		this.m_MotDePasse = p_MotDePasse;
@@ -71,6 +79,9 @@ public class Utilisateurs {
 
 		this.m_EstConnecte = p_EstConnecte;
 		this.m_DernierConnecte = p_DernierConnecte;
+
+		this.m_DateAjoutUser = p_DateAjout;
+		this.m_DateAjoutProfil = p_DateAjoutProfil;
 	}
 
 	/**
@@ -192,5 +203,21 @@ public class Utilisateurs {
 
 	public void setDernierConnecte(int m_DernierConnecte) {
 		this.m_DernierConnecte = m_DernierConnecte;
+	}
+
+	public String getDateAjoutUser() {
+		return m_DateAjoutUser;
+	}
+
+	public void setDateAjoutUser(String dateAjoutUser) {
+		this.m_DateAjoutUser = dateAjoutUser;
+	}
+
+	public String getDateAjoutProfil() {
+		return m_DateAjoutUser;
+	}
+
+	public void setDateAjoutProfil(String dateAjoutProfil) {
+		this.m_DateAjoutProfil = dateAjoutProfil;
 	}
 }

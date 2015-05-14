@@ -1,6 +1,8 @@
 package com.app.cartravel;
 
 import java.net.URI;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPut;
@@ -60,8 +62,12 @@ public class CreationCompteActivity extends Activity {
 			if (Util.isCourriel(strCourriel)) {
 				if (strCourriel.equals(strCourrielConfirmation)) {
 					if (strMotDePasse.equals(strMotDePasseConfirmation)) {
+						Calendar c = Calendar.getInstance();
+						SimpleDateFormat sdf = new SimpleDateFormat(
+								"dd:MMMM:yyyy HH:mm:ss a");
+						String strDate = sdf.format(c.getTime());
 						new CreerCompteTask(this).execute(strCourriel,
-								strPseudo, strMotDePasse);
+								strPseudo, strMotDePasse, strDate);
 					} else {
 						Toast.makeText(
 								this,
@@ -123,7 +129,8 @@ public class CreationCompteActivity extends Activity {
 		protected Void doInBackground(String... params) {
 			try {
 				utilisateur = new Utilisateurs(params[0], params[1],
-						Util.sha1(params[2]), "", "", "", "", "", 0, 0, 0, 0, 0);
+						Util.sha1(params[2]), "", "", "", "", "", 0, 0, 0, 0,
+						0, params[3], "");
 
 				URI uri = new URI(
 						"http",
