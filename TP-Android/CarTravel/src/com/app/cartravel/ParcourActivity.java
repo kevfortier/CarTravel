@@ -35,9 +35,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.cartravel.classes.Parcours;
+import com.app.cartravel.classes.ParcoursPassager;
 import com.app.cartravel.classes.Utilisateurs;
 import com.app.cartravel.jsonparser.JsonParcours;
+import com.app.cartravel.jsonparser.JsonParcoursPassager;
 import com.app.cartravel.utilitaire.ParcourDataSource;
+import com.app.cartravel.utilitaire.ParcoursPassagerDataSource;
 import com.app.cartravel.utilitaire.Util;
 import com.app.cartravel.utilitaire.UtilisateurDataSource;
 import com.app.cartravel.utilitaires.ArrayAdapters.ParcoursAdapter;
@@ -72,6 +75,7 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 	View m_ParcoursView;
 
 	private List<Parcours> m_LstParcours;
+	private List<ParcoursPassager> m_LstParcoursPassager;
 	private List<Parcours> m_LstParcoursDemandeConducteur;
 	private List<Parcours> m_LstParcoursDemandePassagers;
 	private List<Parcours> m_LstParcoursCondPot;
@@ -106,7 +110,7 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
 		new ObtenirParcoursTask(this).execute();
-
+		new ObtenirParcoursPassagerTask(this).execute();
 		m_Context = this;
 
 		// Create the adapter that will return a fragment for each of the
@@ -662,6 +666,49 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 						.findViewById(R.id.lst_demande_passagers),
 						(TextView) fragParcours
 								.findViewById(R.id.lst_demande_passagers_vide));
+			}
+		}
+	}
+	
+	private class ObtenirParcoursPassagerTask extends
+		AsyncTask<Void, Void, List<ParcoursPassager>> {
+		private Exception m_Exp;
+		private Context m_Context;
+		
+		public ObtenirParcoursPassagerTask(Context p_Context) {
+			this.m_Context = p_Context;
+		}
+		
+		protected List<ParcoursPassager> doInBackground(Void... params) {
+			ArrayList<ParcoursPassager> listeParcours = null;
+			try {
+				URI uri = new URI("http", Util.WEB_SERVICE, Util.REST_PARCOURS_PASSAGER,
+						null, null);
+				HttpGet getMethod = new HttpGet(uri);
+				String body = m_ClientHttp.execute(getMethod,
+						new BasicResponseHandler());
+				listeParcours = (ArrayList<ParcoursPassager>) JsonParcoursPassager
+						.parseListeParcours(body);
+			} catch (Exception e) {
+				m_Exp = e;
+			}
+			return listeParcours;
+		}
+		
+		protected void onPostExecute(List<ParcoursPassager> result) {
+			if (m_Exp == null && result != null) {
+				m_LstParcoursPassager = result;
+				
+				ParcoursPassagerDataSource ppds = new ParcoursPassagerDataSource(m_Context);
+				ppds.open();
+				for (int i = 0; i < result.size(); i++) {
+					if (ppds.getParcoursPassager(result.get(i).getIdParcoursPassager()) == null) {
+						ppds.insert(result.get(i));
+					} else {
+						ppds.update(result.get(i));
+					}
+				}
+				ppds.close();
 			}
 		}
 	}
