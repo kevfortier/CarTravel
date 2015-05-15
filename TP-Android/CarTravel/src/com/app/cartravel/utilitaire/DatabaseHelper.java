@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
 	// Version BD
-	private final static int DB_VERSION = 21;
+	private final static int DB_VERSION = 1;
 
 	// Nom de la BD
 	private final static String DATABASE_NAME = "cartravel.sqlite";
@@ -15,7 +15,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	// Nom des tables
 	public final static String TABLE_UTILISATEUR = "utilisateur";
 	public final static String TABLE_PARCOURS = "parcours";
-	public final static String TABLE_PARCOURS_PASSAGER = "parcourS_passager";
+	public final static String TABLE_PARCOURS_PASSAGER = "parcours_passager";
 
 	// Noms des colonnes d'un utilisateur
 	public final static String COL_ID_USER = "id_utilisateur";
@@ -84,16 +84,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				+ COL_VILLE + " text, " + COL_CODE_POSTAL + " text, "
 				+ COL_NUM_TELEPHONE + " text, " + COL_VOITURE + " integer, "
 				+ COL_RATING_COND + " real, " + COL_RATING_PASS + " real, "
-				+ COL_ESTCONNECTE + " integer, " + COL_DERNIERCONNECTE
-				+ " integer, " + COL_USER_DATE + " text, " + COL_PROFIL_DATE
+				+ COL_ESTCONNECTE + " real, " + COL_DERNIERCONNECTE
+				+ " real, " + COL_USER_DATE + " text, " + COL_PROFIL_DATE
 				+ " text)");
 
 		// Crée la table pour les parcours
 		db.execSQL("create table " + TABLE_PARCOURS + " (" + COL_ID_PARCOUR
-				+ " text primary key, " + COL_ID_PROPRIETAIRE + " integer, "
-				+ COL_ID_CONDUCTEUR + " integer, " + COL_JOUR + " text, "
+				+ " text primary key, " + COL_ID_PROPRIETAIRE + " real, "
+				+ COL_ID_CONDUCTEUR + " real, " + COL_JOUR + " text, "
 				+ COL_HEURE + " text, " + COL_TYPE_PARCOUR + " text, "
-				+ COL_NBR_PLACE_DISPO + " integer, " + COL_NBR_PLACE_PRISE
+				+ COL_NBR_PLACE_DISPO + " real, " + COL_NBR_PLACE_PRISE
 				+ " integer, " + COL_DISTANCE_SUP_MAX + " real, "
 				+ COL_NO_CIVIQUE_DEP + " text, " + COL_RUE_DEP + " text, "
 				+ COL_VILLE_DEP + " text, " + COL_CODE_POSTAL_DEP + " text, "
@@ -105,7 +105,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.execSQL("create table " + TABLE_PARCOURS_PASSAGER + " ("
 				+ COL_ID_PARCOURS_PASSAGER + " text primary key, "
 				+ COL_ID_PASSAGERS + " text, "
-				+ COL_NBR_PASSAGERS + " integer)");
+				+ COL_NBR_PASSAGERS + " real)");
 	}
 
 	@Override

@@ -39,12 +39,12 @@ public class JsonProfil {
 			throws JSONException {
 		Utilisateurs u;
 		JSONObject jsonUtilisateur = new JSONObject(strJson);
-		u = new Utilisateurs(jsonUtilisateur.getString("courrielUser"), "",
-				"", jsonUtilisateur.getString("numCivique"), jsonUtilisateur.getString("rue"),
-				jsonUtilisateur.getString("ville"), jsonUtilisateur.getString("codePostal"),
-				jsonUtilisateur.getString("numTel"), jsonUtilisateur.getInt("posVoiture"),
-				(float) jsonUtilisateur.getDouble("noteCond"), (float) jsonUtilisateur.getDouble("notePass"), 
-				0, 0, "", jsonUtilisateur.getString("date_profil"));
+		u = new Utilisateurs(jsonUtilisateur.getString(COURRIEL_USER), "",
+				"", jsonUtilisateur.getString(NUM_CIVIQUE), jsonUtilisateur.getString(RUE),
+				jsonUtilisateur.getString(VILLE), jsonUtilisateur.getString(CODE_POSTAL),
+				jsonUtilisateur.getString(NUM_TEL), jsonUtilisateur.getInt(POS_VOITURE),
+				(float) jsonUtilisateur.getDouble(NOTE_COND), (float) jsonUtilisateur.getDouble(NOTE_PASS), 
+				0, 0, "", jsonUtilisateur.getString(PROFIL_DATE_AJOUT));
 		return u;
 	}
 }

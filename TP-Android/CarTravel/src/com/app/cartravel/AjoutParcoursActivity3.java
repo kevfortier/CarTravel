@@ -37,6 +37,7 @@ public class AjoutParcoursActivity3 extends Activity {
 
 	private final String TAG = this.getClass().getSimpleName();
 	private HttpClient m_ClientHttp = new DefaultHttpClient();
+	private HttpClient m_ClientHttp2 = new DefaultHttpClient();
 
 	private EditText m_NumCiviqueDep;
 	private EditText m_RueDep;
@@ -312,6 +313,8 @@ public class AjoutParcoursActivity3 extends Activity {
 				URI uri = new URI("http", Util.WEB_SERVICE, Util.REST_PARCOURS
 						+ "/" + idParcours, null, null);
 				HttpPut putMethod = new HttpPut(uri);
+				
+				unParcours.setId(idParcours);
 
 				String jsonObj = JsonParcours.ToJSONObject(unParcours)
 						.toString();
@@ -320,7 +323,8 @@ public class AjoutParcoursActivity3 extends Activity {
 
 				putMethod.setEntity(new StringEntity(jsonObj));
 				putMethod.addHeader("Content-Type", "application/json");
-
+				
+				//body = null???
 				String body = m_ClientHttp.execute(putMethod,
 						new BasicResponseHandler());
 				Log.i(TAG, "Recu : " + body);
@@ -358,6 +362,8 @@ public class AjoutParcoursActivity3 extends Activity {
 				URI uri = new URI("http", Util.WEB_SERVICE, Util.REST_PARCOURS_PASSAGER
 						+ "/" + idParcours, null, null);
 				HttpPut putMethod = new HttpPut(uri);
+				
+				unParcoursPassager.SetIdParcoursPassager(idParcours);
 
 				String jsonObj = JsonParcoursPassager.ToJSONObject(unParcoursPassager)
 						.toString();
@@ -367,7 +373,7 @@ public class AjoutParcoursActivity3 extends Activity {
 				putMethod.setEntity(new StringEntity(jsonObj));
 				putMethod.addHeader("Content-Type", "application/json");
 
-				String body = m_ClientHttp.execute(putMethod,
+				String body = m_ClientHttp2.execute(putMethod,
 						new BasicResponseHandler());
 				Log.i(TAG, "Recu : " + body);
 

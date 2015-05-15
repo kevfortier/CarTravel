@@ -21,8 +21,12 @@ import android.widget.TextView;
 
 import com.app.cartravel.classes.Parcours;
 import com.app.cartravel.classes.Utilisateurs;
+import com.app.cartravel.jsonparser.JsonParcours;
+import com.app.cartravel.jsonparser.JsonProfil;
+import com.app.cartravel.jsonparser.JsonUtilisateur;
 import com.app.cartravel.utilitaire.Util;
 import com.app.cartravel.utilitaire.UtilisateurDataSource;
+import com.app.cartravel.utilitaires.ArrayAdapters.ParcoursAdapter;
 import com.app.cartravel.utilitaires.navigationdrawer.NavigationDrawerUtil;
 
 @SuppressWarnings("deprecation")
@@ -39,6 +43,7 @@ public class MainActivity extends Activity {
 	private CheckBox mVoiture;
 	private RatingBar mNoteCond;
 	private RatingBar mNotePass;
+	
 	
 	private HttpClient m_ClientHttp = new DefaultHttpClient();
 
@@ -64,6 +69,8 @@ public class MainActivity extends Activity {
 		mDataSource.open();
 		mUtilisateur = mDataSource.getConnectedUtilisateur();
 		mDataSource.close();
+		
+		new ObtenirProfilTask(this).execute();
 
 		if (mUtilisateur != null) {
 			AfficherInfoProfil(mNumCivique, mRue, mVille, mCodePostal, mNumTel,
@@ -139,19 +146,45 @@ public class MainActivity extends Activity {
 		protected Utilisateurs doInBackground(Void... params) {
 			Utilisateurs m_Utilisateur = null;
 			try{
-				URI uri = new URI("http", Util.WEB_SERVICE, Util.REST_PARCOURS,
-						null, null);
+				URI uri = new URI("http", Util.WEB_SERVICE, Util.REST_UTILISATEUR + "/" + 
+						mUtilisateur.getCourriel() + Util.REST_PROFIL, null, null);
 				HttpGet getMethod = new HttpGet(uri);
 				String body = m_ClientHttp.execute(getMethod,
 						new BasicResponseHandler());
+				m_Utilisateur = (Utilisateurs) JsonProfil.ToUtilisateur(body);
 			} catch(Exception e) {
 				m_Exp = e;
 			}
 			return m_Utilisateur;
 		}
 
-		protected void onPostExecute(List<Parcours> result) {
-			//TODO
+		protected void onPostExecute(Utilisateurs result) {
+			if (m_Exp == null && result != null) {
+				setUser(result);
+				UtilisateurDataSource uds = new UtilisateurDataSource(m_Context);
+				uds.open();
+				if (uds.getUtilisateur(result.getCourriel()) == null) {
+					uds.insert(result);
+				}
+				else {
+					uds.update(result);
+				}
+				uds.close();
+				
+				AfficherInfoProfil(mNumCivique, mRue, mVille, mCodePostal, mNumTel,
+						mVoiture, mNoteCond, mNotePass);
+			}
+		}
+		
+		public void setUser(Utilisateurs result) {
+			result.setDateAjoutUser(mUtilisateur.getDateAjoutUser());
+			result.setDernierConnecte(mUtilisateur.getDernierConnecte());
+			result.setEstConnecte(mUtilisateur.getEstConnecte());
+			result.setId(mUtilisateur.getId());
+			result.setMotDePasse(mUtilisateur.getMotDePasse());
+			result.setPseudo(mUtilisateur.getPseudo());
+			
+			mUtilisateur = result;
 		}
 	}
 }

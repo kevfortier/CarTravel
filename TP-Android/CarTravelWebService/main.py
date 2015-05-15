@@ -268,8 +268,8 @@ class ProfilHandler (webapp2.RequestHandler):
                     profil.noteCond = jsonObj['noteCond']
                 if (jsonObj['notePass'] is not None):
                     profil.notePass = jsonObj['notePass']
-                if (jsonObj['date_profil'] is not None):
-                    profil.dateProfil = jsonObj['date_profil']
+                if (jsonObj['dateProfil'] is not None):
+                    profil.dateProfil = jsonObj['dateProfil']
                 profil.put()
                 
             self.response.set_status(status)
@@ -340,14 +340,12 @@ class ParcoursHandler (webapp2.RequestHandler):
             if(parcours is None):
                 
                 parcours = Parcours(key=cle)
-                status = 201
                 
                 logging.info(jsonObj)
                 
                 if(jsonObj['idParcours'] is not None):
                     parcours.idParcours = jsonObj['idParcours']
                 if(jsonObj['proprietaire'] is not None):
-                    logging.info(jsonObj['proprietaire'])
                     parcours.proprietaire = jsonObj['proprietaire']
                 if(jsonObj['conducteur'] is not None):
                     parcours.conducteur = jsonObj['conducteur']
@@ -431,10 +429,12 @@ class ParcoursHandler (webapp2.RequestHandler):
         
         except (ValueError, db.BadValueError, KeyError), ex:
             logging.info(ex)
+            logging.info("Erreur 1")
             self.error(400)
         
         except Exception, ex:
-            logging.exception(ex)
+            logging.info(ex)
+            logging.info("Erreur 2")
             self.error(500)
             
     def delete(self, idParcours=None):
@@ -531,10 +531,12 @@ class ParcoursPassagersHandler(webapp2.RequestHandler):
         
         except (ValueError, db.BadValueError, KeyError), ex:
             logging.info(ex)
+            logging.info("Erreur passager 1")
             self.error(400)
         
         except Exception, ex:
-            logging.exception(ex)
+            logging.info(ex)
+            logging.info("Erreur passager 2")
             self.error(500)
         
     def delete(self, idParcours=None):
