@@ -55,10 +55,11 @@ public class UnParcoursActivity extends Activity {
 			if (extras.getSerializable(ParcourActivity.EXTRA_PARCOURS) != null) {
 				unParcours = (Parcours) extras
 						.getSerializable(ParcourActivity.EXTRA_PARCOURS);
-				
-			ParcPassData = new ParcoursPassagerDataSource(this);
-			unParcoursPassagers = ParcPassData.getParcoursPassager(unParcours.getId());
-			
+
+				ParcPassData = new ParcoursPassagerDataSource(this);
+				unParcoursPassagers = ParcPassData
+						.getParcoursPassager(unParcours.getId());
+
 			}
 		}
 
@@ -134,8 +135,8 @@ public class UnParcoursActivity extends Activity {
 
 		p_Date.setText(unParcours.getJour());
 		p_Repetitif.setText(strRepet);
-		p_NbrPassagers
-				.setText(String.valueOf(unParcoursPassagers.getNbrPassagers()));
+		p_NbrPassagers.setText(String.valueOf(unParcoursPassagers
+				.getNbrPassagers()));
 		p_nbrPlaceTot.setText(String.valueOf(unParcours.getNbPlaceDispo()));
 		p_NbrPlacePrise.setText(String.valueOf(unParcours.getNbPlacePrise()));
 		p_DistanceSupMax

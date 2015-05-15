@@ -10,6 +10,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -27,6 +28,8 @@ import com.app.cartravel.jsonparser.JsonProfil;
 import com.app.cartravel.utilitaire.Util;
 import com.app.cartravel.utilitaire.UtilisateurDataSource;
 
+@SuppressLint("SimpleDateFormat")
+@SuppressWarnings("unused")
 public class ProfilModifActivity extends Activity {
 
 	private HttpClient m_ClientHttp = new DefaultHttpClient();
@@ -131,7 +134,7 @@ public class ProfilModifActivity extends Activity {
 							if (Util.verifNumTel(strNumTel)) {
 								UtilisateurDataSource dataSource = new UtilisateurDataSource(
 										this);
-								
+
 								Calendar c = Calendar.getInstance();
 								SimpleDateFormat sdf = new SimpleDateFormat(
 										"dd:MMMM:yyyy HH:mm:ss a");

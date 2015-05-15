@@ -27,41 +27,30 @@ public class Parcours implements java.io.Serializable {
 	private String m_CodePostalArr;
 	private String m_DateAjout;
 
-	
 	/**
 	 * Constructeur globale
-	 
-	public Parcours(String p_Id, int p_IdProprietaire, int p_IdConducteur,
-			String p_Jour, String p_Heure, boolean p_Repetitif,
-			int p_NbPlacePassagers, int p_NbPlaceDispo, int p_NbPlacePrise,
-			float p_DistanceSupMax, String p_NumCiviqueDep, String p_RueDep,
-			String p_VilleDep, String p_CodePostalDep, String p_NumCiviqueArr,
-			String p_RueArr, String p_VilleArr, String p_CodePostalArr,
-			String p_DateAjout) {
-		super();
-		this.m_Id = p_Id;
-		this.m_IdProprietaire = p_IdProprietaire;
-		this.m_IdConducteur = p_IdConducteur;
-		this.m_Jour = p_Jour;
-		this.m_Heure = p_Heure;
-		this.m_Repetitif = p_Repetitif;
-		this.m_NbPlaceDispo = p_NbPlaceDispo;
-		this.m_NbPlacePrise = p_NbPlacePrise;
-		this.m_DistanceSupMax = p_DistanceSupMax;
+	 * 
+	 * public Parcours(String p_Id, int p_IdProprietaire, int p_IdConducteur,
+	 * String p_Jour, String p_Heure, boolean p_Repetitif, int
+	 * p_NbPlacePassagers, int p_NbPlaceDispo, int p_NbPlacePrise, float
+	 * p_DistanceSupMax, String p_NumCiviqueDep, String p_RueDep, String
+	 * p_VilleDep, String p_CodePostalDep, String p_NumCiviqueArr, String
+	 * p_RueArr, String p_VilleArr, String p_CodePostalArr, String p_DateAjout)
+	 * { super(); this.m_Id = p_Id; this.m_IdProprietaire = p_IdProprietaire;
+	 * this.m_IdConducteur = p_IdConducteur; this.m_Jour = p_Jour; this.m_Heure
+	 * = p_Heure; this.m_Repetitif = p_Repetitif; this.m_NbPlaceDispo =
+	 * p_NbPlaceDispo; this.m_NbPlacePrise = p_NbPlacePrise;
+	 * this.m_DistanceSupMax = p_DistanceSupMax;
+	 * 
+	 * this.m_NumCiviqueDep = p_NumCiviqueDep; this.m_RueDep = p_RueDep;
+	 * this.m_VilleDep = p_VilleDep; this.m_CodePostalDep = p_CodePostalDep;
+	 * 
+	 * this.m_NumCiviqueArr = p_NumCiviqueArr; this.m_RueArr = p_RueArr;
+	 * this.m_VilleArr = p_VilleArr; this.m_CodePostalArr = p_CodePostalArr;
+	 * 
+	 * this.m_DateAjout = p_DateAjout; }
+	 */
 
-		this.m_NumCiviqueDep = p_NumCiviqueDep;
-		this.m_RueDep = p_RueDep;
-		this.m_VilleDep = p_VilleDep;
-		this.m_CodePostalDep = p_CodePostalDep;
-
-		this.m_NumCiviqueArr = p_NumCiviqueArr;
-		this.m_RueArr = p_RueArr;
-		this.m_VilleArr = p_VilleArr;
-		this.m_CodePostalArr = p_CodePostalArr;
-
-		this.m_DateAjout = p_DateAjout;
-	}*/
-	
 	/**
 	 * Constructeur pour Conducteur
 	 */
@@ -131,10 +120,10 @@ public class Parcours implements java.io.Serializable {
 	 * Constructeur pour passagers
 	 */
 	public Parcours(String p_Id, int p_IdProprietaire, String p_Jour,
-			String p_Heure, boolean p_Repetitif,
-			String p_NumCiviqueDep, String p_RueDep, String p_VilleDep,
-			String p_CodePostalDep, String p_NumCiviqueArr, String p_RueArr,
-			String p_VilleArr, String p_CodePostalArr, String p_DateAjout) {
+			String p_Heure, boolean p_Repetitif, String p_NumCiviqueDep,
+			String p_RueDep, String p_VilleDep, String p_CodePostalDep,
+			String p_NumCiviqueArr, String p_RueArr, String p_VilleArr,
+			String p_CodePostalArr, String p_DateAjout) {
 		super();
 		this.m_Id = p_Id;
 		this.m_IdProprietaire = p_IdProprietaire;
@@ -159,10 +148,10 @@ public class Parcours implements java.io.Serializable {
 	 * Constructeur sans ID pour passagers
 	 */
 	public Parcours(int p_IdProprietaire, String p_Jour, String p_Heure,
-			boolean p_Repetitif,
-			String p_NumCiviqueDep, String p_RueDep, String p_VilleDep,
-			String p_CodePostalDep, String p_NumCiviqueArr, String p_RueArr,
-			String p_VilleArr, String p_CodePostalArr, String p_DateAjout) {
+			boolean p_Repetitif, String p_NumCiviqueDep, String p_RueDep,
+			String p_VilleDep, String p_CodePostalDep, String p_NumCiviqueArr,
+			String p_RueArr, String p_VilleArr, String p_CodePostalArr,
+			String p_DateAjout) {
 		super();
 		this.m_Id = ID_NON_DEFINI;
 		this.m_IdProprietaire = p_IdProprietaire;

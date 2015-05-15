@@ -10,6 +10,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -24,6 +25,7 @@ import com.app.cartravel.jsonparser.JsonUtilisateur;
 import com.app.cartravel.utilitaire.Util;
 import com.app.cartravel.utilitaire.UtilisateurDataSource;
 
+@SuppressLint("SimpleDateFormat") 
 public class CreationCompteActivity extends Activity {
 
 	private EditText courriel;

@@ -84,9 +84,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				+ COL_VILLE + " text, " + COL_CODE_POSTAL + " text, "
 				+ COL_NUM_TELEPHONE + " text, " + COL_VOITURE + " integer, "
 				+ COL_RATING_COND + " real, " + COL_RATING_PASS + " real, "
-				+ COL_ESTCONNECTE + " real, " + COL_DERNIERCONNECTE
-				+ " real, " + COL_USER_DATE + " text, " + COL_PROFIL_DATE
-				+ " text)");
+				+ COL_ESTCONNECTE + " real, " + COL_DERNIERCONNECTE + " real, "
+				+ COL_USER_DATE + " text, " + COL_PROFIL_DATE + " text)");
 
 		// Crée la table pour les parcours
 		db.execSQL("create table " + TABLE_PARCOURS + " (" + COL_ID_PARCOUR
@@ -104,8 +103,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		// Crée la table pour les parcours-passagers
 		db.execSQL("create table " + TABLE_PARCOURS_PASSAGER + " ("
 				+ COL_ID_PARCOURS_PASSAGER + " text primary key, "
-				+ COL_ID_PASSAGERS + " text, "
-				+ COL_NBR_PASSAGERS + " real)");
+				+ COL_ID_PASSAGERS + " text, " + COL_NBR_PASSAGERS + " real)");
 	}
 
 	@Override

@@ -10,6 +10,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
@@ -33,6 +34,8 @@ import com.app.cartravel.utilitaire.ParcoursPassagerDataSource;
 import com.app.cartravel.utilitaire.Util;
 import com.app.cartravel.utilitaire.UtilisateurDataSource;
 
+@SuppressLint("SimpleDateFormat") 
+@SuppressWarnings("unused")
 public class AjoutParcoursActivity3 extends Activity {
 
 	private final String TAG = this.getClass().getSimpleName();
@@ -186,15 +189,16 @@ public class AjoutParcoursActivity3 extends Activity {
 									} else {
 										leParcours = new Parcours(idParcours,
 												util.getId(), m_Jour, m_Heure,
-												m_Repetitif,
-												strNumCivDep, strRueDep,
-												strVilleDep, strCodePostalDep,
-												strNumCivArr, strRueArr,
-												strVilleArr, strCodePostalArr,
-												strDate);
-										leParcoursPassager = new ParcoursPassager(idParcours, util.getCourriel(), m_NbrPassagers);
+												m_Repetitif, strNumCivDep,
+												strRueDep, strVilleDep,
+												strCodePostalDep, strNumCivArr,
+												strRueArr, strVilleArr,
+												strCodePostalArr, strDate);
+										leParcoursPassager = new ParcoursPassager(
+												idParcours, util.getCourriel(),
+												m_NbrPassagers);
 									}
-									
+
 									parcourData = new ParcourDataSource(this);
 									parcourData.open();
 									parcourData.insert(leParcours);
@@ -202,14 +206,17 @@ public class AjoutParcoursActivity3 extends Activity {
 
 									new PutNewParcoursTask(this).execute(
 											leParcours, idParcours);
-									
+
 									if (leParcoursPassager != null) {
-										parcPassData = new ParcoursPassagerDataSource(this);
+										parcPassData = new ParcoursPassagerDataSource(
+												this);
 										parcPassData.open();
 										parcPassData.insert(leParcoursPassager);
 										parcPassData.close();
-										
-										new PutNewParcoursPassagersTask(this).execute(leParcoursPassager, idParcours);
+
+										new PutNewParcoursPassagersTask(this)
+												.execute(leParcoursPassager,
+														idParcours);
 									}
 
 									Toast.makeText(this,
@@ -313,7 +320,7 @@ public class AjoutParcoursActivity3 extends Activity {
 				URI uri = new URI("http", Util.WEB_SERVICE, Util.REST_PARCOURS
 						+ "/" + idParcours, null, null);
 				HttpPut putMethod = new HttpPut(uri);
-				
+
 				unParcours.setId(idParcours);
 
 				String jsonObj = JsonParcours.ToJSONObject(unParcours)
@@ -323,8 +330,8 @@ public class AjoutParcoursActivity3 extends Activity {
 
 				putMethod.setEntity(new StringEntity(jsonObj));
 				putMethod.addHeader("Content-Type", "application/json");
-				
-				//body = null???
+
+				// body = null???
 				String body = m_ClientHttp.execute(putMethod,
 						new BasicResponseHandler());
 				Log.i(TAG, "Recu : " + body);
@@ -335,8 +342,9 @@ public class AjoutParcoursActivity3 extends Activity {
 			return null;
 		}
 	}
-	
-	private class PutNewParcoursPassagersTask extends AsyncTask<Object, Void, Void> {
+
+	private class PutNewParcoursPassagersTask extends
+			AsyncTask<Object, Void, Void> {
 		private Exception m_Exp;
 		private ParcoursPassager unParcoursPassager;
 		private Context m_Context;
@@ -359,14 +367,15 @@ public class AjoutParcoursActivity3 extends Activity {
 			idParcours = (String) params[1];
 
 			try {
-				URI uri = new URI("http", Util.WEB_SERVICE, Util.REST_PARCOURS_PASSAGER
-						+ "/" + idParcours, null, null);
+				URI uri = new URI("http", Util.WEB_SERVICE,
+						Util.REST_PARCOURS_PASSAGER + "/" + idParcours, null,
+						null);
 				HttpPut putMethod = new HttpPut(uri);
-				
+
 				unParcoursPassager.SetIdParcoursPassager(idParcours);
 
-				String jsonObj = JsonParcoursPassager.ToJSONObject(unParcoursPassager)
-						.toString();
+				String jsonObj = JsonParcoursPassager.ToJSONObject(
+						unParcoursPassager).toString();
 
 				Log.i(TAG, "JSON : " + jsonObj);
 

@@ -4,7 +4,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.app.cartravel.classes.Utilisateurs;
-import com.app.cartravel.utilitaire.UtilisateurDataSource;
 
 public class JsonProfil {
 
@@ -39,12 +38,16 @@ public class JsonProfil {
 			throws JSONException {
 		Utilisateurs u;
 		JSONObject jsonUtilisateur = new JSONObject(strJson);
-		u = new Utilisateurs(jsonUtilisateur.getString(COURRIEL_USER), "",
-				"", jsonUtilisateur.getString(NUM_CIVIQUE), jsonUtilisateur.getString(RUE),
-				jsonUtilisateur.getString(VILLE), jsonUtilisateur.getString(CODE_POSTAL),
-				jsonUtilisateur.getString(NUM_TEL), jsonUtilisateur.getInt(POS_VOITURE),
-				(float) jsonUtilisateur.getDouble(NOTE_COND), (float) jsonUtilisateur.getDouble(NOTE_PASS), 
-				0, 0, "", jsonUtilisateur.getString(PROFIL_DATE_AJOUT));
+		u = new Utilisateurs(jsonUtilisateur.getString(COURRIEL_USER), "", "",
+				jsonUtilisateur.getString(NUM_CIVIQUE),
+				jsonUtilisateur.getString(RUE),
+				jsonUtilisateur.getString(VILLE),
+				jsonUtilisateur.getString(CODE_POSTAL),
+				jsonUtilisateur.getString(NUM_TEL),
+				jsonUtilisateur.getInt(POS_VOITURE),
+				(float) jsonUtilisateur.getDouble(NOTE_COND),
+				(float) jsonUtilisateur.getDouble(NOTE_PASS), 0, 0, "",
+				jsonUtilisateur.getString(PROFIL_DATE_AJOUT));
 		return u;
 	}
 }

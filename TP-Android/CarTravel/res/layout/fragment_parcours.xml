@@ -20,7 +20,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/demande_conducteurs"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            tools:ignore="NestedWeights" />
 
         <ListView
             android:id="@+id/lst_demande_conducteurs"
@@ -50,7 +51,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/demande_passagers"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            tools:ignore="NestedWeights" />
 
         <ListView
             android:id="@+id/lst_demande_passagers"

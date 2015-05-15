@@ -43,6 +43,7 @@ import com.app.cartravel.utilitaire.UtilisateurDataSource;
 import com.app.cartravel.utilitaires.ArrayAdapters.ParcoursAdapter;
 import com.app.cartravel.utilitaires.ArrayAdapters.ParcoursItem;
 
+@SuppressWarnings("unused")
 public class ParcourActivity extends Activity implements ActionBar.TabListener {
 	public static final int AJOUTER_PARCOUR = 1;
 
@@ -73,10 +74,10 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 	private List<Parcours> m_LstParcours;
 	private List<Parcours> m_LstParcoursDemandeConducteur;
 	private List<Parcours> m_LstParcoursDemandePassagers;
-	private List<Parcours> m_LstParcoursCondPot;
-	private List<Parcours> m_LstParcoursMesCond;
-	private List<Parcours> m_LstParcoursPassPot;
-	private List<Parcours> m_LstParcoursMesPass;
+	//private List<Parcours> m_LstParcoursCondPot;
+	//private List<Parcours> m_LstParcoursMesCond;
+	//private List<Parcours> m_LstParcoursPassPot;
+	//private List<Parcours> m_LstParcoursMesPass;
 	private ParcourDataSource dataParcours;
 	private ParcoursAdapter m_Adapter;
 

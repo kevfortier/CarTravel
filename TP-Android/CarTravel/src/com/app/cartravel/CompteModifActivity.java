@@ -10,6 +10,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -27,6 +28,7 @@ import com.app.cartravel.jsonparser.JsonUtilisateur;
 import com.app.cartravel.utilitaire.Util;
 import com.app.cartravel.utilitaire.UtilisateurDataSource;
 
+@SuppressWarnings("unused")
 public class CompteModifActivity extends Activity {
 
 	private String mPseudoDep;
@@ -53,9 +55,9 @@ public class CompteModifActivity extends Activity {
 		setTitle(R.string.title_modif_compte);
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-		
+
 		mCourriel = (TextView) findViewById(R.id.txt_courriel);
-		
+
 		mPseudo = (EditText) findViewById(R.id.txt_pseudo);
 		mMDP = (EditText) findViewById(R.id.txt_password);
 
@@ -100,7 +102,7 @@ public class CompteModifActivity extends Activity {
 		}
 	}
 
-	public void ModifierInfoCompte() {
+	@SuppressLint("SimpleDateFormat") public void ModifierInfoCompte() {
 		Boolean modifMDP = false;
 		Boolean modifPseudo = false;
 		Boolean erreurRencontree = false;
@@ -111,8 +113,7 @@ public class CompteModifActivity extends Activity {
 				.trim();
 		Intent i = new Intent();
 
-		if (Util.ValiderString(new String[] {strPseudo,
-				strMotDePasse })) {
+		if (Util.ValiderString(new String[] { strPseudo, strMotDePasse })) {
 
 			if (!mMDPDep.matches(strMotDePasse)) {
 				if (!strMotDePasseConfirmation.isEmpty()) {
@@ -157,8 +158,9 @@ public class CompteModifActivity extends Activity {
 				SimpleDateFormat sdf = new SimpleDateFormat(
 						"dd:MMMM:yyyy HH:mm:ss a");
 				String strDate = sdf.format(c.getTime());
-				new ModifierCompteTask(this).execute(mUtilisateur.getCourriel(), strPseudo,
-						strMotDePasse, strDate);
+				new ModifierCompteTask(this).execute(
+						mUtilisateur.getCourriel(), strPseudo, strMotDePasse,
+						strDate);
 				this.setResult(RESULT_OK, i);
 				this.finish();
 			} else {
@@ -179,8 +181,7 @@ public class CompteModifActivity extends Activity {
 	}
 
 	// Méthode permettant d'afficher les info. du compte d'un utilisateur
-	public void AfficherInfoCompte(EditText mPseudo,
-			EditText mMDP) {
+	public void AfficherInfoCompte(EditText mPseudo, EditText mMDP) {
 		mPseudo.setText(mUtilisateur.getPseudo());
 		mMDP.setText(mUtilisateur.getMotDePasse());
 	}

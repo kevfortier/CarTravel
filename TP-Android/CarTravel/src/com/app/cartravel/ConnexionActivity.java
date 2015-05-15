@@ -125,7 +125,8 @@ public class ConnexionActivity extends Activity {
 				Utilisateurs utilisateurConnecte = JsonUtilisateur
 						.ToUtilisateur(body);
 				m_Utilisateur.setPseudo(utilisateurConnecte.getPseudo());
-				m_Utilisateur.setDateAjoutUser(utilisateurConnecte.getDateAjoutUser());
+				m_Utilisateur.setDateAjoutUser(utilisateurConnecte
+						.getDateAjoutUser());
 			} catch (Exception e) {
 				m_Exp = e;
 			}
