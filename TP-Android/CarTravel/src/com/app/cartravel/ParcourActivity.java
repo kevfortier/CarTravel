@@ -74,10 +74,10 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 	private List<Parcours> m_LstParcours;
 	private List<Parcours> m_LstParcoursDemandeConducteur;
 	private List<Parcours> m_LstParcoursDemandePassagers;
-	//private List<Parcours> m_LstParcoursCondPot;
-	//private List<Parcours> m_LstParcoursMesCond;
-	//private List<Parcours> m_LstParcoursPassPot;
-	//private List<Parcours> m_LstParcoursMesPass;
+	private List<Parcours> m_LstParcoursCondPot;
+	private List<Parcours> m_LstParcoursMesCond;
+	private List<Parcours> m_LstParcoursPassPot;
+	private List<Parcours> m_LstParcoursMesPass;
 	private ParcourDataSource dataParcours;
 	private ParcoursAdapter m_Adapter;
 
@@ -226,41 +226,132 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 						this,
 						R.layout.lst_parcours_item,
 						ConvertParcoursToListItems(m_LstParcoursDemandePassagers)));
+				
+				laListe.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+					@Override
+					public void onItemClick(AdapterView<?> parent,
+							final View view, int position, long id) {
+						Toast.makeText(m_Context, "Click sur la liste 2.",
+								Toast.LENGTH_SHORT).show();
+						Intent i = new Intent(m_Context,
+								UnParcoursActivity.class);
+						i.putExtra(EXTRA_PARCOURS,
+								m_LstParcoursDemandePassagers.get(position));
+						m_Context.startActivity(i);
+					}
+
+				});
+				
 				emptyList.setVisibility(View.GONE);
 			}
 		}
 	}
 
-	public void fillListConducteursPot() {
-		if (m_LstParcours != null) {
+	public void fillListConducteursPot(ListView laListe, TextView emptyList) {
+		dataParcours = new ParcourDataSource(this);
+		dataParcours.open();
+		List<Parcours> toutsParcours = dataParcours.getAllParcours();
+		dataParcours.close();
+		if (toutsParcours != null) {
+			m_LstParcoursCondPot = new ArrayList<Parcours>();
+			dataUser = new UtilisateurDataSource(this);
 			dataUser.open();
 			m_UtilisateurConnecte = dataUser.getConnectedUtilisateur();
 			dataUser.close();
-			m_MesDemandesConducteur = (ListView) this
-					.findViewById(R.id.lst_demande_conducteurs);
-			for (Parcours unParcour : m_LstParcours) {
-				if (unParcour.getIdProprietaire() != m_UtilisateurConnecte
+			m_ConducteurPot = (ListView) this
+					.findViewById(R.id.lst_conducteurs_pot);
+
+			m_LstParcoursCondPot.clear();
+
+			for (Parcours unParcours : toutsParcours) {
+				if (unParcours.getIdProprietaire() != m_UtilisateurConnecte
 						.getId()
-						&& unParcour.getIdConducteur() == m_UtilisateurConnecte
+						&& unParcours.getIdConducteur() != m_UtilisateurConnecte
 								.getId()) {
-					// TODO
+					m_LstParcoursCondPot.add(unParcours);
 				}
+			}
+			if (!m_LstParcoursCondPot.isEmpty()) {
+
+				laListe.setAdapter(new ParcoursAdapter(
+						this,
+						R.layout.lst_parcours_item,
+						ConvertParcoursToListItems(m_LstParcoursCondPot)));
+				
+				laListe.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+					@Override
+					public void onItemClick(AdapterView<?> parent,
+							final View view, int position, long id) {
+						Toast.makeText(m_Context, "Click sur la liste 2.",
+								Toast.LENGTH_SHORT).show();
+						Intent i = new Intent(m_Context,
+								UnParcoursActivity.class);
+						i.putExtra(EXTRA_PARCOURS,
+								m_LstParcoursCondPot.get(position));
+						m_Context.startActivity(i);
+					}
+
+				});				
+				
+				emptyList.setVisibility(View.GONE);
 			}
 		}
 	}
 
-	public void fillListMesConducteurs() {
-		if (m_LstParcours != null) {
+	public void fillListMesConducteurs(ListView laListe, TextView emptyList) {
+		dataParcours = new ParcourDataSource(this);
+		dataParcours.open();
+		List<Parcours> toutsParcours = dataParcours.getAllParcours();
+		dataParcours.close();
+		if (toutsParcours != null) {
+			m_LstParcoursMesCond = new ArrayList<Parcours>();
+			dataUser = new UtilisateurDataSource(this);
 			dataUser.open();
 			m_UtilisateurConnecte = dataUser.getConnectedUtilisateur();
 			dataUser.close();
-			m_MesDemandesConducteur = (ListView) this
-					.findViewById(R.id.lst_demande_conducteurs);
-			for (Parcours unParcour : m_LstParcours) {
-				if (unParcour.getIdConducteur() == m_UtilisateurConnecte
-						.getId()) {
-					// TODO
+			m_MesConducteurs = (ListView) this
+					.findViewById(R.id.lst_conducteurs);
+
+			m_LstParcoursMesCond.clear();
+			
+			boolean passager = false;
+			
+			//Boucle pour vérifier si il est dans la liste des passagers.
+			
+			for (Parcours unParcours : toutsParcours) {
+				if (unParcours.getIdProprietaire() != m_UtilisateurConnecte
+						.getId()
+						&& unParcours.getIdConducteur() != m_UtilisateurConnecte
+								.getId() && passager) {
+					m_LstParcoursMesCond.add(unParcours);
 				}
+			}
+			if (!m_LstParcoursMesCond.isEmpty()) {
+
+				laListe.setAdapter(new ParcoursAdapter(
+						this,
+						R.layout.lst_parcours_item,
+						ConvertParcoursToListItems(m_LstParcoursMesCond)));
+				
+				laListe.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+					@Override
+					public void onItemClick(AdapterView<?> parent,
+							final View view, int position, long id) {
+						Toast.makeText(m_Context, "Click sur la liste 3.",
+								Toast.LENGTH_SHORT).show();
+						Intent i = new Intent(m_Context,
+								UnParcoursActivity.class);
+						i.putExtra(EXTRA_PARCOURS,
+								m_LstParcoursMesCond.get(position));
+						m_Context.startActivity(i);
+					}
+
+				});				
+				
+				emptyList.setVisibility(View.GONE);
 			}
 		}
 	}
@@ -326,30 +417,6 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
-		}
-	}
-
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-		Log.e("onListItemClick", "called with " + position + " : " + l.getId()
-				+ " and " + android.R.id.list);
-
-		if (l.getId() == R.id.lst_demande_conducteurs) {
-			// TODO
-		}
-		if (l.getId() == R.id.lst_demande_passagers) {
-			// TODO
-		}
-		if (l.getId() == R.id.lst_conducteurs) {
-			// TODO
-		}
-		if (l.getId() == R.id.lst_conducteurs_pot) {
-			// TODO
-		}
-		if (l.getId() == R.id.lst_passagers) {
-			// TODO
-		}
-		if (l.getId() == R.id.lst_passagers_pot) {
-			// TODO
 		}
 	}
 
@@ -562,6 +629,7 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 						new BasicResponseHandler());
 				listeParcours = (ArrayList<Parcours>) JsonParcours
 						.parseListeParcours(body);
+				
 			} catch (Exception e) {
 				m_Exp = e;
 			}

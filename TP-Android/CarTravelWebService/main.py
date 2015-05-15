@@ -501,10 +501,12 @@ class ParcoursPassagersHandler(webapp2.RequestHandler):
                 parcoursPassagers = ParcoursPassagers(key=cle)
                 status = 201
                 
+                logging.info(jsonObj);
+                
                 if(jsonObj['idParcours'] is not None):
                     parcoursPassagers.idParcours = jsonObj['idParcours']
-                if(jsonObj['idPassagers'] is not None):
-                    parcoursPassagers.idPassagers = jsonObj['idPassagers'].replace("[","").replace("]","").split(", ")
+                if(jsonObj['idUtilisateur'] is not None):
+                    parcoursPassagers.idPassagers = jsonObj['idUtilisateur'].replace("[","").replace("]","").split(", ")
                 if(jsonObj['nbrPassagers'] is not None):
                     parcoursPassagers.nbrPassagers = jsonObj['nbrPassagers']
                 parcoursPassagers.put()
@@ -521,8 +523,8 @@ class ParcoursPassagersHandler(webapp2.RequestHandler):
                 
                 if(jsonObj['idParcours'] is not None):
                     parcoursPassagers.idParcours = jsonObj['idParcours']
-                if(jsonObj['idPassagers'] is not None):
-                    parcoursPassagers.idPassagers = jsonObj['idPassagers'].replace("[","").replace("]","").split(", ")
+                if(jsonObj['idUtilisateur'] is not None):
+                    parcoursPassagers.idPassagers = jsonObj['idUtilisateur'].replace("[","").replace("]","").split(", ")
                 if(jsonObj['nbrPassagers'] is not None):
                     parcoursPassagers.nbrPassagers = jsonObj['nbrPassagers']
                 parcoursPassagers.put()
@@ -630,8 +632,8 @@ application = webapp2.WSGIApplication(
         webapp2.Route(r'/utilisateurs/notifications', handler=ObtenirNotifications, methods=['GET']),
         webapp2.Route(r'/parcours', handler=ParcoursHandler, methods=['GET', 'DELETE']),
         webapp2.Route(r'/parcours/<idParcours>', handler=ParcoursHandler, methods=['GET', 'PUT', 'DELETE']),
-        webapp2.Route(r'/parcoursPassagers', handler=ParcoursHandler, methods=['GET', 'DELETE']),
-        webapp2.Route(r'/parcoursPassagers/<idParcours>', handler=ParcoursHandler, methods=['GET', 'PUT', 'DELETE']),
+        webapp2.Route(r'/parcoursPassager', handler=ParcoursPassagersHandler, methods=['GET', 'DELETE']),
+        webapp2.Route(r'/parcoursPassager/<idParcours>', handler=ParcoursPassagersHandler, methods=['GET', 'PUT', 'DELETE']),
         webapp2.Route(r'/utilisateurs/<username>/profil',  handler=ProfilHandler, methods=['GET', 'PUT', 'DELETE'])
     ],
     debug=True)
