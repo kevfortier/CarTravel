@@ -1,6 +1,8 @@
 package com.app.cartravel;
 
 import java.net.URI;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -642,10 +644,6 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 
 		protected void onPostExecute(List<Parcours> result) {
 			if (m_Exp == null && result != null) {
-				m_LstParcours = result;
-				m_Adapter = new ParcoursAdapter(m_Context,
-						R.layout.activity_parcour,
-						ConvertParcourssToListItems(m_LstParcours));
 
 				ParcourDataSource pds = new ParcourDataSource(m_Context);
 				pds.open();
@@ -653,10 +651,32 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 					if (pds.getParcours(result.get(i).getId()) == null) {
 						pds.insert(result.get(i));
 					} else {
-						pds.update(result.get(i));
+						SimpleDateFormat sdf = new SimpleDateFormat(
+								"dd:MMMM:yyyy HH:mm:ss a");
+						
+						try {
+							
+							java.util.Date strDateLocal = sdf.parse(m_LstParcours.get(i).getDateAjout());
+							java.util.Date strDateServWeb = sdf.parse((result.get(i)).getDateAjout());
+							
+							if (!strDateServWeb.after(strDateLocal)) {
+								pds.update(m_LstParcours.get(i));
+							} else {
+								pds.update(result.get(i));
+							}
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 				}
+				m_LstParcours = pds.getAllParcours();
 				pds.close();
+				
+				m_Adapter = new ParcoursAdapter(m_Context,
+						R.layout.activity_parcour,
+						ConvertParcourssToListItems(m_LstParcours));
+				
 				activity.fillListMesDemandeConducteur(
 						(ListView) fragParcours
 								.findViewById(R.id.lst_demande_conducteurs),
@@ -697,7 +717,6 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 		
 		protected void onPostExecute(List<ParcoursPassager> result) {
 			if (m_Exp == null && result != null) {
-				m_LstParcoursPassager = result;
 				
 				ParcoursPassagerDataSource ppds = new ParcoursPassagerDataSource(m_Context);
 				ppds.open();
@@ -705,7 +724,23 @@ public class ParcourActivity extends Activity implements ActionBar.TabListener {
 					if (ppds.getParcoursPassager(result.get(i).getIdParcoursPassager()) == null) {
 						ppds.insert(result.get(i));
 					} else {
-						ppds.update(result.get(i));
+						SimpleDateFormat sdf = new SimpleDateFormat(
+								"dd:MMMM:yyyy HH:mm:ss a");
+						
+						try {
+							
+							java.util.Date strDateLocal = sdf.parse(m_LstParcoursPassager.get(i).getDateAjout());
+							java.util.Date strDateServWeb = sdf.parse((result.get(i)).getDateAjout());
+							
+							if (!strDateServWeb.after(strDateLocal)) {
+								ppds.update(m_LstParcoursPassager.get(i));
+							} else {
+								ppds.update(result.get(i));
+							}
+						}  catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 				}
 				ppds.close();

@@ -1,7 +1,19 @@
 package com.app.cartravel;
 
+import java.net.URI;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
@@ -12,7 +24,12 @@ import android.widget.TextView;
 import com.app.cartravel.classes.Parcours;
 import com.app.cartravel.classes.ParcoursPassager;
 import com.app.cartravel.classes.Utilisateurs;
+import com.app.cartravel.jsonparser.JsonParcours;
+import com.app.cartravel.jsonparser.JsonParcoursPassager;
+import com.app.cartravel.jsonparser.JsonProfil;
+import com.app.cartravel.utilitaire.ParcourDataSource;
 import com.app.cartravel.utilitaire.ParcoursPassagerDataSource;
+import com.app.cartravel.utilitaire.Util;
 import com.app.cartravel.utilitaire.UtilisateurDataSource;
 
 public class UnParcoursActivity extends Activity {
@@ -40,6 +57,8 @@ public class UnParcoursActivity extends Activity {
 	private TextView m_AdresseArr;
 	private TextView m_VilleArr;
 	private TextView m_CodePostalArr;
+	
+	private HttpClient m_ClientHttp = new DefaultHttpClient();
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -50,18 +69,7 @@ public class UnParcoursActivity extends Activity {
 		actionBar.setDisplayHomeAsUpEnabled(true);
 
 		extras = this.getIntent().getExtras();
-
-		if (extras != null) {
-			if (extras.getSerializable(ParcourActivity.EXTRA_PARCOURS) != null) {
-				unParcours = (Parcours) extras
-						.getSerializable(ParcourActivity.EXTRA_PARCOURS);
-
-				ParcPassData = new ParcoursPassagerDataSource(this);
-				unParcoursPassagers = ParcPassData
-						.getParcoursPassager(unParcours.getId());
-
-			}
-		}
+		
 
 		m_Demandeur = (TextView) findViewById(R.id.txtProprpietaire);
 		m_Conducteur = (TextView) findViewById(R.id.txtConducteur);
@@ -78,10 +86,22 @@ public class UnParcoursActivity extends Activity {
 		m_VilleArr = (TextView) findViewById(R.id.txtVilleArrive);
 		m_CodePostalArr = (TextView) findViewById(R.id.txtCodePostalArrive);
 
-		afficherParcours(m_Demandeur, m_Conducteur, m_Date, m_Reptitif,
-				m_NbrPassagers, m_nbrPlaceTot, m_NbrPlacePrise,
-				m_DistanceSupMax, m_AdresseDep, m_VilleDep, m_CodePostalDep,
-				m_AdresseArr, m_VilleArr, m_CodePostalArr);
+		if (extras != null) {
+			if (extras.getSerializable(ParcourActivity.EXTRA_PARCOURS) != null) {
+				unParcours = (Parcours) extras
+						.getSerializable(ParcourActivity.EXTRA_PARCOURS);
+				
+				ParcPassData = new ParcoursPassagerDataSource(this);
+				unParcoursPassagers = ParcPassData
+						.getParcoursPassager(unParcours.getId());
+				
+				afficherParcours(m_Demandeur, m_Conducteur, m_Date, m_Reptitif,
+						m_NbrPassagers, m_nbrPlaceTot, m_NbrPlacePrise,
+						m_DistanceSupMax, m_AdresseDep, m_VilleDep, m_CodePostalDep,
+						m_AdresseArr, m_VilleArr, m_CodePostalArr);
+
+			}
+		}
 	}
 
 	@Override
@@ -135,8 +155,12 @@ public class UnParcoursActivity extends Activity {
 
 		p_Date.setText(unParcours.getJour());
 		p_Repetitif.setText(strRepet);
-		p_NbrPassagers.setText(String.valueOf(unParcoursPassagers
+		if (unParcoursPassagers != null){
+			p_NbrPassagers.setText(String.valueOf(unParcoursPassagers
 				.getNbrPassagers()));
+		} else {
+			p_NbrPassagers.setText("0");
+		}
 		p_nbrPlaceTot.setText(String.valueOf(unParcours.getNbPlaceDispo()));
 		p_NbrPlacePrise.setText(String.valueOf(unParcours.getNbPlacePrise()));
 		p_DistanceSupMax
@@ -158,4 +182,5 @@ public class UnParcoursActivity extends Activity {
 	public void btnPassager(View source) {
 		// TODO Click du btn Conducteur
 	}
+	
 }

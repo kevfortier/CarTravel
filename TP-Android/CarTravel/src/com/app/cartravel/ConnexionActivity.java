@@ -2,6 +2,9 @@ package com.app.cartravel;
 
 import java.io.IOException;
 import java.net.URI;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -147,8 +150,26 @@ public class ConnexionActivity extends Activity {
 					// local
 					dataSource.insert(result);
 				} else {
-					result.setId(utilisateurExistant.getId());
-					dataSource.update(result);
+					
+					SimpleDateFormat sdf = new SimpleDateFormat(
+							"dd:MMMM:yyyy HH:mm:ss a");
+					try {
+						java.util.Date strDateLocal = sdf.parse(utilisateurExistant.getDateAjoutUser());
+						java.util.Date strDateServWeb = sdf.parse(result.getDateAjoutUser());
+						
+						if (!strDateServWeb.after(strDateLocal)) {
+							utilisateurExistant.setEstConnecte(1);
+							dataSource.update(utilisateurExistant);
+							
+						} else {
+							result.setId(utilisateurExistant.getId());
+							dataSource.update(result);
+						}
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
 				}
 				// Met à jour le dernier utilisateur connecté
 				dataSource.modifierDernierConnecte(result);

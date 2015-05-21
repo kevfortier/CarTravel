@@ -1,6 +1,9 @@
 package com.app.cartravel;
 
 import java.net.URI;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -63,13 +66,14 @@ public class MainActivity extends Activity {
 		mDataSource.open();
 		mUtilisateur = mDataSource.getConnectedUtilisateur();
 		mDataSource.close();
-
-		new ObtenirProfilTask(this).execute();
-
+		
+		
 		if (mUtilisateur != null) {
+			new ObtenirProfilTask(this).execute();
 			AfficherInfoProfil(mNumCivique, mRue, mVille, mCodePostal, mNumTel,
 					mVoiture, mNoteCond, mNotePass);
 		}
+
 	}
 
 	@Override
@@ -157,21 +161,39 @@ public class MainActivity extends Activity {
 
 		protected void onPostExecute(Utilisateurs result) {
 			if (m_Exp == null && result != null) {
-				setUser(result);
 				UtilisateurDataSource uds = new UtilisateurDataSource(m_Context);
 				uds.open();
 				if (uds.getUtilisateur(result.getCourriel()) == null) {
 					uds.insert(result);
 				} else {
-					uds.update(result);
-				}
-				uds.close();
+					
+					SimpleDateFormat sdf = new SimpleDateFormat(
+							"dd:MMMM:yyyy HH:mm:ss a");
+					try {
+						java.util.Date strDateLocal = sdf.parse(mUtilisateur.getDateAjoutProfil());
+						java.util.Date strDateServWeb = sdf.parse(result.getDateAjoutProfil());
+						
+						if (!strDateServWeb.after(strDateLocal)) {
 
-				AfficherInfoProfil(mNumCivique, mRue, mVille, mCodePostal,
-						mNumTel, mVoiture, mNoteCond, mNotePass);
+							uds.update(mUtilisateur);
+							
+						} else {
+							uds.update(result);
+						}
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				
+				//On va chercher une autre fois l'utilisateur connecté pour avoir,
+				//les nouvelles informations.
+				mUtilisateur = uds.getConnectedUtilisateur();
+				uds.close();
 			}
 		}
 
+		//À revoir avec Kev sur le pourquoi de cette méthode
 		public void setUser(Utilisateurs result) {
 			result.setDateAjoutUser(mUtilisateur.getDateAjoutUser());
 			result.setDernierConnecte(mUtilisateur.getDernierConnecte());

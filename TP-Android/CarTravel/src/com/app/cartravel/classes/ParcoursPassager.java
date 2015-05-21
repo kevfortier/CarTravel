@@ -11,6 +11,7 @@ public class ParcoursPassager implements java.io.Serializable {
 	private String m_Id;
 	private List<String> m_List_Id_Passager;
 	private int m_Nbr_Passagers;
+	private String m_DateAjout;
 
 	/**
 	 * Constructeur pour passager Si jamais l'utilisateur est un passager et
@@ -19,7 +20,7 @@ public class ParcoursPassager implements java.io.Serializable {
 	 * vérifiant si tous les passagers sont des utilisateurs de l'app. ou non.
 	 */
 	public ParcoursPassager(String p_Id, String p_Id_Passager,
-			int p_Nbr_Passagers) {
+			int p_Nbr_Passagers, String p_DateAjout) {
 		super();
 		this.m_Id = p_Id;
 		this.m_List_Id_Passager = new ArrayList<String>();
@@ -30,6 +31,22 @@ public class ParcoursPassager implements java.io.Serializable {
 				this.m_List_Id_Passager.add("0");
 			}
 		}
+		this.m_DateAjout = p_DateAjout;
+	}
+	
+	/**
+	 * Constructeur lorsqu'on va chercher un ParcoursPassager sur
+	 * le service Web.
+	 * @param p_Id
+	 * @param p_IdPassagers
+	 * @param p_Nbr_Passagers
+	 */
+	public ParcoursPassager(String p_Id, List<String> p_IdPassagers,
+			int p_Nbr_Passagers, String p_DateAjout){
+		this.m_Id = p_Id;
+		this.m_List_Id_Passager = p_IdPassagers;
+		this.m_Nbr_Passagers= p_Nbr_Passagers;
+		this.m_DateAjout = p_DateAjout;
 	}
 
 	public ParcoursPassager() {
@@ -146,5 +163,13 @@ public class ParcoursPassager implements java.io.Serializable {
 
 	public void setNbrPassagers(int NbrPassagers) {
 		this.m_Nbr_Passagers = NbrPassagers;
+	}
+	
+	public String getDateAjout() {
+		return m_DateAjout;
+	}
+	
+	public void setDateAjout(String DateAjout) {
+		this.m_DateAjout = DateAjout;
 	}
 }

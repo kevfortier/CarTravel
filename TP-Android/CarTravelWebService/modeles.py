@@ -34,7 +34,8 @@ class Parcours(ndb.Model):
 class ParcoursPassagers(ndb.Model):
     idParcours = ndb.StringProperty()
     idPassagers = ndb.StringProperty(repeated=True)
-    nbrPassagers = ndb.IntegerProperty();
+    nbrPassagers = ndb.IntegerProperty()
+    dateParcoursPassager = ndb.StringProperty()
     
 class Notifications(ndb.Model):
     sender = ndb.StringProperty()

@@ -377,6 +377,8 @@ class ParcoursHandler (webapp2.RequestHandler):
                     parcours.villeArr = jsonObj['villeArr']
                 if(jsonObj['codePostalArr'] is not None):
                     parcours.codePostalArr = jsonObj['codePostalArr']
+                if(jsonObj['date_parcours'] is not None):
+                    parcours.dateParcours = jsonObj['date_parcours'];
                 parcours.put()
                 
             elif(parcours is not None):
@@ -509,6 +511,8 @@ class ParcoursPassagersHandler(webapp2.RequestHandler):
                     parcoursPassagers.idPassagers = jsonObj['idUtilisateur'].replace("[","").replace("]","").split(", ")
                 if(jsonObj['nbrPassagers'] is not None):
                     parcoursPassagers.nbrPassagers = jsonObj['nbrPassagers']
+                if(jsonObj['date_parcours_passager'] is not None):
+                    parcoursPassagers.dateParcoursPassager = jsonObj['date_parcours_passager']
                 parcoursPassagers.put()
                 
             elif(parcoursPassagers is not None):
@@ -527,6 +531,8 @@ class ParcoursPassagersHandler(webapp2.RequestHandler):
                     parcoursPassagers.idPassagers = jsonObj['idUtilisateur'].replace("[","").replace("]","").split(", ")
                 if(jsonObj['nbrPassagers'] is not None):
                     parcoursPassagers.nbrPassagers = jsonObj['nbrPassagers']
+                if(jsonObj['date_parcours_passager'] is not None):
+                    parcoursPassagers.dateParcoursPassager = jsonObj['date_parcours_passager']
                 parcoursPassagers.put()
                 
             self.response.set_status(status)

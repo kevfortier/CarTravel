@@ -17,7 +17,7 @@ public class Util {
 	public final static String REST_PARCOURS = "/parcours";
 	public final static String REST_PARCOURS_PASSAGER = "/parcoursPassager";
 	public final static String REST_CONNEXION = "/connexion";
-	public final static String WEB_SERVICE = "192.168.43.191:8080";
+	public final static String WEB_SERVICE = "192.168.2.16:8080";
 	public final static String GOOGLE_SENDER_ID = "133519372687";
 
 	/**

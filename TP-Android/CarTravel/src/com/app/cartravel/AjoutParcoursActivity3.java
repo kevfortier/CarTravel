@@ -196,7 +196,7 @@ public class AjoutParcoursActivity3 extends Activity {
 												strCodePostalArr, strDate);
 										leParcoursPassager = new ParcoursPassager(
 												idParcours, util.getCourriel(),
-												m_NbrPassagers);
+												m_NbrPassagers, strDate);
 									}
 
 									parcourData = new ParcourDataSource(this);

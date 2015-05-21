@@ -7,6 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.app.cartravel.classes.Parcours;
+import com.app.cartravel.classes.Utilisateurs;
 
 public class JsonParcours {
 
@@ -86,5 +87,31 @@ public class JsonParcours {
 		jsonObj.put(PARCOURS_DATE_AJOUT, parcours.getDateAjout());
 
 		return jsonObj;
+	}
+	
+	public static Parcours ToParcours(String strJson)
+			throws JSONException {
+		Parcours p;
+		JSONObject jsonParcours = new JSONObject(strJson);
+		p = new Parcours(
+				jsonParcours.getString(PARCOURS_ID),
+				jsonParcours.getInt(PARCOURS_PROPRIETAIRE),
+				jsonParcours.getInt(PARCOURS_CONDUCTEUR),
+				jsonParcours.getString(PARCOURS_JOUR),
+				jsonParcours.getString(PARCOURS_HEURE),
+				jsonParcours.getBoolean(PARCOURS_REPETITIF),
+				jsonParcours.getInt(PARCOURS_NBR_PLACES_DISPO),
+				jsonParcours.getInt(PARCOURS_NBR_PLACES_PRISE),
+				(float) jsonParcours.getDouble(PARCOURS_DIST_SUPP_MAX),
+				jsonParcours.getString(PARCOURS_NUM_CIV_DEP),
+				jsonParcours.getString(PARCOURS_RUE_DEP),
+				jsonParcours.getString(PARCOURS_VILLE_DEP),
+				jsonParcours.getString(PARCOURS_CODE_POSTAL_DEP),
+				jsonParcours.getString(PARCOURS_NUM_CIV_ARR),
+				jsonParcours.getString(PARCOURS_RUE_ARR),
+				jsonParcours.getString(PARCOURS_VILLE_ARR),
+				jsonParcours.getString(PARCOURS_CODE_POSTAL_ARR),
+				jsonParcours.getString(PARCOURS_DATE_AJOUT));
+		return p;
 	}
 }
