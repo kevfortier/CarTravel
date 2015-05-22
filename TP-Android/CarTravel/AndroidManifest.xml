@@ -46,6 +46,10 @@
             android:label="@string/app_name" >
         </activity>
         <activity
+            android:name=".MDPOublieActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
             android:name=".ProfilActivity"
             android:label="@string/act_profil" >
             <meta-data

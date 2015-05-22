@@ -104,7 +104,10 @@
     <string name="action_sauvegarder_compte">Sauvegarder les modifications</string>
     <string name="avertissement_compte_modifier">Compte modifier</string>
     <string name="erreur_compte_modifier">Erreur lors de la modification</string>
-
+	<string name="compte_existant_courriel">Un compte est déjà associé à ce courriel.</string>
+	<string name="pseudo_non_disponible">Un autre compte utilise déjà ce pseudo.</string>
+    <string name="aucun_compte_existant">Aucun compte n\'est rattaché ce courriel, veillez en créer un.</string>
+    
     <!-- String profiles -->
     <string name="lbl_num_civ">Num. civique :</string>
     <string name="lbl_rue">Rue :</string>
@@ -181,5 +184,8 @@
         <item>Ponctuel</item>
         <item>Périodique</item>
     </string-array>
-
+	
+    <string name="btn_envoie_courriel">Envoyer!</string>
+    <string name="mdp_oublie">Mot de passe oublié?</string>
+    <string name="courriel_envoye">Le courriel contenant votre mot de passe a été envoyé.</string>
 </resources>

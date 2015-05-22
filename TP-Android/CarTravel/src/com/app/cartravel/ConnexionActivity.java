@@ -88,6 +88,11 @@ public class ConnexionActivity extends Activity {
 		Intent creationCompte = new Intent(this, CreationCompteActivity.class);
 		this.startActivity(creationCompte);
 	}
+	
+	public void btnOubliePW(View source) {
+		Intent oublieMDP = new Intent(this, MDPOublieActivity.class);
+		this.startActivity(oublieMDP);
+	}
 
 	public void btnConnexion(View source) {
 		// Vérifier si la combinaison usager/mot de passe existe sur le service

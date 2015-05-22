@@ -64,12 +64,34 @@ public class CreationCompteActivity extends Activity {
 			if (Util.isCourriel(strCourriel)) {
 				if (strCourriel.equals(strCourrielConfirmation)) {
 					if (strMotDePasse.equals(strMotDePasseConfirmation)) {
-						Calendar c = Calendar.getInstance();
-						SimpleDateFormat sdf = new SimpleDateFormat(
-								"dd:MMMM:yyyy HH:mm:ss a");
-						String strDate = sdf.format(c.getTime());
-						new CreerCompteTask(this).execute(strCourriel,
-								strPseudo, strMotDePasse, strDate);
+						UtilisateurDataSource uds = new UtilisateurDataSource(this);
+						uds.open();
+						Boolean verifCourriel = uds.getCourrielUser(strCourriel);
+						Boolean verifPseudo = uds.getPseudoUser(strPseudo);
+						uds.close();
+						if(!verifCourriel) {
+							if (!verifPseudo) {
+								Calendar c = Calendar.getInstance();
+								SimpleDateFormat sdf = new SimpleDateFormat(
+										"dd:MMMM:yyyy HH:mm:ss a");
+								String strDate = sdf.format(c.getTime());
+								new CreerCompteTask(this).execute(strCourriel,
+										strPseudo, strMotDePasse, strDate);
+							} else {
+								Toast.makeText(
+										this,
+										this.getResources().getText(
+												R.string.pseudo_non_disponible),
+										Toast.LENGTH_SHORT).show();
+							}
+						} else {
+							Toast.makeText(
+									this,
+									this.getResources().getText(
+											R.string.compte_existant_courriel),
+									Toast.LENGTH_SHORT).show();
+						}
+						
 					} else {
 						Toast.makeText(
 								this,

@@ -73,6 +73,30 @@ public class UtilisateurDataSource {
 		}
 		return u;
 	}
+	
+	public Boolean getCourrielUser(String p_Courriel) {
+		Boolean verifCourriel = false;
+		Cursor c = m_Db.query(DatabaseHelper.TABLE_UTILISATEUR, null,
+				DatabaseHelper.COL_COURRIEL + "='" + p_Courriel + "'", null,
+				null, null, null);
+		c.moveToFirst();
+		if (!c.isAfterLast()) {
+			verifCourriel = true;
+		}
+		return verifCourriel;
+	}
+	
+	public Boolean getPseudoUser(String p_Pseudo) {
+		Boolean verifPseudo = false;
+		Cursor c = m_Db.query(DatabaseHelper.TABLE_UTILISATEUR, null,
+				DatabaseHelper.COL_PSEUDO + "='" + p_Pseudo + "'", null,
+				null, null, null);
+		c.moveToFirst();
+		if (!c.isAfterLast()) {
+			verifPseudo = true;
+		}
+		return verifPseudo;
+	}
 
 	public Utilisateurs getConnectedUtilisateur() {
 		Utilisateurs u = null;

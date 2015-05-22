@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:gravity="center|bottom"
-        android:onClick="btnCreerCompte"
+        android:onClick="btnOubliePW"
         android:text="@string/lbl_forgot_password"
         android:textColor="@android:color/holo_blue_light"
         android:textSize="15sp" />
